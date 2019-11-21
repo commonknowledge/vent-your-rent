@@ -36,5 +36,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "1.19.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint": "^5.20.1",
+    "tslint-react": "^4.1.0"
   }
 }
