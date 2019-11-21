@@ -7,6 +7,7 @@ import { Global, css } from "@emotion/core";
 import emotionNormalize from "emotion-normalize";
 
 import FirstPage from "./pages/FirstPage";
+import ResultsPage from "./pages/ResultsPage";
 
 const App: React.FC = () => {
   return (
@@ -23,7 +24,7 @@ const App: React.FC = () => {
           }%;
         `}
       />
-      <FirstPage />
+      <ResultsPage />
     </Fragment>
   );
 };
