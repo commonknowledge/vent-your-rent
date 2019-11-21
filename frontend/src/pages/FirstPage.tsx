@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
-import Button from "../Button";
-import Header from "../Header";
-import TextInput from "../TextInput";
+import Button from "../components/Button";
+import Header from "../components/Header";
+import TextInput from "../components/TextInput";
 
 const FirstPage = () => (
   <div
