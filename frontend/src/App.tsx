@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import { Fragment } from "react";
 
 import { Global, css } from "@emotion/core";
 
@@ -9,7 +10,7 @@ import FirstPage from "./pages/FirstPage";
 
 const App: React.FC = () => {
   return (
-    <div>
+    <Fragment>
       <Global
         styles={css`
         ${emotionNormalize}
@@ -23,7 +24,7 @@ const App: React.FC = () => {
         `}
       />
       <FirstPage />
-    </div>
+    </Fragment>
   );
 };
 
