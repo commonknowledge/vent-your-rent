@@ -8,9 +8,8 @@ const Header = () => (
       font-style: normal;
       font-weight: 900;
       font-size: 5rem;
-      line-height: 78px;
+      line-height: 65px;
       text-transform: uppercase;
-      text-align: center;
       color: #353535;
     `}
   >
