@@ -1,0 +1,5 @@
+[run]
+include = vent_your_rent/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin

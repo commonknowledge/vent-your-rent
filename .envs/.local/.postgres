@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=vent_your_rent
+POSTGRES_USER=VxVtiCajqkOQZkMRejMBEgvHaFRTOVyc
+POSTGRES_PASSWORD=VBTzfiDaX5SLWhgOAVXpbGPS2c4aL3ouJHXPIqoWLLujKwdWO712FB9C3QVRp7qg
