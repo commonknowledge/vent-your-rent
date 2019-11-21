@@ -17,6 +17,7 @@ const FirstPage = () => (
       letter-spacing: -0.04em;
       background-color: #ec7b70;
       padding: 20px;
+      height: 100vh;
     `}
   >
     <Header />
