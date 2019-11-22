@@ -57,5 +57,15 @@ class Queries():
             n = n + 1
         return vents
 
+    vent = graphene.Field(VentType, id=graphene.String(required=True))
+
+    def resolve_vent(self, info, id):
+        return Vent(
+            id=n,
+            postcode=random.choice(["LL47 6YP", "PH38 4LZ", "W5 3PB", "PA29 6TB", "TN26 1AJ"]),
+            caption=random.choice(["I hate my landlord", "Never met my landlord", "is this hell on earth"]),
+            first_name=random.choice(["Alex", "Gemma", "Georgie", "Dan", "Jan"])
+        )
+
 class Mutations():
     create_vent = VentMutation.Field()
