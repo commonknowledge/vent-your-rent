@@ -8,7 +8,6 @@ from django.views.decorators.cache import never_cache
 from . import templates
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
