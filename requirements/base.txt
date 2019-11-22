@@ -18,5 +18,10 @@ djangorestframework==3.10.3  # https://github.com/encode/django-rest-framework
 coreapi==2.3.3  # https://github.com/core-api/python-client
 
 # Other stuff
+graphene-django==2.6.0
+graphene==2.1.8
+graphql-core==2.2.1
+graphql-relay==2.0.0
+django-filter==2.2.0
 django-heroku==0.3.1
 whitenoise==4.1.4
