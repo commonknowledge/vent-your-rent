@@ -1,0 +1,22 @@
+{
+    "name": "my-nearest-marginal-project",
+    "version": "1.0.0",
+    "main": "index.js",
+    "engines": {
+        "node": "^v10.16.3",
+        "yarn": "^1.19.0"
+    },
+    "scripts": {
+        "dev": "docker-compose -f local.yml up --build",
+        "postdev": "docker-compose -f local.yml down",
+        "containercmd": "docker-compose -f local.yml run --rm ",
+        "release": "bin/release",
+        "build": "cd frontend && yarn build",
+        "postinstall": "cd frontend && yarn"
+    },
+    "cacheDirectories": [
+        "frontend/node_modules",
+        "node_modules"
+    ],
+    "dependencies": {}
+}

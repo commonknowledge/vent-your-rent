@@ -43,3 +43,8 @@ if settings.DEBUG:
         import debug_toolbar
 
         urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
+
+if not settings.DEBUG:
+    urlpatterns += [
+        re_path(r'^((?!static).)*$', never_cache(templates.index))
+    ]

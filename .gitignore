@@ -276,3 +276,4 @@ vent_your_rent/media/
 .env
 .envs/*
 !.envs/.local/
+.vscode/settings.json
