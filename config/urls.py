@@ -8,16 +8,15 @@ from django.views.decorators.cache import never_cache
 from . import templates
 
 urlpatterns = [
-    path(
-        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
-    ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("vent_your_rent.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
+    re_path(r'^((?!static).)*$', never_cache(templates.index))
+]
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
@@ -40,12 +39,8 @@ if settings.DEBUG:
         ),
         path("500/", default_views.server_error),
     ]
+
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
 
         urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
-
-if not settings.DEBUG:
-    urlpatterns += [
-        re_path(r'^((?!static).)*$', never_cache(templates.index))
-    ]
