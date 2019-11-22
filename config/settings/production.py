@@ -78,8 +78,8 @@ AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = env("DJANGO_AWS_S3_REGION_NAME", default=None)
 # STATIC
 # ------------------------
-# STATICFILES_STORAGE = "config.settings.production.StaticRootS3Boto3Storage"
-COLLECTFAST_STRATEGY = "django.core.files.storage.FileSystemStorage"
+STATICFILES_STORAGE = "django.core.files.storage.FileSystemStorage"
+COLLECTFAST_STRATEGY = "collectfast.strategies.filesystem.FileSystemStrategy"
 AWS_S3_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 # STATIC_HOST = AWS_S3_URL if not DEBUG else ''
 # STATIC_URL = STATIC_HOST + '/static/'
