@@ -78,11 +78,11 @@ AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = env("DJANGO_AWS_S3_REGION_NAME", default=None)
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = "config.settings.production.StaticRootS3Boto3Storage"
-COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
+# STATICFILES_STORAGE = "config.settings.production.StaticRootS3Boto3Storage"
+# COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 AWS_S3_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-STATIC_HOST = AWS_S3_URL if not DEBUG else ''
-STATIC_URL = STATIC_HOST + '/static/'
+# STATIC_HOST = AWS_S3_URL if not DEBUG else ''
+# STATIC_URL = STATIC_HOST + '/static/'
 # MEDIA
 # ------------------------------------------------------------------------------
 # region http://stackoverflow.com/questions/10390244/
@@ -90,9 +90,9 @@ STATIC_URL = STATIC_HOST + '/static/'
 from storages.backends.s3boto3 import S3Boto3Storage  # noqa E402
 
 
-class StaticRootS3Boto3Storage(S3Boto3Storage):
-    location = "static"
-    default_acl = "public-read"
+# class StaticRootS3Boto3Storage(S3Boto3Storage):
+#     location = "static"
+#     default_acl = "public-read"
 
 
 class MediaRootS3Boto3Storage(S3Boto3Storage):
