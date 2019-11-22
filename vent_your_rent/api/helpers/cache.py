@@ -56,9 +56,7 @@ def cache_resolve_many(keys, resolve, bucket, get_key=id_key, cache_type='defaul
         in results.items()
     }
 
-def cache_resolve(key, resolve, bucket, cache_type='default', timeout_seconds=None):
-    # print('lookup', [bucket, key])
-    
+def cache_resolve(key, resolve, bucket, cache_type='default', timeout_seconds=None):    
     cache = caches[cache_type]
 
     hit = cache.get(bucket + '.' + key)
