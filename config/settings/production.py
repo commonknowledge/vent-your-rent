@@ -102,7 +102,7 @@ class MediaRootS3Boto3Storage(S3Boto3Storage):
 
 # endregion
 DEFAULT_FILE_STORAGE = "config.settings.production.MediaRootS3Boto3Storage"
-MEDIA_URL = STATIC_HOST + "/media/"
+MEDIA_URL = AWS_S3_URL + "/media/"
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
