@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.22",
     "@types/jest": "24.0.23",
     "@types/node": "12.12.11",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
+    "a11y-react-emoji": "^1.1.1",
+    "emotion-normalize": "^10.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.2.0",
@@ -32,5 +35,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "1.19.1",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0"
   }
 }
