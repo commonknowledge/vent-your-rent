@@ -1,0 +1,14 @@
+{
+    "addons": [
+        "heroku-postgresql:hobby-dev",
+        "heroku-redis:hobby-dev"
+    ],
+    "buildpacks": [
+        {
+            "url": "heroku/nodejs"
+        },
+        {
+            "url": "heroku/python"
+        }
+    ]
+}
