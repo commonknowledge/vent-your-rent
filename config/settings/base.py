@@ -9,6 +9,7 @@ ROOT_DIR = (
 )  # (vent_your_rent/config/settings/base.py - 3 = vent_your_rent/)
 APPS_DIR = ROOT_DIR.path("vent_your_rent")
 FRONTEND_DIST_DIR = ROOT_DIR.path("frontend/build")
+FRONTEND_DIST_DIR_2 = FRONTEND_DIST_DIR.path("static")
 
 env = environ.Env()
 
@@ -140,7 +141,7 @@ STATIC_ROOT = str(ROOT_DIR("staticfiles"))
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(APPS_DIR.path("static")), str(FRONTEND_DIST_DIR)]
+STATICFILES_DIRS = [str(APPS_DIR.path("static")), str(FRONTEND_DIST_DIR), str(FRONTEND_DIST_DIR_2)]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
