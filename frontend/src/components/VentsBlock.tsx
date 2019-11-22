@@ -36,8 +36,29 @@ export default function VentsBlock({
 }: VentsBlockProps) {
   const vents = ventsDummy(numberOfVents);
   return (
-    <div>
-      {title && <h3>{title}</h3>}
+    <div
+      css={css`
+        background-color: #fff;
+        padding-top: 30px;
+        padding-bottom: 30px;
+      `}
+    >
+      {title && (
+        <h3
+          css={css`
+            margin: 0px;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 21px;
+            line-height: 25px;
+            letter-spacing: -0.04em;
+
+            color: #000000;
+          `}
+        >
+          {title}
+        </h3>
+      )}
       <div css={ventsContainer}>
         {vents.map(({ firstName, text, city }, index) => (
           <Vent firstName={firstName} text={text} city={city} key={index} />
