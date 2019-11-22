@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import Button from "./Button";
 
 type VentsBlockProps = {
   title?: string;
   numberOfVents: number;
+  showMore?: boolean;
 };
 
 function ventsDummy(amount: number) {
@@ -21,11 +23,16 @@ function ventsDummy(amount: number) {
   return vents;
 }
 
-export default function VentsBlock({ title, numberOfVents }: VentsBlockProps) {
+export default function VentsBlock({
+  title,
+  numberOfVents,
+  showMore = false
+}: VentsBlockProps) {
   return (
     <div>
       {title && <h3>{title}</h3>}
       <div>{ventsDummy(numberOfVents)}</div>
+      {showMore && <Button type="outline">Load More</Button>}
     </div>
   );
 }
