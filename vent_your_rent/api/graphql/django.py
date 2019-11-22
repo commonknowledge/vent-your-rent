@@ -12,6 +12,8 @@ from django.utils import timezone
 from datetime import datetime  
 from datetime import timedelta  
 from graphene.types.generic import GenericScalar
+import itertools
+import random
 
 class VentType(DjangoObjectType):
     class Meta:
@@ -20,6 +22,10 @@ class VentType(DjangoObjectType):
         fields = '__all__'
 
     location = GeocodeResult()
+
+    first_name = graphene.String(default_value='Alex')
+    postcode = graphene.String(default_value='LL47 6YP')
+    caption = graphene.String(default_value='I hate my landlord')
 
     def resolve_location(self, info):
         return info.context.loaders.get('geo_from_postcode').load(self.postcode)
@@ -36,7 +42,20 @@ class VentMutation(DjangoModelFormMutation):
         form_class = VentForm
 
 class Queries():
-    vents = DjangoFilterField(VentType)
+    vents = graphene.List(graphene.NonNull(VentType), required=True) # DjangoFilterField(VentType)
+
+    def resolve_vents(self, info):
+        vents = []
+        n = 1
+        for _ in itertools.repeat(None, 40):
+            vents.append(Vent(
+                id=n,
+                postcode=random.choice(["LL47 6YP", "PH38 4LZ", "W5 3PB", "PA29 6TB", "TN26 1AJ"]),
+                caption=random.choice(["I hate my landlord", "Never met my landlord", "is this hell on earth"]),
+                first_name=random.choice(["Alex", "Gemma", "Georgie", "Dan", "Jan"])
+            ))
+            n = n + 1
+        return vents
 
 class Mutations():
     create_vent = VentMutation.Field()
