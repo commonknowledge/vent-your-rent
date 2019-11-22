@@ -14,9 +14,7 @@ urlpatterns = [
     path("users/", include("vent_your_rent.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
-    re_path(r'^((?!static).)*$', never_cache(templates.index))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
@@ -44,3 +42,7 @@ if settings.DEBUG:
         import debug_toolbar
 
         urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
+
+urlpatterns += [
+    re_path(r'^((?!static).)*$', never_cache(templates.index))
+]
