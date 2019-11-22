@@ -78,7 +78,6 @@ const ResultsPage = () => (
       nationalAverageStatistic={1000}
       areaStatistic={800}
     />
-    <hr />
     <VentsBlock
       title="This is what the renting crisis looks like near you:"
       numberOfVents={3}
