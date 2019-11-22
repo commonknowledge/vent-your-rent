@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
+import Emoji from "a11y-react-emoji";
+
 const upperCase = css`
   text-transform: uppercase;
 `;
@@ -16,9 +18,7 @@ export default function PageHeader() {
     >
       <div css={upperCase}>#ventyourrent</div>
       <div css={upperCase}>
-        <span role="img" aria-label="trumpet">
-          📣
-        </span>{" "}
+        <Emoji symbol="📣" label="trumpet" />
         Share
       </div>
     </div>
