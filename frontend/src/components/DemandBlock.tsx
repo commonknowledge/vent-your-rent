@@ -7,7 +7,6 @@ type DemandBlockProps = {
   demand: string;
 };
 
-Emoji;
 export default function DemandBlock({ demand }: DemandBlockProps) {
   return (
     <div>
