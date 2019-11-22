@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Fragment } from "react";
 import Emoji from "a11y-react-emoji";
 import Button from "./Button";
 
