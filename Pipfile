@@ -30,6 +30,7 @@ django-filter = "*"
 whitenoise = "*"
 dj-database-url = "*"
 django-heroku = "*"
+django-admin-rangefilter = "*"
 
 [requires]
 python_version = "3.7"

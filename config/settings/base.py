@@ -72,6 +72,7 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "rest_framework",
     "graphene_django",
+    'rangefilter',
 ]
 
 LOCAL_APPS = [
