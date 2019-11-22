@@ -11,9 +11,7 @@ import RenterManifestoBlock from "../components/RenterManifestoBlock";
 
 const ResultsPage = () => (
   <Page>
-    <h1>
-      You're one of 9,056 private renters in <span>Tottenham</span>
-    </h1>
+    <h1>You're one of 9,056 private renters in Tottenham</h1>
     <h2>
       Private renters have less security over their homes and are more likely to
       be living in poor conditions.
