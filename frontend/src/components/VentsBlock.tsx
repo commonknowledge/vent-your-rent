@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 
 type VentsBlockProps = {
-  title: String;
+  title?: string;
   numberOfVents: number;
 };
 
@@ -24,7 +24,7 @@ function ventsDummy(amount: number) {
 export default function VentsBlock({ title, numberOfVents }: VentsBlockProps) {
   return (
     <div>
-      <h3>{title}</h3>
+      {title && <h3>{title}</h3>}
       <div>{ventsDummy(numberOfVents)}</div>
     </div>
   );
