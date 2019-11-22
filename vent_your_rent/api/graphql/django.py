@@ -21,11 +21,7 @@ class VentType(DjangoObjectType):
         filter_fields = ['postcode']
         fields = '__all__'
 
-    location = GeocodeResult()
-
-    first_name = graphene.String(default_value='Alex')
-    postcode = graphene.String(default_value='LL47 6YP')
-    caption = graphene.String(default_value='I hate my landlord')
+    location = graphene.Field(GeocodeResult)
 
     def resolve_location(self, info):
         return info.context.loaders.get('geo_from_postcode').load(self.postcode)
