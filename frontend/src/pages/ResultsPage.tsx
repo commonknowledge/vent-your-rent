@@ -1,18 +1,16 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { Fragment } from "react";
-import PageHeader from "../components/PageHeader";
+import Page from "../components/Page";
 import StatisticBlock from "../components/StatisticBlock";
 import DemandBlock from "../components/DemandBlock";
 import VentsBlock from "../components/VentsBlock";
 import TakeActionBlock from "../components/TakeActionBlock";
 import GenerationRentBlock from "../components/GenerationRentBlock";
 import RenterManifestoBlock from "../components/RenterManifestoBlock";
-import Footer from "../components/Footer";
 
 const ResultsPage = () => (
-  <div>
-    <PageHeader />
+  <Page>
     <h1>
       You're one of 9,056 private renters in <span>Tottenham</span>
     </h1>
@@ -88,8 +86,7 @@ const ResultsPage = () => (
     <TakeActionBlock />
     <GenerationRentBlock />
     <RenterManifestoBlock />
-    <Footer />
-  </div>
+  </Page>
 );
 
 export default ResultsPage;
