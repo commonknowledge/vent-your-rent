@@ -6,7 +6,7 @@ import { FunctionComponent } from "react";
 import { css } from "@emotion/core";
 
 type ButtonProps = {
-  type?: "primary" | "secondary";
+  type?: "primary" | "secondary" | "outline";
 };
 
 const Button: FunctionComponent<ButtonProps> = ({ type, children }) => (
