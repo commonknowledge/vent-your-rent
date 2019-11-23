@@ -276,6 +276,14 @@
             "index": "pypi",
             "version": "==2.6.0"
         },
+        "graphene-file-upload": {
+            "hashes": [
+                "sha256:034ff72d2834b7aebd06fda412fa88a10aba34bac604317f7552457e47040654",
+                "sha256:b5f47a81f5614d1184ba9480a63835769b26303cb7759316122401784858e9c7"
+            ],
+            "index": "pypi",
+            "version": "==1.2.2"
+        },
         "graphql-core": {
             "hashes": [
                 "sha256:1488f2a5c2272dc9ba66e3042a6d1c30cea0db4c80bd1e911c6791ad6187d91b",

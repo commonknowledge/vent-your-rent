@@ -25,6 +25,7 @@ django==2.2.7
 djangorestframework==3.10.3
 docutils==0.15.2
 graphene-django==2.6.0
+graphene-file-upload==1.2.2
 graphene==2.1.8
 graphql-core==2.2.1
 graphql-relay==2.0.0

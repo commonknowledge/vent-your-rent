@@ -14,6 +14,7 @@ from datetime import timedelta
 from graphene.types.generic import GenericScalar
 import itertools
 import random
+from graphene_file_upload.scalars import Upload
 
 class VentType(DjangoObjectType):
     class Meta:
@@ -26,16 +27,25 @@ class VentType(DjangoObjectType):
     def resolve_location(self, info):
         return info.context.loaders.get('geo_from_postcode').load(self.postcode)
 
-class VentForm(forms.ModelForm):
-    class Meta:
-        model = Vent
-        fields = ('first_name', 'caption', 'image', 'postcode',)
+class VentMutation(graphene.Mutation):
+    class Arguments:
+        caption = graphene.String(required=True)
+        first_name = graphene.String(required=True)
+        postcode = graphene.String(required=True)
+        image = Upload(required=True)
 
-class VentMutation(DjangoModelFormMutation):
+    success = graphene.Boolean()
     vent = graphene.Field(VentType)
 
-    class Meta:
-        form_class = VentForm
+    def mutate(self, info, caption=None, first_name=None, postcode=None, image=None):
+        vent = Vent.objects.create(
+            caption=caption,
+            first_name=first_name,
+            postcode=postcode,
+            image=image[0] if image is not None and len(image) > 0 else None
+        )
+
+        return VentMutation(success=True, vent=vent)
 
 class Queries():
     ## production
