@@ -8,61 +8,55 @@ import VentsBlock from "../components/VentsBlock";
 import TakeActionBlock from "../components/TakeActionBlock";
 import GenerationRentBlock from "../components/GenerationRentBlock";
 import RenterManifestoBlock from "../components/RenterManifestoBlock";
-import { paddingCss } from "../styles";
+import {
+  paddingCss,
+  fontSizeLarge,
+  fontColorBlack,
+  fontSizeMedium
+} from "../styles";
 
 const ResultsPage = () => (
   <Page>
-    <div
-      css={css`
-        ${paddingCss}
-      `}
-    >
-      <h1
-        css={css`
-          font-family: Rubik;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 38px;
-          line-height: 38px;
+    <div>
+      <div>
+        <h1
+          css={css`
+            ${fontSizeLarge}
+            ${fontColorBlack}
 
           /* or 100% */
           letter-spacing: -0.03em;
-
-          /* Black */
-          color: #353535;
-        `}
-      >
-        You're one of 9,056 private renters in Tottenham
-      </h1>
-      <div
-        css={css`
-          font-style: normal;
-          font-weight: normal;
-          font-size: 21px;
-          line-height: 25px;
-          letter-spacing: -0.04em;
-          color: #353535;
-        `}
-      >
-        <p>
-          Renting in the UK isn’t a walk in the park. In return for high rents,
-          we suffer poor conditions and have very little security.
-        </p>
-        <p>
-          That’s why renters have come together to write the{" "}
-          <a
-            href="#"
-            css={css`
-              color: inherit;
-              font-weight: bold;
-            `}
-          >
-            Renter Manifesto
-          </a>{" "}
-          — so that together we can change the story.
-        </p>
-        <p>Here’s what the renting crisis looks like in your area:</p>
+          `}
+        >
+          You're one of 9,056 private renters in Tottenham
+        </h1>
+        <div
+          css={css`
+            ${fontSizeMedium}
+            ${fontColorBlack}
+          `}
+        >
+          <p>
+            Renting in the UK isn’t a walk in the park. In return for high
+            rents, we suffer poor conditions and have very little security.
+          </p>
+          <p>
+            That’s why renters have come together to write the{" "}
+            <a
+              href="#"
+              css={css`
+                color: inherit;
+                font-weight: bold;
+              `}
+            >
+              Renter Manifesto
+            </a>{" "}
+            — so that together we can change the story.
+          </p>
+          <p>Here’s what the renting crisis looks like in your area:</p>
+        </div>
       </div>
+
       <StatisticBlock
         render={() => (
           <Fragment>
