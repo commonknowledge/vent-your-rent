@@ -17,12 +17,45 @@ const ResultsPage = () => (
         ${paddingCss}
       `}
     >
-      <h1>You're one of 9,056 private renters in Tottenham</h1>
-      <h2>
-        Private renters have less security over their homes and are more likely
-        to be living in poor conditions.
-      </h2>
-      <hr />
+      <h1
+        css={css`
+          font-family: Rubik;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 38px;
+          line-height: 38px;
+
+          /* or 100% */
+          letter-spacing: -0.03em;
+
+          /* Black */
+          color: #353535;
+        `}
+      >
+        You're one of 9,056 private renters in Tottenham
+      </h1>
+      <div
+        css={css`
+          font-style: normal;
+          font-weight: normal;
+          font-size: 21px;
+          line-height: 25px;
+          letter-spacing: -0.04em;
+
+          /* Black */
+          color: #353535;
+        `}
+      >
+        <p>
+          Renting in the UK isn’t a walk in the park. In return for high rents,
+          we suffer poor conditions and have very little security.
+        </p>
+        <p>
+          That’s why renters have come together to write the Renter Manifesto —
+          so that together we can change the story.
+        </p>
+        <p>Here’s what the renting crisis looks like in your area:</p>
+      </div>
       <StatisticBlock
         render={() => (
           <Fragment>
