@@ -23,6 +23,14 @@ export const fontSizeLarge = css`
   line-height: 38px;
 `;
 
+export const fontSizeMedium = css`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 25px;
+  letter-spacing: -0.04em;
+`;
+
 export const fontSizeSmall = css`
   font-family: Rubik;
   font-style: normal;
