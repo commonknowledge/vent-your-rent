@@ -21,7 +21,7 @@ function backgroundFromType(type: buttonStyles) {
     return "inherit";
   }
 
-  return type === "secondary" ? " #353535" : "#E04839";
+  return type === "secondary" ? " #353535" : "#FF974B;";
 }
 
 const Button: FunctionComponent<ButtonProps> = ({
@@ -44,6 +44,7 @@ const Button: FunctionComponent<ButtonProps> = ({
       text-align: center;
       text-transform: uppercase;
       color: #ffffff;
+      width: 100%;
     `}
   >
     {children}
