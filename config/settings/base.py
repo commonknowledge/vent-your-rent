@@ -65,12 +65,15 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
 ]
+
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "rest_framework",
+    "graphene_django",
+    'rangefilter',
 ]
 
 LOCAL_APPS = [
@@ -266,3 +269,11 @@ SOCIALACCOUNT_ADAPTER = "vent_your_rent.users.adapters.SocialAccountAdapter"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+GRAPHENE = {
+    # Where your Graphene schema lives
+    'SCHEMA': 'vent_your_rent.api.graphql.schema.schema',
+    'MIDDLEWARE': [
+        'vent_your_rent.api.graphql.context.DataLoadersMiddleware'
+    ]
+}

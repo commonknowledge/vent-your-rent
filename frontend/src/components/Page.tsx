@@ -12,7 +12,6 @@ const Page: FunctionComponent<PageProps> = ({ children }) => (
   <div>
     <PageHeader />
     {children}
-    <Footer />
   </div>
 );
 
