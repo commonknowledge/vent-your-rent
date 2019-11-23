@@ -18,7 +18,11 @@ import {
 const ResultsPage = () => (
   <Page>
     <div>
-      <div>
+      <div
+        css={css`
+          ${paddingCss}
+        `}
+      >
         <h1
           css={css`
             ${fontSizeLarge}

@@ -1,14 +1,13 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-
+import { css, jsx } from "@emotion/core";
 import Emoji from "a11y-react-emoji";
 import {
-  fontSizeLarge,
+  boldLink,
   colorWhite,
-  equalTopAndBottomPadding,
   equalTopAndBottomMargin,
-  fontSizeSmall,
-  boldLink
+  equalTopAndBottomPadding,
+  fontSizeLarge,
+  paddingCss
 } from "../styles";
 
 type DemandBlockProps = {
@@ -19,6 +18,7 @@ const demandContainerCss = css`
   background: ${colorWhite};
   ${equalTopAndBottomPadding(20)}
   ${equalTopAndBottomMargin(30)}
+  ${paddingCss}
 `;
 
 const demandCss = css`
