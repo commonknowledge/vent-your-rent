@@ -1,28 +1,59 @@
-pytz==2019.3  # https://github.com/stub42/pytz
-python-slugify==4.0.0  # https://github.com/un33k/python-slugify
-Pillow==6.2.1  # https://github.com/python-pillow/Pillow
-argon2-cffi==19.2.0  # https://github.com/hynek/argon2_cffi
-redis==3.3.11  # https://github.com/antirez/redis
-
-# Django
-# ------------------------------------------------------------------------------
-django==2.2.7  # pyup: < 3.0  # https://www.djangoproject.com/
-django-environ==0.4.5  # https://github.com/joke2k/django-environ
-django-model-utils==3.2.0  # https://github.com/jazzband/django-model-utils
-django-allauth==0.40.0  # https://github.com/pennersr/django-allauth
-django-crispy-forms==1.8.0  # https://github.com/django-crispy-forms/django-crispy-forms
-django-redis==4.10.0  # https://github.com/niwinz/django-redis
-
-# Django REST Framework
-djangorestframework==3.10.3  # https://github.com/encode/django-rest-framework
-coreapi==2.3.3  # https://github.com/core-api/python-client
-
-# Other stuff
+-i https://pypi.org/simple
+aniso8601==7.0.0
+argon2-cffi==19.2.0
+boto3==1.10.26
+botocore==1.13.26
+certifi==2019.9.11
+cffi==1.13.2
+chardet==3.0.4
+collectfast==1.3.1
+coreapi==2.3.3
+coreschema==0.0.4
+defusedxml==0.6.0
+dj-database-url==0.5.0
+django-admin-rangefilter==0.5.1
+django-allauth==0.40.0
+django-anymail[mailgun]==7.0.0
+django-crispy-forms==1.8.0
+django-environ==0.4.5
+django-filter==2.2.0
+django-heroku==0.3.1
+django-model-utils==3.2.0
+django-redis==4.10.0
+django-storages[boto3]==1.7.2
+django==2.2.7
+djangorestframework==3.10.3
+docutils==0.15.2
 graphene-django==2.6.0
 graphene==2.1.8
 graphql-core==2.2.1
 graphql-relay==2.0.0
-django-filter==2.2.0
-django-heroku==0.3.1
+gunicorn==20.0.0
+idna==2.8
+itypes==1.1.0
+jinja2==2.10.3
+jmespath==0.9.4
+markupsafe==1.1.1
+oauthlib==3.1.0
+pillow==6.2.1
+promise==2.2.1
+psycopg2==2.8.3
+pycparser==2.19
+python-dateutil==2.8.0 ; python_version >= '2.7'
+python-slugify==4.0.0
+python3-openid==3.1.0
+pytz==2019.3
+redis==3.3.11
+requests-oauthlib==1.3.0
+requests==2.22.0
+rx==1.6.1
+s3transfer==0.2.1
+singledispatch==3.4.0.3
+six==1.13.0
+sqlparse==0.3.0
+text-unidecode==1.3
+typing-extensions==3.7.4.1
+typing==3.7.4.1
+uritemplate==3.0.0
+urllib3==1.25.7 ; python_version >= '3.4'
 whitenoise==4.1.4
-django-admin-rangefilter==0.5.1
