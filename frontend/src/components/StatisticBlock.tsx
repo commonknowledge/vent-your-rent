@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 
 import { FunctionComponent } from "react";
 
@@ -12,7 +12,12 @@ type StatisticBlockProps = {
 };
 
 const StatisticBlock: FunctionComponent<StatisticBlockProps> = props => (
-  <div>
+  <div
+    css={css`
+      font-size: 16px;
+      line-height: 19px;
+    `}
+  >
     <p>{props.render()}</p>
     <div>Tottenham</div>
     <div>National Average</div>
