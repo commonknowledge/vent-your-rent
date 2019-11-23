@@ -1,19 +1,23 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Fragment } from "react";
-
 import { Global, css } from "@emotion/core";
-
 import emotionNormalize from "emotion-normalize";
-
 import ResultsPage from "./pages/ResultsPage";
+import GraphQLProvider from './data/graphql';
+import { Router, Switch, Route } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+import FirstPage from './pages/FirstPage';
+import ThirdPage from './pages/ThirdPage';
+
+const history = createBrowserHistory()
 
 const App: React.FC = () => {
   return (
-    <Fragment>
-      <Global
-        styles={css`
-        ${emotionNormalize}
+    <Router history={history}>
+      <GraphQLProvider>
+        <Global
+          styles={css`
+          ${emotionNormalize}
           body {
             background: #f0f0f0;   
             font-family: 'Rubik', sans-serif;
@@ -22,9 +26,14 @@ const App: React.FC = () => {
             padding: 0;
           }%;
         `}
-      />
-      <ResultsPage />
-    </Fragment>
+        />
+        <Switch>
+          <Route exact path='/third' component={ThirdPage} />
+          <Route exact path='/:postcode' component={ResultsPage} />
+          <Route component={FirstPage} />
+        </Switch>
+      </GraphQLProvider>
+    </Router>
   );
 };
 

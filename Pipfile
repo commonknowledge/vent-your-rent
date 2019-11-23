@@ -32,6 +32,7 @@ dj-database-url = "*"
 django-heroku = "*"
 django-admin-rangefilter = "*"
 graphene-file-upload = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.7"

@@ -14,10 +14,10 @@ type StatisticBlockProps = {
   areaStatistic: number;
   graphColour?: "red" | "orange";
   nationalAverageStatistic: number;
-  render: () => JSX.Element;
+  render: JSX.Element;
 };
 
-const StatisticBlock: FunctionComponent<StatisticBlockProps> = props => (
+const StatisticBlock: FunctionComponent<StatisticBlockProps> = ({ render }) => (
   <div
     css={css`
       ${fontSizeSmall}
@@ -25,7 +25,7 @@ const StatisticBlock: FunctionComponent<StatisticBlockProps> = props => (
       ${paddingCss}
     `}
   >
-    <p>{props.render()}</p>
+    <p>{render}</p>
     <div>Tottenham</div>
     <div>National Average</div>
   </div>

@@ -14,123 +14,186 @@ import {
   fontColorBlack,
   fontSizeMedium
 } from "../styles";
+import { useQuery } from "@apollo/react-hooks";
+import { RouteComponentProps } from 'react-router-dom'
+import gql from 'graphql-tag'
+import { Statistics, Statistics_statisticsForPostcode } from './__graphql__/Statistics';
+import { format } from 'd3-format'
+const comma = format(",")
 
-const ResultsPage = () => (
-  <Page>
-    <div
-      css={css`
+const STATISTICS_QUERY = gql`
+  query Statistics($postcode: String!) {
+    statisticsForPostcode(postcode: $postcode) {
+      prsSize
+      wageToHousePrice
+      ucHousing
+      housingPercOnUc
+      totalHbInclSocial
+      majority
+      geo {
+        parliamentaryConstituency
+      }
+    }
+  }
+`
+
+const ResultsPage: React.FC<RouteComponentProps<{ postcode: string }>> = ({ match: { params: { postcode } } }) => {
+  const { data, loading, error } = useQuery<Statistics>(STATISTICS_QUERY, { variables: { postcode } })
+
+  return <ResultsPageView
+    postcode={postcode}
+    constituencyName={data && data.statisticsForPostcode ? data.statisticsForPostcode.geo.parliamentaryConstituency : undefined}
+    stats={data && data.statisticsForPostcode ? data.statisticsForPostcode : undefined}
+    loading={loading}
+    error={error}
+  />
+}
+
+const ResultsPageView: React.FC<{
+  postcode: string
+  constituencyName?: string
+  stats?: Statistics_statisticsForPostcode
+  loading?: boolean
+  error?: any
+}> = ({ postcode, constituencyName, stats, loading, error }) => {
+  if (loading || !stats || !constituencyName) {
+    return (
+      <Page>
+        <div
+          css={css`
         padding-bottom: 30px;
       `}
-    >
-      <div
-        css={css`
+        >
+          <div
+            css={css`
           ${paddingCss}
         `}
+          >
+            Loading up the rent situation in {postcode}
+          </div>
+        </div>
+      </Page>
+    )
+  }
+
+  return (
+    <Page>
+      <div
+        css={css`
+        padding-bottom: 30px;
+      `}
       >
-        <h1
+        <div
           css={css`
+          ${paddingCss}
+        `}
+        >
+          {stats.prsSize && <h1
+            css={css`
             ${fontSizeLarge}
             ${fontColorBlack}
 
           /* or 100% */
           letter-spacing: -0.03em;
           `}
-        >
-          You're one of 9,056 private renters in Tottenham
-        </h1>
-        <div
-          css={css`
+          >
+            You're one of {comma(stats.prsSize)} private renters in {constituencyName}
+          </h1>}
+          <div
+            css={css`
             ${fontSizeMedium}
             ${fontColorBlack}
           `}
-        >
-          <p>
-            Renting in the UK isn’t a walk in the park. In return for high
-            rents, we suffer poor conditions and have very little security.
+          >
+            <p>
+              Renting in the UK isn’t a walk in the park. In return for high
+              rents, we suffer poor conditions and have very little security.
           </p>
-          <p>
-            That’s why renters have come together to write the{" "}
-            <a
-              href="#"
-              css={css`
+            <p>
+              That’s why renters have come together to write the{" "}
+              <a
+                href="#"
+                css={css`
                 color: inherit;
                 font-weight: bold;
               `}
-            >
-              Renter Manifesto
+              >
+                Renter Manifesto
             </a>{" "}
-            — so that together we can change the story.
+              — so that together we can change the story.
           </p>
-          <p>Here’s what the renting crisis looks like in your area:</p>
+            <p>Here’s what the renting crisis looks like in your area:</p>
+          </div>
         </div>
-      </div>
 
-      <StatisticBlock
-        render={() => (
-          <Fragment>
-            The rent on a typical two-bed home in Tottenham is{" "}
-            <strong>£1,525</strong>. That’s <strong>£850</strong> more than the
-            national average.
+        {/* <StatisticBlock
+          render={() => (
+            <Fragment>
+              The rent on a typical two-bed home in {constituencyName} is{" "}
+              <strong>£1,525</strong>. That’s <strong>£850</strong> more than the
+              national average.
           </Fragment>
-        )}
-        areaName="Tottenham"
-        nationalAverageStatistic={1000}
-        areaStatistic={800}
-      />
-      <StatisticBlock
-        render={() => (
-          <Fragment>
-            House prices in Tottenham are <strong>13.6 times more</strong> than
-            average incomes. The national average is 8.2.
+          )}
+          areaName={constituencyName}
+          nationalAverageStatistic={0}
+          areaStatistic={0}
+        /> */}
+        {stats.wageToHousePrice && <StatisticBlock
+          render={
+            <Fragment>
+              House prices in {constituencyName} are <strong>{format('.2')(stats.wageToHousePrice)} times more</strong> than
+              average incomes. The national average is {format('.2')(stats.wageToHousePrice)}.
+            </Fragment>
+          }
+          areaName={constituencyName}
+          nationalAverageStatistic={stats.wageToHousePrice}
+          areaStatistic={stats.wageToHousePrice}
+        />}
+        <DemandBlock demand="We demand rent controls which bring down rents to 30% of local income." />
+        {stats.totalHbInclSocial && <StatisticBlock
+          render={
+            <Fragment>
+              <strong>{comma(stats.totalHbInclSocial)}</strong> people in {constituencyName} receive housing benefit.
+              The national average is {comma(stats.totalHbInclSocial)}.
           </Fragment>
-        )}
-        areaName="Tottenham"
-        nationalAverageStatistic={1000}
-        areaStatistic={800}
-      />
-      <DemandBlock demand="We demand rent controls which bring down rents to 30% of local income." />
-      <StatisticBlock
-        render={() => (
-          <Fragment>
-            <strong>17,157</strong> people in Tottenham receive housing benefit.
-            The national average is 5,521.
+          }
+          areaName={constituencyName}
+          nationalAverageStatistic={stats.totalHbInclSocial}
+          areaStatistic={stats.totalHbInclSocial}
+        />}
+        <DemandBlock demand="We demand a welfare system that supports access to safe, secure housing." />
+        {/* <StatisticBlock
+          render={() => (
+            <Fragment>
+              The rent on a typical two-bed home in {constituencyName} is{" "}
+              <strong>£1,525</strong>. That’s <strong>£850 more</strong> than the
+              national average.
           </Fragment>
-        )}
-        areaName="Tottenham"
-        nationalAverageStatistic={1000}
-        areaStatistic={800}
-      />
-      <DemandBlock demand="We demand a welfare system that supports access to safe, secure housing." />
-      <StatisticBlock
-        render={() => (
-          <Fragment>
-            The rent on a typical two-bed home in Tottenham is{" "}
-            <strong>£1,525</strong>. That’s <strong>£850 more</strong> than the
-            national average.
+          )}
+          areaName={constituencyName}
+          nationalAverageStatistic={1000}
+          areaStatistic={800}
+        /> */}
+        {/* <StatisticBlock
+          render={() => (
+            <Fragment>
+              House prices in {constituencyName} are <strong>13.6 times</strong> more than
+              average incomes. The national average is 8.2.
           </Fragment>
-        )}
-        areaName="Tottenham"
-        nationalAverageStatistic={1000}
-        areaStatistic={800}
-      />
-      <StatisticBlock
-        render={() => (
-          <Fragment>
-            House prices in Tottenham are <strong>13.6 times</strong> more than
-            average incomes. The national average is 8.2.
-          </Fragment>
-        )}
-        areaName="Tottenham"
-        nationalAverageStatistic={1000}
-        areaStatistic={800}
-      />
-    </div>
-    <VentsBlock
-      title="This is what the renting crisis looks like near you:"
-      numberOfVents={3}
-    />
-    <TakeActionBlock />
-  </Page>
-);
+          )}
+          areaName={constituencyName}
+          nationalAverageStatistic={1000}
+          areaStatistic={800}
+        />
+      </div> */}
+        <VentsBlock
+          title="This is what the renting crisis looks like near you:"
+          numberOfVents={3}
+        />
+        <TakeActionBlock />
+      </div>
+    </Page>
+  )
+}
 
 export default ResultsPage;

@@ -1,13 +1,15 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-
-import Button from "../components/Button";
+// import Button from "../components/Button";
 import Header from "../components/Header";
-import TextInput from "../components/TextInput";
+// import TextInput from "../components/TextInput";
+import PostcodeSearch from "../components/PostcodeSearch";
+import { RouteComponentProps } from "react-router";
 
-const FirstPage = () => (
-  <div
-    css={css`
+const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
+  return (
+    <div
+      css={css`
       display: flex;
       flex-direction: column;
       padding-top: 20px;
@@ -19,37 +21,40 @@ const FirstPage = () => (
       padding: 20px;
       height: 100vh;
     `}
-  >
-    <Header />
-    <div
-      css={css`
+    >
+      <Header />
+      <div
+        css={css`
         margin-top: 20px;
         margin-bottom: 20px;
       `}
-    >
-      We all deserve a house we can call home, somewhere we can feel safe and
+      >
+        We all deserve a house we can call home, somewhere we can feel safe and
       secure. But for the <strong>one in five</strong> people in the UK renting
-      privately, that's not the case.
+                privately, that's not the case.
     </div>
-    <div
-      css={css`
+      <div
+        css={css`
         font-weight: bold;
         margin-bottom: 15px;
       `}
-    >
-      What does the renting crisis look like in your area?
+      >
+        What does the renting crisis look like in your area?
     </div>
-    <div
-      css={css`
+      <div
+        css={css`
         display: flex;
         flex-direction: column;
         margin-bottom: 15px;
       `}
-    >
-      <TextInput />
-      <Button type="secondary">Search</Button>
+      >
+        <PostcodeSearch onSubmit={postcode => {
+          console.log(postcode)
+          history.push(`/${postcode}`)
+        }} />
+      </div>
     </div>
-  </div>
-);
+  )
+}
 
 export default FirstPage;
