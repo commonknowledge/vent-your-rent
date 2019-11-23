@@ -1,5 +1,10 @@
 import { css } from "@emotion/core";
 
+export const colorWhite = "#FFFFFF";
+export const colorBlack = "#353535";
+
+export const fontColorBlack = `color: ${colorBlack};`;
+
 export const marginsCss = css`
   margin-right: 20px;
   margin-left: 20px;
@@ -18,7 +23,20 @@ export const fontSizeLarge = css`
   line-height: 38px;
 `;
 
-export const colorWhite = "#FFFFFF";
+export const fontSizeSmall = css`
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+`;
+
+export const boldLink = css`
+  ${fontSizeSmall}
+  ${fontColorBlack}
+  text-decoration: underline;
+  text-transform: uppercase;
+`;
 
 export const equalTopAndBottomMargin = (spacing: number) => {
   return css`
