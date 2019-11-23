@@ -130,8 +130,6 @@ const ResultsPage = () => (
       numberOfVents={3}
     />
     <TakeActionBlock />
-    <GenerationRentBlock />
-    <RenterManifestoBlock />
   </Page>
 );
 
