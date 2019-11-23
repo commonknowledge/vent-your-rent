@@ -34,7 +34,6 @@ export const fontSizeMedium = css`
 export const fontSizeSmall = css`
   font-family: Rubik;
   font-style: normal;
-  font-weight: bold;
   font-size: 16px;
   line-height: 19px;
 `;
@@ -42,6 +41,7 @@ export const fontSizeSmall = css`
 export const boldLink = css`
   ${fontSizeSmall}
   ${fontColorBlack}
+  font-weight: bold;
   text-decoration: underline;
   text-transform: uppercase;
 `;
