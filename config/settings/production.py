@@ -78,9 +78,11 @@ AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = env("DJANGO_AWS_S3_REGION_NAME", default=None)
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = "config.settings.production.StaticRootS3Boto3Storage"
-COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
-STATIC_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/"
+# STATICFILES_STORAGE = "django.core.files.storage.FileSystemStorage"
+# COLLECTFAST_STRATEGY = "collectfast.strategies.filesystem.FileSystemStrategy"
+AWS_S3_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+# STATIC_HOST = AWS_S3_URL if not DEBUG else ''
+# STATIC_URL = STATIC_HOST + '/static/'
 # MEDIA
 # ------------------------------------------------------------------------------
 # region http://stackoverflow.com/questions/10390244/
@@ -88,9 +90,9 @@ STATIC_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/"
 from storages.backends.s3boto3 import S3Boto3Storage  # noqa E402
 
 
-class StaticRootS3Boto3Storage(S3Boto3Storage):
-    location = "static"
-    default_acl = "public-read"
+# class StaticRootS3Boto3Storage(S3Boto3Storage):
+#     location = "static"
+#     default_acl = "public-read"
 
 
 class MediaRootS3Boto3Storage(S3Boto3Storage):
@@ -100,7 +102,7 @@ class MediaRootS3Boto3Storage(S3Boto3Storage):
 
 # endregion
 DEFAULT_FILE_STORAGE = "config.settings.production.MediaRootS3Boto3Storage"
-MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/"
+MEDIA_URL = AWS_S3_URL + "/media/"
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
@@ -144,11 +146,6 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 #     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
 #     "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
 # }
-
-# Collectfast
-# ------------------------------------------------------------------------------
-# https://github.com/antonagestam/collectfast#installation
-INSTALLED_APPS = ["collectfast"] + INSTALLED_APPS  # noqa F405
 
 # LOGGING
 # ------------------------------------------------------------------------------

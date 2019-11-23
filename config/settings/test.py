@@ -50,6 +50,4 @@ EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-INSTALLED_APPS += [
-    'whitenoise.runserver_nostatic',
-]
+INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS  # noqa F405

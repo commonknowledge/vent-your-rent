@@ -1,10 +1,11 @@
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
-from config import templates
+from django.views.decorators.cache import never_cache
+from . import templates
 from graphene_django.views import GraphQLView
 from django.views.decorators.csrf import csrf_exempt
 
@@ -40,12 +41,12 @@ if settings.DEBUG:
         ),
         path("500/", default_views.server_error),
     ]
+
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
 
         urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
 
-if not settings.DEBUG:
-    urlpatterns += [
-        re_path(r'^((?!static).)*$', never_cache(templates.index))
-    ]
+urlpatterns += [
+    re_path(r'^((?!static).)*$', never_cache(templates.index))
+]
