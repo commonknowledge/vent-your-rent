@@ -41,8 +41,6 @@ const ResultsPage = () => (
           font-size: 21px;
           line-height: 25px;
           letter-spacing: -0.04em;
-
-          /* Black */
           color: #353535;
         `}
       >
