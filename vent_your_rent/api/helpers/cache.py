@@ -1,8 +1,6 @@
 from django.core.cache import caches
 from threading import Timer
 
-# Just caching everything in a hashmap because serialization overhead of django-cache
-# is too high tof how we're using it
 def cached_fn(key, timeout_seconds = 60 * 5, cache_type = 'default'):
     cache = {}
 
