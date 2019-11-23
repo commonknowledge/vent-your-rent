@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+if [ -z "$1" ]
+then
+    echo "Missing release name"
+    exit 1
+fi
+
+tagname="release-$1"
+git checkout master
+git tag "$tagname"
+git push origin "$tagname"
+git checkout -
