@@ -78,8 +78,8 @@ AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = env("DJANGO_AWS_S3_REGION_NAME", default=None)
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = "django.core.files.storage.FileSystemStorage"
-COLLECTFAST_STRATEGY = "collectfast.strategies.filesystem.FileSystemStrategy"
+# STATICFILES_STORAGE = "django.core.files.storage.FileSystemStorage"
+# COLLECTFAST_STRATEGY = "collectfast.strategies.filesystem.FileSystemStrategy"
 AWS_S3_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 # STATIC_HOST = AWS_S3_URL if not DEBUG else ''
 # STATIC_URL = STATIC_HOST + '/static/'
@@ -146,11 +146,6 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 #     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
 #     "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
 # }
-
-# Collectfast
-# ------------------------------------------------------------------------------
-# https://github.com/antonagestam/collectfast#installation
-INSTALLED_APPS = ["collectfast"] + INSTALLED_APPS  # noqa F405
 
 # LOGGING
 # ------------------------------------------------------------------------------
