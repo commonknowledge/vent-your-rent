@@ -8,13 +8,13 @@ import VentsBlock from "../components/VentsBlock";
 import TakeActionBlock from "../components/TakeActionBlock";
 import GenerationRentBlock from "../components/GenerationRentBlock";
 import RenterManifestoBlock from "../components/RenterManifestoBlock";
-import { marginsCss } from "../styles";
+import { paddingCss } from "../styles";
 
 const ResultsPage = () => (
   <Page>
     <div
       css={css`
-        ${marginsCss}
+        ${paddingCss}
       `}
     >
       <h1>You're one of 9,056 private renters in Tottenham</h1>

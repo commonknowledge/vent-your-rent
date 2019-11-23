@@ -3,6 +3,7 @@ import { jsx, css } from "@emotion/core";
 import faker from "faker";
 import Button from "./Button";
 import Vent from "./Vent";
+import { paddingCss } from "../styles";
 
 type VentsBlockProps = {
   title?: string;
@@ -41,6 +42,8 @@ export default function VentsBlock({
         background-color: #fff;
         padding-top: 30px;
         padding-bottom: 30px;
+
+        ${paddingCss}
       `}
     >
       {title && (

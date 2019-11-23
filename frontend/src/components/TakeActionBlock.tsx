@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import Button from "./Button";
+import { paddingCss } from "../styles";
 
 const h2CSS = css`
   font-style: normal;
@@ -56,10 +57,23 @@ function TakeActionBlock() {
         font-size: 21px;
         line-height: 25px;
         letter-spacing: -0.04em;
+        ${paddingCss}
       `}
     >
       <h2 css={h2CSS}>Take action</h2>
-      <p>
+      <p
+        css={css`
+          font-family: Rubik;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 21px;
+          line-height: 25px;
+          letter-spacing: -0.04em;
+
+          /* White */
+          color: #ffffff;
+        `}
+      >
         We’re in a renting crisis, but no one is talking about it. We want to
         show all parties at this election that renters are a political force.
       </p>
