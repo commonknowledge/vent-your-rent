@@ -18,7 +18,6 @@ const readTheManifestoLinkCss = css`
   font-size: 16px;
   line-height: 19px;
 
-  /* identical to box height */
   text-decoration-line: underline;
   text-transform: uppercase;
 `;
@@ -114,11 +113,17 @@ function TakeActionBlock() {
         <div>
           <input type="checkbox" />
           <label>Keep me updated</label>
-          <p>
-            By checking this box, you agree that organisations can email or
-            message you occasionally about their campaigns and other work. If
-            you decide later that you don’t want to be contacted, [contact
-            option] to unsubscribe.
+          <p
+            css={css`
+              font-style: normal;
+              font-weight: normal;
+              font-size: 14px;
+              line-height: 17px;
+            `}
+          >
+            By checking this box, you agree that Generation Rent can email you
+            occasionally about campaigns. If you decide later that you don’t
+            want to be contacted, then click here to unsubscribe.
           </p>
         </div>
         <Button>Add Your Voice</Button>
