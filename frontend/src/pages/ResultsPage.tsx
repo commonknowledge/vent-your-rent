@@ -51,8 +51,17 @@ const ResultsPage = () => (
           we suffer poor conditions and have very little security.
         </p>
         <p>
-          That’s why renters have come together to write the Renter Manifesto —
-          so that together we can change the story.
+          That’s why renters have come together to write the{" "}
+          <a
+            href="#"
+            css={css`
+              color: inherit;
+              font-weight: bold;
+            `}
+          >
+            Renter Manifesto
+          </a>{" "}
+          — so that together we can change the story.
         </p>
         <p>Here’s what the renting crisis looks like in your area:</p>
       </div>
