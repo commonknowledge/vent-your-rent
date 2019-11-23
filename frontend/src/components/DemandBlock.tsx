@@ -21,14 +21,10 @@ const demandContainerCss = css`
   ${paddingCss}
 `;
 
-const demandCss = css`
-  ${fontSizeLarge}
-`;
-
 export default function DemandBlock({ demand }: DemandBlockProps) {
   return (
     <div css={demandContainerCss}>
-      <div css={demandCss}>
+      <div css={fontSizeLarge}>
         <Emoji symbol="✊" label="fist" />
         {demand}
       </div>

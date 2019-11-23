@@ -17,7 +17,11 @@ import {
 
 const ResultsPage = () => (
   <Page>
-    <div>
+    <div
+      css={css`
+        padding-bottom: 30px;
+      `}
+    >
       <div
         css={css`
           ${paddingCss}
