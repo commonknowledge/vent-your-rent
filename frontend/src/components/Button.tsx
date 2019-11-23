@@ -44,6 +44,7 @@ const Button: FunctionComponent<ButtonProps> = ({
       text-align: center;
       text-transform: uppercase;
       color: #ffffff;
+      width: 100%;
     `}
   >
     {children}
