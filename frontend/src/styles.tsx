@@ -7,6 +7,8 @@ export const colorOrange = "#FF974B";
 export const fontColorBlack = `color: ${colorBlack};`;
 export const fontColorWhite = `color ${colorWhite};`;
 
+export const smallSpacing = "15px";
+
 export const marginsCss = css`
   margin-right: 20px;
   margin-left: 20px;

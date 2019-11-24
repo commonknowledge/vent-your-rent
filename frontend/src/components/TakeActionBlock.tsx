@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import Button from "./Button";
-import { paddingCss } from "../styles";
+import { paddingCss, smallSpacing } from "../styles";
 
 const h2CSS = css`
   font-style: normal;
@@ -25,7 +25,7 @@ const readTheManifestoLinkCss = css`
 const inputFieldCss = css`
   background: #ffffff;
   border-radius: 6px;
-  margin-bottom: 15px;
+  margin-bottom: ${smallSpacing};
   height: 45px;
   width: 100%;
   padding: 10px;
@@ -36,7 +36,7 @@ const textAreaCss = css`
   border-radius: 6px;
   width: 100%;
   height: 150px;
-  margin-bottom: 15px;
+  margin-bottom: ${smallSpacing};
 `;
 
 function TakeActionBlock() {
@@ -93,7 +93,7 @@ function TakeActionBlock() {
         <div
           css={css`
             button {
-              margin-bottom: 15px;
+              margin-bottom: ${smallSpacing};
               font-style: normal;
               font-weight: 900;
               font-size: 16px;

@@ -1,14 +1,14 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { css, jsx } from "@emotion/core";
+import Postcode from "postcode";
 import React from "react";
-import { validatePostcode } from "../data/validators";
+import { useField } from "react-jeff";
 import {
   convertCoordinatesToPostcode,
   convertLocationToCoordinates
 } from "../data/geo";
-import { useField } from "react-jeff";
-import Postcode from "postcode";
-import { fontSizeMedium } from "../styles";
+import { validatePostcode } from "../data/validators";
+import { fontSizeMedium, buttonSecondary, smallSpacing } from "../styles";
 
 type PostcodeSearchType = "search" | "update";
 
@@ -75,6 +75,11 @@ const PostcodeSearch: React.FC<{
           <input
             type="submit"
             disabled={(!input.dirty && !initialValue) || !input.valid}
+            css={css`
+              ${buttonSecondary}
+              margin-top: ${smallSpacing};
+            `}
+            value="Search"
           />
         </div>
       </form>

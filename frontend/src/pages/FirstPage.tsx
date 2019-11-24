@@ -6,7 +6,8 @@ import {
   fontSizeExtraLarge,
   fontColorBlack,
   colorOrange,
-  fontSizeMedium
+  fontSizeMedium,
+  smallSpacing
 } from "../styles";
 
 const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
@@ -43,7 +44,7 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
         css={css`
           ${fontSizeMedium}
           font-weight: bold;
-          margin-bottom: 15px;
+          margin-bottom: ${smallSpacing};
         `}
       >
         What does the renting crisis look like in your area?
@@ -52,7 +53,7 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
         css={css`
           display: flex;
           flex-direction: column;
-          margin-bottom: 15px;
+          margin-bottom: ${smallSpacing};
         `}
       >
         <PostcodeSearch

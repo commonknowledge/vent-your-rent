@@ -2,7 +2,7 @@
 import { jsx, css } from "@emotion/core";
 
 import Emoji from "a11y-react-emoji";
-import { marginsCss } from "../styles";
+import { marginsCss, smallSpacing } from "../styles";
 
 const upperCase = css`
   text-transform: uppercase;
@@ -37,7 +37,7 @@ export default function PageHeader() {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        margin-top: 15px;
+        margin-top: ${smallSpacing};
         ${marginsCss}
       `}
     >
