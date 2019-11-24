@@ -93,6 +93,8 @@ const ResultsPageView: React.FC<{
     );
   }
 
+  const dataRequired = "data required";
+
   return (
     <Page>
       <div
@@ -111,8 +113,8 @@ const ResultsPageView: React.FC<{
                 ${fontSizeLarge}
                 ${fontColorBlack}
 
-          /* or 100% */
-          letter-spacing: -0.03em;
+                /* or 100% */
+                letter-spacing: -0.03em;
               `}
             >
               You're one of {comma(stats.prsSize)} private renters in{" "}
@@ -145,19 +147,6 @@ const ResultsPageView: React.FC<{
             <p>Here’s what the renting crisis looks like in your area:</p>
           </div>
         </div>
-
-        {/* <StatisticBlock
-          render={() => (
-            <Fragment>
-              The rent on a typical two-bed home in {constituencyName} is{" "}
-              <strong>£1,525</strong>. That’s <strong>£850</strong> more than the
-              national average.
-          </Fragment>
-          )}
-          areaName={constituencyName}
-          nationalAverageStatistic={0}
-          areaStatistic={0}
-        /> */}
         {stats.wageToHousePrice && (
           <StatisticBlock
             render={
@@ -166,8 +155,8 @@ const ResultsPageView: React.FC<{
                 <strong>
                   {format(".2")(stats.wageToHousePrice)} times more
                 </strong>{" "}
-                than average incomes. The national average is{" "}
-                {format(".2")(stats.wageToHousePrice)}.
+                than average incomes. The national average is {dataRequired}
+                {}.
               </Fragment>
             }
             areaName={constituencyName}
@@ -182,7 +171,7 @@ const ResultsPageView: React.FC<{
               <Fragment>
                 <strong>{comma(stats.totalHbInclSocial)}</strong> people in{" "}
                 {constituencyName} receive housing benefit. The national average
-                is {comma(stats.totalHbInclSocial)}.
+                is {dataRequired}.
               </Fragment>
             }
             areaName={constituencyName}
