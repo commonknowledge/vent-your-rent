@@ -176,30 +176,6 @@ const ResultsPageView: React.FC<{
           />
         )}
         <DemandBlock demand="We demand a welfare system that supports access to safe, secure housing." />
-        {/* <StatisticBlock
-          render={() => (
-            <Fragment>
-              The rent on a typical two-bed home in {constituencyName} is{" "}
-              <strong>£1,525</strong>. That’s <strong>£850 more</strong> than the
-              national average.
-          </Fragment>
-          )}
-          areaName={constituencyName}
-          nationalAverageStatistic={1000}
-          areaStatistic={800}
-        /> */}
-        {/* <StatisticBlock
-          render={() => (
-            <Fragment>
-              House prices in {constituencyName} are <strong>13.6 times</strong> more than
-              average incomes. The national average is 8.2.
-          </Fragment>
-          )}
-          areaName={constituencyName}
-          nationalAverageStatistic={1000}
-          areaStatistic={800}
-        />
-      </div> */}
         <VentsBlock
           title="This is what the renting crisis looks like near you:"
           numberOfVents={3}
