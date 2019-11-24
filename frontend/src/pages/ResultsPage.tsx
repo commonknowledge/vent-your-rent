@@ -139,7 +139,7 @@ const ResultsPageView: React.FC<{
             <p>
               That’s why renters have come together to write the{" "}
               <a
-                href="#"
+                href="https://www.rentermanifesto.org/read_the_manifesto_full"
                 css={css`
                   color: inherit;
                   font-weight: bold;
