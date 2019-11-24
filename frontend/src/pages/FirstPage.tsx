@@ -58,7 +58,6 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
         <PostcodeSearch
           label="Enter your postcode"
           onSubmit={postcode => {
-            console.log(postcode);
             history.push(`/${postcode}`);
           }}
         />
