@@ -172,6 +172,9 @@ function TakeActionBlock() {
               href="https://www.generationrent.org/unsubscribe?utm_campaign=scandal_meet_candidates&utm_medium=email&utm_source=npto"
               target="_blank"
               rel="noopener noreferrer"
+              css={css`
+                ${fontColorWhite}
+              `}
             >
               click here to unsubscribe
             </a>
