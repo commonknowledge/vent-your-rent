@@ -43,10 +43,10 @@ const textAreaCss = css`
 
 const CREATE_VENT_MUTATION = gql`
   mutation createVent(
-    $caption: String
-    $firstName: String
-    $image: Upload
-    $postcode: String
+    $caption: String!
+    $firstName: String!
+    $image: Upload!
+    $postcode: String!
   ) {
     createVent(
       caption: $caption
