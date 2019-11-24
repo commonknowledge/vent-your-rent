@@ -1,6 +1,5 @@
 import * as React from "react";
 import { validatePostcode } from "../data/validators";
-import { getDeviceLocation } from "../data/device";
 import {
   convertCoordinatesToPostcode,
   convertLocationToCoordinates
