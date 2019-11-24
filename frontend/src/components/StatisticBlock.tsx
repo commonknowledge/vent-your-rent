@@ -2,12 +2,7 @@
 import { jsx, css } from "@emotion/core";
 
 import { FunctionComponent } from "react";
-import {
-  fontSizeSmall,
-  fontColorBlack,
-  marginsCss,
-  paddingCss
-} from "../styles";
+import { fontSizeSmall, fontColorBlack, paddingCss } from "../styles";
 
 type StatisticBlockProps = {
   areaName: string;

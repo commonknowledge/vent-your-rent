@@ -6,8 +6,6 @@ import StatisticBlock from "../components/StatisticBlock";
 import DemandBlock from "../components/DemandBlock";
 import VentsBlock from "../components/VentsBlock";
 import TakeActionBlock from "../components/TakeActionBlock";
-import GenerationRentBlock from "../components/GenerationRentBlock";
-import RenterManifestoBlock from "../components/RenterManifestoBlock";
 import {
   paddingCss,
   fontSizeLarge,
@@ -15,11 +13,14 @@ import {
   fontSizeMedium
 } from "../styles";
 import { useQuery } from "@apollo/react-hooks";
-import { RouteComponentProps } from 'react-router-dom'
-import gql from 'graphql-tag'
-import { Statistics, Statistics_statisticsForPostcode } from './__graphql__/Statistics';
-import { format } from 'd3-format'
-const comma = format(",")
+import { RouteComponentProps } from "react-router-dom";
+import gql from "graphql-tag";
+import {
+  Statistics,
+  Statistics_statisticsForPostcode
+} from "./__graphql__/Statistics";
+import { format } from "d3-format";
+const comma = format(",");
 
 const STATISTICS_QUERY = gql`
   query Statistics($postcode: String!) {
@@ -35,93 +36,112 @@ const STATISTICS_QUERY = gql`
       }
     }
   }
-`
+`;
 
-const ResultsPage: React.FC<RouteComponentProps<{ postcode: string }>> = ({ match: { params: { postcode } } }) => {
-  const { data, loading, error } = useQuery<Statistics>(STATISTICS_QUERY, { variables: { postcode } })
+const ResultsPage: React.FC<RouteComponentProps<{ postcode: string }>> = ({
+  match: {
+    params: { postcode }
+  }
+}) => {
+  const { data, loading, error } = useQuery<Statistics>(STATISTICS_QUERY, {
+    variables: { postcode }
+  });
 
-  return <ResultsPageView
-    postcode={postcode}
-    constituencyName={data && data.statisticsForPostcode ? data.statisticsForPostcode.geo.parliamentaryConstituency : undefined}
-    stats={data && data.statisticsForPostcode ? data.statisticsForPostcode : undefined}
-    loading={loading}
-    error={error}
-  />
-}
+  return (
+    <ResultsPageView
+      postcode={postcode}
+      constituencyName={
+        data && data.statisticsForPostcode
+          ? data.statisticsForPostcode.geo.parliamentaryConstituency
+          : undefined
+      }
+      stats={
+        data && data.statisticsForPostcode
+          ? data.statisticsForPostcode
+          : undefined
+      }
+      loading={loading}
+      error={error}
+    />
+  );
+};
 
 const ResultsPageView: React.FC<{
-  postcode: string
-  constituencyName?: string
-  stats?: Statistics_statisticsForPostcode
-  loading?: boolean
-  error?: any
+  postcode: string;
+  constituencyName?: string;
+  stats?: Statistics_statisticsForPostcode;
+  loading?: boolean;
+  error?: any;
 }> = ({ postcode, constituencyName, stats, loading, error }) => {
   if (loading || !stats || !constituencyName) {
     return (
       <Page>
         <div
           css={css`
-        padding-bottom: 30px;
-      `}
+            padding-bottom: 30px;
+          `}
         >
           <div
             css={css`
-          ${paddingCss}
-        `}
+              ${paddingCss}
+            `}
           >
             Loading up the rent situation in {postcode}
           </div>
         </div>
       </Page>
-    )
+    );
   }
 
   return (
     <Page>
       <div
         css={css`
-        padding-bottom: 30px;
-      `}
+          padding-bottom: 30px;
+        `}
       >
         <div
           css={css`
-          ${paddingCss}
-        `}
+            ${paddingCss}
+          `}
         >
-          {stats.prsSize && <h1
-            css={css`
-            ${fontSizeLarge}
-            ${fontColorBlack}
+          {stats.prsSize && (
+            <h1
+              css={css`
+                ${fontSizeLarge}
+                ${fontColorBlack}
 
           /* or 100% */
           letter-spacing: -0.03em;
-          `}
-          >
-            You're one of {comma(stats.prsSize)} private renters in {constituencyName}
-          </h1>}
+              `}
+            >
+              You're one of {comma(stats.prsSize)} private renters in{" "}
+              {constituencyName}
+            </h1>
+          )}
           <div
             css={css`
-            ${fontSizeMedium}
-            ${fontColorBlack}
-          `}
+              ${fontSizeMedium}
+              ${fontColorBlack}
+            `}
           >
             <p>
               Renting in the UK isn’t a walk in the park. In return for high
               rents, we suffer poor conditions and have very little security.
-          </p>
+            </p>
             <p>
               That’s why renters have come together to write the{" "}
               <a
                 href="#"
                 css={css`
-                color: inherit;
-                font-weight: bold;
-              `}
+                  color: inherit;
+                  font-weight: bold;
+                `}
               >
                 Renter Manifesto
-            </a>{" "}
+              </a>{" "}
               — so that together we can change the story.
-          </p>
+            </p>
             <p>Here’s what the renting crisis looks like in your area:</p>
           </div>
         </div>
@@ -138,29 +158,38 @@ const ResultsPageView: React.FC<{
           nationalAverageStatistic={0}
           areaStatistic={0}
         /> */}
-        {stats.wageToHousePrice && <StatisticBlock
-          render={
-            <Fragment>
-              House prices in {constituencyName} are <strong>{format('.2')(stats.wageToHousePrice)} times more</strong> than
-              average incomes. The national average is {format('.2')(stats.wageToHousePrice)}.
-            </Fragment>
-          }
-          areaName={constituencyName}
-          nationalAverageStatistic={stats.wageToHousePrice}
-          areaStatistic={stats.wageToHousePrice}
-        />}
+        {stats.wageToHousePrice && (
+          <StatisticBlock
+            render={
+              <Fragment>
+                House prices in {constituencyName} are{" "}
+                <strong>
+                  {format(".2")(stats.wageToHousePrice)} times more
+                </strong>{" "}
+                than average incomes. The national average is{" "}
+                {format(".2")(stats.wageToHousePrice)}.
+              </Fragment>
+            }
+            areaName={constituencyName}
+            nationalAverageStatistic={stats.wageToHousePrice}
+            areaStatistic={stats.wageToHousePrice}
+          />
+        )}
         <DemandBlock demand="We demand rent controls which bring down rents to 30% of local income." />
-        {stats.totalHbInclSocial && <StatisticBlock
-          render={
-            <Fragment>
-              <strong>{comma(stats.totalHbInclSocial)}</strong> people in {constituencyName} receive housing benefit.
-              The national average is {comma(stats.totalHbInclSocial)}.
-          </Fragment>
-          }
-          areaName={constituencyName}
-          nationalAverageStatistic={stats.totalHbInclSocial}
-          areaStatistic={stats.totalHbInclSocial}
-        />}
+        {stats.totalHbInclSocial && (
+          <StatisticBlock
+            render={
+              <Fragment>
+                <strong>{comma(stats.totalHbInclSocial)}</strong> people in{" "}
+                {constituencyName} receive housing benefit. The national average
+                is {comma(stats.totalHbInclSocial)}.
+              </Fragment>
+            }
+            areaName={constituencyName}
+            nationalAverageStatistic={stats.totalHbInclSocial}
+            areaStatistic={stats.totalHbInclSocial}
+          />
+        )}
         <DemandBlock demand="We demand a welfare system that supports access to safe, secure housing." />
         {/* <StatisticBlock
           render={() => (
@@ -193,7 +222,7 @@ const ResultsPageView: React.FC<{
         <TakeActionBlock />
       </div>
     </Page>
-  )
-}
+  );
+};
 
 export default ResultsPage;
