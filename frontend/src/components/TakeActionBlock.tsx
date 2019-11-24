@@ -66,8 +66,8 @@ const CREATE_VENT_MUTATION = gql`
 
 function TakeActionBlock() {
   const [filesToUpload, setFilesToUpload] = useState([]);
-
   const [addVent, { data }] = useMutation(CREATE_VENT_MUTATION);
+
   return (
     <div
       css={css`
