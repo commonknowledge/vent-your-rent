@@ -115,8 +115,8 @@ const ResultsPageView: React.FC<{
                 letter-spacing: -0.03em;
               `}
             >
-              You're one of {comma(stats.prsSize)} private renters in{" "}
-              {constituencyName}
+              {format(".0%")(stats.prsSize)} of the population of{" "}
+              {constituencyName} rent privately
             </h1>
           )}
           <div
