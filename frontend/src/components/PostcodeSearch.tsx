@@ -63,7 +63,6 @@ const PostcodeSearch: React.FC<{
             type="submit"
             disabled={(!input.dirty && !initialValue) || !input.valid}
           />
-          {inputType === "search" ? "🔍" : "🚀"}
         </div>
       </form>
     </div>
