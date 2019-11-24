@@ -25,8 +25,6 @@ const PostcodeSearch: React.FC<{
     defaultValue: initialValue || ""
   });
 
-  const [loading, setLoading] = React.useState<boolean>(false);
-
   const handleSubmit = React.useCallback(async () => {
     let normalized;
     if (validatePostcode(input.value.trim())) {
@@ -50,22 +48,6 @@ const PostcodeSearch: React.FC<{
     }
   }, [input.valid, input.dirty, input.value, onSubmit]);
 
-  const geolocate = React.useCallback(() => {
-    (async () => {
-      setLoading(true);
-      try {
-        const coords = await getDeviceLocation();
-        const postcode = await convertCoordinatesToPostcode(coords);
-        input.setValue(postcode);
-        onSubmit(postcode);
-      } catch (e) {
-        setLoading(false);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, [input.setValue]);
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -84,10 +66,6 @@ const PostcodeSearch: React.FC<{
           {inputType === "search" ? "🔍" : "🚀"}
         </div>
       </form>
-
-      <button onClick={geolocate} disabled={loading}>
-        {loading ? "Loading" : "📍"}
-      </button>
     </div>
   );
 };
