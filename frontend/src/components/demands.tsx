@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx } from "@emotion/core";
 import DemandBlock from "./DemandBlock";
 
 export const NationalDatabaseOfLandlordsAndRents = () => (
