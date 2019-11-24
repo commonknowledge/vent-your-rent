@@ -15,7 +15,6 @@ from graphene.types.generic import GenericScalar
 import itertools
 import random
 from graphene_file_upload.scalars import Upload
-from django.conf import settings
 
 class VentType(DjangoObjectType):
     class Meta:
