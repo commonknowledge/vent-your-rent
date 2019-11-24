@@ -176,6 +176,28 @@ const ResultsPageView: React.FC<{
           />
         )}
         <DemandBlock demand="We demand a welfare system that supports access to safe, secure housing." />
+        {stats.prsSize && (
+          <StatisticBlock
+            render={
+              <Fragment>
+                <p>
+                  In {constituencyName},{" "}
+                  <strong>
+                    {format(".0%")(stats.prsSize)} of people rent from a private
+                    landlord
+                  </strong>
+                  .
+                </p>
+                <p>
+                  The number of renters has <strong>doubled</strong> in the last
+                  15 years. However, there is no national database of landlords.
+                </p>
+              </Fragment>
+            }
+            areaName={constituencyName}
+            areaStatistic={stats.prsSize}
+          />
+        )}
         <VentsBlock
           title="This is what the renting crisis looks like near you:"
           numberOfVents={3}
