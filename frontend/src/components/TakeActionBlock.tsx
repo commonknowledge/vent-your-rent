@@ -148,7 +148,7 @@ function TakeActionBlock() {
               if (validity.valid) {
                 if (files !== null && files[0] !== null) {
                   // @ts-ignore
-                  setFilesToUpload([...filesToUpload, files[0]]);
+                  setFilesToUpload(files);
                 }
               }
             }}
