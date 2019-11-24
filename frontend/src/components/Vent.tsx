@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { fontColorBlack } from "../styles";
+import gql from "graphql-tag";
+import { VentCard } from './__graphql__/VentCard';
 
 const horizontalVentContainer = () => {
   return "flex: 0 0 auto;";
@@ -38,21 +40,29 @@ const ventImage = css`
   max-width: 150px;
 `;
 
-type VentProps = {
-  text: string;
-  firstName: string;
-  city: string;
-};
-
-export default function Vent({ text, firstName, city }: VentProps) {
+function Vent({ firstName, image, caption, geo }: VentCard) {
   return (
     <div css={ventContainerCSS}>
-      <img css={ventImage} src="https://placeimg.com/640/480/people" alt="" />
-      <div css={ventText}>{text}</div>
+      {image && <img css={ventImage} src={'http://localhost:8000' + image} alt="" />}
+      <div css={ventText}>{caption}</div>
       <div css={ventDetailsCSS}>
         <div>{firstName}</div>
-        <div>{city}</div>
+        {geo && <div>{geo.parliamentaryConstituency}</div>}
       </div>
     </div>
   );
 }
+
+Vent.fragment = gql`
+  fragment VentCard on VentType {
+    id
+    firstName
+    image
+    caption
+    geo {
+      parliamentaryConstituency
+    }
+  }
+`
+
+export default Vent

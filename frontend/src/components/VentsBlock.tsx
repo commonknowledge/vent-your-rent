@@ -64,7 +64,7 @@ export default function VentsBlock({
       )}
       <div css={ventsContainer}>
         {vents.map(({ firstName, text, city }, index) => (
-          <Vent firstName={firstName} text={text} city={city} key={index} />
+          <Vent image={null} id={String(index)} firstName={firstName} caption={text} geo={{ parliamentaryConstituency: city }} key={index} />
         ))}
       </div>
       {showMore && <Button type="outline">Load More</Button>}

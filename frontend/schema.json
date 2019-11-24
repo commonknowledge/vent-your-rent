@@ -988,13 +988,9 @@
               "isDeprecated": false,
               "name": "image",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               }
             },
             {
@@ -1030,7 +1026,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "location",
+              "name": "geo",
               "type": {
                 "kind": "OBJECT",
                 "name": "GeocodeResult",
@@ -1113,13 +1109,9 @@
                   "description": null,
                   "name": "image",
                   "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "Upload",
-                      "ofType": null
-                    }
+                    "kind": "SCALAR",
+                    "name": "Upload",
+                    "ofType": null
                   }
                 },
                 {

@@ -6,6 +6,8 @@ import { paddingCss, smallSpacing, fontColorWhite } from "../styles";
 import gql from "graphql-tag";
 import { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
+import Vent from "./Vent";
+import { CreateVentMutation } from './__graphql__/CreateVentMutation';
 
 const h2CSS = css`
   font-style: normal;
@@ -44,10 +46,12 @@ const textAreaCss = css`
 `;
 
 const CREATE_VENT_MUTATION = gql`
-  mutation createVent(
+  ${Vent.fragment}
+
+  mutation CreateVentMutation(
     $caption: String!
     $firstName: String!
-    $image: Upload!
+    $image: Upload
     $postcode: String!
   ) {
     createVent(
@@ -58,16 +62,28 @@ const CREATE_VENT_MUTATION = gql`
     ) {
       success
       vent {
-        id
+        ...VentCard
       }
     }
   }
 `;
 
 function TakeActionBlock() {
-  const [filesToUpload, setFilesToUpload] = useState([]);
+  const [fileToUpload, setFileToUpload] = useState(null);
 
-  const [addVent, { data }] = useMutation(CREATE_VENT_MUTATION);
+  const [addVent, { data, loading, error }] = useMutation<CreateVentMutation>(CREATE_VENT_MUTATION);
+
+  const uploadVent = () => {
+    addVent({
+      variables: {
+        caption: "something",
+        firstName: "Alex",
+        image: fileToUpload,
+        postcode: "E8 2BS"
+      }
+    })
+  }
+
   return (
     <div
       css={css`
@@ -111,14 +127,7 @@ function TakeActionBlock() {
       <form
         onSubmit={e => {
           e.preventDefault();
-          addVent({
-            variables: {
-              caption: "something",
-              firstName: "Alex",
-              image: filesToUpload,
-              postcode: "E8 2BS"
-            }
-          });
+          uploadVent();
         }}
       >
         <div>
@@ -145,11 +154,9 @@ function TakeActionBlock() {
             type="file"
             name="image"
             onChange={({ target: { validity, files } }) => {
-              if (validity.valid) {
-                if (files !== null && files[0] !== null) {
-                  // @ts-ignore
-                  setFilesToUpload(files);
-                }
+              if (validity.valid && files && files.length > 0) {
+                // @ts-ignore
+                setFileToUpload(files[0]);
               }
             }}
           />
@@ -170,7 +177,8 @@ function TakeActionBlock() {
             want to be contacted, then click here to unsubscribe.
           </p>
         </div>
-        <button type="submit">Add Your Voice</button>
+        <button type="submit">{loading ? "Loading" : error ? "Problem uploading" : data && data.createVent && data.createVent.vent ? "Done!" : "Add Your Voice"}</button>
+        {data && data.createVent && data.createVent.vent && <Vent {...data.createVent.vent} />}
       </form>
     </div>
   );

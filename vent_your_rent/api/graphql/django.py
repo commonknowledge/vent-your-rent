@@ -15,6 +15,7 @@ from graphene.types.generic import GenericScalar
 import itertools
 import random
 from graphene_file_upload.scalars import Upload
+from django.conf import settings
 
 class VentType(DjangoObjectType):
     class Meta:
@@ -22,9 +23,12 @@ class VentType(DjangoObjectType):
         filter_fields = ['postcode']
         fields = '__all__'
 
-    location = graphene.Field(GeocodeResult)
+    def resolve_image(self, info):
+        return None if self.image is None else self.image.url
 
-    def resolve_location(self, info):
+    geo = graphene.Field(GeocodeResult)
+
+    def resolve_geo(self, info):
         return info.context.loaders.get('geo_from_postcode').load(self.postcode)
 
 class VentMutation(graphene.Mutation):
@@ -32,7 +36,7 @@ class VentMutation(graphene.Mutation):
         caption = graphene.String(required=True)
         first_name = graphene.String(required=True)
         postcode = graphene.String(required=True)
-        image = Upload(required=True)
+        image = Upload()
 
     success = graphene.Boolean()
     vent = graphene.Field(VentType)
@@ -42,7 +46,7 @@ class VentMutation(graphene.Mutation):
             caption=caption,
             first_name=first_name,
             postcode=postcode,
-            image=image[0] if image is not None and len(image) > 0 else None
+            image=image
         )
 
         return VentMutation(success=True, vent=vent)
