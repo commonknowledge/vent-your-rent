@@ -20,7 +20,6 @@
     "apollo-link-retry": "^2.2.15",
     "d3-format": "^1.4.2",
     "emotion-normalize": "^10.1.0",
-    "faker": "^4.1.0",
     "postcode": "^2.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

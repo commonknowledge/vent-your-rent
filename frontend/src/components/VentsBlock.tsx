@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import faker from "faker";
 import Button from "./Button";
 import Vent from "./Vent";
 import { paddingCss, colorWhite, fontColorDarkBlack } from "../styles";
