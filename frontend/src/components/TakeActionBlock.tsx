@@ -3,6 +3,8 @@ import { jsx, css } from "@emotion/core";
 import Button from "./Button";
 import { paddingCss, smallSpacing, fontColorWhite } from "../styles";
 
+import gql from "graphql-tag";
+
 const h2CSS = css`
   font-style: normal;
   font-weight: 500;
@@ -37,6 +39,27 @@ const textAreaCss = css`
   width: 100%;
   height: 150px;
   margin-bottom: ${smallSpacing};
+`;
+
+const CREATE_VENT_MUTATION = gql`
+  mutation createVent(
+    $caption: String
+    $firstName: String
+    $image: Upload
+    $postcode: String
+  ) {
+    createVent(
+      caption: $caption
+      firstName: $firstName
+      image: $image
+      postcode: $postcode
+    ) {
+      success
+      vent {
+        id
+      }
+    }
+  }
 `;
 
 function TakeActionBlock() {
