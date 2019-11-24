@@ -4,6 +4,8 @@ import Button from "./Button";
 import { paddingCss, smallSpacing, fontColorWhite } from "../styles";
 
 import gql from "graphql-tag";
+import { useState } from "react";
+import { useMutation } from "@apollo/react-hooks";
 
 const h2CSS = css`
   font-style: normal;
@@ -63,6 +65,9 @@ const CREATE_VENT_MUTATION = gql`
 `;
 
 function TakeActionBlock() {
+  const [filesToUpload, setFilesToUpload] = useState([]);
+
+  const [addVent, { data }] = useMutation(CREATE_VENT_MUTATION);
   return (
     <div
       css={css`
@@ -103,7 +108,19 @@ function TakeActionBlock() {
           Read the full manifesto
         </a>
       </p>
-      <form>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          addVent({
+            variables: {
+              caption: "something",
+              firstName: "Alex",
+              image: filesToUpload,
+              postcode: "E8 2BS"
+            }
+          });
+        }}
+      >
         <div>
           <input placeholder="First name*" css={inputFieldCss} />
           <input placeholder="Last name*" css={inputFieldCss} />
@@ -124,8 +141,18 @@ function TakeActionBlock() {
             }
           `}
         >
-          <Button type="outline">Take Photo</Button>
-          <Button type="outline">Upload Photo</Button>
+          <input
+            type="file"
+            name="image"
+            onChange={({ target: { validity, files } }) => {
+              if (validity.valid) {
+                if (files !== null && files[0] !== null) {
+                  // @ts-ignore
+                  setFilesToUpload([...filesToUpload, files[0]]);
+                }
+              }
+            }}
+          />
         </div>
         <div>
           <input type="checkbox" />
@@ -143,7 +170,7 @@ function TakeActionBlock() {
             want to be contacted, then click here to unsubscribe.
           </p>
         </div>
-        <Button>Add Your Voice</Button>
+        <button type="submit">Add Your Voice</button>
       </form>
     </div>
   );
