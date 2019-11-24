@@ -5,6 +5,7 @@ import Vent from "./Vent";
 import { paddingCss, colorWhite, fontColorDarkBlack } from "../styles";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import { VentsQuery } from './__graphql__/VentsQuery';
 
 type VentsBlockProps = {
   title?: string;
@@ -19,13 +20,11 @@ const ventsContainer = css`
 `;
 
 const GET_VENTS = gql`
-  query {
+  ${Vent.fragment}
+
+  query VentsQuery {
     vents {
-      id
-      firstName
-      image
-      postcode
-      caption
+      ...VentCard
     }
   }
 `;
@@ -43,7 +42,7 @@ export default function VentsBlock({
   numberOfVents,
   showMore = false
 }: VentsBlockProps) {
-  const { loading, error, data } = useQuery(GET_VENTS);
+  const { loading, error, data } = useQuery<VentsQuery>(GET_VENTS);
 
   return (
     <div
@@ -72,16 +71,9 @@ export default function VentsBlock({
         </h3>
       )}
       <div css={ventsContainer}>
-        {!loading &&
-          data.vents.map((vent: Vent) => (
-            <Vent
-              firstName={vent.firstName}
-              text={vent.caption}
-              city={vent.postcode}
-              key={vent.id}
-              imageSrc={vent.image}
-            />
-          ))}
+        {!loading && data && data.vents.map((vent) => (
+          <Vent key={vent.id} {...vent} />
+        ))}
       </div>
       {showMore && <Button type="outline">Load More</Button>}
     </div>
