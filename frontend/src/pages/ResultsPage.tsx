@@ -21,7 +21,7 @@ import {
 } from "./__graphql__/Statistics";
 import { format } from "d3-format";
 
-const comma = format(",");
+const formatNumberWithCommas = format(",");
 const formatNumberAsRoundedPercentage = format(".0%");
 
 const STATISTICS_QUERY = gql`
@@ -168,8 +168,10 @@ const ResultsPageView: React.FC<{
           <StatisticBlock
             render={
               <Fragment>
-                <strong>{comma(stats.totalHbInclSocial)}</strong> people in{" "}
-                {constituencyName} receive housing benefit.
+                <strong>
+                  {formatNumberWithCommas(stats.totalHbInclSocial)}
+                </strong>{" "}
+                people in {constituencyName} receive housing benefit.
               </Fragment>
             }
             areaName={constituencyName}
