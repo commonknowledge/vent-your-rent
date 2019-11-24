@@ -3,7 +3,6 @@ import { jsx, css } from "@emotion/core";
 import { Fragment } from "react";
 import Page from "../components/Page";
 import StatisticBlock from "../components/StatisticBlock";
-import DemandBlock from "../components/DemandBlock";
 import VentsBlock from "../components/VentsBlock";
 import TakeActionBlock from "../components/TakeActionBlock";
 import {
@@ -20,6 +19,12 @@ import {
   Statistics_statisticsForPostcode
 } from "./__graphql__/Statistics";
 import { format } from "d3-format";
+
+import {
+  NationalDatabaseOfLandlordsAndRents,
+  RentControls,
+  WelfareSystemThatSupportsHousing
+} from "../components/demands";
 
 const formatNumberWithCommas = format(",");
 const formatNumberAsRoundedPercentage = format(".0%");
@@ -163,7 +168,7 @@ const ResultsPageView: React.FC<{
             areaStatistic={stats.wageToHousePrice}
           />
         )}
-        <DemandBlock demand="We demand rent controls which bring down rents to 30% of local income." />
+        <RentControls />
         {stats.totalHbInclSocial && (
           <StatisticBlock
             render={
@@ -199,7 +204,7 @@ const ResultsPageView: React.FC<{
             areaStatistic={stats.housingPercOnUc}
           />
         )}
-        <DemandBlock demand="We demand a welfare system that supports access to safe, secure housing." />
+        <WelfareSystemThatSupportsHousing />
         {stats.prsSize && (
           <StatisticBlock
             render={
@@ -222,6 +227,7 @@ const ResultsPageView: React.FC<{
             areaStatistic={stats.prsSize}
           />
         )}
+        <NationalDatabaseOfLandlordsAndRents />
         <VentsBlock
           title="This is what the renting crisis looks like near you:"
           numberOfVents={3}
