@@ -177,6 +177,26 @@ const ResultsPageView: React.FC<{
             areaStatistic={stats.totalHbInclSocial}
           />
         )}
+        {stats.housingPercOnUc && (
+          <StatisticBlock
+            render={
+              <Fragment>
+                <p>
+                  <strong>
+                    {formatNumberAsRoundedPercentage(stats.housingPercOnUc)}
+                  </strong>{" "}
+                  of renters in {constituencyName} are on Universal Credit.
+                </p>
+                <p>
+                  Delays in Universal Credit payments mean renters can easily
+                  get into rent arrears.
+                </p>
+              </Fragment>
+            }
+            areaName={constituencyName}
+            areaStatistic={stats.housingPercOnUc}
+          />
+        )}
         <DemandBlock demand="We demand a welfare system that supports access to safe, secure housing." />
         {stats.prsSize && (
           <StatisticBlock
