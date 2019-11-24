@@ -83,7 +83,7 @@ const PostcodeSearch: React.FC<{
             disabled={(!input.dirty && !initialValue) || !input.valid}
             // aria-label="search"
           />
-          {inputType == "search" ? "🔍" : "🚀"}
+          {inputType === "search" ? "🔍" : "🚀"}
         </div>
       </form>
 
