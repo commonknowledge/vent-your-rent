@@ -85,8 +85,6 @@ function TakeActionBlock() {
           font-size: 21px;
           line-height: 25px;
           letter-spacing: -0.04em;
-
-          /* White */
           ${fontColorWhite}
         `}
       >
