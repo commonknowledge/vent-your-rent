@@ -43,7 +43,7 @@ const ventImage = css`
 function Vent({ firstName, image, caption, geo }: VentCard) {
   return (
     <div css={ventContainerCSS}>
-      {image && <img css={ventImage} src={'http://localhost:8000' + image} alt="" />}
+      {image && <img css={ventImage} src={image} alt="" />}
       <div css={ventText}>{caption}</div>
       <div css={ventDetailsCSS}>
         <div>{firstName}</div>

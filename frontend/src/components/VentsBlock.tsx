@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import faker from "faker";
 import Button from "./Button";
 import Vent from "./Vent";
 import { paddingCss, colorWhite, fontColorDarkBlack } from "../styles";
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
 type VentsBlockProps = {
   title?: string;
@@ -11,31 +12,39 @@ type VentsBlockProps = {
   showMore?: boolean;
 };
 
-function ventsDummy(amount: number) {
-  const vents = [];
-  for (let ventsTotal = 0; ventsTotal < amount; ventsTotal++) {
-    vents.push({
-      text: faker.lorem.sentence(),
-      firstName: faker.name.firstName(),
-      city: faker.address.city()
-    });
-  }
-
-  return vents;
-}
-
-const ventsContainer = () => css`
+const ventsContainer = css`
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
 `;
+
+const GET_VENTS = gql`
+  query {
+    vents {
+      id
+      firstName
+      image
+      postcode
+      caption
+    }
+  }
+`;
+
+type Vent = {
+  firstName: string;
+  caption: string;
+  postcode: string;
+  id: number;
+  image: string;
+};
 
 export default function VentsBlock({
   title,
   numberOfVents,
   showMore = false
 }: VentsBlockProps) {
-  const vents = ventsDummy(numberOfVents);
+  const { loading, error, data } = useQuery(GET_VENTS);
+
   return (
     <div
       css={css`
@@ -63,9 +72,16 @@ export default function VentsBlock({
         </h3>
       )}
       <div css={ventsContainer}>
-        {vents.map(({ firstName, text, city }, index) => (
-          <Vent image={null} id={String(index)} firstName={firstName} caption={text} geo={{ parliamentaryConstituency: city }} key={index} />
-        ))}
+        {!loading &&
+          data.vents.map((vent: Vent) => (
+            <Vent
+              firstName={vent.firstName}
+              text={vent.caption}
+              city={vent.postcode}
+              key={vent.id}
+              imageSrc={vent.image}
+            />
+          ))}
       </div>
       {showMore && <Button type="outline">Load More</Button>}
     </div>

@@ -20,7 +20,7 @@ const StatisticBlock: FunctionComponent<StatisticBlockProps> = ({ render }) => (
       ${paddingCss}
     `}
   >
-    <p>{render}</p>
+    {render}
   </div>
 );
 

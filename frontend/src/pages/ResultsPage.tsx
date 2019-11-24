@@ -229,7 +229,7 @@ const ResultsPageView: React.FC<{
         )}
         <NationalDatabaseOfLandlordsAndRents />
         <VentsBlock
-          title="This is what the renting crisis looks like near you:"
+          title="This is what the renting crisis looks like"
           numberOfVents={3}
         />
         <TakeActionBlock />
