@@ -8,7 +8,12 @@ import {
   convertLocationToCoordinates
 } from "../data/geo";
 import { validatePostcode } from "../data/validators";
-import { fontSizeMedium, buttonSecondary, smallSpacing } from "../styles";
+import {
+  fontSizeMedium,
+  buttonSecondary,
+  smallSpacing,
+  colorWhite
+} from "../styles";
 
 type PostcodeSearchType = "search" | "update";
 
@@ -69,6 +74,9 @@ const PostcodeSearch: React.FC<{
               letter-spacing: -0.04em;
               width: 100%;
               padding: 10px;
+              background: ${colorWhite};
+              border-radius: 6px;
+              border: 0;
             `}
           />
 
