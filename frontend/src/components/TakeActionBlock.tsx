@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import Button from "./Button";
-import { paddingCss, smallSpacing } from "../styles";
+import { paddingCss, smallSpacing, fontColorWhite } from "../styles";
 
 const h2CSS = css`
   font-style: normal;
@@ -9,7 +9,7 @@ const h2CSS = css`
   font-size: 38px;
   line-height: 38px;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  ${fontColorWhite}
   margin: 0;
 `;
 
@@ -44,7 +44,7 @@ function TakeActionBlock() {
     <div
       css={css`
         background: #353535;
-        color: #ffffff;
+        ${fontColorWhite}
         padding-top: 30px;
         padding-bottom: 30px;
         font-size: 21px;
@@ -64,7 +64,7 @@ function TakeActionBlock() {
           letter-spacing: -0.04em;
 
           /* White */
-          color: #ffffff;
+          ${fontColorWhite}
         `}
       >
         We’re in a renting crisis, but no one is talking about it. We want to
@@ -76,7 +76,7 @@ function TakeActionBlock() {
           target="_blank"
           rel="noopener noreferrer"
           css={css`
-            color: inherit;
+            ${fontColorWhite}
           `}
         >
           Read the full manifesto

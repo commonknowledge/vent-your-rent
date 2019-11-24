@@ -2,10 +2,13 @@ import { css } from "@emotion/core";
 
 export const colorWhite = "#FFFFFF";
 export const colorBlack = "#353535";
+export const colorDarkBlack = "#000000";
 export const colorOrange = "#FF974B";
 
 export const fontColorBlack = `color: ${colorBlack};`;
 export const fontColorWhite = `color ${colorWhite};`;
+export const fontColorOrange = `color ${colorOrange};`;
+export const fontColorDarkBlack = `color: ${colorDarkBlack};`;
 
 export const smallSpacing = "15px";
 

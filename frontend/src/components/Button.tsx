@@ -4,6 +4,7 @@ import { jsx } from "@emotion/core";
 import { FunctionComponent } from "react";
 
 import { css } from "@emotion/core";
+import { fontColorWhite } from "../styles";
 
 type buttonStyles = "primary" | "secondary" | "outline";
 
@@ -42,7 +43,7 @@ const Button: FunctionComponent<ButtonProps> = ({
 
       text-align: center;
       text-transform: uppercase;
-      color: #ffffff;
+      ${fontColorWhite}
       width: 100%;
     `}
   >

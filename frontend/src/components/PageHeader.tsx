@@ -2,7 +2,12 @@
 import { jsx, css } from "@emotion/core";
 
 import Emoji from "a11y-react-emoji";
-import { marginsCss, smallSpacing } from "../styles";
+import {
+  marginsCss,
+  smallSpacing,
+  fontColorOrange,
+  fontColorBlack
+} from "../styles";
 
 const upperCase = css`
   text-transform: uppercase;
@@ -14,7 +19,7 @@ const logoCSS = css`
   font-weight: 900;
   font-size: 16px;
   line-height: 19px;
-  color: #353535;
+  ${fontColorBlack}
   ${upperCase}
 `;
 
@@ -25,7 +30,7 @@ const shareCSS = css`
   font-size: 14px;
   line-height: 17px;
 
-  color: #ff974b;
+  ${fontColorOrange}
 
   ${upperCase}
 `;

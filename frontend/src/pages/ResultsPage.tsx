@@ -141,7 +141,7 @@ const ResultsPageView: React.FC<{
               <a
                 href="https://www.rentermanifesto.org/read_the_manifesto_full"
                 css={css`
-                  color: inherit;
+                  ${fontColorBlack}
                   font-weight: bold;
                 `}
               >
