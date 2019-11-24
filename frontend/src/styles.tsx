@@ -5,6 +5,7 @@ export const colorBlack = "#353535";
 export const colorOrange = "#FF974B";
 
 export const fontColorBlack = `color: ${colorBlack};`;
+export const fontColorWhite = `color ${colorWhite};`;
 
 export const marginsCss = css`
   margin-right: 20px;
@@ -50,6 +51,24 @@ export const boldLink = css`
   font-weight: bold;
   text-decoration: underline;
   text-transform: uppercase;
+`;
+
+export const buttonTextSecondary = css`
+  ${fontSizeSmall}
+  ${fontColorWhite}
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+export const buttonSecondary = css`
+  ${buttonTextSecondary}
+
+  background: ${colorBlack};
+  border-radius: 6px;
+  border: 0;
+  padding-bottom: 13px;
+  padding-top: 13px;
 `;
 
 export const equalTopAndBottomMargin = (spacing: number) => {
