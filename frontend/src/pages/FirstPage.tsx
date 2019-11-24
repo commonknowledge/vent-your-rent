@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import Header from "../components/Header";
 import PostcodeSearch from "../components/PostcodeSearch";
 import { RouteComponentProps } from "react-router";
 
@@ -20,7 +19,19 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
         height: 100vh;
       `}
     >
-      <Header />
+      <header
+        css={css`
+          font-family: "Rubik Mono One", sans-serif;
+          font-style: normal;
+          font-weight: 900;
+          font-size: 5rem;
+          line-height: 65px;
+          text-transform: uppercase;
+          color: #353535;
+        `}
+      >
+        Vent Your Rent
+      </header>
       <div
         css={css`
           margin-top: 20px;
