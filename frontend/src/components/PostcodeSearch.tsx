@@ -1,4 +1,6 @@
-import * as React from "react";
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
+import React from "react";
 import { validatePostcode } from "../data/validators";
 import {
   convertCoordinatesToPostcode,
@@ -6,6 +8,7 @@ import {
 } from "../data/geo";
 import { useField } from "react-jeff";
 import Postcode from "postcode";
+import { fontSizeMedium } from "../styles";
 
 type PostcodeSearchType = "search" | "update";
 
@@ -50,12 +53,23 @@ const PostcodeSearch: React.FC<{
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div
+          css={css`
+            display: flex;
+            flex-direction: column;
+          `}
+        >
           <input
             {...input.props}
             type="text"
             onChange={e => input.setValue(e.currentTarget.value)}
             placeholder={label}
+            css={css`
+              ${fontSizeMedium}
+              letter-spacing: -0.04em;
+              width: 100%;
+              padding: 10px;
+            `}
           />
 
           <input
