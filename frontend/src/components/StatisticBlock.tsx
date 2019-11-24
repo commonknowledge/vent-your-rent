@@ -21,8 +21,6 @@ const StatisticBlock: FunctionComponent<StatisticBlockProps> = ({ render }) => (
     `}
   >
     <p>{render}</p>
-    <div>Tottenham</div>
-    <div>National Average</div>
   </div>
 );
 

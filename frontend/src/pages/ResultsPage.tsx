@@ -93,8 +93,6 @@ const ResultsPageView: React.FC<{
     );
   }
 
-  const dataRequired = "data required";
-
   return (
     <Page>
       <div
@@ -155,8 +153,7 @@ const ResultsPageView: React.FC<{
                 <strong>
                   {format(".2")(stats.wageToHousePrice)} times more
                 </strong>{" "}
-                than average incomes. The national average is {dataRequired}
-                {}.
+                than average incomes.
               </Fragment>
             }
             areaName={constituencyName}
@@ -170,8 +167,7 @@ const ResultsPageView: React.FC<{
             render={
               <Fragment>
                 <strong>{comma(stats.totalHbInclSocial)}</strong> people in{" "}
-                {constituencyName} receive housing benefit. The national average
-                is {dataRequired}.
+                {constituencyName} receive housing benefit.
               </Fragment>
             }
             areaName={constituencyName}
