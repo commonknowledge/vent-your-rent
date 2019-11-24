@@ -70,4 +70,6 @@ documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-on
 ### Docker
 
 See detailed [cookiecutter-django Docker
-documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).]
+
+For local development with Docker see [https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html)
