@@ -13,7 +13,6 @@ type ButtonProps = {
 
 const outlineButton = `
   border: 1px solid #ffffff;
-  box-sizing: border-box;
 `;
 
 function backgroundFromType(type: buttonStyles) {

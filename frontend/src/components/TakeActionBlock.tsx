@@ -29,18 +29,12 @@ const inputFieldCss = css`
   height: 45px;
   width: 100%;
   padding: 10px;
-
-  // TODO Add this to everything
-  box-sizing: border-box;
 `;
 
 const textAreaCss = css`
   background: #ffffff;
   border-radius: 6px;
   width: 100%;
-
-  // TODO Add this to everything
-  box-sizing: border-box;
   height: 150px;
   margin-bottom: 15px;
 `;
