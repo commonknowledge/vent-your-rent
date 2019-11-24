@@ -8,7 +8,7 @@ type StatisticBlockProps = {
   areaName: string;
   areaStatistic: number;
   graphColour?: "red" | "orange";
-  nationalAverageStatistic: number;
+  nationalAverageStatistic?: number;
   render: JSX.Element;
 };
 
