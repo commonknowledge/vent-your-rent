@@ -42,12 +42,13 @@ type VentProps = {
   text: string;
   firstName: string;
   city: string;
+  imageSrc?: string;
 };
 
-export default function Vent({ text, firstName, city }: VentProps) {
+export default function Vent({ text, firstName, city, imageSrc }: VentProps) {
   return (
     <div css={ventContainerCSS}>
-      <img css={ventImage} src="https://placeimg.com/640/480/people" alt="" />
+      {imageSrc && <img css={ventImage} src={imageSrc} alt="" />}
       <div css={ventText}>{text}</div>
       <div css={ventDetailsCSS}>
         <div>{firstName}</div>
