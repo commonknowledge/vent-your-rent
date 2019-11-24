@@ -75,23 +75,17 @@ const PostcodeSearch: React.FC<{
             type="text"
             onChange={e => input.setValue(e.currentTarget.value)}
             placeholder={label}
-            // aria-label='label'
           />
 
           <input
             type="submit"
             disabled={(!input.dirty && !initialValue) || !input.valid}
-            // aria-label="search"
           />
           {inputType === "search" ? "🔍" : "🚀"}
         </div>
       </form>
 
-      <button
-        onClick={geolocate}
-        disabled={loading}
-        // aria-label="use my location"
-      >
+      <button onClick={geolocate} disabled={loading}>
         {loading ? "Loading" : "📍"}
       </button>
     </div>
