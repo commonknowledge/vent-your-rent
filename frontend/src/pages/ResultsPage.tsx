@@ -20,7 +20,9 @@ import {
   Statistics_statisticsForPostcode
 } from "./__graphql__/Statistics";
 import { format } from "d3-format";
+
 const comma = format(",");
+const formatNumberAsRoundedPercentage = format(".0%");
 
 const STATISTICS_QUERY = gql`
   query Statistics($postcode: String!) {
@@ -115,8 +117,8 @@ const ResultsPageView: React.FC<{
                 letter-spacing: -0.03em;
               `}
             >
-              {format(".0%")(stats.prsSize)} of the population of{" "}
-              {constituencyName} rent privately
+              {formatNumberAsRoundedPercentage(stats.prsSize)} of the population
+              of {constituencyName} rent privately
             </h1>
           )}
           <div
@@ -183,8 +185,8 @@ const ResultsPageView: React.FC<{
                 <p>
                   In {constituencyName},{" "}
                   <strong>
-                    {format(".0%")(stats.prsSize)} of people rent from a private
-                    landlord
+                    {formatNumberAsRoundedPercentage(stats.prsSize)} of people
+                    rent from a private landlord
                   </strong>
                   .
                 </p>
