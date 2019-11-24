@@ -40,6 +40,11 @@ class InputFilter(admin.SimpleListFilter):
 
 # Register your models here.
 
+def publish_vents(modeladmin, request, queryset):
+    queryset.update(is_published=True)
+
+publish_vents.short_description = "Mark selected vents as published"
+
 @admin.register(Vent)
 class VentAdmin(admin.ModelAdmin):
     # List UI config
@@ -52,6 +57,8 @@ class VentAdmin(admin.ModelAdmin):
         FilterFactory('postcode', lambda bit: Q(postcode__icontains=bit)),
         ('date_created', DateRangeFilter),
     )
+
+    actions = [publish_vents]
 
     # Vent create/edit form
 
