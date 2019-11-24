@@ -4,13 +4,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
-from django.views.decorators.cache import never_cache
+from graphene_file_upload.django import FileUploadGraphQLView
 from . import templates
-from graphene_django.views import GraphQLView
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
-    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    path('graphql/', csrf_exempt(FileUploadGraphQLView.as_view(graphiql=True))),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management

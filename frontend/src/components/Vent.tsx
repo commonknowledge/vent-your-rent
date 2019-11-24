@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
+import { fontColorBlack } from "../styles";
 
 const horizontalVentContainer = () => {
   return "flex: 0 0 auto;";
@@ -30,7 +31,7 @@ const ventDetailsCSS = css`
   line-height: 12px;
   text-transform: uppercase;
 
-  color: #353535;
+  ${fontColorBlack}
 `;
 
 const ventImage = css`

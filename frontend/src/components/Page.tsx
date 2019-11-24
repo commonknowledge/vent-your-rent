@@ -4,7 +4,6 @@ import { jsx } from "@emotion/core";
 import { FunctionComponent } from "react";
 
 import PageHeader from "./PageHeader";
-import Footer from "./Footer";
 
 type PageProps = {};
 

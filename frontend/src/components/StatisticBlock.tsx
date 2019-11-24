@@ -2,22 +2,17 @@
 import { jsx, css } from "@emotion/core";
 
 import { FunctionComponent } from "react";
-import {
-  fontSizeSmall,
-  fontColorBlack,
-  marginsCss,
-  paddingCss
-} from "../styles";
+import { fontSizeSmall, fontColorBlack, paddingCss } from "../styles";
 
 type StatisticBlockProps = {
   areaName: string;
   areaStatistic: number;
   graphColour?: "red" | "orange";
-  nationalAverageStatistic: number;
-  render: () => JSX.Element;
+  nationalAverageStatistic?: number;
+  render: JSX.Element;
 };
 
-const StatisticBlock: FunctionComponent<StatisticBlockProps> = props => (
+const StatisticBlock: FunctionComponent<StatisticBlockProps> = ({ render }) => (
   <div
     css={css`
       ${fontSizeSmall}
@@ -25,9 +20,7 @@ const StatisticBlock: FunctionComponent<StatisticBlockProps> = props => (
       ${paddingCss}
     `}
   >
-    <p>{props.render()}</p>
-    <div>Tottenham</div>
-    <div>National Average</div>
+    <p>{render}</p>
   </div>
 );
 

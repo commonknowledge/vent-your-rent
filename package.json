@@ -12,7 +12,9 @@
         "containercmd": "docker-compose -f local.yml run --rm ",
         "release": "bin/release",
         "build": "cd frontend && yarn build",
-        "postinstall": "cd frontend && yarn"
+        "postinstall": "cd frontend && yarn",
+        "graphql": "yarn graphql:dump-schema && cd frontend && yarn graphql:generate-types",
+        "graphql:dump-schema": "yarn containercmd django python manage.py graphql_schema --schema vent_your_rent.api.graphql.schema.schema --out frontend/schema.json"
     },
     "cacheDirectories": [
         "frontend/node_modules",

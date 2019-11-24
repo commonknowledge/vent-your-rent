@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import Button from "./Button";
-import { paddingCss } from "../styles";
+import { paddingCss, smallSpacing, fontColorWhite } from "../styles";
 
 const h2CSS = css`
   font-style: normal;
@@ -9,7 +9,7 @@ const h2CSS = css`
   font-size: 38px;
   line-height: 38px;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  ${fontColorWhite}
   margin: 0;
 `;
 
@@ -25,24 +25,18 @@ const readTheManifestoLinkCss = css`
 const inputFieldCss = css`
   background: #ffffff;
   border-radius: 6px;
-  margin-bottom: 15px;
+  margin-bottom: ${smallSpacing};
   height: 45px;
   width: 100%;
   padding: 10px;
-
-  // TODO Add this to everything
-  box-sizing: border-box;
 `;
 
 const textAreaCss = css`
   background: #ffffff;
   border-radius: 6px;
   width: 100%;
-
-  // TODO Add this to everything
-  box-sizing: border-box;
   height: 150px;
-  margin-bottom: 15px;
+  margin-bottom: ${smallSpacing};
 `;
 
 function TakeActionBlock() {
@@ -50,7 +44,7 @@ function TakeActionBlock() {
     <div
       css={css`
         background: #353535;
-        color: #ffffff;
+        ${fontColorWhite}
         padding-top: 30px;
         padding-bottom: 30px;
         font-size: 21px;
@@ -70,7 +64,7 @@ function TakeActionBlock() {
           letter-spacing: -0.04em;
 
           /* White */
-          color: #ffffff;
+          ${fontColorWhite}
         `}
       >
         We’re in a renting crisis, but no one is talking about it. We want to
@@ -78,9 +72,11 @@ function TakeActionBlock() {
       </p>
       <p css={readTheManifestoLinkCss}>
         <a
-          href="#"
+          href="https://www.rentermanifesto.org/read_the_manifesto_full"
+          target="_blank"
+          rel="noopener noreferrer"
           css={css`
-            color: inherit;
+            ${fontColorWhite}
           `}
         >
           Read the full manifesto
@@ -99,7 +95,7 @@ function TakeActionBlock() {
         <div
           css={css`
             button {
-              margin-bottom: 15px;
+              margin-bottom: ${smallSpacing};
               font-style: normal;
               font-weight: 900;
               font-size: 16px;

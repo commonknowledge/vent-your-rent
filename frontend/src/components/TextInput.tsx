@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
+import { smallSpacing } from "../styles";
+
 const TextInput = () => (
   <input
     css={css`
@@ -10,7 +12,7 @@ const TextInput = () => (
       padding: 10px;
       font-size: 21px;
       line-height: 25px;
-      margin-bottom: 15px;
+      margin-bottom: ${smallSpacing};
     `}
   />
 );

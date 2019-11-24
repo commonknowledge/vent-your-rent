@@ -2,8 +2,15 @@ import { css } from "@emotion/core";
 
 export const colorWhite = "#FFFFFF";
 export const colorBlack = "#353535";
+export const colorDarkBlack = "#000000";
+export const colorOrange = "#FF974B";
 
 export const fontColorBlack = `color: ${colorBlack};`;
+export const fontColorWhite = `color ${colorWhite};`;
+export const fontColorOrange = `color ${colorOrange};`;
+export const fontColorDarkBlack = `color: ${colorDarkBlack};`;
+
+export const smallSpacing = "15px";
 
 export const marginsCss = css`
   margin-right: 20px;
@@ -15,8 +22,14 @@ export const paddingCss = css`
   padding-left: 20px;
 `;
 
+export const fontSizeExtraLarge = css`
+  font-style: normal;
+  font-weight: 900;
+  font-size: 90px;
+  line-height: 70px;
+`;
+
 export const fontSizeLarge = css`
-  font-family: Rubik;
   font-style: normal;
   font-weight: 500;
   font-size: 38px;
@@ -32,7 +45,6 @@ export const fontSizeMedium = css`
 `;
 
 export const fontSizeSmall = css`
-  font-family: Rubik;
   font-style: normal;
   font-size: 16px;
   line-height: 19px;
@@ -44,6 +56,24 @@ export const boldLink = css`
   font-weight: bold;
   text-decoration: underline;
   text-transform: uppercase;
+`;
+
+export const buttonTextSecondary = css`
+  ${fontSizeSmall}
+  ${fontColorWhite}
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+export const buttonSecondary = css`
+  ${buttonTextSecondary}
+
+  background: ${colorBlack};
+  border-radius: 6px;
+  border: 0;
+  padding-bottom: 13px;
+  padding-top: 13px;
 `;
 
 export const equalTopAndBottomMargin = (spacing: number) => {

@@ -7,7 +7,8 @@ import {
   equalTopAndBottomMargin,
   equalTopAndBottomPadding,
   fontSizeLarge,
-  paddingCss
+  paddingCss,
+  smallSpacing
 } from "../styles";
 
 type DemandBlockProps = {
@@ -30,10 +31,15 @@ export default function DemandBlock({ demand }: DemandBlockProps) {
       </div>
       <div
         css={css`
-          margin-top: 15px;
+          margin-top: ${smallSpacing};
         `}
       >
-        <a href="#" css={boldLink}>
+        <a
+          href="https://www.rentermanifesto.org/read_the_manifesto_full"
+          css={boldLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Read the full manifesto
         </a>
       </div>
