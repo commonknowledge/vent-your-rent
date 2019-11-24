@@ -17,7 +17,6 @@ export const paddingCss = css`
 `;
 
 export const fontSizeExtraLarge = css`
-  font-family: Rubik;
   font-style: normal;
   font-weight: 900;
   font-size: 90px;
@@ -25,7 +24,6 @@ export const fontSizeExtraLarge = css`
 `;
 
 export const fontSizeLarge = css`
-  font-family: Rubik;
   font-style: normal;
   font-weight: 500;
   font-size: 38px;
@@ -41,7 +39,6 @@ export const fontSizeMedium = css`
 `;
 
 export const fontSizeSmall = css`
-  font-family: Rubik;
   font-style: normal;
   font-size: 16px;
   line-height: 19px;
