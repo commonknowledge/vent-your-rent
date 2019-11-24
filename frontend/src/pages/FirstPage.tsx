@@ -18,7 +18,6 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
 
         background-color: ${colorOrange};
         padding: 20px;
-        height: 100vh;
       `}
     >
       <header
