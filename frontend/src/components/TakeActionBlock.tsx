@@ -72,7 +72,9 @@ function TakeActionBlock() {
       </p>
       <p css={readTheManifestoLinkCss}>
         <a
-          href="#"
+          href="https://www.rentermanifesto.org/read_the_manifesto_full"
+          target="_blank"
+          rel="noopener noreferrer"
           css={css`
             color: inherit;
           `}

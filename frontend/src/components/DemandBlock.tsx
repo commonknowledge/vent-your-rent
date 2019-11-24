@@ -34,7 +34,12 @@ export default function DemandBlock({ demand }: DemandBlockProps) {
           margin-top: ${smallSpacing};
         `}
       >
-        <a href="#" css={boldLink}>
+        <a
+          href="https://www.rentermanifesto.org/read_the_manifesto_full"
+          css={boldLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Read the full manifesto
         </a>
       </div>
