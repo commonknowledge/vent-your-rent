@@ -15,6 +15,14 @@ export const paddingCss = css`
   padding-left: 20px;
 `;
 
+export const fontSizeExtraLarge = css`
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 90px;
+  line-height: 70px;
+`;
+
 export const fontSizeLarge = css`
   font-family: Rubik;
   font-style: normal;
