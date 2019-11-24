@@ -2,6 +2,12 @@
 import { jsx, css } from "@emotion/core";
 import PostcodeSearch from "../components/PostcodeSearch";
 import { RouteComponentProps } from "react-router";
+import {
+  fontSizeExtraLarge,
+  fontColorBlack,
+  colorOrange,
+  fontSizeMedium
+} from "../styles";
 
 const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
   return (
@@ -9,25 +15,17 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
       css={css`
         display: flex;
         flex-direction: column;
-        padding-top: 20px;
-        color: #000000;
-        font-size: 21px;
-        line-height: 25px;
-        letter-spacing: -0.04em;
-        background-color: #ec7b70;
+
+        background-color: ${colorOrange};
         padding: 20px;
         height: 100vh;
       `}
     >
       <header
         css={css`
-          font-family: "Rubik Mono One", sans-serif;
-          font-style: normal;
-          font-weight: 900;
-          font-size: 5rem;
-          line-height: 65px;
+          ${fontSizeExtraLarge}
+          ${fontColorBlack}
           text-transform: uppercase;
-          color: #353535;
         `}
       >
         Vent Your Rent
@@ -36,14 +34,15 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
         css={css`
           margin-top: 20px;
           margin-bottom: 20px;
+          ${fontSizeMedium}
         `}
       >
-        We all deserve a house we can call home, somewhere we can feel safe and
-        secure. But for the <strong>one in five</strong> people in the UK
-        renting privately, that's not the case.
+        We all deserve a house we can call home, but for the one in five people
+        in the UK renting privately, that’s not the case.
       </div>
       <div
         css={css`
+          ${fontSizeMedium}
           font-weight: bold;
           margin-bottom: 15px;
         `}
