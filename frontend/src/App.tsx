@@ -5,18 +5,27 @@ import emotionNormalize from "emotion-normalize";
 import ResultsPage from "./pages/ResultsPage";
 import GraphQLProvider from "./data/graphql";
 import { Router, Switch, Route } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import { createBrowserHistory, History } from 'history'
+import { AnalyticsProvider, analytics } from './data/analytics'
 import FirstPage from "./pages/FirstPage";
 import ThirdPage from "./pages/ThirdPage";
 
-const history = createBrowserHistory();
+const history = createBrowserHistory()
+
+// @ts-ignore
+analytics.logView(window.location.pathname)
+
+history.listen(l => {
+  analytics.logView(l.pathname)
+})
 
 const App: React.FC = () => {
   return (
-    <Router history={history}>
-      <GraphQLProvider>
-        <Global
-          styles={css`
+    <AnalyticsProvider value={analytics} >
+      <Router history={history}>
+        <GraphQLProvider>
+          <Global
+            styles={css`
             ${emotionNormalize}
             body {
               background: #f0f0f0;
@@ -38,14 +47,15 @@ const App: React.FC = () => {
               box-sizing: inherit;
             }
           `}
-        />
-        <Switch>
-          <Route exact path="/welcome-to-the-movement" component={ThirdPage} />
-          <Route exact path="/:postcode" component={ResultsPage} />
-          <Route component={FirstPage} />
-        </Switch>
-      </GraphQLProvider>
-    </Router>
+          />
+          <Switch>
+            <Route exact path="/welcome-to-the-movement" component={ThirdPage} />
+            <Route exact path="/:postcode" component={ResultsPage} />
+            <Route component={FirstPage} />
+          </Switch>
+        </GraphQLProvider>
+      </Router>
+    </AnalyticsProvider >
   );
 };
 

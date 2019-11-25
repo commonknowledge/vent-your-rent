@@ -12,7 +12,7 @@ import {
   fontSizeMedium
 } from "../styles";
 import { useQuery } from "@apollo/react-hooks";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps } from "react-router";
 import gql from "graphql-tag";
 import {
   Statistics,
