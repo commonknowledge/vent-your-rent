@@ -49,7 +49,7 @@ const inputFieldCss = css`
   margin-bottom: ${smallSpacing};
   height: 45px;
   width: 100%;
-  font-size: ${fontSizeMedium};
+  ${fontSizeMedium};
 `;
 
 const textAreaCss = css`
@@ -59,7 +59,7 @@ const textAreaCss = css`
   width: 100%;
   height: 150px;
   margin-bottom: ${smallSpacing};
-  font-size: ${fontSizeMedium};
+  ${fontSizeMedium};
 `;
 
 const SIGNUP_MUTATION = gql`
