@@ -7,7 +7,6 @@ export default function ShareBar() {
       <div>Facebook</div>
       <div>Twitter</div>
       <div>WhatsApp</div>
-      <div>Instagram</div>
       <div>Email</div>
     </div>
   );
