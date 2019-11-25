@@ -56,7 +56,7 @@ class VentType(DjangoObjectType):
     class Meta:
         model = Vent
         filter_fields = ['postcode']
-        fields = '__all__'
+        exclude = ['postcode']
 
     def resolve_image(self, info):
         try:
