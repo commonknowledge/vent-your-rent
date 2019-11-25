@@ -18,20 +18,37 @@ from graphene_file_upload.scalars import Upload
 
 ###
 
-class SignupForm(forms.ModelForm):
-    class Meta:
-        model = Signup
-        exclude = ('id', 'date_created', )
-
 class SignupType(DjangoObjectType):
     class Meta:
         model = Signup
 
-class SignupMutation(DjangoModelFormMutation):
-    signup = graphene.Field(SignupType)
+class SignupMutation(graphene.Mutation):
+    class Arguments:
+        first_name = graphene.String(required=True)
+        last_name = graphene.String(required=True)
+        postcode = graphene.String(required=True)
+        email = graphene.String(required=True)
+        can_contact = graphene.Boolean()
 
-    class Meta:
-        form_class = SignupForm
+    signup = graphene.Field(SignupType)
+    success = graphene.Boolean(required=True)
+
+    def mutate(self, info,
+        first_name=None,
+        last_name=None,
+        postcode=None,
+        email=None,
+        can_contact=None
+    ):
+        signup = Signup.objects.create(
+            first_name=first_name,
+            last_name=last_name,
+            postcode=postcode,
+            email=email,
+            can_contact=can_contact,
+        )
+
+        return SignupMutation(success=True, signup=signup)
 
 ###
 

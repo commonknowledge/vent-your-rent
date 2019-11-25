@@ -70,13 +70,13 @@ const SIGNUP_MUTATION = gql`
       $email: String!
       $canContact: Boolean
   ) {
-    signup(input:{
+    signup(
       firstName: $firstName
       lastName: $lastName
       postcode: $postcode
       email: $email
       canContact: $canContact
-    }) {
+    ) {
       signup {
         id
       }
