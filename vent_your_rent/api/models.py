@@ -15,11 +15,21 @@ def generate_upload_destination_path(instance, filename):
 
 class Vent(models.Model):
     # user submitted
-    first_name = models.CharField(null=False, blank=False, max_length=100)
+    first_name = models.CharField(null=False, blank=False, max_length=200)
     postcode = models.CharField(null=False, blank=False, max_length=12)
     caption = models.TextField(null=False, blank=False)
     image = models.ImageField(null=True, blank=True, upload_to=generate_upload_destination_path)
     # admin
     is_published = models.BooleanField(null=True, blank=True, default=False)
+    # auto
+    date_created = models.DateTimeField(null=True, blank=True, auto_now_add=True)
+
+class Signup(models.Model):
+    # user submitted
+    first_name = models.CharField(null=False, blank=False, max_length=200)
+    last_name = models.CharField(null=False, blank=False, max_length=200)
+    postcode = models.CharField(null=False, blank=False, max_length=12)
+    email = models.EmailField(null=False, blank=False, max_length=12)
+    can_contact = models.BooleanField(null=True, blank=True)
     # auto
     date_created = models.DateTimeField(null=True, blank=True, auto_now_add=True)
