@@ -20,6 +20,7 @@ import {
 } from "./__graphql__/Statistics";
 import { format } from "d3-format";
 import { PageWidth } from '../components/PageElements';
+import { OpenEndedTenancies } from '../components/demands';
 
 import {
   NationalDatabaseOfLandlordsAndRents,
@@ -29,19 +30,28 @@ import {
 
 const formatNumberWithCommas = format(",");
 const formatNumberAsRoundedPercentage = format(".0%");
+const _formatNumberAsMoney = format("($.0f");
+const formatNumberAsMoney = (n: number) => _formatNumberAsMoney(n).replace("$", "£");
 
 const STATISTICS_QUERY = gql`
   query Statistics($postcode: String!) {
     statisticsForPostcode(postcode: $postcode) {
-      prsSize
-      wageToHousePrice
-      ucHousing
-      housingPercOnUc
-      totalHbInclSocial
-      majority
-      geo {
-        parliamentaryConstituency
-      }
+      constituencyName: constituencyName
+      adminDistrictName: adminDistrictName
+      regionName: RegionName
+
+      numberOfPrivateRenters: CONLevelPrivateRent
+
+      twoBedRentPrice: rentMedianvalue2bed
+
+      wageToHousePrice: wageToHousePrice
+
+      numberOfHousingBenefitRecipients: totalHbInclSocial
+
+      percentRentersOnUC: housingPercOnUc
+
+      percentPrivateRenters: CONPercPrivateRent
+      percentPrivateRentersNationally: CTRYPercPrivateRent
     }
   }
 `;
@@ -58,11 +68,6 @@ const ResultsPage: React.FC<RouteComponentProps<{ postcode: string }>> = ({
   return (
     <ResultsPageView
       postcode={postcode}
-      constituencyName={
-        data && data.statisticsForPostcode
-          ? data.statisticsForPostcode.geo.parliamentaryConstituency
-          : undefined
-      }
       stats={
         data && data.statisticsForPostcode
           ? data.statisticsForPostcode
@@ -76,12 +81,11 @@ const ResultsPage: React.FC<RouteComponentProps<{ postcode: string }>> = ({
 
 const ResultsPageView: React.FC<{
   postcode: string;
-  constituencyName?: string;
   stats?: Statistics_statisticsForPostcode;
   loading?: boolean;
   error?: any;
-}> = ({ postcode, constituencyName, stats, loading, error }) => {
-  if (loading || !stats || !constituencyName) {
+}> = ({ postcode, stats, loading, error }) => {
+  if (loading || !stats) {
     return (
       <Page>
         <div
@@ -101,6 +105,10 @@ const ResultsPageView: React.FC<{
     );
   }
 
+  const averageRentPrice = 675
+  const averageRentMoreOrLess = stats.twoBedRentPrice > averageRentPrice ? "more" : "less"
+  const averageRentDifference = averageRentMoreOrLess === "more" ? stats.twoBedRentPrice - averageRentPrice : averageRentPrice - stats.twoBedRentPrice
+
   return (
     <Page>
       <div
@@ -113,20 +121,17 @@ const ResultsPageView: React.FC<{
             css={css`
             ${paddingCss}
           `}>
-            {stats.prsSize && (
-              <h1
-                css={css`
+            <h1
+              css={css`
                 ${fontSizeLarge}
                 ${fontColorBlack}
 
                 /* or 100% */
                 letter-spacing: -0.03em;
               `}
-              >
-                {formatNumberAsRoundedPercentage(stats.prsSize)} of the population
-              of {constituencyName} rent privately
+            >
+              You're one of {formatNumberWithCommas(stats.numberOfPrivateRenters)} private renters in {stats.constituencyName}
             </h1>
-            )}
             <div
               css={css`
               ${fontSizeMedium}
@@ -152,20 +157,33 @@ const ResultsPageView: React.FC<{
             </p>
               <p>Here’s what the renting crisis looks like in your area:</p>
             </div>
+            {stats.twoBedRentPrice && (
+              <StatisticBlock
+                render={
+                  <Fragment>
+                    <p>The rent on a typical two-bed home in {stats.adminDistrictName} is <strong>{formatNumberAsMoney(stats.twoBedRentPrice)}</strong>. That’s <strong>{formatNumberAsMoney(averageRentDifference)} {averageRentMoreOrLess}</strong> than the national average.</p>
+                    <p>High rents stop us from enjoying a decent standard of living and saving for the future.</p>
+                  </Fragment>
+                }
+                areaName={stats.adminDistrictName}
+                areaStatistic={stats.twoBedRentPrice}
+                nationalAverageStatistic={averageRentPrice}
+              />
+            )}
             {stats.wageToHousePrice && (
               <StatisticBlock
                 render={
                   <Fragment>
-                    House prices in {constituencyName} are{" "}
+                    House prices in {stats.adminDistrictName} are{" "}
                     <strong>
                       {format(".2")(stats.wageToHousePrice)} times more
-                </strong>{" "}
+                    </strong>{" "}
                     than average incomes.
-              </Fragment>
+                  </Fragment>
                 }
-                areaName={constituencyName}
-                nationalAverageStatistic={stats.wageToHousePrice}
-                areaStatistic={stats.wageToHousePrice}
+                areaName={stats.constituencyName}
+                areaStatistic={1}
+                nationalAverageStatistic={1 / stats.wageToHousePrice}
               />
             )}
           </div>
@@ -176,30 +194,30 @@ const ResultsPageView: React.FC<{
             css={css`
             ${paddingCss}
           `}>
-            {stats.totalHbInclSocial && (
+            {stats.numberOfHousingBenefitRecipients && (
               <StatisticBlock
                 render={
                   <Fragment>
                     <strong>
-                      {formatNumberWithCommas(stats.totalHbInclSocial)}
+                      {formatNumberWithCommas(stats.numberOfHousingBenefitRecipients)}
                     </strong>{" "}
-                    people in {constituencyName} receive housing benefit.
+                    people in {stats.constituencyName} receive housing benefit. The national average is 5,521.
               </Fragment>
                 }
-                areaName={constituencyName}
-                nationalAverageStatistic={stats.totalHbInclSocial}
-                areaStatistic={stats.totalHbInclSocial}
+                areaName={stats.constituencyName}
+                areaStatistic={stats.numberOfHousingBenefitRecipients}
+                nationalAverageStatistic={5521}
               />
             )}
-            {stats.housingPercOnUc && (
+            {stats.percentRentersOnUC && (
               <StatisticBlock
                 render={
                   <Fragment>
                     <p>
                       <strong>
-                        {formatNumberAsRoundedPercentage(stats.housingPercOnUc)}
+                        {formatNumberAsRoundedPercentage(stats.percentRentersOnUC)}
                       </strong>{" "}
-                      of renters in {constituencyName} are on Universal Credit.
+                      of renters in {stats.constituencyName} are on Universal Credit. The national average is 33%.
                 </p>
                     <p>
                       Delays in Universal Credit payments mean renters can easily
@@ -207,8 +225,9 @@ const ResultsPageView: React.FC<{
                 </p>
                   </Fragment>
                 }
-                areaName={constituencyName}
-                areaStatistic={stats.housingPercOnUc}
+                areaName={stats.constituencyName}
+                areaStatistic={stats.percentRentersOnUC}
+                nationalAverageStatistic={0.33}
               />
             )}
           </div>
@@ -219,37 +238,52 @@ const ResultsPageView: React.FC<{
             css={css`
             ${paddingCss}
           `}>
-            {stats.prsSize && (
+            {stats.percentPrivateRenters && (
               <StatisticBlock
                 render={
                   <Fragment>
                     <p>
-                      In {constituencyName},{" "}
+                      In {stats.constituencyName},{" "}
                       <strong>
-                        {formatNumberAsRoundedPercentage(stats.prsSize)} of people
-                        rent from a private landlord
-                  </strong>
-                      .
-                </p>
+                        {formatNumberAsRoundedPercentage(stats.percentPrivateRenters)}
+                      </strong> of people
+                        rent from a private landlord. The national average is 17%.
+                    </p>
                     <p>
                       The number of renters has <strong>doubled</strong> in the last
                       15 years. However, there is no national database of landlords.
-                </p>
+                    </p>
                   </Fragment>
                 }
-                areaName={constituencyName}
-                areaStatistic={stats.prsSize}
+                areaName={stats.constituencyName}
+                areaStatistic={stats.percentPrivateRenters}
+                nationalAverageStatistic={stats.percentPrivateRentersNationally}
               />
             )}
           </div>
         </PageWidth>
-        <NationalDatabaseOfLandlordsAndRents />
+        <OpenEndedTenancies />
+        <PageWidth>
+          <div
+            css={css`
+            ${paddingCss}
+          `}>
+            <Fragment>
+              <p>
+                7 in every 1000 private renters have been made homeless through no-fault evictions.
+              </p>
+              <p>
+                Right now, landlords can evict tenants with just two months notice, without giving a reason.
+              </p>
+            </Fragment>
+          </div>
+        </PageWidth>
         <PageWidth>
           <VentsBlock
             title="This is what the renting crisis looks like"
             numberOfVents={3}
           />
-          <TakeActionBlock />
+          <TakeActionBlock postcode={postcode} />
         </PageWidth>
       </div>
     </Page>

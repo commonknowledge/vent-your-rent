@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, SerializedStyles } from "@emotion/core";
 
-import { FunctionComponent } from "react";
+import { FunctionComponent, DetailedHTMLProps, ButtonHTMLAttributes } from "react";
 
 import { css } from "@emotion/core";
 import {
@@ -14,38 +14,37 @@ import {
 type buttonStyles = "primary" | "secondary" | "outline";
 
 type ButtonProps = {
-  type?: buttonStyles;
+  variant?: buttonStyles;
   additionalCSS?: SerializedStyles;
-  onClick?: () => void;
 };
 
-const outlineButton = `
-  border: 1px solid #ffffff;
+export const outlineButton = `
+  border: 2px solid #ffffff;
 `;
 
-function backgroundFromType(type: buttonStyles) {
-  if (type === "outline") {
+function backgroundFromType(variant: buttonStyles) {
+  if (variant === "outline") {
     return "inherit";
   }
 
-  return type === "secondary" ? colorBlack : colorOrange;
+  return variant === "secondary" ? colorBlack : colorOrange;
 }
 
-const Button: FunctionComponent<ButtonProps> = ({
-  type = "primary",
+const Button: FunctionComponent<ButtonProps & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>> = ({
+  variant = "primary",
   children,
   additionalCSS,
-  onClick
+  ...props
 }) => {
   return (
     <button
       css={css`
-        background: ${backgroundFromType(type)};
+        background: ${backgroundFromType(variant)};
         border-radius: 6px;
         border: 0;
         height: 45px;
 
-        ${type === "outline" ? outlineButton : "border: 0;"}
+        ${variant === "outline" ? outlineButton : "border: 0;"}
 
         ${fontSizeSmall}
         font-weight: 900;
@@ -57,11 +56,11 @@ const Button: FunctionComponent<ButtonProps> = ({
 
         ${additionalCSS}
       `}
-      onClick={onClick}
+      {...props}
     >
       {children}
     </button>
   );
-};
+}
 
 export default Button;

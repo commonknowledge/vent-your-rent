@@ -7,7 +7,7 @@ from .utils import DjangoFilterField
 from .geo import GeocodeResult
 from vent_your_rent.api.helpers.utils import get, get_path
 from vent_your_rent.api.helpers.cache import cached_fn
-from vent_your_rent.api.models import Vent
+from vent_your_rent.api.models import Vent, Signup
 from django.utils import timezone
 from datetime import datetime  
 from datetime import timedelta  
@@ -15,6 +15,25 @@ from graphene.types.generic import GenericScalar
 import itertools
 import random
 from graphene_file_upload.scalars import Upload
+
+###
+
+class SignupForm(forms.ModelForm):
+    class Meta:
+        model = Signup
+        exclude = ('id', 'date_created', )
+
+class SignupType(DjangoObjectType):
+    class Meta:
+        model = Signup
+
+class SignupMutation(DjangoModelFormMutation):
+    signup = graphene.Field(SignupType)
+
+    class Meta:
+        form_class = SignupForm
+
+###
 
 class VentType(DjangoObjectType):
     class Meta:
@@ -92,3 +111,4 @@ class Queries():
 
 class Mutations():
     create_vent = VentMutation.Field()
+    signup = SignupMutation.Field()

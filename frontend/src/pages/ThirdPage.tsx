@@ -17,7 +17,7 @@ const ThirdPage = () => (
     <h2>
       Share this with your friends (and landlord <Emoji symbol="😘" />
     </h2>
-    <ShareBar />
+    <ShareBar message="Vent Your Rent" url="https://ventyour.rent" />
     <VentsBlock numberOfVents={14} showMore={true} />
     <div>
       <h2>Still mad?</h2>

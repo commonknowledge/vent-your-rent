@@ -11,7 +11,7 @@ const initialCacheState = {
     data: {}
 };
 
-const GRAPHQL_ENDPOINT = `http://localhost:8000/graphql/`; // process.env.process.env
+const GRAPHQL_ENDPOINT = `${process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : ''}/graphql/`; // process.env.process.env
 const httpLink = createUploadLink({ uri: GRAPHQL_ENDPOINT });
 
 export const client = new ApolloClient({
