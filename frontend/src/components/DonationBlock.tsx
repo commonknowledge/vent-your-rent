@@ -27,7 +27,17 @@ export default function DonationBlock() {
         <p>Can you chip in a £1 to help us run more campaigns like this?</p>
       </div>
 
-      <Button type="secondary">Donate</Button>
+      <Button
+        type="secondary"
+        onClick={() => {
+          window.open(
+            "https://www.rentermanifesto.org/donate_to_our_general_election_fund",
+            "_blank"
+          );
+        }}
+      >
+        Donate
+      </Button>
     </div>
   );
 }
