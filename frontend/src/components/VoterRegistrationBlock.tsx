@@ -18,7 +18,7 @@ export default function VoterRegistrationBlock() {
           margin-bottom: 10px;
         `}
       >
-        🚨🚨🚨 The voter registration deadline is tomorrow!
+        🚨🚨🚨 The voter registration deadline is <strong>tomorrow!</strong>
       </div>
       <div css={fontSizeSmall}>
         <a
