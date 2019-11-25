@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { paddingCss, smallSpacing, fontColorWhite, fontSizeMedium, fontSizeLarge } from "../styles";
+import { paddingCss, smallSpacing, fontColorWhite, fontSizeMedium, fontSizeLarge, colorOrange, colorWhite } from "../styles";
 import gql from "graphql-tag";
 import { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
@@ -9,6 +9,7 @@ import { CreateVentMutation } from './__graphql__/CreateVentMutation';
 import { useField, useForm } from "react-jeff";
 import { validateEmail } from '../data/input';
 import { TextInput, LargeTextInput, CheckboxInput, Form } from './Form';
+import Button, { outlineButton } from './Button';
 
 const h2CSS = css`
   font-style: normal;
@@ -29,22 +30,32 @@ const readTheManifestoLinkCss = css`
   text-transform: uppercase;
 `;
 
+const inputCss = css`
+  padding: 10px;
+  border-radius: 6px;
+`;
+
+const buttonCss = css`
+  ${inputCss}
+  ${outlineButton}
+  font-family: "Rubik Mono One", sans-serif;
+  text-transform: uppercase;
+`;
+
 const inputFieldCss = css`
+  ${inputCss}
   border: none;
   background: #ffffff;
-  border-radius: 6px;
   margin-bottom: ${smallSpacing};
   height: 45px;
   width: 100%;
-  padding: 10px;
   font-size: ${fontSizeMedium};
 `;
 
 const textAreaCss = css`
+  ${inputCss}
   border: none;
-  padding: 10px;
   background: #ffffff;
-  border-radius: 6px;
   width: 100%;
   height: 150px;
   margin-bottom: ${smallSpacing};
@@ -218,11 +229,28 @@ function TakeActionBlock({ postcode }: { postcode: string }) {
                 setImage(files[0]);
               }
             }}
+            css={css`
+              width: 100%;
+              text-align: center;
+              ${buttonCss}
+            `}
           />
         </div>
-        <div>
-          <CheckboxInput id='keep-updated' type="checkbox"  {...canContact.props} />
-          <label htmlFor='keep-updated'>Keep me updated</label>
+        <div css={css`margin: 10px 0;`}>
+          <CheckboxInput id='keep-updated' type="checkbox" {...canContact.props} css={css`
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            vertical-align: middle;
+            width: 28px; 
+            height: 28px;
+            font-size: 28px;
+            ${buttonCss}
+
+            &:checked {
+              background: ${colorOrange}
+            }
+          `} />
+          <label htmlFor='keep-updated' css={css`margin-left: 8px;`}>Keep me updated</label>
           <p
             css={css`
               font-style: normal;
@@ -247,15 +275,15 @@ function TakeActionBlock({ postcode }: { postcode: string }) {
             .
           </p>
         </div>
-        <button type="submit" disabled={form.submitting || form.submitted}>
+        <Button type="submit" disabled={form.submitting || form.submitted}>
           {form.submitting ? "Sending... ⏳" :
             form.submitted ? "You've signed ✊" :
-              "Add Your Voice"
+              form.submitErrors.length ? "Something went wrong" :
+                "Add Your Voice"
           }
-        </button>
-        {createVentState.data && createVentState.data.createVent && createVentState.data.createVent.vent && <Vent {...createVentState.data.createVent.vent} />}
+        </Button>
       </Form>
-    </div>
+    </div >
   );
 }
 

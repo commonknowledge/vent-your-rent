@@ -75,7 +75,7 @@ export default function VentsBlock({
           <Vent key={vent.id} {...vent} />
         ))}
       </div>
-      {showMore && <Button type="outline">Load More</Button>}
+      {showMore && <Button variant="outline">Load More</Button>}
     </div>
   );
 }

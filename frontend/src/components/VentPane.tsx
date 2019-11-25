@@ -12,8 +12,8 @@ export default function VentPane() {
       </div>
       <div>
         <textarea placeholder="Go on then..." />
-        <Button type="outline">Take Photo</Button>
-        <Button type="outline">Upload Photo</Button>
+        <Button variant="outline">Take Photo</Button>
+        <Button variant="outline">Upload Photo</Button>
         <Button>Vent!</Button>
       </div>
     </div>
