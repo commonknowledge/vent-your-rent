@@ -2,11 +2,6 @@ import graphene
 from vent_your_rent.api.engine.geo import postcode_geo
 
 
-class Coordinates(graphene.ObjectType):
-    longitude = graphene.Float(required=True)
-    latitude = graphene.Float(required=True)
-
-
 class GeoCodes(graphene.ObjectType):
     admin_district = graphene.String(required=True)
     admin_county = graphene.String(required=True)
@@ -18,7 +13,7 @@ class GeoCodes(graphene.ObjectType):
     nuts = graphene.String(required=True)
 
 
-class GeocodeResult(Coordinates):
+class GeocodeResult(graphene.ObjectType):
     country = graphene.String(required=True)
     european_electoral_region = graphene.String(required=True)
     region = graphene.String(required=False)
