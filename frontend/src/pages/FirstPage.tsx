@@ -13,10 +13,12 @@ import {
 import GenerationRentBlock from "../components/GenerationRentBlock";
 import RenterManifestoBlock from "../components/RenterManifestoBlock";
 import Footer from "../components/Footer";
+import VoterRegistrationBlock from "../components/VoterRegistrationBlock";
 
 const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <div>
+      <VoterRegistrationBlock />
       <div
         css={css`
           display: flex;
