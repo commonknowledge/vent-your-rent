@@ -28,10 +28,10 @@ function emailShareUrl(link: string, subject: string, body?: string) {
 export default function ShareBar() {
   return (
     <div>
-      <div>Facebook</div>
-      <div>Twitter</div>
-      <div>WhatsApp</div>
-      <div>Email</div>
+      <a>Facebook</a>
+      <a>Twitter</a>
+      <a>WhatsApp</a>
+      <a>Email</a>
     </div>
   );
 }
