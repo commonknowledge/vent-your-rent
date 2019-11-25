@@ -20,6 +20,7 @@ const demandContainerCss = css`
   background: ${colorWhite};
   ${equalTopAndBottomPadding(20)}
   ${equalTopAndBottomMargin(30)}
+  ${fontSizeLarge}
 `;
 
 export default function DemandBlock({ demand }: DemandBlockProps) {
@@ -27,9 +28,7 @@ export default function DemandBlock({ demand }: DemandBlockProps) {
     <div css={demandContainerCss}>
       <PageWidth>
         <div css={paddingCss}>
-          <div css={`
-          ${fontSizeLarge}
-        `}>
+          <div>
             <Emoji symbol="✊" label="fist" />
             {demand}
           </div>
