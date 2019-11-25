@@ -1,21 +1,26 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { fontColorBlack } from "../styles";
+import { fontColorBlack, colorOrange } from "../styles";
 import gql from "graphql-tag";
 import { VentCard } from './__graphql__/VentCard';
+import TimeAgo from 'react-timeago'
 
 const horizontalVentContainer = () => {
   return "flex: 0 0 auto;";
 };
 
 const ventContainerCSS = css`
-    padding-top: 20px;
-    padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  ${horizontalVentContainer()}
+  position: relative;
+
+  @media (min-width: 1024px) {
     width: 50%;
     max-width: 200px;
-    ${horizontalVentContainer()}
-    position: relative;
-  `;
+  }
+`;
 
 const ventText = css`
   font-style: normal;
@@ -35,7 +40,7 @@ const ventDetailsCSS = css`
 
 const MEDIA_URL = (process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : "")
 
-function Vent({ firstName, image, caption, geo }: VentCard) {
+function Vent({ firstName, image, caption, geo, dateCreated }: VentCard) {
   const wordCount = caption.split(" ").length
 
   return (
@@ -63,10 +68,11 @@ function Vent({ firstName, image, caption, geo }: VentCard) {
                 !image && wordCount <= 36 ? 18 :
                   !image && wordCount <= 48 ? 14 :
                     16
-          }}>{caption}</div>
+          }}>{caption} <span style={{ opacity: 0.5 }}>#VentYourRent</span></div>
         <div css={ventDetailsCSS}>
-          <div>{firstName}</div>
+          <div>{firstName} ✊</div>
           {geo && <div css={css`opacity: 0.66; margin-top: 5px;`}>{geo.parliamentaryConstituency}</div>}
+          <div css={css`margin-top: 5px; opacity: 0.33;`}><TimeAgo css={css`margin-top: 5px;`} date={dateCreated} /></div>
         </div>
       </div>
     </div >
@@ -82,6 +88,7 @@ Vent.fragment = gql`
     geo {
       parliamentaryConstituency
     }
+    dateCreated
   }
 `
 

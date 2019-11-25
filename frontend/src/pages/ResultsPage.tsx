@@ -9,7 +9,8 @@ import {
   paddingCss,
   fontSizeLarge,
   fontColorBlack,
-  fontSizeMedium
+  fontSizeMedium,
+  colorWhite
 } from "../styles";
 import { useQuery } from "@apollo/react-hooks";
 import { RouteComponentProps } from "react-router";
@@ -164,16 +165,14 @@ const ResultsPageView: React.FC<{
             {stats.twoBedRentPrice && (
               <StatisticBlock
                 render={
-                  <Fragment>
-                    <p>The rent on a typical two-bed home in {stats.adminDistrictName} is <strong>{formatNumberAsMoney(stats.twoBedRentPrice)}</strong>. That’s <strong>{formatNumberAsMoney(averageRentDifference)} {averageRentMoreOrLess}</strong> than the national average.</p>
-                    <p>High rents stop us from enjoying a decent standard of living and saving for the future.</p>
-                  </Fragment>
+                  <Fragment>The rent on a typical two-bed home in {stats.adminDistrictName} is <strong>{formatNumberAsMoney(stats.twoBedRentPrice)}</strong>. That’s <strong>{formatNumberAsMoney(averageRentDifference)} {averageRentMoreOrLess}</strong> than the national average.</Fragment>
                 }
                 areaName={stats.adminDistrictName}
                 areaStatistic={stats.twoBedRentPrice}
                 nationalAverageStatistic={averageRentPrice}
               />
             )}
+            <div css={fontSizeMedium}>High rents stop us from enjoying a decent standard of living and saving for the future.</div>
             {stats.wageToHousePrice && (
               <StatisticBlock
                 render={
@@ -282,11 +281,19 @@ const ResultsPageView: React.FC<{
             </Fragment>
           </div>
         </PageWidth>
+        <div css={css`
+          background: ${colorWhite};
+          padding: 40px 20px;
+          margin: 20px 0%;
+        `}>
+          <PageWidth>
+            <VentsBlock
+              title="This is what the renting crisis looks like"
+              numberOfVents={3}
+            />
+          </PageWidth>
+        </div>
         <PageWidth>
-          <VentsBlock
-            title="This is what the renting crisis looks like"
-            numberOfVents={3}
-          />
           <TakeActionBlock postcode={postcode} onSubmit={onSignup} />
         </PageWidth>
       </div>
