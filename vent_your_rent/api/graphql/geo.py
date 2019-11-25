@@ -25,7 +25,7 @@ class GeocodeResult(Coordinates):
     country = graphene.String(required=True)
     # nhs_ha = graphene.String(required=True)
     european_electoral_region = graphene.String(required=True)
-    primary_care_trust = graphene.String(required=True)
+    # primary_care_trust = graphene.String(required=True)
     region = graphene.String(required=False)
     # lsoa = graphene.String(required=True)
     # msoa = graphene.String(required=True)
