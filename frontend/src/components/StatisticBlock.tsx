@@ -17,7 +17,6 @@ const StatisticBlock: FunctionComponent<StatisticBlockProps> = ({ render }) => (
     css={css`
       ${fontSizeSmall}
       ${fontColorBlack}
-      ${paddingCss}
     `}
   >
     {render}

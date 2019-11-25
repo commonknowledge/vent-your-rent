@@ -19,6 +19,7 @@ import {
   Statistics_statisticsForPostcode
 } from "./__graphql__/Statistics";
 import { format } from "d3-format";
+import { PageWidth } from '../components/PageElements';
 
 import {
   NationalDatabaseOfLandlordsAndRents,
@@ -107,132 +108,149 @@ const ResultsPageView: React.FC<{
           padding-bottom: 30px;
         `}
       >
-        <div
-          css={css`
+        <PageWidth>
+          <div
+            css={css`
             ${paddingCss}
-          `}
-        >
-          {stats.prsSize && (
-            <h1
-              css={css`
+          `}>
+            {stats.prsSize && (
+              <h1
+                css={css`
                 ${fontSizeLarge}
                 ${fontColorBlack}
 
                 /* or 100% */
                 letter-spacing: -0.03em;
               `}
-            >
-              {formatNumberAsRoundedPercentage(stats.prsSize)} of the population
+              >
+                {formatNumberAsRoundedPercentage(stats.prsSize)} of the population
               of {constituencyName} rent privately
             </h1>
-          )}
-          <div
-            css={css`
+            )}
+            <div
+              css={css`
               ${fontSizeMedium}
               ${fontColorBlack}
             `}
-          >
-            <p>
-              Renting in the UK isn’t a walk in the park. In return for high
-              rents, we suffer poor conditions and have very little security.
+            >
+              <p>
+                Renting in the UK isn’t a walk in the park. In return for high
+                rents, we suffer poor conditions and have very little security.
             </p>
-            <p>
-              That’s why renters have come together to write the{" "}
-              <a
-                href="https://www.rentermanifesto.org/read_the_manifesto_full"
-                css={css`
+              <p>
+                That’s why renters have come together to write the{" "}
+                <a
+                  href="https://www.rentermanifesto.org/read_the_manifesto_full"
+                  css={css`
                   ${fontColorBlack}
                   font-weight: bold;
                 `}
-              >
-                Renter Manifesto
+                >
+                  Renter Manifesto
               </a>{" "}
-              — so that together we can change the story.
+                — so that together we can change the story.
             </p>
-            <p>Here’s what the renting crisis looks like in your area:</p>
+              <p>Here’s what the renting crisis looks like in your area:</p>
+            </div>
+            {stats.wageToHousePrice && (
+              <StatisticBlock
+                render={
+                  <Fragment>
+                    House prices in {constituencyName} are{" "}
+                    <strong>
+                      {format(".2")(stats.wageToHousePrice)} times more
+                </strong>{" "}
+                    than average incomes.
+              </Fragment>
+                }
+                areaName={constituencyName}
+                nationalAverageStatistic={stats.wageToHousePrice}
+                areaStatistic={stats.wageToHousePrice}
+              />
+            )}
           </div>
-        </div>
-        {stats.wageToHousePrice && (
-          <StatisticBlock
-            render={
-              <Fragment>
-                House prices in {constituencyName} are{" "}
-                <strong>
-                  {format(".2")(stats.wageToHousePrice)} times more
-                </strong>{" "}
-                than average incomes.
-              </Fragment>
-            }
-            areaName={constituencyName}
-            nationalAverageStatistic={stats.wageToHousePrice}
-            areaStatistic={stats.wageToHousePrice}
-          />
-        )}
+        </PageWidth>
         <RentControls />
-        {stats.totalHbInclSocial && (
-          <StatisticBlock
-            render={
-              <Fragment>
-                <strong>
-                  {formatNumberWithCommas(stats.totalHbInclSocial)}
-                </strong>{" "}
-                people in {constituencyName} receive housing benefit.
+        <PageWidth>
+          <div
+            css={css`
+            ${paddingCss}
+          `}>
+            {stats.totalHbInclSocial && (
+              <StatisticBlock
+                render={
+                  <Fragment>
+                    <strong>
+                      {formatNumberWithCommas(stats.totalHbInclSocial)}
+                    </strong>{" "}
+                    people in {constituencyName} receive housing benefit.
               </Fragment>
-            }
-            areaName={constituencyName}
-            nationalAverageStatistic={stats.totalHbInclSocial}
-            areaStatistic={stats.totalHbInclSocial}
-          />
-        )}
-        {stats.housingPercOnUc && (
-          <StatisticBlock
-            render={
-              <Fragment>
-                <p>
-                  <strong>
-                    {formatNumberAsRoundedPercentage(stats.housingPercOnUc)}
-                  </strong>{" "}
-                  of renters in {constituencyName} are on Universal Credit.
+                }
+                areaName={constituencyName}
+                nationalAverageStatistic={stats.totalHbInclSocial}
+                areaStatistic={stats.totalHbInclSocial}
+              />
+            )}
+            {stats.housingPercOnUc && (
+              <StatisticBlock
+                render={
+                  <Fragment>
+                    <p>
+                      <strong>
+                        {formatNumberAsRoundedPercentage(stats.housingPercOnUc)}
+                      </strong>{" "}
+                      of renters in {constituencyName} are on Universal Credit.
                 </p>
-                <p>
-                  Delays in Universal Credit payments mean renters can easily
-                  get into rent arrears.
+                    <p>
+                      Delays in Universal Credit payments mean renters can easily
+                      get into rent arrears.
                 </p>
-              </Fragment>
-            }
-            areaName={constituencyName}
-            areaStatistic={stats.housingPercOnUc}
-          />
-        )}
+                  </Fragment>
+                }
+                areaName={constituencyName}
+                areaStatistic={stats.housingPercOnUc}
+              />
+            )}
+          </div>
+        </PageWidth>
         <WelfareSystemThatSupportsHousing />
-        {stats.prsSize && (
-          <StatisticBlock
-            render={
-              <Fragment>
-                <p>
-                  In {constituencyName},{" "}
-                  <strong>
-                    {formatNumberAsRoundedPercentage(stats.prsSize)} of people
-                    rent from a private landlord
+        <PageWidth>
+          <div
+            css={css`
+            ${paddingCss}
+          `}>
+            {stats.prsSize && (
+              <StatisticBlock
+                render={
+                  <Fragment>
+                    <p>
+                      In {constituencyName},{" "}
+                      <strong>
+                        {formatNumberAsRoundedPercentage(stats.prsSize)} of people
+                        rent from a private landlord
                   </strong>
-                  .
+                      .
                 </p>
-                <p>
-                  The number of renters has <strong>doubled</strong> in the last
-                  15 years. However, there is no national database of landlords.
+                    <p>
+                      The number of renters has <strong>doubled</strong> in the last
+                      15 years. However, there is no national database of landlords.
                 </p>
-              </Fragment>
-            }
-            areaName={constituencyName}
-            areaStatistic={stats.prsSize}
-          />
-        )}
+                  </Fragment>
+                }
+                areaName={constituencyName}
+                areaStatistic={stats.prsSize}
+              />
+            )}
+          </div>
+        </PageWidth>
         <NationalDatabaseOfLandlordsAndRents />
-        <VentsBlock
-          title="This is what the renting crisis looks like"
-          numberOfVents={3}
-        />
-        <TakeActionBlock />
+        <PageWidth>
+          <VentsBlock
+            title="This is what the renting crisis looks like"
+            numberOfVents={3}
+          />
+          <TakeActionBlock />
+        </PageWidth>
       </div>
     </Page>
   );
