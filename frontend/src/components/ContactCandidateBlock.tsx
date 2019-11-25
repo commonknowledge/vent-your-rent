@@ -30,10 +30,26 @@ export default function ContactCandidateBlock() {
           margin-bottom: ${smallSpacing};
         `}
         type="secondary"
+        onClick={() => {
+          window.open(
+            "https://docs.google.com/forms/d/e/1FAIpQLSdDkCjgIDaY4Bt25LqKPMWMxsa4EYcmd84iCqG21DvgFG5_Ig/viewform",
+            "_blank"
+          );
+        }}
       >
         Meet your candidates
       </Button>
-      <Button type="secondary">Tweet your candidates</Button>
+      <Button
+        type="secondary"
+        onClick={() => {
+          window.open(
+            "https://generationrent.eaction.online/rentermanifesto2019",
+            "_blank"
+          );
+        }}
+      >
+        Email your candidates
+      </Button>
     </div>
   );
 }
