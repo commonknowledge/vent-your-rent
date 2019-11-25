@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import faker from "faker";
 import Button from "./Button";
 import Vent from "./Vent";
 import { paddingCss, colorWhite, fontColorDarkBlack } from "../styles";
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+import { VentsQuery } from './__graphql__/VentsQuery';
 
 type VentsBlockProps = {
   title?: string;
@@ -11,31 +13,37 @@ type VentsBlockProps = {
   showMore?: boolean;
 };
 
-function ventsDummy(amount: number) {
-  const vents = [];
-  for (let ventsTotal = 0; ventsTotal < amount; ventsTotal++) {
-    vents.push({
-      text: faker.lorem.sentence(),
-      firstName: faker.name.firstName(),
-      city: faker.address.city()
-    });
-  }
-
-  return vents;
-}
-
-const ventsContainer = () => css`
+const ventsContainer = css`
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
 `;
+
+const GET_VENTS = gql`
+  ${Vent.fragment}
+
+  query VentsQuery {
+    vents {
+      ...VentCard
+    }
+  }
+`;
+
+type Vent = {
+  firstName: string;
+  caption: string;
+  postcode: string;
+  id: number;
+  image: string;
+};
 
 export default function VentsBlock({
   title,
   numberOfVents,
   showMore = false
 }: VentsBlockProps) {
-  const vents = ventsDummy(numberOfVents);
+  const { loading, error, data } = useQuery<VentsQuery>(GET_VENTS);
+
   return (
     <div
       css={css`
@@ -63,11 +71,11 @@ export default function VentsBlock({
         </h3>
       )}
       <div css={ventsContainer}>
-        {vents.map(({ firstName, text, city }, index) => (
-          <Vent firstName={firstName} text={text} city={city} key={index} />
+        {!loading && data && data.vents.map((vent) => (
+          <Vent key={vent.id} {...vent} />
         ))}
       </div>
-      {showMore && <Button type="outline">Load More</Button>}
+      {showMore && <Button variant="outline">Load More</Button>}
     </div>
   );
 }

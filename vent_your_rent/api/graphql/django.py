@@ -7,7 +7,7 @@ from .utils import DjangoFilterField
 from .geo import GeocodeResult
 from vent_your_rent.api.helpers.utils import get, get_path
 from vent_your_rent.api.helpers.cache import cached_fn
-from vent_your_rent.api.models import Vent
+from vent_your_rent.api.models import Vent, Signup
 from django.utils import timezone
 from datetime import datetime  
 from datetime import timedelta  
@@ -16,15 +16,37 @@ import itertools
 import random
 from graphene_file_upload.scalars import Upload
 
+###
+
+class SignupForm(forms.ModelForm):
+    class Meta:
+        model = Signup
+        exclude = ('id', 'date_created', )
+
+class SignupType(DjangoObjectType):
+    class Meta:
+        model = Signup
+
+class SignupMutation(DjangoModelFormMutation):
+    signup = graphene.Field(SignupType)
+
+    class Meta:
+        form_class = SignupForm
+
+###
+
 class VentType(DjangoObjectType):
     class Meta:
         model = Vent
         filter_fields = ['postcode']
         fields = '__all__'
 
-    location = graphene.Field(GeocodeResult)
+    def resolve_image(self, info):
+        return None if self.image is None else self.image.url
 
-    def resolve_location(self, info):
+    geo = graphene.Field(GeocodeResult)
+
+    def resolve_geo(self, info):
         return info.context.loaders.get('geo_from_postcode').load(self.postcode)
 
 class VentMutation(graphene.Mutation):
@@ -32,7 +54,7 @@ class VentMutation(graphene.Mutation):
         caption = graphene.String(required=True)
         first_name = graphene.String(required=True)
         postcode = graphene.String(required=True)
-        image = Upload(required=True)
+        image = Upload()
 
     success = graphene.Boolean()
     vent = graphene.Field(VentType)
@@ -42,7 +64,7 @@ class VentMutation(graphene.Mutation):
             caption=caption,
             first_name=first_name,
             postcode=postcode,
-            image=image[0] if image is not None and len(image) > 0 else None
+            image=image
         )
 
         return VentMutation(success=True, vent=vent)
@@ -89,3 +111,4 @@ class Queries():
 
 class Mutations():
     create_vent = VentMutation.Field()
+    signup = SignupMutation.Field()

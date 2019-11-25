@@ -1,5 +1,5 @@
 from django.contrib import admin
-from vent_your_rent.api.models import Vent
+from vent_your_rent.api.models import Vent, Signup
 from rangefilter.filter import DateRangeFilter
 
 # Utils
@@ -40,6 +40,11 @@ class InputFilter(admin.SimpleListFilter):
 
 # Register your models here.
 
+def publish_vents(modeladmin, request, queryset):
+    queryset.update(is_published=True)
+
+publish_vents.short_description = "Mark selected vents as published"
+
 @admin.register(Vent)
 class VentAdmin(admin.ModelAdmin):
     # List UI config
@@ -53,9 +58,15 @@ class VentAdmin(admin.ModelAdmin):
         ('date_created', DateRangeFilter),
     )
 
+    actions = [publish_vents]
+
     # Vent create/edit form
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(VentAdmin, self).get_form(request, obj, **kwargs)
         form.base_fields['is_published'].initial = True
         return form
+
+@admin.register(Signup)
+class SignupAdmin(admin.ModelAdmin):
+    pass
