@@ -13,3 +13,7 @@ export const RentControls = () => (
 export const WelfareSystemThatSupportsHousing = () => (
   <DemandBlock demand="We demand a welfare system that supports access to safe, secure housing." />
 );
+
+export const OpenEndedTenancies = () => (
+  <DemandBlock demand="We demand open - ended tenancies and an end to section 21 evictions." />
+);
