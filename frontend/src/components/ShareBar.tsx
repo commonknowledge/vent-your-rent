@@ -25,7 +25,12 @@ function emailShareUrl(link: string, subject: string, body?: string) {
   )}&body=${encodeURIComponent((body && `${body}\n\n${link}`) || link)}`;
 }
 
-export default function ShareBar() {
+type ShareBarProps = {
+  message: string;
+  url: string;
+};
+
+const ShareBar: React.FC = ShareBarProps => {
   return (
     <div>
       <a>Facebook</a>
@@ -34,4 +39,6 @@ export default function ShareBar() {
       <a>Email</a>
     </div>
   );
-}
+};
+
+export default ShareBar;
