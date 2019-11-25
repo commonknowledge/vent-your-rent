@@ -1,5 +1,5 @@
 from django.contrib import admin
-from vent_your_rent.api.models import Vent
+from vent_your_rent.api.models import Vent, Signup
 from rangefilter.filter import DateRangeFilter
 
 # Utils
@@ -66,3 +66,7 @@ class VentAdmin(admin.ModelAdmin):
         form = super(VentAdmin, self).get_form(request, obj, **kwargs)
         form.base_fields['is_published'].initial = True
         return form
+
+@admin.register(Signup)
+class SignupAdmin(admin.ModelAdmin):
+    pass

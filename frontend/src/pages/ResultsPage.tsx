@@ -283,7 +283,7 @@ const ResultsPageView: React.FC<{
             title="This is what the renting crisis looks like"
             numberOfVents={3}
           />
-          <TakeActionBlock />
+          <TakeActionBlock postcode={postcode} />
         </PageWidth>
       </div>
     </Page>
