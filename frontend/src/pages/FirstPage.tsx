@@ -12,6 +12,7 @@ import {
 } from "../styles";
 import GenerationRentBlock from "../components/GenerationRentBlock";
 import RenterManifestoBlock from "../components/RenterManifestoBlock";
+import Footer from "../components/Footer";
 
 const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
   return (
@@ -79,6 +80,7 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
         <PageWidth>
           <GenerationRentBlock />
           <RenterManifestoBlock />
+          <Footer />
         </PageWidth>
       </div>
     </div>
