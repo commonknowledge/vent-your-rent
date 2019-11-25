@@ -40,10 +40,12 @@ const ventImage = css`
   max-width: 150px;
 `;
 
+const MEDIA_URL = (process.env.NODE_ENV === 'development' ? 'http://localhost:8000/' : "https://vent-your-rent.s3.eu-west-2.amazonaws.com/media/")
+
 function Vent({ firstName, image, caption, geo }: VentCard) {
   return (
     <div css={ventContainerCSS}>
-      {image && <img css={ventImage} src={image} alt="" />}
+      {image && <img css={ventImage} src={MEDIA_URL + image} alt="" />}
       <div css={ventText}>{caption}</div>
       <div css={ventDetailsCSS}>
         <div>{firstName}</div>
