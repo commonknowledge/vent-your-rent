@@ -5,6 +5,7 @@ import PartnerBlock from "./PartnerBlock";
 
 import RenterManifestoLogo from "./logos/renter-manifesto.svg";
 
+// TODO: Fix width of SVG in both cases
 const RenterManifestoBlock = () => (
   <PartnerBlock
     name="Renter Manifesto"
