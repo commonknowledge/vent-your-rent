@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 
+import FacebookShareIcon from "./shares/facebook.svg";
+
 // Sharing URL functionality adapted from react-social-sharing
 // https://github.com/SaraVieira/react-social-sharing
 function facebookShareUrl(link: string) {
@@ -30,10 +32,10 @@ type ShareBarProps = {
   url: string;
 };
 
-const ShareBar = ({ message, url }: ShareBarProps) => {
+const ShareBar: React.FC<ShareBarProps> = ({ message, url }) => {
   return (
     <div>
-      <a href={facebookShareUrl(url)}>Facebook</a>
+      <a href={facebookShareUrl(url)}>{FacebookShareIcon} Facebook</a>
       <a href={twitterShareUrl(url, message)}>Twitter</a>
       <a href={whatsAppShareUrl(url, message)}>WhatsApp</a>
       <a href={emailShareUrl(url, "Vent Your Rent", message)}>Email</a>
