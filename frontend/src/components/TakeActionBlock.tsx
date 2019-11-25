@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { paddingCss, smallSpacing, fontColorWhite } from "../styles";
+import { paddingCss, smallSpacing, fontColorWhite, fontSizeMedium, fontSizeLarge } from "../styles";
 import gql from "graphql-tag";
 import { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
@@ -30,20 +30,25 @@ const readTheManifestoLinkCss = css`
 `;
 
 const inputFieldCss = css`
+  border: none;
   background: #ffffff;
   border-radius: 6px;
   margin-bottom: ${smallSpacing};
   height: 45px;
   width: 100%;
   padding: 10px;
+  font-size: ${fontSizeMedium};
 `;
 
 const textAreaCss = css`
+  border: none;
+  padding: 10px;
   background: #ffffff;
   border-radius: 6px;
   width: 100%;
   height: 150px;
   margin-bottom: ${smallSpacing};
+  font-size: ${fontSizeMedium};
 `;
 
 const SIGNUP_MUTATION = gql`
