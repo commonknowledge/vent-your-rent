@@ -3,9 +3,10 @@ import { css, jsx } from "@emotion/core";
 import gql from "graphql-tag";
 import TimeAgo from "react-timeago";
 
-import { fontColorBlack } from "../styles";
+import { fontColorBlack, colorOrange } from "../styles";
 import { VentCard } from "./__graphql__/VentCard";
 import Emoji from "a11y-react-emoji";
+import { useState, useMemo } from 'react';
 
 const horizontalVentContainer = () => {
   return "flex: 0 0 auto;";
@@ -20,7 +21,6 @@ const ventContainerCSS = css`
 
   @media (min-width: 1024px) {
     width: 50%;
-    max-width: 200px;
   }
 `;
 
@@ -43,8 +43,15 @@ const ventDetailsCSS = css`
 const MEDIA_URL =
   process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
 
+const COLLAPSED_SENTENCE_COUNT = 2
+
 function Vent({ firstName, image, caption, geo, dateCreated }: VentCard) {
-  const wordCount = caption.split(" ").length;
+  const [collapsed, setCollapsed] = useState(true)
+  const toggleCollapsed = () => setCollapsed(c => !c)
+
+  const wordCount = caption.split(/( |...)/).length
+  const sentences = caption.split('. ')
+  const displayedSentences = sentences.slice(0, collapsed ? COLLAPSED_SENTENCE_COUNT : 1000)
 
   return (
     <div css={ventContainerCSS}>
@@ -77,17 +84,28 @@ function Vent({ firstName, image, caption, geo, dateCreated }: VentCard) {
               !image && wordCount <= 10
                 ? 36
                 : !image && wordCount <= 18
-                ? 24
-                : !image && wordCount <= 26
-                ? 20
-                : !image && wordCount <= 36
-                ? 18
-                : !image && wordCount <= 48
-                ? 14
-                : 16
+                  ? 24
+                  : !image && wordCount <= 26
+                    ? 20
+                    : !image && wordCount <= 36
+                      ? 18
+                      : !image && wordCount <= 48
+                        ? 14
+                        : 16
           }}
         >
-          {caption} <span style={{ opacity: 0.5 }}>#VentYourRent</span>
+          {displayedSentences.map((sentence, i) => (
+            <p key={i} style={{ margin: '4px 0' }}>
+              {sentence}. {i + 1 === sentences.length && <span style={{ opacity: 0.5 }}>#VentYourRent</span>}
+            </p>
+          ))}
+          {sentences.length > COLLAPSED_SENTENCE_COUNT && (
+            <div
+              css={css`color: ${colorOrange};`}
+              onMouseDown={toggleCollapsed}>
+              {collapsed ? "Continue reading" : "Close"}
+            </div>
+          )}
         </div>
         <div css={ventDetailsCSS}>
           <div>
