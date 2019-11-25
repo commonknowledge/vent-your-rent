@@ -47,6 +47,7 @@ export const fontSizeMedium = css`
 
 export const fontSizeSmall = css`
   font-style: normal;
+  font-weight: normal;
   font-size: 16px;
   line-height: 19px;
 `;
