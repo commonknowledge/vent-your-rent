@@ -59,7 +59,10 @@ class VentType(DjangoObjectType):
         fields = '__all__'
 
     def resolve_image(self, info):
-        return None if self.image is None else self.image.url
+        try:
+            return None if self.image is None else self.image.url
+        except:
+            return None
 
     geo = graphene.Field(GeocodeResult)
 
