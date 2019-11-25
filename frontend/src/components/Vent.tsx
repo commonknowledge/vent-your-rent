@@ -32,7 +32,7 @@ const ventDetailsCSS = css`
   ${fontColorBlack}
 `;
 
-const MEDIA_URL = (process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : "https://vent-your-rent.s3.eu-west-2.amazonaws.com")
+const MEDIA_URL = (process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : "")
 
 function Vent({ firstName, image, caption, geo }: VentCard) {
   const wordCount = caption.split(" ").length
