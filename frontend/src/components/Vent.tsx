@@ -54,20 +54,20 @@ function Vent({ firstName, image, caption, geo }: VentCard) {
         border-radius: 3px;
         overflow: hidden;
       `} />}
-        <div css={ventText}}
-        style={{
-          fontSize: !image && wordCount <= 10 ? 36 : !image && wordCount <= 18 ? 24 :
-            !image && wordCount <= 26 ? 20 :
-              !image && wordCount <= 36 ? 18 :
-                !image && wordCount <= 48 ? 14 :
-                  16
-        }}>{caption}</div>
-      {wordCount}
-      <div css={ventDetailsCSS}>
-        <div>{firstName}</div>
-        {geo && <div css={css`opacity: 0.5;`}>{geo.parliamentaryConstituency}</div>}
+        <div css={ventText}
+          style={{
+            fontSize: !image && wordCount <= 10 ? 36 : !image && wordCount <= 18 ? 24 :
+              !image && wordCount <= 26 ? 20 :
+                !image && wordCount <= 36 ? 18 :
+                  !image && wordCount <= 48 ? 14 :
+                    16
+          }}>{caption}</div>
+        {wordCount}
+        <div css={ventDetailsCSS}>
+          <div>{firstName}</div>
+          {geo && <div css={css`opacity: 0.5;`}>{geo.parliamentaryConstituency}</div>}
+        </div>
       </div>
-    </div>
     </div >
   );
 }
