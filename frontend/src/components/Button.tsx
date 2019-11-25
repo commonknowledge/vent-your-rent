@@ -16,6 +16,7 @@ type buttonStyles = "primary" | "secondary" | "outline";
 type ButtonProps = {
   type?: buttonStyles;
   additionalCSS?: SerializedStyles;
+  onClick?: () => void;
 };
 
 const outlineButton = `
@@ -33,31 +34,34 @@ function backgroundFromType(type: buttonStyles) {
 const Button: FunctionComponent<ButtonProps> = ({
   type = "primary",
   children,
-  additionalCSS
-}) => (
-  <button
-    css={css`
-      background: ${backgroundFromType(type)};
-      border-radius: 6px;
-      border: 0;
-      height: 45px;
+  additionalCSS,
+  onClick
+}) => {
+  return (
+    <button
+      css={css`
+        background: ${backgroundFromType(type)};
+        border-radius: 6px;
+        border: 0;
+        height: 45px;
 
-      ${type === "outline" ? outlineButton : "border: 0;"}
+        ${type === "outline" ? outlineButton : "border: 0;"}
 
-      ${fontSizeSmall}
-      font-weight: 900;
+        ${fontSizeSmall}
+        font-weight: 900;
 
-      text-align: center;
-      text-transform: uppercase;
-      ${fontColorWhite}
-      width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        ${fontColorWhite}
+        width: 100%;
 
-      ${additionalCSS}
-    `}
-  >
-    {console.log(additionalCSS)}
-    {children}
-  </button>
-);
+        ${additionalCSS}
+      `}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+};
 
 export default Button;
