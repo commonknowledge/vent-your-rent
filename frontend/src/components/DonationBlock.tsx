@@ -19,11 +19,14 @@ export default function DonationBlock() {
       >
         <Emoji symbol="🙏" /> Help sustain this campaign
       </div>
-      <p css={fontSizeSmall}>
-        We have just a handful of staff but our movement is made up of thousands
-        of people like you taking action. Can you chip in a £1 to help us run
-        more campaigns like this?
-      </p>
+      <div css={fontSizeSmall}>
+        <p>
+          We have just a handful of staff but our movement is made up of
+          thousands of people like you taking action.
+        </p>
+        <p>Can you chip in a £1 to help us run more campaigns like this?</p>
+      </div>
+
       <Button type="secondary">Donate</Button>
     </div>
   );
