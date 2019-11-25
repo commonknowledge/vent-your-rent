@@ -30,13 +30,13 @@ type ShareBarProps = {
   url: string;
 };
 
-const ShareBar: React.FC = ShareBarProps => {
+const ShareBar = ({ message, url }: ShareBarProps) => {
   return (
     <div>
-      <a>Facebook</a>
-      <a>Twitter</a>
-      <a>WhatsApp</a>
-      <a>Email</a>
+      <a href={facebookShareUrl(url)}>Facebook</a>
+      <a href={twitterShareUrl(url, message)}>Twitter</a>
+      <a href={whatsAppShareUrl(url, message)}>WhatsApp</a>
+      <a href={emailShareUrl(url, "Vent Your Rent", message)}>Email</a>
     </div>
   );
 };
