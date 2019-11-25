@@ -14,6 +14,7 @@ const ventContainerCSS = css`
     width: 50%;
     max-width: 200px;
     ${horizontalVentContainer()}
+    position: relative;
   `;
 
 const ventText = css`
@@ -53,6 +54,7 @@ function Vent({ firstName, image, caption, geo }: VentCard) {
         background-color: #FAFAFA;
         border-radius: 3px;
         overflow: hidden;
+        margin-bottom: 6px;
       `} />}
         <div css={ventText}
           style={{
@@ -64,7 +66,7 @@ function Vent({ firstName, image, caption, geo }: VentCard) {
           }}>{caption}</div>
         <div css={ventDetailsCSS}>
           <div>{firstName}</div>
-          {geo && <div css={css`opacity: 0.5;`}>{geo.parliamentaryConstituency}</div>}
+          {geo && <div css={css`opacity: 0.66; margin-top: 5px;`}>{geo.parliamentaryConstituency}</div>}
         </div>
       </div>
     </div >

@@ -14,6 +14,7 @@ import GenerationRentBlock from "../components/GenerationRentBlock";
 import RenterManifestoBlock from "../components/RenterManifestoBlock";
 import Footer from "../components/Footer";
 import VoterRegistrationBlock from "../components/VoterRegistrationBlock";
+import VentsBlock from "../components/VentsBlock";
 
 const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
   return (
@@ -80,6 +81,7 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
         `}
       >
         <PageWidth>
+          <VentsBlock numberOfVents={3} showMore />
           <GenerationRentBlock />
           <RenterManifestoBlock />
           <Footer />

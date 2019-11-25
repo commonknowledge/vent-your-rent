@@ -2,7 +2,7 @@
 import { jsx, css } from "@emotion/core";
 import Button from "./Button";
 import Vent from "./Vent";
-import { paddingCss, colorWhite, fontColorDarkBlack } from "../styles";
+import { paddingCss, colorWhite, fontColorDarkBlack, colorBlack } from "../styles";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { VentsQuery } from './__graphql__/VentsQuery';
@@ -43,7 +43,7 @@ export default function VentsBlock({
   numberOfVents,
   showMore = false
 }: VentsBlockProps) {
-  const [quantity, setQuantity] = useState(3)
+  const [quantity, setQuantity] = useState(numberOfVents)
   const { loading, error, data } = useQuery<VentsQuery>(GET_VENTS, { variables: { quantity } });
   const loadMore = () => setQuantity(q => q + 3)
 
@@ -76,7 +76,7 @@ export default function VentsBlock({
           <Vent key={vent.id} {...vent} />
         ))}
       </div>
-      {showMore && <Button variant="outline" onMouseDown={loadMore} disabled={loading}>{loading ? "⏳" : "Load More"}</Button>}
-    </div>
+      {showMore && <Button additionalCSS={css`background: ${colorBlack};`} variant="outline" onMouseDown={loadMore} disabled={loading}>{loading ? "⏳" : "Read More Rent Vents"}</Button>}
+    </div >
   );
 }
