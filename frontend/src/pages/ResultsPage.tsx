@@ -166,15 +166,15 @@ const ResultsPageView: React.FC<{
                   </Fragment>
                 }
                 areaName={stats.adminDistrictName}
-                nationalAverageStatistic={stats.twoBedRentPrice}
-                areaStatistic={averageRentPrice}
+                areaStatistic={stats.twoBedRentPrice}
+                nationalAverageStatistic={averageRentPrice}
               />
             )}
             {stats.wageToHousePrice && (
               <StatisticBlock
                 render={
                   <Fragment>
-                    House prices in {stats.constituencyName} are{" "}
+                    House prices in {stats.adminDistrictName} are{" "}
                     <strong>
                       {format(".2")(stats.wageToHousePrice)} times more
                     </strong>{" "}
@@ -182,8 +182,8 @@ const ResultsPageView: React.FC<{
                   </Fragment>
                 }
                 areaName={stats.constituencyName}
-                nationalAverageStatistic={stats.wageToHousePrice}
-                areaStatistic={stats.wageToHousePrice}
+                areaStatistic={1}
+                nationalAverageStatistic={1 / stats.wageToHousePrice}
               />
             )}
           </div>
