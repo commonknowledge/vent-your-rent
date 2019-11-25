@@ -23,9 +23,20 @@ export default function Footer() {
           }
         `}
       >
-        <a href="#">Contact</a>
-        <a href="#">Privacy</a>
-        <a href="#">Disclaimer</a>
+        <a
+          href="https://www.generationrent.org/contact"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Contact
+        </a>
+        <a
+          href="https://www.generationrent.org/privacy_notice"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Privacy
+        </a>
       </div>
       <div>
         Site by <strong>Common Knowledge</strong>
