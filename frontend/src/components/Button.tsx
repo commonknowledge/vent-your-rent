@@ -1,16 +1,22 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx, SerializedStyles } from "@emotion/core";
 
 import { FunctionComponent, DetailedHTMLProps, ButtonHTMLAttributes } from "react";
 
 import { css } from "@emotion/core";
-import { fontColorWhite } from "../styles";
+import {
+  fontColorWhite,
+  fontSizeSmall,
+  colorBlack,
+  colorOrange
+} from "../styles";
 
 type buttonStyles = "primary" | "secondary" | "outline";
 
 type ButtonProps = {
   variant?: buttonStyles;
-}
+  additionalCSS?: SerializedStyles;
+};
 
 export const outlineButton = `
   border: 2px solid #ffffff;
@@ -21,36 +27,40 @@ function backgroundFromType(variant: buttonStyles) {
     return "inherit";
   }
 
-  return variant === "secondary" ? " #353535" : "#FF974B;";
+  return variant === "secondary" ? colorBlack : colorOrange;
 }
 
 const Button: FunctionComponent<ButtonProps & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>> = ({
   variant = "primary",
   children,
+  additionalCSS,
   ...props
-}) => (
+}) => {
+  return (
     <button
       css={css`
-      background: ${backgroundFromType(variant)};
-      border-radius: 6px;
+        background: ${backgroundFromType(variant)};
+        border-radius: 6px;
+        border: 0;
+        height: 45px;
 
-      ${variant === "outline" ? outlineButton : "border: 0;"}
+        ${variant === "outline" ? outlineButton : "border: 0;"}
 
-      font-family: "Rubik Mono One", sans-serif;
-      font-style: normal;
-      font-size: 16px;
-      line-height: 19px;
-      padding: 13px;
+        ${fontSizeSmall}
+        font-weight: 900;
 
-      text-align: center;
-      text-transform: uppercase;
-      ${fontColorWhite}
-      width: 100%;
-    `}
+        text-align: center;
+        text-transform: uppercase;
+        ${fontColorWhite}
+        width: 100%;
+
+        ${additionalCSS}
+      `}
       {...props}
     >
       {children}
     </button>
   );
+}
 
 export default Button;

@@ -107,7 +107,7 @@ const CREATE_VENT_MUTATION = gql`
   }
 `;
 
-function TakeActionBlock({ postcode }: { postcode: string }) {
+function TakeActionBlock({ postcode, onSubmit }: { postcode: string, onSubmit: () => void }) {
   // Signup
   const firstName = useField<string>({ defaultValue: "", required: true });
   const lastName = useField<string>({ defaultValue: "", required: true });
@@ -127,6 +127,7 @@ function TakeActionBlock({ postcode }: { postcode: string }) {
           cmds.push(createVent)
         }
         await Promise.all(cmds.map(c => c()))
+        onSubmit()
       } else {
         throw new Error("Not valid")
       }

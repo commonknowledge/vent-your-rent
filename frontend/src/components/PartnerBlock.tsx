@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
+import { fontSizeExtraSmall, fontColorBlack } from "../styles";
 
 type PartnerBlockProps = {
-  // TODO: For now a string, later, an SVG file
   logo: string;
   name: string;
   description: string;
@@ -18,10 +18,34 @@ export default function PartnerBlock({
   linkHref
 }: PartnerBlockProps) {
   return (
-    <div>
-      <img src={logo} alt={name} />
+    <div
+      css={css`
+        ${fontSizeExtraSmall}
+        margin-bottom: 30px;
+      `}
+    >
+      <img
+        src={logo}
+        alt={name}
+        css={css`
+          max-width: 280px;
+        `}
+      />
       <p>{description}</p>
-      <a href={linkHref}>{linkText}</a>
+      <a
+        href={linkHref}
+        css={css`
+          ${fontSizeExtraSmall}
+          ${fontColorBlack}
+          font-weight: 500;
+          text-transform: uppercase;
+          text-decoration: underline;
+        `}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {linkText}
+      </a>
     </div>
   );
 }

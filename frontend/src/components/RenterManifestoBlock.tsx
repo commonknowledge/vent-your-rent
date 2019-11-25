@@ -3,13 +3,16 @@ import { jsx } from "@emotion/core";
 
 import PartnerBlock from "./PartnerBlock";
 
+import RenterManifestoLogo from "./logos/renter-manifesto.svg";
+
+// TODO: Fix width of SVG in both cases
 const RenterManifestoBlock = () => (
   <PartnerBlock
     name="Renter Manifesto"
-    logo=""
-    description="The manifesto is based on joint work between Generation Rent, London Renters Union, ACORN, Tenants Union UK, Renters’ Rights London and the New Economics Foundation."
+    logo={RenterManifestoLogo}
+    description="Together with London Renters Union, ACORN, Tenants Union UK, Renters’ Rights London and the New Economics Foundation, we have written a Renter Manifesto."
     linkText="Read the full manifesto"
-    linkHref="#"
+    linkHref="https://www.rentermanifesto.org/read_the_manifesto_full"
   />
 );
 

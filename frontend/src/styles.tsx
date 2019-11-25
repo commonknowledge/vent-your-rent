@@ -47,8 +47,16 @@ export const fontSizeMedium = css`
 
 export const fontSizeSmall = css`
   font-style: normal;
+  font-weight: normal;
   font-size: 16px;
   line-height: 19px;
+`;
+
+export const fontSizeExtraSmall = css`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
 `;
 
 export const boldLink = css`
