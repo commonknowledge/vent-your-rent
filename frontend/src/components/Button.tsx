@@ -1,15 +1,21 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx, SerializedStyles } from "@emotion/core";
 
 import { FunctionComponent } from "react";
 
 import { css } from "@emotion/core";
-import { fontColorWhite } from "../styles";
+import {
+  fontColorWhite,
+  fontSizeSmall,
+  colorBlack,
+  colorOrange
+} from "../styles";
 
 type buttonStyles = "primary" | "secondary" | "outline";
 
 type ButtonProps = {
   type?: buttonStyles;
+  additionalCSS?: SerializedStyles;
 };
 
 const outlineButton = `
@@ -21,32 +27,35 @@ function backgroundFromType(type: buttonStyles) {
     return "inherit";
   }
 
-  return type === "secondary" ? " #353535" : "#FF974B;";
+  return type === "secondary" ? colorBlack : colorOrange;
 }
 
 const Button: FunctionComponent<ButtonProps> = ({
   type = "primary",
-  children
+  children,
+  additionalCSS
 }) => (
   <button
     css={css`
       background: ${backgroundFromType(type)};
       border-radius: 6px;
+      border: 0;
+      height: 45px;
 
       ${type === "outline" ? outlineButton : "border: 0;"}
 
-      font-family: "Rubik Mono One", sans-serif;
-      font-style: normal;
-      font-size: 16px;
-      line-height: 19px;
-      padding: 13px;
+      ${fontSizeSmall}
+      font-weight: 900;
 
       text-align: center;
       text-transform: uppercase;
       ${fontColorWhite}
       width: 100%;
+
+      ${additionalCSS}
     `}
   >
+    {console.log(additionalCSS)}
     {children}
   </button>
 );
