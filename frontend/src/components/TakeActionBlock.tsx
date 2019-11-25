@@ -10,10 +10,6 @@ import { useField, useForm } from "react-jeff";
 import { validateEmail } from '../data/input';
 import { TextInput, LargeTextInput, CheckboxInput, Form } from './Form';
 import Button, { outlineButton } from './Button';
-import { useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import Vent from "./Vent";
-import { CreateVentMutation } from './__graphql__/CreateVentMutation';
 
 const h2CSS = css`
   font-style: normal;
@@ -111,7 +107,7 @@ const CREATE_VENT_MUTATION = gql`
   }
 `;
 
-function TakeActionBlock({ postcode }: { postcode: string }) {
+function TakeActionBlock({ postcode, onSubmit }: { postcode: string, onSubmit: () => void }) {
   // Signup
   const firstName = useField<string>({ defaultValue: "", required: true });
   const lastName = useField<string>({ defaultValue: "", required: true });
@@ -131,6 +127,7 @@ function TakeActionBlock({ postcode }: { postcode: string }) {
           cmds.push(createVent)
         }
         await Promise.all(cmds.map(c => c()))
+        onSubmit()
       } else {
         throw new Error("Not valid")
       }

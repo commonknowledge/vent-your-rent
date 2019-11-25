@@ -40,7 +40,7 @@ const App: React.FC = () => {
           `}
         />
         <Switch>
-          <Route exact path="/third" component={ThirdPage} />
+          <Route exact path="/welcome-to-the-movement" component={ThirdPage} />
           <Route exact path="/:postcode" component={ResultsPage} />
           <Route component={FirstPage} />
         </Switch>

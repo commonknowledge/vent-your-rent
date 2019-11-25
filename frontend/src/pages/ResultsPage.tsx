@@ -30,7 +30,7 @@ import {
 
 const formatNumberWithCommas = format(",");
 const formatNumberAsRoundedPercentage = format(".0%");
-const _formatNumberAsMoney = format("($.0f");
+const _formatNumberAsMoney = format("($,.0f");
 const formatNumberAsMoney = (n: number) => _formatNumberAsMoney(n).replace("$", "£");
 
 const STATISTICS_QUERY = gql`
@@ -57,6 +57,7 @@ const STATISTICS_QUERY = gql`
 `;
 
 const ResultsPage: React.FC<RouteComponentProps<{ postcode: string }>> = ({
+  history,
   match: {
     params: { postcode }
   }
@@ -75,6 +76,7 @@ const ResultsPage: React.FC<RouteComponentProps<{ postcode: string }>> = ({
       }
       loading={loading}
       error={error}
+      onSignup={() => history.push('/welcome-to-the-movement')}
     />
   );
 };
@@ -84,7 +86,8 @@ const ResultsPageView: React.FC<{
   stats?: Statistics_statisticsForPostcode;
   loading?: boolean;
   error?: any;
-}> = ({ postcode, stats, loading, error }) => {
+  onSignup: () => void
+}> = ({ postcode, stats, loading, error, onSignup }) => {
   if (loading || !stats) {
     return (
       <Page>
@@ -96,9 +99,10 @@ const ResultsPageView: React.FC<{
           <div
             css={css`
               ${paddingCss}
+              text-align: center;
             `}
           >
-            Loading up the rent situation in {postcode}
+            🔍 loading that terrible rent situation in {postcode}
           </div>
         </div>
       </Page>
@@ -283,7 +287,7 @@ const ResultsPageView: React.FC<{
             title="This is what the renting crisis looks like"
             numberOfVents={3}
           />
-          <TakeActionBlock postcode={postcode} />
+          <TakeActionBlock postcode={postcode} onSubmit={onSignup} />
         </PageWidth>
       </div>
     </Page>
