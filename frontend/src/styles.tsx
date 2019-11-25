@@ -52,6 +52,13 @@ export const fontSizeSmall = css`
   line-height: 19px;
 `;
 
+export const fontSizeExtraSmall = css`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+`;
+
 export const boldLink = css`
   ${fontSizeSmall}
   ${fontColorBlack}
