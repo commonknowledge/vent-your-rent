@@ -29,7 +29,7 @@ class Signup(models.Model):
     first_name = models.CharField(null=False, blank=False, max_length=200)
     last_name = models.CharField(null=False, blank=False, max_length=200)
     postcode = models.CharField(null=False, blank=False, max_length=12)
-    email = models.EmailField(null=False, blank=False, max_length=12)
+    email = models.EmailField(null=False, blank=False, max_length=300)
     can_contact = models.BooleanField(null=True, blank=True)
     # auto
     date_created = models.DateTimeField(null=True, blank=True, auto_now_add=True)

@@ -38,7 +38,7 @@ class SignupMutation(graphene.Mutation):
         last_name=None,
         postcode=None,
         email=None,
-        can_contact=None
+        can_contact=False
     ):
         signup = Signup.objects.create(
             first_name=first_name,
