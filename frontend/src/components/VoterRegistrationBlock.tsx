@@ -29,6 +29,8 @@ export default function VoterRegistrationBlock() {
             font-weight: bold;
             color: inherit;
           `}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Register To Vote Now
         </a>
