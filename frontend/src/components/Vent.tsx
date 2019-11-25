@@ -9,19 +9,17 @@ const horizontalVentContainer = () => {
 };
 
 const ventContainerCSS = css`
-    margin-top: 10px;
-    margin-right 21px;
     padding-top: 20px;
     padding-bottom: 20px;
-    max-width: 150px;
+    width: 50%;
+    max-width: 200px;
     ${horizontalVentContainer()}
   `;
 
 const ventText = css`
   font-style: normal;
   font-weight: bold;
-  font-size: 16px;
-  line-height: 19px;
+  line-height: 1.1em;
 `;
 
 const ventDetailsCSS = css`
@@ -29,29 +27,48 @@ const ventDetailsCSS = css`
 
   font-style: normal;
   font-weight: bold;
-  font-size: 10px;
-  line-height: 12px;
-  text-transform: uppercase;
+  line-height: 14px;
 
   ${fontColorBlack}
 `;
 
-const ventImage = css`
-  max-width: 150px;
-`;
-
-const MEDIA_URL = (process.env.NODE_ENV === 'development' ? 'http://localhost:8000/' : "https://vent-your-rent.s3.eu-west-2.amazonaws.com/")
+const MEDIA_URL = (process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : "https://vent-your-rent.s3.eu-west-2.amazonaws.com")
 
 function Vent({ firstName, image, caption, geo }: VentCard) {
+  const wordCount = caption.split(" ").length
+
   return (
     <div css={ventContainerCSS}>
-      {image && <img css={ventImage} src={MEDIA_URL + image} alt="" />}
-      <div css={ventText}>{caption}</div>
+      <div css={css`
+        margin-top: 10px;
+        margin-right: 21px;
+      `}>
+        {image && <div css={css`
+        width: 100%;
+        height: 150px;
+        background-image: url(${MEDIA_URL + image});
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: #FAFAFA;
+        border-radius: 3px;
+        overflow: hidden;
+      `} />}
+        <div css={ventText}}
+        style={{
+          fontSize: !image && wordCount <= 10 ? 36 : !image && wordCount <= 18 ? 24 :
+            !image && wordCount <= 26 ? 20 :
+              !image && wordCount <= 36 ? 18 :
+                !image && wordCount <= 48 ? 14 :
+                  16
+        }}>{caption}</div>
+      {wordCount}
       <div css={ventDetailsCSS}>
         <div>{firstName}</div>
-        {geo && <div>{geo.parliamentaryConstituency}</div>}
+        {geo && <div css={css`opacity: 0.5;`}>{geo.parliamentaryConstituency}</div>}
       </div>
     </div>
+    </div >
   );
 }
 

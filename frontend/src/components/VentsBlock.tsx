@@ -6,6 +6,7 @@ import { paddingCss, colorWhite, fontColorDarkBlack } from "../styles";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { VentsQuery } from './__graphql__/VentsQuery';
+import { useState } from 'react';
 
 type VentsBlockProps = {
   title?: string;
@@ -15,15 +16,15 @@ type VentsBlockProps = {
 
 const ventsContainer = css`
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   overflow-x: auto;
 `;
 
 const GET_VENTS = gql`
   ${Vent.fragment}
 
-  query VentsQuery {
-    vents {
+  query VentsQuery ($quantity: Int!) {
+    vents(quantity: $quantity) {
       ...VentCard
     }
   }
@@ -42,7 +43,9 @@ export default function VentsBlock({
   numberOfVents,
   showMore = false
 }: VentsBlockProps) {
-  const { loading, error, data } = useQuery<VentsQuery>(GET_VENTS);
+  const [quantity, setQuantity] = useState(3)
+  const { loading, error, data } = useQuery<VentsQuery>(GET_VENTS, { variables: { quantity } });
+  const loadMore = () => setQuantity(q => q + 3)
 
   return (
     <div
@@ -50,8 +53,6 @@ export default function VentsBlock({
         background-color: ${colorWhite}
         padding-top: 30px;
         padding-bottom: 30px;
-
-        ${paddingCss}
       `}
     >
       {title && (
@@ -71,11 +72,11 @@ export default function VentsBlock({
         </h3>
       )}
       <div css={ventsContainer}>
-        {!loading && data && data.vents.map((vent) => (
+        {data && data.vents.map((vent) => (
           <Vent key={vent.id} {...vent} />
         ))}
       </div>
-      {showMore && <Button variant="outline">Load More</Button>}
+      {showMore && <Button variant="outline" onMouseDown={loadMore} disabled={loading}>{loading ? "⏳" : "Load More"}</Button>}
     </div>
   );
 }
