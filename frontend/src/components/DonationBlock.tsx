@@ -28,7 +28,7 @@ export default function DonationBlock() {
       </div>
 
       <Button
-        type="secondary"
+        variant="secondary"
         onClick={() => {
           window.open(
             "https://www.rentermanifesto.org/donate_to_our_general_election_fund",

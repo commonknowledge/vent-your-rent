@@ -29,7 +29,7 @@ export default function ContactCandidateBlock() {
         additionalCSS={css`
           margin-bottom: ${smallSpacing};
         `}
-        type="secondary"
+        variant="secondary"
         onClick={() => {
           window.open(
             "https://docs.google.com/forms/d/e/1FAIpQLSdDkCjgIDaY4Bt25LqKPMWMxsa4EYcmd84iCqG21DvgFG5_Ig/viewform",
@@ -40,7 +40,7 @@ export default function ContactCandidateBlock() {
         Meet your candidates
       </Button>
       <Button
-        type="secondary"
+        variant="secondary"
         onClick={() => {
           window.open(
             "https://generationrent.eaction.online/rentermanifesto2019",
