@@ -8,19 +8,19 @@ export default function Footer() {
       css={css`
         ${fontSizeExtraSmall}
         ${fontColorDarkBlack}
+        
+        a {
+          text-decoration: none;
+          color: inherit;
+          margin-right: 10px;
+        }
       `}
     >
       <div
         css={css`
           display: flex;
-          justify-content: space-between;
           margin-bottom: 10px;
           font-weight: 500;
-
-          a {
-            text-decoration: none;
-            color: inherit;
-          }
         `}
       >
         <a
@@ -39,7 +39,16 @@ export default function Footer() {
         </a>
       </div>
       <div>
-        Site by <strong>Common Knowledge</strong>
+        Site by{" "}
+        <strong>
+          <a
+            href="https://commonknowledge.coop"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Common Knowledge
+          </a>
+        </strong>
       </div>
     </div>
   );
