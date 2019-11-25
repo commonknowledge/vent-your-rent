@@ -62,7 +62,6 @@ function Vent({ firstName, image, caption, geo }: VentCard) {
                   !image && wordCount <= 48 ? 14 :
                     16
           }}>{caption}</div>
-        {wordCount}
         <div css={ventDetailsCSS}>
           <div>{firstName}</div>
           {geo && <div css={css`opacity: 0.5;`}>{geo.parliamentaryConstituency}</div>}
