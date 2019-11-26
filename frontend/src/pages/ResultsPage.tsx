@@ -10,7 +10,8 @@ import { RouteComponentProps } from "react-router";
 import {
   OpenEndedTenancies,
   RentControls,
-  WelfareSystemThatSupportsHousing
+  WelfareSystemThatSupportsHousing,
+  NationalDatabaseOfLandlordsAndRents
 } from "../components/demands";
 import Page from "../components/Page";
 import { PageWidth } from "../components/PageElements";
@@ -165,7 +166,10 @@ const ResultsPageView: React.FC<{
                 </a>{" "}
                 — so that together we can change the story.
               </p>
-              <p>Here’s what the renting crisis looks like in your area:</p>
+              <p>
+                Scroll down to see what the renting crisis looks like in your
+                area.
+              </p>
             </div>
             {stats.twoBedRentPrice && (
               <StatisticBlock
@@ -176,7 +180,7 @@ const ResultsPageView: React.FC<{
                     <strong>
                       {formatNumberAsMoney(stats.twoBedRentPrice)}
                     </strong>
-                    . That’s{" "}
+                    . This is{" "}
                     <strong>
                       {formatNumberAsMoney(averageRentDifference)}{" "}
                       {averageRentMoreOrLess}
@@ -201,7 +205,7 @@ const ResultsPageView: React.FC<{
                     <strong>
                       {format(".2")(stats.wageToHousePrice)} times more
                     </strong>{" "}
-                    than average incomes.
+                    than average incomes – the national average is 8.2.
                   </Fragment>
                 }
                 areaName={stats.constituencyName}
@@ -222,13 +226,19 @@ const ResultsPageView: React.FC<{
               <StatisticBlock
                 render={
                   <Fragment>
-                    <strong>
-                      {formatNumberWithCommas(
-                        stats.numberOfHousingBenefitRecipients
-                      )}
-                    </strong>{" "}
-                    people in {stats.constituencyName} receive housing benefit.
-                    The national average is 5,521.
+                    <p>
+                      <strong>
+                        {formatNumberWithCommas(
+                          stats.numberOfHousingBenefitRecipients
+                        )}
+                      </strong>{" "}
+                      people in {stats.constituencyName} receive housing
+                      benefit. The national average is 5,521.
+                    </p>
+                    <p>
+                      Housing benefit is failing those of us on benefits - lots
+                      of landlords refuse to rent to us
+                    </p>
                   </Fragment>
                 }
                 areaName={stats.constituencyName}
@@ -246,8 +256,8 @@ const ResultsPageView: React.FC<{
                           stats.percentRentersOnUC
                         )}
                       </strong>{" "}
-                      of renters in {stats.constituencyName} are on Universal
-                      Credit. The national average is 33%.
+                      of housing benefit recipients in {stats.constituencyName}{" "}
+                      are on Universal Credit - the national average is 33%.
                     </p>
                     <p>
                       Delays in Universal Credit payments mean renters can
@@ -278,15 +288,15 @@ const ResultsPageView: React.FC<{
                       <strong>
                         {formatNumberAsRoundedPercentage(
                           stats.percentPrivateRenters
-                        )}
+                        )}{" "}
+                        of people rent from a private landlord
                       </strong>{" "}
-                      of people rent from a private landlord. The national
-                      average is 17%.
+                      - nationally, the proportion is 17%.
                     </p>
                     <p>
-                      The number of renters has <strong>doubled</strong> in the
-                      last 15 years. However, there is no national database of
-                      landlords.
+                      The number of renters has doubled in the last 15 years but
+                      because there were no checks on all those new landlords,
+                      it is hard for councils to enforce safety standards.
                     </p>
                   </Fragment>
                 }
@@ -297,7 +307,7 @@ const ResultsPageView: React.FC<{
             )}
           </div>
         </PageWidth>
-        <OpenEndedTenancies />
+        <NationalDatabaseOfLandlordsAndRents />
         <PageWidth>
           <div
             css={css`
