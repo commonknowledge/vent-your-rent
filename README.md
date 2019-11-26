@@ -81,6 +81,4 @@ To start the backend using Docker run:
 Django management commands can be run using `docker-compose run`:
 
     $ docker-compose -f local.yml run --rm django python manage.py
-
-    # For example
     $ docker-compose -f local.yml run --rm django python manage.py migrate
