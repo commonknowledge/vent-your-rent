@@ -1,15 +1,22 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 
-import { fontSizeMedium, fontSizeSmall } from "../styles";
+import { fontSizeMedium, fontSizeSmall, colorWhite } from "../styles";
 import { PageWidth } from "./PageElements";
 import Emoji from "a11y-react-emoji";
 
-export default function VoterRegistrationBlock() {
+type VoterRegistrationBlock = {
+  includeLongerCopy?: boolean;
+};
+
+const VoterRegistrationBlock: React.FC<VoterRegistrationBlock> = ({
+  includeLongerCopy = false
+}) => {
   return (
     <div
       css={css`
-        margin: 20px;
+        background: ${colorWhite};
+        padding: 20px;
       `}
     >
       <PageWidth>
@@ -20,8 +27,17 @@ export default function VoterRegistrationBlock() {
             margin-bottom: 10px;
           `}
         >
-          <Emoji symbol="🚨🚨🚨" /> The voter registration deadline is
-          <strong>tomorrow!</strong>
+          <p>
+            <Emoji symbol="🚨🚨🚨" /> The voter registration deadline is{" "}
+            <strong>today!</strong>
+          </p>
+          {includeLongerCopy && (
+            <p css={fontSizeSmall}>
+              Your voice is powerful: there are 47 marginal seats where renters
+              could cast the deciding vote. This means that renters could
+              determine the outcome of this election.
+            </p>
+          )}
         </div>
         <div css={fontSizeSmall}>
           <a
@@ -41,4 +57,6 @@ export default function VoterRegistrationBlock() {
       </PageWidth>
     </div>
   );
-}
+};
+
+export default VoterRegistrationBlock;
