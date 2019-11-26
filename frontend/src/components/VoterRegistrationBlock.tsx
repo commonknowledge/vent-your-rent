@@ -1,22 +1,32 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 
-import { fontSizeMedium, fontSizeSmall, colorWhite } from "../styles";
+import {
+  fontSizeMedium,
+  fontSizeSmall,
+  colorWhite,
+  colorDarkBlack,
+  fontColorDarkBlack
+} from "../styles";
 import { PageWidth } from "./PageElements";
 import Emoji from "a11y-react-emoji";
 
 type VoterRegistrationBlock = {
   includeLongerCopy?: boolean;
+  inline?: boolean;
 };
 
 const VoterRegistrationBlock: React.FC<VoterRegistrationBlock> = ({
-  includeLongerCopy = false
+  includeLongerCopy,
+  inline = false
 }) => {
   return (
     <div
       css={css`
-        background: ${colorWhite};
-        padding: 20px;
+        ${!inline
+          ? `background: ${colorWhite};
+        padding: 20px;`
+          : ""}
       `}
     >
       <PageWidth>
@@ -32,7 +42,12 @@ const VoterRegistrationBlock: React.FC<VoterRegistrationBlock> = ({
             <strong>today!</strong>
           </p>
           {includeLongerCopy && (
-            <p css={fontSizeSmall}>
+            <p
+              css={css`
+                ${fontSizeSmall}
+                ${fontColorDarkBlack}
+              `}
+            >
               Your voice is powerful: there are 47 marginal seats where renters
               could cast the deciding vote. This means that renters could
               determine the outcome of this election.
