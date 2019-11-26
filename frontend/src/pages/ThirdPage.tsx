@@ -37,7 +37,10 @@ const ThirdPage = () => {
             Share this with your friends - and your landlord{" "}
             <Emoji symbol="😘" />
           </h2>
-          <ShareBar message="Vent Your Rent" url="https://ventyour.rent" />
+          <ShareBar
+            message=" What does the renting crisis look like near you? #VentYourRent"
+            url="https://ventyour.rent"
+          />
           <Rule />
           <VoterRegistrationBlock includeLongerCopy inline />
           <VentsBlock numberOfVents={14} showMore={true} />
