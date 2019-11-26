@@ -5,7 +5,6 @@ import {
   fontSizeMedium,
   fontSizeSmall,
   colorWhite,
-  colorDarkBlack,
   fontColorDarkBlack
 } from "../styles";
 import { PageWidth } from "./PageElements";
