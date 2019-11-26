@@ -24,7 +24,7 @@ function whatsAppShareUrl(link: string, message: string) {
   )}%20${encodeURIComponent(link)}`;
 }
 
-//  tslint-ignore @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function emailShareUrl(link: string, subject: string, body?: string) {
   return `mailto:?subject=${encodeURIComponent(
     subject || ""
