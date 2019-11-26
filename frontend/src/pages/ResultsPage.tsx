@@ -22,12 +22,16 @@ import {
   fontColorBlack,
   fontSizeLarge,
   fontSizeMedium,
-  paddingCss
+  paddingCss,
+  equalTopAndBottomPadding
 } from "../styles";
 import {
   Statistics,
   Statistics_statisticsForPostcode
 } from "./__graphql__/Statistics";
+import RenterManifestoBlock from "../components/RenterManifestoBlock";
+import GenerationRentBlock from "../components/GenerationRentBlock";
+import Footer from "../components/Footer";
 
 const formatNumberWithCommas = format(",");
 const formatNumberAsRoundedPercentage = format(".0%");
@@ -93,11 +97,7 @@ const ResultsPageView: React.FC<{
   if (loading || !stats) {
     return (
       <Page>
-        <div
-          css={css`
-            padding-bottom: 30px;
-          `}
-        >
+        <div>
           <div
             css={css`
               ${paddingCss}
@@ -122,11 +122,7 @@ const ResultsPageView: React.FC<{
 
   return (
     <Page>
-      <div
-        css={css`
-          padding-bottom: 30px;
-        `}
-      >
+      <div>
         <PageWidth>
           <div
             css={css`
@@ -324,7 +320,6 @@ const ResultsPageView: React.FC<{
           css={css`
             background: ${colorWhite};
             padding: 40px 20px;
-            margin: 20px 0%;
           `}
         >
           <PageWidth>
@@ -336,6 +331,19 @@ const ResultsPageView: React.FC<{
         </div>
         <PageWidth>
           <TakeActionBlock postcode={postcode} onSubmit={onSignup} />
+        </PageWidth>
+      </div>
+      <div
+        css={css`
+          ${paddingCss}
+          background: ${colorWhite};
+          ${equalTopAndBottomPadding(30)}
+        `}
+      >
+        <PageWidth>
+          <GenerationRentBlock />
+          <RenterManifestoBlock />
+          <Footer />
         </PageWidth>
       </div>
     </Page>
