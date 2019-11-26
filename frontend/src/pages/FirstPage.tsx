@@ -46,7 +46,7 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
               ${fontSizeMedium}
             `}
           >
-            We all deserve <strong>a house we can call home</strong>, but for
+            We all deserve <strong>somewhere we can call home</strong>, but for
             the one in five people in the UK renting privately, that’s not the
             case.
           </div>
