@@ -73,3 +73,14 @@ See detailed [cookiecutter-django Docker
 documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).]
 
 For local development with Docker see [https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html)
+
+To start the backend using Docker run:
+
+    $ docker-compose -f local.yml up
+
+Django management commands can be run using `docker-compose run`:
+
+    $ docker-compose -f local.yml run --rm django python manage.py
+
+    # For example
+    $ docker-compose -f local.yml run --rm django python manage.py migrate
