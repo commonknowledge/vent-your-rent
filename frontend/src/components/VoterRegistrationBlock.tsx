@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import Emoji from "a11y-react-emoji";
-import Button from "./Button";
+import { css, jsx } from "@emotion/core";
+
 import { fontSizeMedium, fontSizeSmall } from "../styles";
 import { PageWidth } from "./PageElements";
+import Emoji from "a11y-react-emoji";
 
 export default function VoterRegistrationBlock() {
   return (
@@ -15,27 +15,28 @@ export default function VoterRegistrationBlock() {
       <PageWidth>
         <div
           css={css`
-          ${fontSizeMedium}
-          letter-spacing: -0.04em;
-          margin-bottom: 10px;
-        `}
+            ${fontSizeMedium}
+            letter-spacing: -0.04em;
+            margin-bottom: 10px;
+          `}
         >
-          🚨🚨🚨 The voter registration deadline is <strong>tomorrow!</strong>
+          <Emoji symbol="🚨🚨🚨" /> The voter registration deadline is
+          <strong>tomorrow!</strong>
         </div>
         <div css={fontSizeSmall}>
           <a
             href="https://www.gov.uk/register-to-vote"
             css={css`
-            text-decoration-line: underline;
-            text-transform: uppercase;
-            font-weight: bold;
-            color: inherit;
-          `}
+              text-decoration-line: underline;
+              text-transform: uppercase;
+              font-weight: bold;
+              color: inherit;
+            `}
             target="_blank"
             rel="noopener noreferrer"
           >
             Register To Vote Now
-        </a>
+          </a>
         </div>
       </PageWidth>
     </div>

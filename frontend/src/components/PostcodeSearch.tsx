@@ -34,6 +34,7 @@ const PostcodeSearch: React.FC<{
 
   const handleSubmit = React.useCallback(async () => {
     let normalized;
+
     if (validatePostcode(input.value.trim())) {
       normalized = new Postcode(input.value.trim()).normalise();
     } else {
@@ -53,7 +54,7 @@ const PostcodeSearch: React.FC<{
     if (normalized) {
       onSubmit(normalized);
     }
-  }, [input.valid, input.dirty, input.value, onSubmit]);
+  }, [input.value, onSubmit]);
 
   return (
     <div>

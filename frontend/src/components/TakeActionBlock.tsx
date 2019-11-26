@@ -1,15 +1,22 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import { paddingCss, smallSpacing, fontColorWhite, fontSizeMedium, fontSizeLarge, colorOrange, colorWhite } from "../styles";
+import { useMutation } from "@apollo/react-hooks";
+import { css, jsx } from "@emotion/core";
 import gql from "graphql-tag";
 import { useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import Vent from "./Vent";
-import { CreateVentMutation } from './__graphql__/CreateVentMutation';
 import { useField, useForm } from "react-jeff";
-import { validateEmail } from '../data/input';
-import { TextInput, LargeTextInput, CheckboxInput, Form } from './Form';
-import Button, { outlineButton } from './Button';
+import { validateEmail } from "../data/input";
+
+import {
+  colorOrange,
+  fontColorWhite,
+  fontSizeMedium,
+  paddingCss,
+  smallSpacing
+} from "../styles";
+import Button, { outlineButton } from "./Button";
+import { CheckboxInput, Form, LargeTextInput, TextInput } from "./Form";
+import Vent from "./Vent";
+import { CreateVentMutation } from "./__graphql__/CreateVentMutation";
 
 const h2CSS = css`
   font-style: normal;
@@ -64,11 +71,11 @@ const textAreaCss = css`
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
-      $firstName:String!
-      $lastName: String!
-      $postcode: String!
-      $email: String!
-      $canContact: Boolean
+    $firstName: String!
+    $lastName: String!
+    $postcode: String!
+    $email: String!
+    $canContact: Boolean
   ) {
     signup(
       firstName: $firstName
@@ -107,11 +114,21 @@ const CREATE_VENT_MUTATION = gql`
   }
 `;
 
-function TakeActionBlock({ postcode, onSubmit }: { postcode: string, onSubmit: () => void }) {
+function TakeActionBlock({
+  postcode,
+  onSubmit
+}: {
+  postcode: string;
+  onSubmit: () => void;
+}) {
   // Signup
   const firstName = useField<string>({ defaultValue: "", required: true });
   const lastName = useField<string>({ defaultValue: "", required: true });
-  const email = useField<string>({ defaultValue: "", required: true, validations: [validateEmail] });
+  const email = useField<string>({
+    defaultValue: "",
+    required: true,
+    validations: [validateEmail]
+  });
   const canContact = useField<boolean>({ defaultValue: false });
   // Vent
   const caption = useField<string>({ defaultValue: "" });
@@ -122,20 +139,22 @@ function TakeActionBlock({ postcode, onSubmit }: { postcode: string, onSubmit: (
     // @ts-ignore
     onSubmit: async () => {
       if (form.valid) {
-        const cmds = [signup]
+        const cmds = [signup];
         if (image || caption.value) {
-          cmds.push(createVent)
+          cmds.push(createVent);
         }
-        await Promise.all(cmds.map(c => c()))
-        onSubmit()
+        await Promise.all(cmds.map(c => c()));
+        onSubmit();
       } else {
-        throw new Error("Not valid")
+        throw new Error("Not valid");
       }
     }
-  })
+  });
 
-  const [signupMutation, signupState] = useMutation<CreateVentMutation>(SIGNUP_MUTATION);
-  const [createVentMutation, createVentState] = useMutation<CreateVentMutation>(CREATE_VENT_MUTATION);
+  const [signupMutation] = useMutation<CreateVentMutation>(SIGNUP_MUTATION);
+  const [createVentMutation] = useMutation<CreateVentMutation>(
+    CREATE_VENT_MUTATION
+  );
 
   const signup = () => {
     signupMutation({
@@ -144,10 +163,10 @@ function TakeActionBlock({ postcode, onSubmit }: { postcode: string, onSubmit: (
         lastName: lastName.value,
         email: email.value,
         canContact: canContact.value,
-        postcode,
+        postcode
       }
-    })
-  }
+    });
+  };
 
   const createVent = () => {
     createVentMutation({
@@ -157,8 +176,8 @@ function TakeActionBlock({ postcode, onSubmit }: { postcode: string, onSubmit: (
         image,
         postcode
       }
-    })
-  }
+    });
+  };
 
   return (
     <div
@@ -202,13 +221,32 @@ function TakeActionBlock({ postcode, onSubmit }: { postcode: string, onSubmit: (
       </p>
       <Form {...form.props}>
         <div>
-          <TextInput type='text' placeholder="First name" css={inputFieldCss} {...firstName.props} />
-          <TextInput type='text' placeholder="Last name" css={inputFieldCss} {...lastName.props} />
-          <TextInput type='email' placeholder="Email" css={inputFieldCss} {...email.props} />
+          <TextInput
+            type="text"
+            placeholder="First name"
+            css={inputFieldCss}
+            {...firstName.props}
+          />
+          <TextInput
+            type="text"
+            placeholder="Last name"
+            css={inputFieldCss}
+            {...lastName.props}
+          />
+          <TextInput
+            type="email"
+            placeholder="Email"
+            css={inputFieldCss}
+            {...email.props}
+          />
         </div>
         <div>
           <p>Share your worst rental experience</p>
-          <LargeTextInput placeholder="Your story here" css={textAreaCss} {...caption.props} />
+          <LargeTextInput
+            placeholder="Your story here"
+            css={textAreaCss}
+            {...caption.props}
+          />
         </div>
         <div
           css={css`
@@ -237,21 +275,37 @@ function TakeActionBlock({ postcode, onSubmit }: { postcode: string, onSubmit: (
             `}
           />
         </div>
-        <div css={css`margin: 10px 0;`}>
-          <CheckboxInput id='keep-updated' type="checkbox" {...canContact.props} css={css`
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            vertical-align: middle;
-            width: 28px; 
-            height: 28px;
-            font-size: 28px;
-            ${buttonCss}
+        <div
+          css={css`
+            margin: 10px 0;
+          `}
+        >
+          <CheckboxInput
+            id="keep-updated"
+            type="checkbox"
+            {...canContact.props}
+            css={css`
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              vertical-align: middle;
+              width: 28px;
+              height: 28px;
+              font-size: 28px;
+              ${buttonCss}
 
-            &:checked {
-              background: ${colorOrange}
-            }
-          `} />
-          <label htmlFor='keep-updated' css={css`margin-left: 8px;`}>Keep me updated</label>
+              &:checked {
+                background: ${colorOrange};
+              }
+            `}
+          />
+          <label
+            htmlFor="keep-updated"
+            css={css`
+              margin-left: 8px;
+            `}
+          >
+            Keep me updated
+          </label>
           <p
             css={css`
               font-style: normal;
@@ -277,14 +331,16 @@ function TakeActionBlock({ postcode, onSubmit }: { postcode: string, onSubmit: (
           </p>
         </div>
         <Button type="submit" disabled={form.submitting || form.submitted}>
-          {form.submitting ? "Sending... ⏳" :
-            form.submitted ? "You've signed ✊" :
-              form.submitErrors.length ? "Something went wrong" :
-                "Add Your Voice"
-          }
+          {form.submitting
+            ? "Sending... ⏳"
+            : form.submitted
+            ? "You've signed ✊"
+            : form.submitErrors.length
+            ? "Something went wrong"
+            : "Add Your Voice"}
         </Button>
       </Form>
-    </div >
+    </div>
   );
 }
 

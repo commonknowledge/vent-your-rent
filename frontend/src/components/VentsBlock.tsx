@@ -1,12 +1,13 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { useQuery } from "@apollo/react-hooks";
+import { css, jsx } from "@emotion/core";
+import gql from "graphql-tag";
+import { useState } from "react";
+
+import { colorBlack, colorWhite, fontColorDarkBlack } from "../styles";
 import Button from "./Button";
 import Vent from "./Vent";
-import { paddingCss, colorWhite, fontColorDarkBlack, colorBlack } from "../styles";
-import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
-import { VentsQuery } from './__graphql__/VentsQuery';
-import { useState } from 'react';
+import { VentsQuery } from "./__graphql__/VentsQuery";
 
 type VentsBlockProps = {
   title?: string;
@@ -23,7 +24,7 @@ const ventsContainer = css`
 const GET_VENTS = gql`
   ${Vent.fragment}
 
-  query VentsQuery ($quantity: Int!) {
+  query VentsQuery($quantity: Int!) {
     vents(quantity: $quantity) {
       ...VentCard
     }
@@ -43,9 +44,11 @@ export default function VentsBlock({
   numberOfVents,
   showMore = false
 }: VentsBlockProps) {
-  const [quantity, setQuantity] = useState(numberOfVents)
-  const { loading, error, data } = useQuery<VentsQuery>(GET_VENTS, { variables: { quantity } });
-  const loadMore = () => setQuantity(q => q + 3)
+  const [quantity, setQuantity] = useState(numberOfVents);
+  const { loading, data } = useQuery<VentsQuery>(GET_VENTS, {
+    variables: { quantity }
+  });
+  const loadMore = () => setQuantity(q => q + 3);
 
   return (
     <div
@@ -72,11 +75,20 @@ export default function VentsBlock({
         </h3>
       )}
       <div css={ventsContainer}>
-        {data && data.vents.map((vent) => (
-          <Vent key={vent.id} {...vent} />
-        ))}
+        {data && data.vents.map(vent => <Vent key={vent.id} {...vent} />)}
       </div>
-      {showMore && <Button additionalCSS={css`background: ${colorBlack};`} variant="outline" onMouseDown={loadMore} disabled={loading}>{loading ? "⏳" : "Read More Rent Vents"}</Button>}
-    </div >
+      {showMore && (
+        <Button
+          additionalCSS={css`
+            background: ${colorBlack};
+          `}
+          variant="outline"
+          onMouseDown={loadMore}
+          disabled={loading}
+        >
+          {loading ? "⏳" : "Read More Rent Vents"}
+        </Button>
+      )}
+    </div>
   );
 }

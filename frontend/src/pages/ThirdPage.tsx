@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx, css } from "@emotion/core";
 
 import Emoji from "a11y-react-emoji";
 
@@ -12,10 +12,10 @@ import GenerationRentBlock from "../components/GenerationRentBlock";
 import RenterManifestoBlock from "../components/RenterManifestoBlock";
 import { useLocation } from "react-router";
 import { useEffect } from "react";
-import { PageWidth } from '../components/PageElements';
+import { PageWidth } from "../components/PageElements";
 import { marginsCss } from "../styles";
 
-const ThirdPage = ({ }) => {
+const ThirdPage = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -25,10 +25,15 @@ const ThirdPage = ({ }) => {
   return (
     <Page>
       <PageWidth>
-        <div css={css`${marginsCss}`}>
+        <div
+          css={css`
+            ${marginsCss}
+          `}
+        >
           <h1>Welcome to the movement!</h1>
           <h2>
-            Share this with your friends - and your landlord <Emoji symbol="😘" />
+            Share this with your friends - and your landlord{" "}
+            <Emoji symbol="😘" />
           </h2>
           <ShareBar message="Vent Your Rent" url="https://ventyour.rent" />
           <VentsBlock numberOfVents={14} showMore={true} />
@@ -42,7 +47,7 @@ const ThirdPage = ({ }) => {
         </div>
       </PageWidth>
     </Page>
-  )
-}
+  );
+};
 
 export default ThirdPage;

@@ -5,6 +5,7 @@ import TimeAgo from "react-timeago";
 
 import { fontColorBlack } from "../styles";
 import { VentCard } from "./__graphql__/VentCard";
+import Emoji from "a11y-react-emoji";
 
 const horizontalVentContainer = () => {
   return "flex: 0 0 auto;";
@@ -89,7 +90,9 @@ function Vent({ firstName, image, caption, geo, dateCreated }: VentCard) {
           {caption} <span style={{ opacity: 0.5 }}>#VentYourRent</span>
         </div>
         <div css={ventDetailsCSS}>
-          <div>{firstName} ✊</div>
+          <div>
+            {firstName} <Emoji symbol="✊" />
+          </div>
           {geo && (
             <div
               css={css`
