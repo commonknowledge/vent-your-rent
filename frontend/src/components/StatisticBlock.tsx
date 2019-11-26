@@ -1,17 +1,13 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-
+import { css, jsx } from "@emotion/core";
 import { FunctionComponent } from "react";
 import {
-  fontSizeMedium,
-  fontColorBlack,
   colorOrange,
   colorRed,
-  fontSizeSmall,
-  smallSpacing,
-  equalTopAndBottomMargin,
+  fontColorBlack,
+  fontColorWhite,
   fontSizeExtraExtraSmall,
-  fontColorWhite
+  fontSizeSmall
 } from "../styles";
 
 type StatisticBlockProps = {

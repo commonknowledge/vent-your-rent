@@ -6,34 +6,32 @@ import { format } from "d3-format";
 import gql from "graphql-tag";
 import { Fragment } from "react";
 import { RouteComponentProps } from "react-router";
-
 import {
-  OpenEndedTenancies,
+  NationalDatabaseOfLandlordsAndRents,
   RentControls,
-  WelfareSystemThatSupportsHousing,
-  NationalDatabaseOfLandlordsAndRents
+  WelfareSystemThatSupportsHousing
 } from "../components/demands";
+import Footer from "../components/Footer";
+import GenerationRentBlock from "../components/GenerationRentBlock";
 import Page from "../components/Page";
 import { PageWidth } from "../components/PageElements";
+import RenterManifestoBlock from "../components/RenterManifestoBlock";
+import Rule from "../components/Rule";
 import StatisticBlock from "../components/StatisticBlock";
 import TakeActionBlock from "../components/TakeActionBlock";
 import VentsBlock from "../components/VentsBlock";
 import {
   colorWhite,
+  equalTopAndBottomPadding,
   fontColorBlack,
   fontSizeLarge,
   fontSizeMedium,
-  paddingCss,
-  equalTopAndBottomPadding
+  paddingCss
 } from "../styles";
 import {
   Statistics,
   Statistics_statisticsForPostcode
 } from "./__graphql__/Statistics";
-import RenterManifestoBlock from "../components/RenterManifestoBlock";
-import GenerationRentBlock from "../components/GenerationRentBlock";
-import Footer from "../components/Footer";
-import Rule from "../components/Rule";
 
 const formatNumberWithCommas = format(",");
 const formatNumberAsRoundedPercentage = format(".0%");
