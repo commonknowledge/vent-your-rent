@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import Emoji from "a11y-react-emoji";
-import { PageWidth } from './PageElements';
+import { PageWidth } from "./PageElements";
 import {
   boldLink,
   colorWhite,
@@ -34,8 +34,8 @@ export default function DemandBlock({ demand }: DemandBlockProps) {
           </div>
           <div
             css={css`
-          margin-top: ${smallSpacing};
-        `}
+              margin-top: ${smallSpacing};
+            `}
           >
             <a
               href="https://www.rentermanifesto.org/read_the_manifesto_full"
@@ -44,7 +44,7 @@ export default function DemandBlock({ demand }: DemandBlockProps) {
               rel="noopener noreferrer"
             >
               Read the full manifesto
-        </a>
+            </a>
           </div>
         </div>
       </PageWidth>

@@ -6,7 +6,10 @@ import {
   fontSizeMedium,
   fontColorBlack,
   colorOrange,
-  colorRed
+  colorRed,
+  fontSizeSmall,
+  smallSpacing,
+  equalTopAndBottomMargin
 } from "../styles";
 
 type StatisticBlockProps = {
@@ -19,7 +22,7 @@ type StatisticBlockProps = {
 
 const barChart = css`
   border-radius: 3px;
-  margin-bottom: 6px;
+  margin-top: 6px;
   height: 28px;
 `;
 
@@ -34,16 +37,14 @@ const StatisticBlock: FunctionComponent<StatisticBlockProps> = ({
   return (
     <div
       css={css`
-        ${fontSizeMedium}
+        ${fontSizeSmall}
         ${fontColorBlack}
+        margin-top: 0;
+        margin-bottom: 30px;
       `}
     >
       {render}
-      <div
-        css={css`
-          margin-top: 6px;
-        `}
-      >
+      <div>
         <div
           css={css`
         ${barChart}

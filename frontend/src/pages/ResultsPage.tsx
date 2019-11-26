@@ -175,17 +175,23 @@ const ResultsPageView: React.FC<{
               <StatisticBlock
                 render={
                   <Fragment>
-                    The rent on a typical two-bed home in{" "}
-                    {stats.adminDistrictName} is{" "}
-                    <strong>
-                      {formatNumberAsMoney(stats.twoBedRentPrice)}
-                    </strong>
-                    . This is{" "}
-                    <strong>
-                      {formatNumberAsMoney(averageRentDifference)}{" "}
-                      {averageRentMoreOrLess}
-                    </strong>{" "}
-                    than the national average.
+                    <p>
+                      The rent on a typical two-bed home in{" "}
+                      {stats.adminDistrictName} is{" "}
+                      <strong>
+                        {formatNumberAsMoney(stats.twoBedRentPrice)}
+                      </strong>
+                      . This is{" "}
+                      <strong>
+                        {formatNumberAsMoney(averageRentDifference)}{" "}
+                        {averageRentMoreOrLess}
+                      </strong>{" "}
+                      than the national average.
+                    </p>
+                    <p>
+                      High rents stop us from enjoying a decent standard of
+                      living and saving for the future.
+                    </p>
                   </Fragment>
                 }
                 areaName={stats.adminDistrictName}
@@ -193,19 +199,17 @@ const ResultsPageView: React.FC<{
                 nationalAverageStatistic={averageRentPrice}
               />
             )}
-            <div css={fontSizeMedium}>
-              High rents stop us from enjoying a decent standard of living and
-              saving for the future.
-            </div>
             {stats.wageToHousePrice && (
               <StatisticBlock
                 render={
                   <Fragment>
-                    House prices in {stats.adminDistrictName} are{" "}
-                    <strong>
-                      {format(".2")(stats.wageToHousePrice)} times more
-                    </strong>{" "}
-                    than average incomes – the national average is 8.2.
+                    <p>
+                      House prices in {stats.adminDistrictName} are{" "}
+                      <strong>
+                        {format(".2")(stats.wageToHousePrice)} times more
+                      </strong>{" "}
+                      than average incomes – the national average is 8.2.
+                    </p>
                   </Fragment>
                 }
                 areaName={stats.constituencyName}
