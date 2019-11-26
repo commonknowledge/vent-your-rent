@@ -208,7 +208,8 @@ const ResultsPageView: React.FC<{
                       <strong>
                         {format(".2")(stats.wageToHousePrice)} times more
                       </strong>{" "}
-                      than average incomes – the national average is 8.2.
+                      than average incomes – the national average is{" "}
+                      <strong>8.2</strong>.
                     </p>
                   </Fragment>
                 }
@@ -237,11 +238,11 @@ const ResultsPageView: React.FC<{
                         )}
                       </strong>{" "}
                       people in {stats.constituencyName} receive housing
-                      benefit. The national average is 5,521.
+                      benefit. The national average is <strong>5,521</strong>.
                     </p>
                     <p>
                       Housing benefit is failing those of us on benefits - lots
-                      of landlords refuse to rent to us
+                      of landlords refuse to rent to us.
                     </p>
                   </Fragment>
                 }
@@ -261,7 +262,8 @@ const ResultsPageView: React.FC<{
                         )}
                       </strong>{" "}
                       of housing benefit recipients in {stats.constituencyName}{" "}
-                      are on Universal Credit - the national average is 33%.
+                      are on Universal Credit - the national average is{" "}
+                      <strong>33%</strong>.
                     </p>
                     <p>
                       Delays in Universal Credit payments mean renters can
