@@ -21,10 +21,10 @@ export default function DonationBlock() {
       </div>
       <div css={fontSizeSmall}>
         <p>
-          We have just a handful of staff but our movement is made up of
-          thousands of people like you taking action.
+          Vent Your Rent is a campaign run by Generation Rent, the national
+          voice of private renters. We campaign for safe, fair and secure homes
+          for all of us renting and work with all parties to make that happen.
         </p>
-        <p>Can you chip in a £1 to help us run more campaigns like this?</p>
       </div>
 
       <Button
