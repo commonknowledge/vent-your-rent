@@ -9,7 +9,9 @@ import {
   colorRed,
   fontSizeSmall,
   smallSpacing,
-  equalTopAndBottomMargin
+  equalTopAndBottomMargin,
+  fontSizeExtraExtraSmall,
+  fontColorWhite
 } from "../styles";
 
 type StatisticBlockProps = {
@@ -18,19 +20,38 @@ type StatisticBlockProps = {
   graphColour?: "red" | "orange";
   nationalAverageStatistic: number;
   render: JSX.Element;
+  hideNationalCaption?: boolean;
 };
 
 const barChart = css`
   border-radius: 3px;
   margin-top: 6px;
-  height: 28px;
+  height: 20px;
 `;
+
+const barChartCaption = css`
+  ${fontSizeExtraExtraSmall}
+  ${fontColorWhite}
+  text-transform: uppercase;
+  min-width: 200px;
+`;
+
+const positionText = css`
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  padding-left: 5px;
+  overflow: hidden;
+`;
+
+// 95px;
 
 const StatisticBlock: FunctionComponent<StatisticBlockProps> = ({
   render,
   areaName,
   areaStatistic,
-  nationalAverageStatistic
+  nationalAverageStatistic,
+  hideNationalCaption
 }) => {
   const more = areaStatistic > nationalAverageStatistic;
 
@@ -52,8 +73,11 @@ const StatisticBlock: FunctionComponent<StatisticBlockProps> = ({
           more ? "100%" : (areaStatistic / nationalAverageStatistic) * 100 + "%"
         };
         background: ${more ? colorRed : colorOrange};
+        ${positionText}
       `}
-        ></div>
+        >
+          <div css={barChartCaption}>{areaName}</div>
+        </div>
         <div
           css={css`
         ${barChart}
@@ -63,8 +87,18 @@ const StatisticBlock: FunctionComponent<StatisticBlockProps> = ({
             : (nationalAverageStatistic / areaStatistic) * 100 + "%"
         };
         background: grey;
+        ${positionText}
       `}
-        ></div>
+        >
+          <div
+            css={css`
+              ${barChartCaption}
+              ${hideNationalCaption ? "display: none;" : ""}
+            `}
+          >
+            National Average
+          </div>
+        </div>
       </div>
     </div>
   );

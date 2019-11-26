@@ -33,6 +33,7 @@ import {
 import RenterManifestoBlock from "../components/RenterManifestoBlock";
 import GenerationRentBlock from "../components/GenerationRentBlock";
 import Footer from "../components/Footer";
+import Rule from "../components/Rule";
 
 const formatNumberWithCommas = format(",");
 const formatNumberAsRoundedPercentage = format(".0%");
@@ -171,6 +172,7 @@ const ResultsPageView: React.FC<{
                 area.
               </p>
             </div>
+            <Rule />
             {stats.twoBedRentPrice && (
               <StatisticBlock
                 render={
@@ -213,8 +215,8 @@ const ResultsPageView: React.FC<{
                   </Fragment>
                 }
                 areaName={stats.constituencyName}
-                areaStatistic={1}
-                nationalAverageStatistic={1 / stats.wageToHousePrice}
+                areaStatistic={stats.wageToHousePrice}
+                nationalAverageStatistic={8.2}
               />
             )}
           </div>
