@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import { fontColorBlack, colorOrange } from "../styles";
+import { css, jsx } from "@emotion/core";
 import gql from "graphql-tag";
-import { VentCard } from './__graphql__/VentCard';
-import TimeAgo from 'react-timeago'
+import TimeAgo from "react-timeago";
+
+import { fontColorBlack } from "../styles";
+import { VentCard } from "./__graphql__/VentCard";
 
 const horizontalVentContainer = () => {
   return "flex: 0 0 auto;";
@@ -38,44 +39,83 @@ const ventDetailsCSS = css`
   ${fontColorBlack}
 `;
 
-const MEDIA_URL = (process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : "")
+const MEDIA_URL =
+  process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
 
 function Vent({ firstName, image, caption, geo, dateCreated }: VentCard) {
-  const wordCount = caption.split(" ").length
+  const wordCount = caption.split(" ").length;
 
   return (
     <div css={ventContainerCSS}>
-      <div css={css`
-        margin-top: 10px;
-        margin-right: 21px;
-      `}>
-        {image && <div css={css`
-        width: 100%;
-        height: 150px;
-        background-image: url(${MEDIA_URL + image});
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-color: #FAFAFA;
-        border-radius: 3px;
-        overflow: hidden;
-        margin-bottom: 6px;
-      `} />}
-        <div css={ventText}
+      <div
+        css={css`
+          margin-top: 10px;
+          margin-right: 21px;
+        `}
+      >
+        {image && (
+          <div
+            css={css`
+              width: 100%;
+              height: 150px;
+              background-image: url(${MEDIA_URL + image});
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center;
+              background-color: #fafafa;
+              border-radius: 3px;
+              overflow: hidden;
+              margin-bottom: 6px;
+            `}
+          />
+        )}
+        <div
+          css={ventText}
           style={{
-            fontSize: !image && wordCount <= 10 ? 36 : !image && wordCount <= 18 ? 24 :
-              !image && wordCount <= 26 ? 20 :
-                !image && wordCount <= 36 ? 18 :
-                  !image && wordCount <= 48 ? 14 :
-                    16
-          }}>{caption} <span style={{ opacity: 0.5 }}>#VentYourRent</span></div>
+            fontSize:
+              !image && wordCount <= 10
+                ? 36
+                : !image && wordCount <= 18
+                ? 24
+                : !image && wordCount <= 26
+                ? 20
+                : !image && wordCount <= 36
+                ? 18
+                : !image && wordCount <= 48
+                ? 14
+                : 16
+          }}
+        >
+          {caption} <span style={{ opacity: 0.5 }}>#VentYourRent</span>
+        </div>
         <div css={ventDetailsCSS}>
           <div>{firstName} ✊</div>
-          {geo && <div css={css`opacity: 0.66; margin-top: 5px;`}>{geo.parliamentaryConstituency}</div>}
-          <div css={css`margin-top: 5px; opacity: 0.33;`}><TimeAgo css={css`margin-top: 5px;`} date={dateCreated} /></div>
+          {geo && (
+            <div
+              css={css`
+                opacity: 0.66;
+                margin-top: 5px;
+              `}
+            >
+              {geo.parliamentaryConstituency}
+            </div>
+          )}
+          <div
+            css={css`
+              margin-top: 5px;
+              opacity: 0.33;
+            `}
+          >
+            <TimeAgo
+              css={css`
+                margin-top: 5px;
+              `}
+              date={dateCreated}
+            />
+          </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 
@@ -90,6 +130,6 @@ Vent.fragment = gql`
     }
     dateCreated
   }
-`
+`;
 
-export default Vent
+export default Vent;
