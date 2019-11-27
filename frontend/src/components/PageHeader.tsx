@@ -14,7 +14,6 @@ const logoCSS = css`
   font-weight: 900;
   font-size: 16px;
   line-height: 19px;
-  ${fontColorBlack}
   ${upperCase}
 `;
 

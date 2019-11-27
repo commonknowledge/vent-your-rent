@@ -79,7 +79,7 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
         `}
       >
         <PageWidth>
-          <VentsBlock numberOfVents={3} showMore />
+          <VentsBlock numberOfVents={4} showMore />
           <GenerationRentBlock />
           <RenterManifestoBlock />
           <Footer />

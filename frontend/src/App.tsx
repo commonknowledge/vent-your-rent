@@ -8,6 +8,7 @@ import GraphQLProvider from "./data/graphql";
 import FirstPage from "./pages/FirstPage";
 import ResultsPage from "./pages/ResultsPage";
 import ThirdPage from "./pages/ThirdPage";
+import VentPage from './pages/Vent';
 
 const history = createBrowserHistory();
 
@@ -50,10 +51,19 @@ const App: React.FC = () => {
           <Switch>
             <Route
               exact
+              path="/vent/:id"
+              component={VentPage}
+            />
+            <Route
+              exact
               path="/welcome-to-the-movement"
               component={ThirdPage}
             />
-            <Route exact path="/:postcode" component={ResultsPage} />
+            <Route
+              exact
+              path="/:postcode"
+              component={ResultsPage}
+            />
             <Route component={FirstPage} />
           </Switch>
         </GraphQLProvider>

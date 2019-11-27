@@ -383,7 +383,7 @@ const ResultsPageView: React.FC<{
           <PageWidth>
             <VentsBlock
               title="This is what the renting crisis looks like"
-              numberOfVents={3}
+              numberOfVents={4}
             />
           </PageWidth>
         </div>

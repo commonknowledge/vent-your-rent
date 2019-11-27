@@ -7,6 +7,7 @@ import { fontColorBlack, colorOrange } from "../styles";
 import { VentCard } from "./__graphql__/VentCard";
 import Emoji from "a11y-react-emoji";
 import { useState, useMemo } from 'react';
+import { Link } from "react-router-dom";
 
 const horizontalVentContainer = () => {
   return "flex: 0 0 auto;";
@@ -15,13 +16,8 @@ const horizontalVentContainer = () => {
 const ventContainerCSS = css`
   padding-top: 20px;
   padding-bottom: 20px;
-  width: 100%;
   ${horizontalVentContainer()}
   position: relative;
-
-  @media (min-width: 1024px) {
-    width: 50%;
-  }
 `;
 
 const ventText = css`
@@ -36,22 +32,21 @@ const ventDetailsCSS = css`
   font-style: normal;
   font-weight: bold;
   line-height: 14px;
-
-  ${fontColorBlack}
 `;
 
 const MEDIA_URL =
   process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
 
-const COLLAPSED_SENTENCE_COUNT = 2
+type VentProps = VentCard & { collapsed?: boolean, collapsedSentenceCount?: number }
 
-function Vent({ firstName, image, caption, geo, dateCreated }: VentCard) {
-  const [collapsed, setCollapsed] = useState(true)
+function Vent({ id, firstName, image, caption, geo, dateCreated, collapsed = true, collapsedSentenceCount = 1 }: VentProps) {
+  const [isCollapsed, setCollapsed] = useState(collapsed)
   const toggleCollapsed = () => setCollapsed(c => !c)
-
-  const wordCount = caption.split(/( |...)/).length
-  const sentences = caption.split('. ')
-  const displayedSentences = sentences.slice(0, collapsed ? COLLAPSED_SENTENCE_COUNT : 1000)
+  const sentences = caption.split(/\. |\.\.\./)
+  const displayedSentences = sentences.slice(0, isCollapsed ? collapsedSentenceCount : 1000)
+  const wordCountOfTotal = caption.split(' ').length
+  const wordCountOfInitialSentences = displayedSentences[0].split(' ').length
+  const wordCount = collapsed ? wordCountOfInitialSentences : wordCountOfTotal
 
   return (
     <div css={ventContainerCSS}>
@@ -95,17 +90,21 @@ function Vent({ firstName, image, caption, geo, dateCreated }: VentCard) {
           }}
         >
           {displayedSentences.map((sentence, i) => (
-            <p key={i} style={{ margin: '4px 0' }}>
-              {sentence}. {i + 1 === sentences.length && <span style={{ opacity: 0.5 }}>#VentYourRent</span>}
+            <p key={i} style={{ margin: '12px 0' }}>
+              {sentence}
+              {i + 1 === sentences.length ? (
+                <span style={{ opacity: 0.5 }}>&nbsp;#VentYourRent</span>
+              ) : i + 1 === displayedSentences.length && displayedSentences.length < sentences.length ? (
+                <span>
+                  <span>... </span>
+                  <Link to={`/vent/${id}`} css={css`
+                    color: ${colorOrange};
+                    text-decoration: none;
+                  `}>Continue &rarr;</Link>
+                </span>
+              ) : null}
             </p>
           ))}
-          {sentences.length > COLLAPSED_SENTENCE_COUNT && (
-            <div
-              css={css`color: ${colorOrange};`}
-              onMouseDown={toggleCollapsed}>
-              {collapsed ? "Continue reading" : "Close"}
-            </div>
-          )}
         </div>
         <div css={ventDetailsCSS}>
           <div>

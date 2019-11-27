@@ -4,8 +4,15 @@ import ApolloClient from "apollo-client";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { createUploadLink } from 'apollo-upload-client'
 import { ApolloLink } from "apollo-link";
+import { toIdValue } from "apollo-utilities";
 
-const cache = new InMemoryCache();
+const cache: any = new InMemoryCache({
+    cacheRedirects: {
+        Query: {
+            vent: (_, { id }) => toIdValue(cache.config.dataIdFromObject({ __typename: 'VentType', id })),
+        }
+    }
+});
 
 const initialCacheState = {
     data: {}

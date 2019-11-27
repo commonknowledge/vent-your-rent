@@ -10,18 +10,13 @@ import ContactCandidateBlock from "../components/ContactCandidateBlock";
 import DonationBlock from "../components/DonationBlock";
 import GenerationRentBlock from "../components/GenerationRentBlock";
 import RenterManifestoBlock from "../components/RenterManifestoBlock";
-import { useLocation } from "react-router";
-import { useEffect } from "react";
 import { PageWidth } from "../components/PageElements";
 import { marginsCss } from "../styles";
 import Rule from "../components/Rule";
+import { useResetScroll } from '../helpers/router';
 
 const ThirdPage = () => {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useResetScroll()
 
   return (
     <Page>

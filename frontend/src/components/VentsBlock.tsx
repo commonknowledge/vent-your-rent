@@ -21,6 +21,13 @@ const ventsContainer = css`
   overflow-x: auto;
 `;
 
+const ventWidthCss = css` 
+  width: 100%;
+  @media (min-width: 1024px) {
+    width: 50%;
+  }
+`;
+
 const GET_VENTS = gql`
   ${Vent.fragment}
 
@@ -75,7 +82,7 @@ export default function VentsBlock({
         </h3>
       )}
       <div css={ventsContainer}>
-        {data && data.vents.map(vent => <Vent key={vent.id} {...vent} />)}
+        {data && data.vents.map(vent => <div key={vent.id} css={ventWidthCss}><Vent {...vent} /></div>)}
       </div>
       {showMore && (
         <Button
