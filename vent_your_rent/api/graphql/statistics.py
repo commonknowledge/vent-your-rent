@@ -7,6 +7,9 @@ from .geo import GeocodeResult
 class PostcodeStatistics(graphene.ObjectType):
     geo = graphene.NonNull(GeocodeResult)
 
+    devolved_nation = graphene.Boolean(
+        description="Postcode is in a devolved administration and we therefore do not have rental data for it")
+
     # Constituency stats (name: geo.parliamentary_constituency)
     constituency_id = graphene.String(required=True)
     constituency_name = graphene.String(required=True)
@@ -185,7 +188,19 @@ class PostcodeStatistics(graphene.ObjectType):
 
 def get_constituency_stats(geo):
     admin_district_id = geo.get('codes').get('admin_district')
+
+    if (geo.get('country') != 'England'):
+        return {
+            "constituency_id": geo.get('codes').get('parliamentary_constituency'),
+            "constituency_name": geo.get('parliamentary_constituency'),
+            "admin_district_id": admin_district_id,
+            "admin_district_name": geo.get("admin_district"),
+            "geo": geo,
+            "devolved_nation": True
+        }
+
     admin_district_data = rentermanifesto_stats_for_admin_district(admin_district_id)
+
     constituency_id = geo.get('codes').get('parliamentary_constituency')
     constituency_data = rentermanifesto_stats_for_constituency_id(constituency_id)
 
@@ -194,7 +209,8 @@ def get_constituency_stats(geo):
         "admin_district_id": admin_district_id,
         "admin_district_name": admin_district_data.get("name"),
         **constituency_data,
-        "geo": geo
+        "geo": geo,
+        "devolved_nation": False
     }
 
 

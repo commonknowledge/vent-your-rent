@@ -277,6 +277,18 @@
             {
               "args": [],
               "deprecationReason": null,
+              "description": "Postcode is in a devolved administration and we therefore do not have rental data for it",
+              "isDeprecated": false,
+              "name": "devolvedNation",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
               "name": "constituencyId",
@@ -2176,6 +2188,16 @@
           "possibleTypes": null
         },
         {
+          "description": "The `Boolean` scalar type represents `true` or `false`.",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "Boolean",
+          "possibleTypes": null
+        },
+        {
           "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). ",
           "enumValues": null,
           "fields": null,
@@ -2304,16 +2326,6 @@
           "interfaces": null,
           "kind": "SCALAR",
           "name": "ID",
-          "possibleTypes": null
-        },
-        {
-          "description": "The `Boolean` scalar type represents `true` or `false`.",
-          "enumValues": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "SCALAR",
-          "name": "Boolean",
           "possibleTypes": null
         },
         {
