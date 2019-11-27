@@ -20,7 +20,7 @@ import Rule from "../components/Rule";
 import StatisticBlock from "../components/StatisticBlock";
 import TakeActionBlock from "../components/TakeActionBlock";
 import VentsBlock from "../components/VentsBlock";
-import { OpenEndedTenancies } from '../components/demands';
+import { OpenEndedTenancies } from "../components/demands";
 import {
   colorWhite,
   equalTopAndBottomPadding,
@@ -61,6 +61,10 @@ const STATISTICS_QUERY = gql`
       percentPrivateRentersNationally: CTRYPercPrivateRent
 
       noFaultEvictionHomelessnessCasesPer1000
+      devolvedNation
+      geo {
+        country
+      }
     }
   }
 `;
@@ -142,6 +146,19 @@ const ResultsPageView: React.FC<{
               ${paddingCss}
             `}
           >
+            {stats.devolvedNation && (
+              <h1
+                css={css`
+                  ${fontSizeLarge}
+                  ${fontColorBlack}
+
+                /* or 100% */
+                letter-spacing: -0.03em;
+                `}
+              >
+                There is a renting crisis in {stats.constituencyName}
+              </h1>
+            )}
             {stats.numberOfPrivateRenters && (
               <h1
                 css={css`
@@ -186,10 +203,28 @@ const ResultsPageView: React.FC<{
                 <strong>{stats.constituencyName}</strong> and your local council
                 is <strong>{stats.adminDistrictName}</strong>.
               </p>
-              <p>
-                Scroll down to see what the renting crisis looks like in your
-                area.
-              </p>
+              {!stats.devolvedNation ? (
+                <p>
+                  Scroll down to see what the renting crisis looks like in your
+                  area.
+                </p>
+              ) : (
+                <Fragment>
+                  <p>
+                    Unfortunately we don't currently have data for{" "}
+                    {stats.constituencyName} as it is in {stats.geo.country},
+                    which is a devolved nation.
+                  </p>
+                  <p>
+                    You can learn more about the renting crisis in devolved
+                    nations of the UK on{" "}
+                    <a href="https://www.rentermanifesto.org/the_renting_crisis_in_devolved_nations">
+                      our website
+                    </a>
+                    .
+                  </p>
+                </Fragment>
+              )}
             </div>
             <Rule />
             {stats.twoBedRentPrice && (
