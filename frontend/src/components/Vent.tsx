@@ -5,9 +5,13 @@ import {
   fontColorBlack,
   fontColorDarkBlack,
   fontSizeExtraSmall,
-  fontSizeSmall
+  fontSizeSmall,
+  fontColorOrange
 } from "../styles";
 import { VentCard } from "./__graphql__/VentCard";
+
+import Truncate from "react-truncate";
+import { useState } from "react";
 
 const horizontalVentContainer = () => {
   return "flex: 0 0 auto;";
@@ -26,13 +30,6 @@ const ventText = css`
   ${fontColorDarkBlack}
 `;
 
-const ventDetailsCSS = css`
-  margin-top: 10px;
-  ${fontSizeExtraSmall}
-  ${fontColorBlack}
-  text-transform: uppercase;
-`;
-
 const MEDIA_URL =
   process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
 
@@ -40,6 +37,9 @@ type VentProps = {};
 
 function Vent({ firstName, image, caption, geo }: VentCard & VentProps) {
   const wordCount = caption.split(" ").length;
+
+  const [expanded, setExpanded] = useState(false);
+  const [truncated, setTruncated] = useState(false);
 
   return (
     <div css={ventContainerCSS}>
@@ -64,16 +64,57 @@ function Vent({ firstName, image, caption, geo }: VentCard & VentProps) {
             `}
           />
         )}
-        <div css={ventText}>{caption}</div>
-        <div css={ventDetailsCSS}>
-          <div
-            css={css`
-              font-weight: bold;
-            `}
+        <div css={ventText}>
+          <Truncate
+            lines={!expanded && 5}
+            ellipsis="..."
+            onTruncate={isTruncated => {
+              isTruncated !== truncated && setTruncated(isTruncated);
+            }}
           >
-            {firstName}
+            {caption}
+          </Truncate>
+        </div>
+        <div
+          css={css`
+            margin-top: 10px;
+            ${fontSizeExtraSmall}
+            ${fontColorBlack}
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+          `}
+        >
+          <div>
+            <div
+              css={css`
+                font-weight: bold;
+              `}
+            >
+              {firstName}
+            </div>
+            {geo && <div>{geo.parliamentaryConstituency}</div>}
           </div>
-          {geo && <div>{geo.parliamentaryConstituency}</div>}
+          {truncated === true && (
+            <a
+              css={css`
+                ${fontColorOrange}
+              `}
+              onClick={() => setExpanded(!expanded)}
+            >
+              Read More
+            </a>
+          )}
+          {truncated === false && expanded === true && (
+            <a
+              css={css`
+                ${fontColorOrange}
+              `}
+              onClick={() => setExpanded(!expanded)}
+            >
+              Read Less
+            </a>
+          )}
         </div>
       </div>
     </div>
