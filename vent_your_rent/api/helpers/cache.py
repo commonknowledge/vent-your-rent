@@ -1,4 +1,4 @@
-from django.core.cache import caches
+from django.core.cache import cache
 from threading import Timer
 
 def cached_fn(key, timeout_seconds = 60 * 5, cache_type = 'default'):
