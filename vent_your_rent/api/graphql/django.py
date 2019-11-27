@@ -4,13 +4,13 @@ from django import forms
 from django.db.models import Q
 from graphene_django.forms.mutation import DjangoModelFormMutation
 from .utils import DjangoFilterField
-from .geo import GeocodeResult
+from .geo import ShortGeocodeResult
 from vent_your_rent.api.helpers.utils import get, get_path
 from vent_your_rent.api.helpers.cache import cached_fn
 from vent_your_rent.api.models import Vent, Signup
 from django.utils import timezone
-from datetime import datetime  
-from datetime import timedelta  
+from datetime import datetime
+from datetime import timedelta
 from graphene.types.generic import GenericScalar
 import itertools
 import random
@@ -18,9 +18,11 @@ from graphene_file_upload.scalars import Upload
 
 ###
 
+
 class SignupType(DjangoObjectType):
     class Meta:
         model = Signup
+
 
 class SignupMutation(graphene.Mutation):
     class Arguments:
@@ -34,12 +36,12 @@ class SignupMutation(graphene.Mutation):
     success = graphene.Boolean(required=True)
 
     def mutate(self, info,
-        first_name=None,
-        last_name=None,
-        postcode=None,
-        email=None,
-        can_contact=False
-    ):
+               first_name=None,
+               last_name=None,
+               postcode=None,
+               email=None,
+               can_contact=False
+               ):
         signup = Signup.objects.create(
             first_name=first_name,
             last_name=last_name,
@@ -51,6 +53,7 @@ class SignupMutation(graphene.Mutation):
         return SignupMutation(success=True, signup=signup)
 
 ###
+
 
 class VentType(DjangoObjectType):
     class Meta:
@@ -64,10 +67,11 @@ class VentType(DjangoObjectType):
         except:
             return None
 
-    geo = graphene.Field(GeocodeResult)
+    geo = graphene.Field(ShortGeocodeResult)
 
     def resolve_geo(self, info):
         return info.context.loaders.get('geo_from_postcode').load(self.postcode)
+
 
 class VentMutation(graphene.Mutation):
     class Arguments:
@@ -89,12 +93,14 @@ class VentMutation(graphene.Mutation):
 
         return VentMutation(success=True, vent=vent)
 
+
 class Queries():
-    ## production
+    # production
 
-    vents = graphene.List(graphene.NonNull(VentType), required=True, quantity=graphene.Int(default_value=3)) # DjangoFilterField(VentType)
+    vents = graphene.List(graphene.NonNull(VentType), required=True,
+                          quantity=graphene.Int(default_value=3))  # DjangoFilterField(VentType)
 
-    def resolve_vents(self, info, quantity = 3):
+    def resolve_vents(self, info, quantity=3):
         return Vent.objects.filter(is_published=True).order_by('-date_created')[:quantity]
 
     vent = graphene.Field(VentType, id=graphene.String(required=True))
@@ -102,11 +108,12 @@ class Queries():
     def resolve_vent(self, info, id):
         return Vent.objects.get(id=id)
 
-    ## mocks
+    # mocks
 
-    mock_vents = graphene.List(graphene.NonNull(VentType), required=True, quantity=graphene.Int(default_value=3))  # DjangoFilterField(VentType)
-    
-    def resolve_mock_vents(self, info, quantity = 3):
+    mock_vents = graphene.List(graphene.NonNull(VentType), required=True,
+                               quantity=graphene.Int(default_value=3))  # DjangoFilterField(VentType)
+
+    def resolve_mock_vents(self, info, quantity=3):
         vents = []
         n = 1
         for _ in itertools.repeat(None, quantity):
@@ -128,6 +135,7 @@ class Queries():
             caption=random.choice(["I hate my landlord", "Never met my landlord", "is this hell on earth"]),
             first_name=random.choice(["Alex", "Gemma", "Georgie", "Dan", "Jan"])
         )
+
 
 class Mutations():
     create_vent = VentMutation.Field()
