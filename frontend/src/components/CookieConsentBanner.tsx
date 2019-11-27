@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { SpringUp } from "./SpringUp";
 import { colorBlack, fontColorWhite, fontSizeSmall } from "../styles";
 import { PageWidth } from "./PageElements";
+import Emoji from "a11y-react-emoji";
 
 const CookieConsentBanner: React.FC<{
   onConsent: (consented: boolean) => void;
@@ -16,7 +17,7 @@ const CookieConsentBanner: React.FC<{
 
   useEffect(() => {
     onConsent(consent);
-  }, [consent]);
+  }, [consent, onConsent]);
 
   return !consent ? (
     <SpringUp
@@ -39,7 +40,8 @@ const CookieConsentBanner: React.FC<{
       >
         <PageWidth>
           <div>
-            🍪 We use cookies to track site usage and make improvements.
+            <Emoji symbol="🍪" /> We use cookies to track site usage and make
+            improvements.
           </div>
           <div
             css={css`
