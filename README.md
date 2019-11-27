@@ -8,15 +8,28 @@ Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.s
 [![Black code
 style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-- License  
-  GPLv3
+Vent Your Rent has two components, a backend and a frontend. The backend [Django](https://www.djangoproject.com/) application providing an adminstration interface and [a GraphQL endpoint](https://graphql.org/). The frontend is a React application which can be found in the `frontend/` directory of this repository.
 
-## Settings
+## Local Development
 
-Moved to
-[settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
+For detailed information see [https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html)
 
-## Basic Commands
+### Requirements
+
+- [Docker](https://docs.docker.com/install/)
+
+### Starting Up
+
+To start the backend using [Docker Compose](https://docs.docker.com/compose/):
+
+    $ docker-compose -f local.yml up
+
+## Management Commands
+
+Django management commands can be run using [`docker-compose run`](https://docs.docker.com/compose/reference/run/):
+
+    $ docker-compose -f local.yml run --rm django python manage.py
+    $ docker-compose -f local.yml run --rm django python manage.py migrate
 
 ### Setting Up Your Users
 
@@ -28,7 +41,7 @@ Moved to
 
 - To create an **superuser account**, use this command:
 
-      $ python manage.py createsuperuser
+      $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
 For convenience, you can keep your normal user logged in on Chrome and
 your superuser logged in on Firefox (or similar), so that you can see
@@ -38,20 +51,20 @@ how the site behaves for both kinds of users.
 
 Running type checks with mypy:
 
-    $ mypy vent_your_rent
+    $ docker-compose -f local.yml run --rm  django mypy vent_your_rent
 
 ### Test coverage
 
 To run the tests, check your test caoverage, and generate an HTML
 coverage report:
 
-    $ coverage run -m pytest
-    $ coverage html
+    $ docker-compose -f local.yml run --rm django coverage run -m pytest
+    $ docker-compose -f local.yml run --rm django coverage html
     $ open htmlcov/index.html
 
 #### Running tests with py.test
 
-    $ pytest
+    $ docker-compose -f local.yml run --rm django  pytest
 
 ### Live reloading and Sass CSS compilation
 
@@ -60,25 +73,12 @@ compilation](http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-
 
 ## Deployment
 
-The following details how to deploy this application.
-
-### Heroku
+This application is hosted on Heroku.
 
 See detailed [cookiecutter-django Heroku
 documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-on-heroku.html).
 
-### Docker
+## Settings
 
-See detailed [cookiecutter-django Docker
-documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).]
-
-For local development with Docker see [https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html)
-
-To start the backend using Docker run:
-
-    $ docker-compose -f local.yml up
-
-Django management commands can be run using `docker-compose run`:
-
-    $ docker-compose -f local.yml run --rm django python manage.py
-    $ docker-compose -f local.yml run --rm django python manage.py migrate
+Moved to
+[settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
