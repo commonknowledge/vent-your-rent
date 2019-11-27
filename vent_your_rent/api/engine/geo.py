@@ -4,7 +4,12 @@ from vent_your_rent.api.helpers.cache import cached_fn
 from django.core.cache import cache
 import os
 
+def normalise_postcode(postcode):
+    return postcode.replace(" ", "")
+
+@cached_fn(lambda postcode: normalise_postcode(postcode), None)
 def postcode_geo(postcode: str):
+    postcode = normalise_postcode(postcode)
     response = requests.get(f'https://api.postcodes.io/postcodes/{postcode}')
     data = response.json()
     status = get(data, 'status')
