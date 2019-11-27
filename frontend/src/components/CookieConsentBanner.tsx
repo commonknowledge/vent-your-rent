@@ -3,7 +3,6 @@ import { css, jsx } from "@emotion/core";
 import { useCookie } from "@use-hook/use-cookie";
 import React, { useEffect } from "react";
 import { SpringUp } from "./SpringUp";
-import Button from "./Button";
 import { colorBlack, fontColorWhite, fontSizeSmall } from "../styles";
 import { PageWidth } from "./PageElements";
 
