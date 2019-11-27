@@ -42,8 +42,8 @@ const formatNumberAsMoney = (n: number) =>
 const STATISTICS_QUERY = gql`
   query Statistics($postcode: String!) {
     statisticsForPostcode(postcode: $postcode) {
-      constituencyName: constituencyName
-      adminDistrictName: adminDistrictName
+      constituencyName
+      adminDistrictName
       regionName: RegionName
 
       numberOfPrivateRenters: CONLevelPrivateRent
@@ -58,6 +58,7 @@ const STATISTICS_QUERY = gql`
 
       percentPrivateRenters: CONPercPrivateRent
       percentPrivateRentersNationally: CTRYPercPrivateRent
+      noFaultEvictionHomelessnessCasesPer1000
     }
   }
 `;
@@ -113,12 +114,22 @@ const ResultsPageView: React.FC<{
   }
 
   const averageRentPrice = 675;
-  const averageRentMoreOrLess =
-    stats.twoBedRentPrice > averageRentPrice ? "more" : "less";
-  const averageRentDifference =
-    averageRentMoreOrLess === "more"
-      ? stats.twoBedRentPrice - averageRentPrice
-      : averageRentPrice - stats.twoBedRentPrice;
+
+  let averageRentMoreOrLess = "";
+
+  if (stats.twoBedRentPrice) {
+    averageRentMoreOrLess =
+      stats.twoBedRentPrice > averageRentPrice ? "more" : "less";
+  }
+
+  let averageRentDifference = 0;
+
+  if (stats.twoBedRentPrice) {
+    averageRentDifference =
+      averageRentMoreOrLess === "more"
+        ? stats.twoBedRentPrice - averageRentPrice
+        : averageRentPrice - stats.twoBedRentPrice;
+  }
 
   return (
     <Page>
@@ -129,19 +140,21 @@ const ResultsPageView: React.FC<{
               ${paddingCss}
             `}
           >
-            <h1
-              css={css`
-                ${fontSizeLarge}
-                ${fontColorBlack}
+            {stats.numberOfPrivateRenters && (
+              <h1
+                css={css`
+                  ${fontSizeLarge}
+                  ${fontColorBlack}
 
                 /* or 100% */
                 letter-spacing: -0.03em;
-              `}
-            >
-              You're one of{" "}
-              {formatNumberWithCommas(stats.numberOfPrivateRenters)} private
-              renters in {stats.constituencyName}
-            </h1>
+                `}
+              >
+                You're one of{" "}
+                {formatNumberWithCommas(stats.numberOfPrivateRenters)} private
+                renters in {stats.constituencyName}
+              </h1>
+            )}
             <div
               css={css`
                 ${fontSizeMedium}
@@ -186,7 +199,8 @@ const ResultsPageView: React.FC<{
                         {formatNumberAsMoney(averageRentDifference)}{" "}
                         {averageRentMoreOrLess}
                       </strong>{" "}
-                      than the national average.
+                      than the national average which is £{averageRentPrice} per
+                      month.
                     </p>
                     <p>
                       High rents stop us from enjoying a decent standard of
@@ -285,32 +299,36 @@ const ResultsPageView: React.FC<{
               ${paddingCss}
             `}
           >
-            {stats.percentPrivateRenters && (
-              <StatisticBlock
-                render={
-                  <Fragment>
-                    <p>
-                      In {stats.constituencyName},{" "}
-                      <strong>
-                        {formatNumberAsRoundedPercentage(
-                          stats.percentPrivateRenters
-                        )}{" "}
-                        of people rent from a private landlord
-                      </strong>{" "}
-                      - nationally, the proportion is 17%.
-                    </p>
-                    <p>
-                      The number of renters has doubled in the last 15 years but
-                      because there were no checks on all those new landlords,
-                      it is hard for councils to enforce safety standards.
-                    </p>
-                  </Fragment>
-                }
-                areaName={stats.constituencyName}
-                areaStatistic={stats.percentPrivateRenters}
-                nationalAverageStatistic={stats.percentPrivateRentersNationally}
-              />
-            )}
+            {stats.percentPrivateRenters &&
+              stats.percentPrivateRentersNationally && (
+                <StatisticBlock
+                  render={
+                    <Fragment>
+                      <p>
+                        In {stats.constituencyName},{" "}
+                        <strong>
+                          {formatNumberAsRoundedPercentage(
+                            stats.percentPrivateRenters
+                          )}{" "}
+                          of people rent from a private landlord
+                        </strong>{" "}
+                        - nationally, the proportion is <strong>17%</strong>.
+                      </p>
+                      <p>
+                        The number of renters has doubled in the last 15 years
+                        but because there were no checks on all those new
+                        landlords, it is hard for councils to enforce safety
+                        standards.
+                      </p>
+                    </Fragment>
+                  }
+                  areaName={stats.constituencyName}
+                  areaStatistic={stats.percentPrivateRenters}
+                  nationalAverageStatistic={
+                    stats.percentPrivateRentersNationally
+                  }
+                />
+              )}
           </div>
         </PageWidth>
         <NationalDatabaseOfLandlordsAndRents />
@@ -320,16 +338,32 @@ const ResultsPageView: React.FC<{
               ${paddingCss}
             `}
           >
-            <Fragment>
-              <p>
-                7 in every 1000 private renters have been made homeless through
-                no-fault evictions.
-              </p>
-              <p>
-                Right now, landlords can evict tenants with just two months
-                notice, without giving a reason.
-              </p>
-            </Fragment>
+            {stats.noFaultEvictionHomelessnessCasesPer1000 && (
+              <StatisticBlock
+                render={
+                  <Fragment>
+                    <p>
+                      In {stats.adminDistrictName}{" "}
+                      <strong>
+                        {stats.noFaultEvictionHomelessnessCasesPer1000} private
+                        renters in every 1000 were made homeless last year
+                      </strong>{" "}
+                      through no-fault evictions. The national average was{" "}
+                      <strong>7 per 1000 private renters</strong>.
+                    </p>
+                    <p>
+                      Right now, landlords can evict tenants with just two
+                      months notice, without giving a reason. It means we fear
+                      asking for essential repairs in case our landlord reacts
+                      with a revenge eviction.
+                    </p>
+                  </Fragment>
+                }
+                areaName={stats.adminDistrictName}
+                areaStatistic={stats.noFaultEvictionHomelessnessCasesPer1000}
+                nationalAverageStatistic={7}
+              />
+            )}
           </div>
         </PageWidth>
         <div
