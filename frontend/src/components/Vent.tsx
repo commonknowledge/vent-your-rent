@@ -2,11 +2,9 @@
 import { css, jsx } from "@emotion/core";
 import gql from "graphql-tag";
 import TimeAgo from "react-timeago";
-
-import { fontColorBlack, colorOrange } from "../styles";
+import { colorOrange } from "../styles";
 import { VentCard } from "./__graphql__/VentCard";
 import Emoji from "a11y-react-emoji";
-import { useState, useMemo } from 'react';
 import { Link } from "react-router-dom";
 
 const horizontalVentContainer = () => {
@@ -40,10 +38,8 @@ const MEDIA_URL =
 type VentProps = VentCard & { collapsed?: boolean, collapsedSentenceCount?: number }
 
 function Vent({ id, firstName, image, caption, geo, dateCreated, collapsed = true, collapsedSentenceCount = 1 }: VentProps) {
-  const [isCollapsed, setCollapsed] = useState(collapsed)
-  const toggleCollapsed = () => setCollapsed(c => !c)
   const sentences = caption.split(/\. |\.\.\./)
-  const displayedSentences = sentences.slice(0, isCollapsed ? collapsedSentenceCount : 1000)
+  const displayedSentences = sentences.slice(0, collapsed ? collapsedSentenceCount : 1000)
   const wordCountOfTotal = caption.split(' ').length
   const wordCountOfInitialSentences = displayedSentences[0].split(' ').length
   const wordCount = collapsed ? wordCountOfInitialSentences : wordCountOfTotal
