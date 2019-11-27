@@ -8,6 +8,7 @@ import GraphQLProvider from "./data/graphql";
 import FirstPage from "./pages/FirstPage";
 import ResultsPage from "./pages/ResultsPage";
 import ThirdPage from "./pages/ThirdPage";
+import CookieConsentBanner from "./components/CookieConsentBanner";
 
 const history = createBrowserHistory();
 
@@ -56,6 +57,7 @@ const App: React.FC = () => {
             <Route exact path="/:postcode" component={ResultsPage} />
             <Route component={FirstPage} />
           </Switch>
+          <CookieConsentBanner onConsent={analytics.initialiseCookies} />
         </GraphQLProvider>
       </Router>
     </AnalyticsProvider>
