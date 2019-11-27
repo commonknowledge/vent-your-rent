@@ -45,6 +45,10 @@ const App: React.FC = () => {
               *:after {
                 box-sizing: inherit;
               }
+
+              a {
+                color: inherit;
+              }
             `}
           />
           <Switch>

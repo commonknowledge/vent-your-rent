@@ -11,7 +11,6 @@ export default function Footer() {
         
         a {
           text-decoration: none;
-          color: inherit;
           margin-right: 10px;
         }
       `}
