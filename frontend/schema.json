@@ -314,7 +314,7 @@
               "name": "prsSize",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -371,10 +371,82 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "prsHouseholds2011",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "percRegionalIncreaseInPrs",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "prsHouseholds2018Estimate",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "estimatedUkIreCitizens",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "majority",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "unregisteredPrivateRenterVoters",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "sizeOfImpact",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
                 "ofType": null
               }
             },
@@ -417,13 +489,9 @@
               "isDeprecated": false,
               "name": "buyLqvalue1bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -433,13 +501,9 @@
               "isDeprecated": false,
               "name": "buyMedianvalue1bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -449,13 +513,9 @@
               "isDeprecated": false,
               "name": "buyUqvalue1bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -465,13 +525,9 @@
               "isDeprecated": false,
               "name": "buyLqvalue2bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -481,13 +537,9 @@
               "isDeprecated": false,
               "name": "buyMedianvalue2bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -497,13 +549,9 @@
               "isDeprecated": false,
               "name": "buyUqvalue2bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -513,13 +561,9 @@
               "isDeprecated": false,
               "name": "buyLqvalue3bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -529,13 +573,9 @@
               "isDeprecated": false,
               "name": "buyMedianvalue3bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -545,13 +585,9 @@
               "isDeprecated": false,
               "name": "buyUqvalue3bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -561,13 +597,9 @@
               "isDeprecated": false,
               "name": "buyLqvalue4bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -577,13 +609,9 @@
               "isDeprecated": false,
               "name": "buyMedianvalue4bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -593,13 +621,9 @@
               "isDeprecated": false,
               "name": "buyUqvalue4bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -609,13 +633,9 @@
               "isDeprecated": false,
               "name": "rentLqvalue1bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -625,13 +645,9 @@
               "isDeprecated": false,
               "name": "rentMedianvalue1bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -641,13 +657,9 @@
               "isDeprecated": false,
               "name": "rentUqvalue1bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -657,13 +669,9 @@
               "isDeprecated": false,
               "name": "rentLqvalue2bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -673,13 +681,9 @@
               "isDeprecated": false,
               "name": "rentMedianvalue2bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -689,13 +693,9 @@
               "isDeprecated": false,
               "name": "rentUqvalue2bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -705,13 +705,9 @@
               "isDeprecated": false,
               "name": "rentLqvalue3bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -721,13 +717,9 @@
               "isDeprecated": false,
               "name": "rentMedianvalue3bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -737,13 +729,9 @@
               "isDeprecated": false,
               "name": "rentUqvalue3bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -753,13 +741,9 @@
               "isDeprecated": false,
               "name": "rentLqvalue4bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -769,13 +753,9 @@
               "isDeprecated": false,
               "name": "rentMedianvalue4bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -785,13 +765,33 @@
               "isDeprecated": false,
               "name": "rentUqvalue4bed",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "noFaultEvictionHomelessnessCasesPer1000",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "medianRentOn2BedFlat",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               }
             },
             {
@@ -801,13 +801,9 @@
               "isDeprecated": false,
               "name": "RegionID",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               }
             },
             {
@@ -817,13 +813,9 @@
               "isDeprecated": false,
               "name": "RegionName",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               }
             },
             {
@@ -833,13 +825,9 @@
               "isDeprecated": false,
               "name": "CONLevelAll",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -849,13 +837,9 @@
               "isDeprecated": false,
               "name": "CONPercAll",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -865,13 +849,9 @@
               "isDeprecated": false,
               "name": "REGLevelAll",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -881,13 +861,9 @@
               "isDeprecated": false,
               "name": "RegPercAll",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -897,13 +873,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelAll",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -913,13 +885,9 @@
               "isDeprecated": false,
               "name": "CTRYPercAll",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -929,13 +897,9 @@
               "isDeprecated": false,
               "name": "CONLevelOwn",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -945,13 +909,9 @@
               "isDeprecated": false,
               "name": "CONPercOwn",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -961,13 +921,9 @@
               "isDeprecated": false,
               "name": "REGLevelOwn",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -977,13 +933,9 @@
               "isDeprecated": false,
               "name": "REGPercOwn",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -993,13 +945,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelOwn",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1009,13 +957,9 @@
               "isDeprecated": false,
               "name": "CTRYPercOwn",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1025,13 +969,9 @@
               "isDeprecated": false,
               "name": "CONLevelOwnOut",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1041,13 +981,9 @@
               "isDeprecated": false,
               "name": "CONPercOwnOut",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1057,13 +993,9 @@
               "isDeprecated": false,
               "name": "REGLevelOwnOut",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1073,13 +1005,9 @@
               "isDeprecated": false,
               "name": "REGPercOwnOut",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1089,13 +1017,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelOwnOut",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1105,13 +1029,9 @@
               "isDeprecated": false,
               "name": "CTRYPercOwnOut",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1121,13 +1041,9 @@
               "isDeprecated": false,
               "name": "CONLevelOwnMort",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1137,13 +1053,9 @@
               "isDeprecated": false,
               "name": "CONPercOwnMort",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1153,13 +1065,9 @@
               "isDeprecated": false,
               "name": "REGLevelOwnMort",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1169,13 +1077,9 @@
               "isDeprecated": false,
               "name": "REGPercOwnMort",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1185,13 +1089,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelOwnMort",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1201,13 +1101,9 @@
               "isDeprecated": false,
               "name": "CTRYPercOwnMort",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1217,13 +1113,9 @@
               "isDeprecated": false,
               "name": "CONLevelShare",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1233,13 +1125,9 @@
               "isDeprecated": false,
               "name": "CONPercShare",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1249,13 +1137,9 @@
               "isDeprecated": false,
               "name": "REGLevelShare",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1265,13 +1149,9 @@
               "isDeprecated": false,
               "name": "REGPercShare",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1281,13 +1161,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelShare",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1297,13 +1173,9 @@
               "isDeprecated": false,
               "name": "CTRYPercShare",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1313,13 +1185,9 @@
               "isDeprecated": false,
               "name": "CONLevelSocR",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1329,13 +1197,9 @@
               "isDeprecated": false,
               "name": "CONPercSocR",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1345,13 +1209,9 @@
               "isDeprecated": false,
               "name": "REGLevelSocR",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1361,13 +1221,9 @@
               "isDeprecated": false,
               "name": "REGPercSocR",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1377,13 +1233,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelSocR",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1393,13 +1245,9 @@
               "isDeprecated": false,
               "name": "CTRYPercSocR",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1409,13 +1257,9 @@
               "isDeprecated": false,
               "name": "CONLevelSocRLa",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1425,13 +1269,9 @@
               "isDeprecated": false,
               "name": "CONPercSocRLa",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1441,13 +1281,9 @@
               "isDeprecated": false,
               "name": "REGLevelSocRLa",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1457,13 +1293,9 @@
               "isDeprecated": false,
               "name": "REGPercSocRLa",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1473,13 +1305,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelSocRLa",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1489,13 +1317,9 @@
               "isDeprecated": false,
               "name": "CTRYPercSocRLa",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1505,13 +1329,9 @@
               "isDeprecated": false,
               "name": "CONLevelSocROther",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1521,13 +1341,9 @@
               "isDeprecated": false,
               "name": "CONPercSocROther",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1537,13 +1353,9 @@
               "isDeprecated": false,
               "name": "REGLevelSocROther",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1553,13 +1365,9 @@
               "isDeprecated": false,
               "name": "REGPercSocROther",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1569,13 +1377,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelSocROther",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1585,13 +1389,9 @@
               "isDeprecated": false,
               "name": "CTRYPercSocROther",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1601,13 +1401,9 @@
               "isDeprecated": false,
               "name": "CONLevelPrivateRent",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1617,13 +1413,9 @@
               "isDeprecated": false,
               "name": "CONPercPrivateRent",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1633,13 +1425,9 @@
               "isDeprecated": false,
               "name": "REGLevelPrivateRent",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1649,13 +1437,9 @@
               "isDeprecated": false,
               "name": "REGPercPrivateRent",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1665,13 +1449,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelPrivateRent",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1681,13 +1461,9 @@
               "isDeprecated": false,
               "name": "CTRYPercPrivateRent",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1697,13 +1473,9 @@
               "isDeprecated": false,
               "name": "CONLevelPrivateRLand",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1713,13 +1485,9 @@
               "isDeprecated": false,
               "name": "CONPercPrivateRLand",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1729,13 +1497,9 @@
               "isDeprecated": false,
               "name": "REGLevelPrivateRLand",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1745,13 +1509,9 @@
               "isDeprecated": false,
               "name": "REGPercPrivateRLand",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1761,13 +1521,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelPrivateRLand",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1777,13 +1533,9 @@
               "isDeprecated": false,
               "name": "CTRYPercPrivateRLand",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1793,13 +1545,9 @@
               "isDeprecated": false,
               "name": "CONLevelPrivateROth",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1809,13 +1557,9 @@
               "isDeprecated": false,
               "name": "CONPercPrivateROth",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1825,13 +1569,9 @@
               "isDeprecated": false,
               "name": "REGLevelPrivateROth",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1841,13 +1581,9 @@
               "isDeprecated": false,
               "name": "REGPercPrivateROth",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1857,13 +1593,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelPrivateROth",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1873,13 +1605,9 @@
               "isDeprecated": false,
               "name": "CTRYPercPrivateROth",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1889,13 +1617,9 @@
               "isDeprecated": false,
               "name": "CONLevelRentFree",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1905,13 +1629,9 @@
               "isDeprecated": false,
               "name": "CONPercRentFree",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1921,13 +1641,9 @@
               "isDeprecated": false,
               "name": "REGLevelRentFree",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1937,13 +1653,9 @@
               "isDeprecated": false,
               "name": "REGPercRentFree",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1953,13 +1665,9 @@
               "isDeprecated": false,
               "name": "CTRYLevelRentFree",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             },
             {
@@ -1969,13 +1677,9 @@
               "isDeprecated": false,
               "name": "CTRYPercRentFree",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
               }
             }
           ],
@@ -1994,119 +1698,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "longitude",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "latitude",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "postcode",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "quality",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "eastings",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "northings",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
               "name": "country",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "nhsHa",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -2138,7 +1730,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "primaryCareTrust",
+              "name": "parliamentaryConstituency",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -2166,103 +1758,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "lsoa",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "msoa",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "incode",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "outcode",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "parliamentaryConstituency",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
               "name": "adminDistrict",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "parish",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -2310,6 +1806,118 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "codes",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "GeoCodes",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "eastings",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "incode",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "lsoa",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "msoa",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "nhsHa",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "northings",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "nuts",
               "type": {
                 "kind": "NON_NULL",
@@ -2326,96 +1934,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "codes",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "GeoCodes",
-                  "ofType": null
-                }
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "GeocodeResult",
-          "possibleTypes": null
-        },
-        {
-          "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). ",
-          "enumValues": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "SCALAR",
-          "name": "Float",
-          "possibleTypes": null
-        },
-        {
-          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
-          "enumValues": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "SCALAR",
-          "name": "String",
-          "possibleTypes": null
-        },
-        {
-          "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31 - 1) and 2^31 - 1 since represented in JSON as double-precision floating point numbers specifiedby [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point).",
-          "enumValues": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "SCALAR",
-          "name": "Int",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "adminDistrict",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "adminCounty",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "adminWard",
+              "name": "outcode",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -2447,7 +1966,108 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "parliamentaryConstituency",
+              "name": "postcode",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "primaryCareTrust",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "quality",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "GeocodeResult",
+          "possibleTypes": null
+        },
+        {
+          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "String",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "adminCounty",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "adminDistrict",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "adminWard",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -2505,12 +2125,64 @@
                   "ofType": null
                 }
               }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "parish",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "parliamentaryConstituency",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
             }
           ],
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
           "name": "GeoCodes",
+          "possibleTypes": null
+        },
+        {
+          "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31 - 1) and 2^31 - 1 since represented in JSON as double-precision floating point numbers specifiedby [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point).",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "Int",
+          "possibleTypes": null
+        },
+        {
+          "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). ",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "Float",
           "possibleTypes": null
         },
         {
@@ -2539,22 +2211,6 @@
               "description": "",
               "isDeprecated": false,
               "name": "firstName",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "postcode",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -2629,7 +2285,7 @@
               "name": "geo",
               "type": {
                 "kind": "OBJECT",
-                "name": "GeocodeResult",
+                "name": "ShortGeocodeResult",
                 "ofType": null
               }
             }
@@ -2668,6 +2324,77 @@
           "interfaces": null,
           "kind": "SCALAR",
           "name": "DateTime",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "country",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "europeanElectoralRegion",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "parliamentaryConstituency",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "region",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "ShortGeocodeResult",
           "possibleTypes": null
         },
         {
@@ -2744,13 +2471,65 @@
                 {
                   "defaultValue": null,
                   "description": null,
-                  "name": "input",
+                  "name": "canContact",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "email",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "SignupMutationInput",
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "firstName",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "lastName",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "postcode",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
                       "ofType": null
                     }
                   }
@@ -2762,7 +2541,7 @@
               "name": "signup",
               "type": {
                 "kind": "OBJECT",
-                "name": "SignupMutationPayload",
+                "name": "SignupMutation",
                 "ofType": null
               }
             }
@@ -2839,34 +2618,22 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "errors",
+              "name": "success",
               "type": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ErrorType",
+                  "kind": "SCALAR",
+                  "name": "Boolean",
                   "ofType": null
                 }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "clientMutationId",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
               }
             }
           ],
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
-          "name": "SignupMutationPayload",
+          "name": "SignupMutation",
           "possibleTypes": null
         },
         {
@@ -2986,154 +2753,6 @@
           "interfaces": [],
           "kind": "OBJECT",
           "name": "SignupType",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "field",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "messages",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "ErrorType",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "defaultValue": null,
-              "description": "",
-              "name": "firstName",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "defaultValue": null,
-              "description": "",
-              "name": "lastName",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "defaultValue": null,
-              "description": "",
-              "name": "postcode",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "defaultValue": null,
-              "description": "",
-              "name": "email",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "defaultValue": null,
-              "description": "",
-              "name": "canContact",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            {
-              "defaultValue": null,
-              "description": null,
-              "name": "id",
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            {
-              "defaultValue": null,
-              "description": null,
-              "name": "clientMutationId",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            }
-          ],
-          "interfaces": null,
-          "kind": "INPUT_OBJECT",
-          "name": "SignupMutationInput",
           "possibleTypes": null
         },
         {
