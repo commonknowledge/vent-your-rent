@@ -52,6 +52,7 @@ const CookieConsentBanner: React.FC<{
               css={css`
                 text-transform: uppercase;
                 text-decoration: underline;
+                cursor: pointer;
               `}
             >
               Okay

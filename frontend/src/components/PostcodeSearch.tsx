@@ -87,6 +87,7 @@ const PostcodeSearch: React.FC<{
             css={css`
               ${buttonSecondary}
               margin-top: ${smallSpacing};
+              cursor: pointer;
             `}
             value="Search"
           />

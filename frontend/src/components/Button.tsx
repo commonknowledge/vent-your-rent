@@ -1,7 +1,11 @@
 /** @jsx jsx */
 import { jsx, SerializedStyles } from "@emotion/core";
 
-import { FunctionComponent, DetailedHTMLProps, ButtonHTMLAttributes } from "react";
+import {
+  FunctionComponent,
+  DetailedHTMLProps,
+  ButtonHTMLAttributes
+} from "react";
 
 import { css } from "@emotion/core";
 import {
@@ -30,16 +34,16 @@ function backgroundFromType(variant: buttonStyles) {
   return variant === "secondary" ? colorBlack : colorOrange;
 }
 
-const Button: FunctionComponent<ButtonProps & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>> = ({
-  variant = "primary",
-  children,
-  additionalCSS,
-  ...props
-}) => {
+const Button: FunctionComponent<ButtonProps &
+  DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >> = ({ variant = "primary", children, additionalCSS, ...props }) => {
   return (
     <button
       css={css`
         background: ${backgroundFromType(variant)};
+        cursor: pointer;
         border-radius: 6px;
         border: 0;
         height: 45px;
@@ -61,6 +65,6 @@ const Button: FunctionComponent<ButtonProps & DetailedHTMLProps<ButtonHTMLAttrib
       {children}
     </button>
   );
-}
+};
 
 export default Button;
