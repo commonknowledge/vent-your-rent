@@ -345,9 +345,7 @@ const ResultsPageView: React.FC<{
             />
           </PageWidth>
         </div>
-        <PageWidth>
-          <TakeActionBlock postcode={postcode} onSubmit={onSignup} />
-        </PageWidth>
+        <TakeActionBlock postcode={postcode} onSubmit={onSignup} />
       </div>
       <div
         css={css`
