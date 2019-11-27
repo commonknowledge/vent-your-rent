@@ -16,9 +16,10 @@ type VentsBlockProps = {
 };
 
 const ventsContainer = css`
-  display: flex;
-  flex-wrap: wrap;
-  overflow-x: auto;
+  width: 100%;
+  div:last-child {
+    border-bottom: 0;
+  }
 `;
 
 const GET_VENTS = gql`

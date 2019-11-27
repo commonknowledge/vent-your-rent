@@ -1,11 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import gql from "graphql-tag";
-import TimeAgo from "react-timeago";
-
-import { fontColorBlack } from "../styles";
+import {
+  fontColorBlack,
+  fontColorDarkBlack,
+  fontSizeExtraSmall,
+  fontSizeSmall
+} from "../styles";
 import { VentCard } from "./__graphql__/VentCard";
-import Emoji from "a11y-react-emoji";
 
 const horizontalVentContainer = () => {
   return "flex: 0 0 auto;";
@@ -16,34 +18,27 @@ const ventContainerCSS = css`
   padding-bottom: 20px;
   width: 100%;
   ${horizontalVentContainer()}
-  position: relative;
-
-  @media (min-width: 1024px) {
-    width: 50%;
-    max-width: 200px;
-  }
+  border-bottom: 1px solid black;
 `;
 
 const ventText = css`
-  font-style: normal;
-  font-weight: bold;
-  line-height: 1.1em;
+  ${fontSizeSmall}
+  ${fontColorDarkBlack}
 `;
 
 const ventDetailsCSS = css`
   margin-top: 10px;
-
-  font-style: normal;
-  font-weight: bold;
-  line-height: 14px;
-
+  ${fontSizeExtraSmall}
   ${fontColorBlack}
+  text-transform: uppercase;
 `;
 
 const MEDIA_URL =
   process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
 
-function Vent({ firstName, image, caption, geo, dateCreated }: VentCard) {
+type VentProps = {};
+
+function Vent({ firstName, image, caption, geo }: VentCard & VentProps) {
   const wordCount = caption.split(" ").length;
 
   return (
@@ -51,7 +46,6 @@ function Vent({ firstName, image, caption, geo, dateCreated }: VentCard) {
       <div
         css={css`
           margin-top: 10px;
-          margin-right: 21px;
         `}
       >
         {image && (
@@ -70,52 +64,16 @@ function Vent({ firstName, image, caption, geo, dateCreated }: VentCard) {
             `}
           />
         )}
-        <div
-          css={ventText}
-          style={{
-            fontSize:
-              !image && wordCount <= 10
-                ? 36
-                : !image && wordCount <= 18
-                ? 24
-                : !image && wordCount <= 26
-                ? 20
-                : !image && wordCount <= 36
-                ? 18
-                : !image && wordCount <= 48
-                ? 14
-                : 16
-          }}
-        >
-          {caption} <span style={{ opacity: 0.5 }}>#VentYourRent</span>
-        </div>
+        <div css={ventText}>{caption}</div>
         <div css={ventDetailsCSS}>
-          <div>
-            {firstName} <Emoji symbol="✊" />
-          </div>
-          {geo && (
-            <div
-              css={css`
-                opacity: 0.66;
-                margin-top: 5px;
-              `}
-            >
-              {geo.parliamentaryConstituency}
-            </div>
-          )}
           <div
             css={css`
-              margin-top: 5px;
-              opacity: 0.33;
+              font-weight: bold;
             `}
           >
-            <TimeAgo
-              css={css`
-                margin-top: 5px;
-              `}
-              date={dateCreated}
-            />
+            {firstName}
           </div>
+          {geo && <div>{geo.parliamentaryConstituency}</div>}
         </div>
       </div>
     </div>
