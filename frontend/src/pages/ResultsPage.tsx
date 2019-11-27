@@ -20,6 +20,7 @@ import Rule from "../components/Rule";
 import StatisticBlock from "../components/StatisticBlock";
 import TakeActionBlock from "../components/TakeActionBlock";
 import VentsBlock from "../components/VentsBlock";
+import { OpenEndedTenancies } from '../components/demands';
 import {
   colorWhite,
   equalTopAndBottomPadding,
@@ -50,7 +51,7 @@ const STATISTICS_QUERY = gql`
 
       twoBedRentPrice: rentMedianvalue2bed
 
-      wageToHousePrice: wageToHousePrice
+      wageToHousePrice
 
       numberOfHousingBenefitRecipients: totalHbInclSocial
 
@@ -58,6 +59,7 @@ const STATISTICS_QUERY = gql`
 
       percentPrivateRenters: CONPercPrivateRent
       percentPrivateRentersNationally: CTRYPercPrivateRent
+
       noFaultEvictionHomelessnessCasesPer1000
     }
   }
@@ -372,9 +374,9 @@ const ResultsPageView: React.FC<{
             )}
           </div>
         </PageWidth>
+        <OpenEndedTenancies />
         <div
           css={css`
-            background: ${colorWhite};
             padding: 40px 20px;
           `}
         >
