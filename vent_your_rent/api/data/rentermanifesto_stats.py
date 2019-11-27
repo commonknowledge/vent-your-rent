@@ -6,7 +6,7 @@ from .constituency_voter_registration_data import data as voter_reg_data
 from .borough_renting_data import data as borough_renting_data
 from .borough_homelessness_data import data as borough_homelessness_data
 
-# TODO: @cached_fn(lambda key: key, None)
+# @cached_fn(lambda key: key, None)
 def rentermanifesto_stats_for_constituency_id(constituency_id):
     return {
         **find(constituency_data,
@@ -17,7 +17,7 @@ def rentermanifesto_stats_for_constituency_id(constituency_id):
             lambda c: c.get('PCON11CD') == constituency_id)
     }
 
-# TODO: @cached_fn(lambda key: key, None)
+# @cached_fn(lambda key: key, None)
 def rentermanifesto_stats_for_admin_district(admin_district):
     return {
         **borough_renting_data.get(admin_district),
