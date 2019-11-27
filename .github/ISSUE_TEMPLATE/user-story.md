@@ -1,7 +1,7 @@
 ---
 name: User Story
 about: A user story for a new feature to be implemented
-title: ''
+title: Kind of user has feature
 labels: ''
 assignees: ''
 
