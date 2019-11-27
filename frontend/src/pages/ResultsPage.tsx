@@ -180,7 +180,7 @@ const ResultsPageView: React.FC<{
               </p>
 
               <p>
-                Your parliamentary consituency is{" "}
+                Your parliamentary constituency is{" "}
                 <strong>{stats.constituencyName}</strong> and your local council
                 is <strong>{stats.adminDistrictName}</strong>.
               </p>
