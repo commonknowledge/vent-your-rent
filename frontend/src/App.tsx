@@ -9,6 +9,7 @@ import FirstPage from "./pages/FirstPage";
 import ResultsPage from "./pages/ResultsPage";
 import ThirdPage from "./pages/ThirdPage";
 import VentPage from './pages/Vent';
+import CookieConsentBanner from "./components/CookieConsentBanner";
 
 const history = createBrowserHistory();
 
@@ -66,6 +67,7 @@ const App: React.FC = () => {
             />
             <Route component={FirstPage} />
           </Switch>
+          <CookieConsentBanner onConsent={analytics.initialiseCookies} />
         </GraphQLProvider>
       </Router>
     </AnalyticsProvider>

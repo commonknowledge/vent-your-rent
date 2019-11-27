@@ -7,7 +7,7 @@ export const NationalDatabaseOfLandlordsAndRents = () => (
 );
 
 export const RentControls = () => (
-  <DemandBlock demand="We demand house building and rent controls to which bring down rents to 30% of average local income" />
+  <DemandBlock demand="We demand house building and rent controls to bring down rents to 30% of average local income" />
 );
 
 export const WelfareSystemThatSupportsHousing = () => (

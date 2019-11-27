@@ -1,9 +1,9 @@
 ---
 name: User Story
 about: A user story for a new feature to be implemented
-title: ''
-labels: ''
-assignees: ''
+title: Kind of user has feature
+labels: story
+assignees: conatus
 
 ---
 

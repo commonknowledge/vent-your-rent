@@ -4,6 +4,8 @@ import { jsx, css } from "@emotion/core";
 import FacebookShareIcon from "./shares/facebook.svg";
 import TwitterShareIcon from "./shares/twitter.svg";
 import WhatsAppShareIcon from "./shares/whatsapp.svg";
+import EmailShareIcon from "./shares/email.svg";
+
 import { smallSpacing } from "../styles";
 
 // Sharing URL functionality adapted from react-social-sharing
@@ -24,7 +26,6 @@ function whatsAppShareUrl(link: string, message: string) {
   )}%20${encodeURIComponent(link)}`;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function emailShareUrl(link: string, subject: string, body?: string) {
   return `mailto:?subject=${encodeURIComponent(
     subject || ""
@@ -61,6 +62,13 @@ const ShareBar: React.FC<ShareBarProps> = ({ message, url }) => {
         rel="noopener noreferrer"
       >
         <img src={WhatsAppShareIcon} alt="Share to WhatsApp" />
+      </a>
+      <a
+        href={emailShareUrl(url, "Vent Your Rent!", message)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src={EmailShareIcon} alt="Share via email" />
       </a>
     </div>
   );
