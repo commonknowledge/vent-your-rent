@@ -103,11 +103,11 @@ const ResultsPageView: React.FC<{
         <div>
           <div
             css={css`
-              ${paddingCss}
+              padding: 40px 20px;
               text-align: center;
             `}
           >
-            <Emoji symbol="🔍" /> loading that terrible rent situation in{" "}
+            <Emoji symbol="🔍" /> Loading that terrible rent situation in{" "}
             {postcode}
           </div>
         </div>
