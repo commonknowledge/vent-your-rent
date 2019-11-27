@@ -1,16 +1,18 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
-import { colorDarkBlack, equalTopAndBottomMargin } from "../styles";
+import { colorDarkBlack, equalTopAndBottomMargin, colorWhite } from "../styles";
 
-type RuleProps = {};
+type RuleProps = {
+  secondary?: boolean;
+};
 
-const Rule: React.FC<RuleProps> = () => (
+const Rule: React.FC<RuleProps> = ({ secondary }) => (
   <div>
     <hr
       css={css`
         height: 2px;
-        background: ${colorDarkBlack};
+        background: ${!secondary ? colorDarkBlack : colorWhite};
         border: 0;
 
         ${equalTopAndBottomMargin(30)}

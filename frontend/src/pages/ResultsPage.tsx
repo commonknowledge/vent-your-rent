@@ -20,7 +20,7 @@ import Rule from "../components/Rule";
 import StatisticBlock from "../components/StatisticBlock";
 import TakeActionBlock from "../components/TakeActionBlock";
 import VentsBlock from "../components/VentsBlock";
-import { OpenEndedTenancies } from '../components/demands';
+import { OpenEndedTenancies } from "../components/demands";
 import {
   colorWhite,
   equalTopAndBottomPadding,
@@ -221,6 +221,7 @@ const ResultsPageView: React.FC<{
                 nationalAverageStatistic={averageRentPrice}
               />
             )}
+            <Rule secondary />
             {stats.wageToHousePrice && (
               <StatisticBlock
                 render={
@@ -273,6 +274,7 @@ const ResultsPageView: React.FC<{
                 nationalAverageStatistic={5521}
               />
             )}
+            <Rule secondary />
             {stats.percentRentersOnUC && (
               <StatisticBlock
                 render={
