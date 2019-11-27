@@ -178,6 +178,12 @@ const ResultsPageView: React.FC<{
                 </a>{" "}
                 — so that together we can change the story.
               </p>
+
+              <p>
+                Your parliamentary consituency is{" "}
+                <strong>{stats.constituencyName}</strong> and your local council
+                is <strong>{stats.adminDistrictName}</strong>.
+              </p>
               <p>
                 Scroll down to see what the renting crisis looks like in your
                 area.
@@ -218,7 +224,7 @@ const ResultsPageView: React.FC<{
                 render={
                   <Fragment>
                     <p>
-                      House prices in {stats.adminDistrictName} are{" "}
+                      House prices in {stats.constituencyName} are{" "}
                       <strong>
                         {format(".2")(stats.wageToHousePrice)} times more
                       </strong>{" "}
