@@ -32,7 +32,7 @@ import {
 import {
   Statistics,
   Statistics_statisticsForPostcode
-} from "../__graphql__/Statistics";
+} from "./__graphql__/Statistics";
 
 const formatNumberWithCommas = format(",");
 const formatNumberAsRoundedPercentage = format(".0%");
