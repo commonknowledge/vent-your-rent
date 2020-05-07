@@ -14,7 +14,7 @@ export default {
     black: '#000000'
   },
   fontSizes: [
-    10, 14, 24, 50
+    10, 14, 24, 100
   ],
   lineHeights: {
     body: 1.2,
@@ -37,12 +37,6 @@ export default {
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
-    },
-    logo: {
-      variant: 'heading',
-      textTransform: 'uppercase',
-      fontSize: 3,
-      fontWeight: 900
     },
     subheading: {
       variant: 'heading',
