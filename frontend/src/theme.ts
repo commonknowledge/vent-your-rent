@@ -37,6 +37,7 @@ export default {
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
+      letterSpacing: 'heading'
     },
     subheading: {
       variant: 'heading',

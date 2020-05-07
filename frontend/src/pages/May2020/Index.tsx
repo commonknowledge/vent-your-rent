@@ -14,6 +14,9 @@ export const Index = () => {
         }}>
           Vent Your Rent
         </Heading>
+        <Heading sx={{ my: 3 }}>
+          If you’re worried about your rental situation during coronavirus, you’re not alone.
+        </Heading>
       </Box>
       <Box sx={{ bg: 'grey', p: [3, 4, 5] }} />
       <Box sx={{ bg: 'white', p: [3, 4, 5] }} />
