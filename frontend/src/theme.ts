@@ -1,10 +1,13 @@
-export default {
+import { Theme } from "theme-ui";
+
+const theme: Theme = {
   fonts: {
     body: 'Rubik, sans-serif',
     heading: 'Rubik, sans-serif',
     monospace: 'Menlo, monospace',
   },
   colors: {
+    background: '#FFF',
     orange: '#FF974B',
     orangeLight: '#FFEBD8',
     grey: '#F0F0F0',
@@ -30,6 +33,7 @@ export default {
     emphasis: 500,
     bold: 700
   },
+  // @ts-ignore
   text: {
     // variants
     heading: {
@@ -58,21 +62,30 @@ export default {
       fontSize: 1,
       color: 'textLight',
     },
-    small: {
-      fontSize: 0,
-      color: 'text',
-    },
-    bold: {
-      fontWeight: 'bold'
+    link: {
+      color: 'orange',
+      textDecoration: 'none'
     }
   },
   styles: {
     root: {
+      fontSize: 1,
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
       letterSpacing: 'body',
       color: 'text',
+      p: {
+        variant: 'text.para'
+      },
+      b: {
+        fontWeight: 'emphasis'
+      },
+      a: {
+        variant: 'text.link'
+      }
     }
   }
 }
+
+export default theme
