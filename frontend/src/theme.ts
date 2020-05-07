@@ -27,10 +27,11 @@ export default {
   fontWeights: {
     body: 400,
     heading: 500,
+    emphasis: 500,
     bold: 700
   },
   text: {
-    color: 'text',
+    // variants
     heading: {
       color: 'text',
       fontSize: 2,
@@ -49,12 +50,28 @@ export default {
       fontSize: 1,
       fontWeight: 500
     },
+    para: {
+      fontSize: 1,
+      my: 3,
+    },
     hint: {
       fontSize: 1,
       color: 'textLight',
     },
     small: {
       fontSize: 0,
+      color: 'text',
+    },
+    bold: {
+      fontWeight: 'bold'
+    }
+  },
+  styles: {
+    root: {
+      fontFamily: 'body',
+      lineHeight: 'body',
+      fontWeight: 'body',
+      letterSpacing: 'body',
       color: 'text',
     }
   }
