@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, Box, Grid, Heading, Text } from 'theme-ui'
 import { VentDashboard } from './components/VentDashboard';
+import Emoji from 'a11y-react-emoji';
 
 export const Index: React.FC = () => {
   return (
@@ -34,7 +35,21 @@ export const Index: React.FC = () => {
       </Box>
 
       {/* Right */}
-      <Box sx={{ bg: 'white', p: [3, 4, 5] }} />
+      <Box sx={{ bg: 'white', p: [3, 4, 5] }}>
+        <Heading>
+          <Emoji symbol="📣" />  Add your story
+        </Heading>
+        <Heading sx={{ my: 3, fontWeight: 'body' }}>
+          How has coronavirus affected your rental situation?
+        </Heading>
+        <p>We are experiencing a renting crisis but the government is ignoring it. </p>
+        <p>Politicians need to understand the impact of coronavirus and the lockdown on renters. Our campaign is making sure that renters are heard and protected. </p>
+        <p>That's where you come in. Please let us know how your life is being affected. Your answers will help us develop our campaigns in the weeks ahead.</p>
+        <p><b>Only by coming together can renters change the housing system!</b></p>
+        <Box sx={{ p: 4, bg: 'orangeLight', borderRadius: 5, textAlign: 'center' }}>
+          <pre>/* form here */</pre>
+        </Box>
+      </Box>
     </Grid>
   )
 }
