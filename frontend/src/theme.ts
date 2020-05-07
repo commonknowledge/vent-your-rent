@@ -13,4 +13,54 @@ export default {
     textLight: '#949494',
     black: '#000000'
   },
+  fontSizes: [
+    10, 14, 24, 50
+  ],
+  lineHeights: {
+    body: 1.2,
+    heading: 1.1
+  },
+  letterSpacings: {
+    body: '-0.02em',
+    heading: '-0.04em',
+  },
+  fontWeights: {
+    body: 400,
+    heading: 500,
+    bold: 700
+  },
+  text: {
+    color: 'text',
+    heading: {
+      color: 'text',
+      fontSize: 2,
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      fontWeight: 'heading',
+    },
+    logo: {
+      variant: 'heading',
+      textTransform: 'uppercase',
+      fontSize: 3,
+      fontWeight: 900
+    },
+    subheading: {
+      variant: 'heading',
+      fontSize: 1,
+      fontWeight: 'bold'
+    },
+    label: {
+      variant: 'heading',
+      fontSize: 1,
+      fontWeight: 500
+    },
+    hint: {
+      fontSize: 1,
+      color: 'textLight',
+    },
+    small: {
+      fontSize: 0,
+      color: 'text',
+    }
+  }
 }
