@@ -1,19 +1,19 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import PostcodeSearch from "../components/PostcodeSearch";
+import PostcodeSearch from "../../components/PostcodeSearch";
 import { RouteComponentProps } from "react-router";
-import { PageWidth } from "../components/PageElements";
+import { PageWidth } from "../../components/PageElements";
 import {
   fontSizeExtraLarge,
   fontColorBlack,
   colorOrange,
   fontSizeMedium,
   smallSpacing
-} from "../styles";
-import GenerationRentBlock from "../components/GenerationRentBlock";
-import RenterManifestoBlock from "../components/RenterManifestoBlock";
-import Footer from "../components/Footer";
-import VentsBlock from "../components/VentsBlock";
+} from "../../styles";
+import GenerationRentBlock from "../../components/GenerationRentBlock";
+import RenterManifestoBlock from "../../components/RenterManifestoBlock";
+import Footer from "../../components/Footer";
+import VentsBlock from "../../components/VentsBlock";
 
 const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
   return (

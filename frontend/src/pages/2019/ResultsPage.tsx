@@ -10,17 +10,17 @@ import {
   NationalDatabaseOfLandlordsAndRents,
   RentControls,
   WelfareSystemThatSupportsHousing
-} from "../components/demands";
-import Footer from "../components/Footer";
-import GenerationRentBlock from "../components/GenerationRentBlock";
-import Page from "../components/Page";
-import { PageWidth } from "../components/PageElements";
-import RenterManifestoBlock from "../components/RenterManifestoBlock";
-import Rule from "../components/Rule";
-import StatisticBlock from "../components/StatisticBlock";
-import TakeActionBlock from "../components/TakeActionBlock";
-import VentsBlock from "../components/VentsBlock";
-import { OpenEndedTenancies } from "../components/demands";
+} from "../../components/demands";
+import Footer from "../../components/Footer";
+import GenerationRentBlock from "../../components/GenerationRentBlock";
+import Page from "../../components/Page";
+import { PageWidth } from "../../components/PageElements";
+import RenterManifestoBlock from "../../components/RenterManifestoBlock";
+import Rule from "../../components/Rule";
+import StatisticBlock from "../../components/StatisticBlock";
+import TakeActionBlock from "../../components/TakeActionBlock";
+import VentsBlock from "../../components/VentsBlock";
+import { OpenEndedTenancies } from "../../components/demands";
 import {
   colorWhite,
   equalTopAndBottomPadding,
@@ -28,11 +28,11 @@ import {
   fontSizeLarge,
   fontSizeMedium,
   paddingCss
-} from "../styles";
+} from "../../styles";
 import {
   Statistics,
   Statistics_statisticsForPostcode
-} from "./__graphql__/Statistics";
+} from "../__graphql__/Statistics";
 
 const formatNumberWithCommas = format(",");
 const formatNumberAsRoundedPercentage = format(".0%");
