@@ -50,11 +50,11 @@ const App: React.FC = () => {
           />
           <Switch>
             <Route
-              exact
-              path="/welcome-to-the-movement"
+              path="/old/welcome-to-the-movement"
               component={ThirdPage}
             />
-            <Route exact path="/:postcode" component={ResultsPage} />
+            <Route path="/old/:postcode" component={ResultsPage} />
+            <Route path="/old" component={FirstPage} />
             <Route component={FirstPage} />
           </Switch>
           <CookieConsentBanner onConsent={analytics.initialiseCookies} />

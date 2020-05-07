@@ -85,7 +85,7 @@ const ResultsPage: React.FC<RouteComponentProps<{ postcode: string }>> = ({
       }
       loading={loading}
       error={error}
-      onSignup={() => history.push("/welcome-to-the-movement")}
+      onSignup={() => history.push("/old/welcome-to-the-movement")}
     />
   );
 };

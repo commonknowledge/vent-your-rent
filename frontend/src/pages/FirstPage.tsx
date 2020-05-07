@@ -35,7 +35,7 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
           text-transform: uppercase;
             `}
           >
-            Vent Your Rent
+            Vent Your Re
           </header>
           <div
             css={css`
@@ -67,7 +67,7 @@ const FirstPage: React.FC<RouteComponentProps> = ({ history }) => {
             <PostcodeSearch
               label="Enter your postcode"
               onSubmit={postcode => {
-                history.push(`/${postcode}`);
+                history.push(`/old/${postcode}`);
               }}
             />
           </div>
