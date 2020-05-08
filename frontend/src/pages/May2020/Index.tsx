@@ -50,7 +50,7 @@ export const Index: React.FC = () => {
         <p>Politicians need to understand the impact of coronavirus and the lockdown on renters. Our campaign is making sure that renters are heard and protected. </p>
         <p>That's where you come in. Please let us know how your life is being affected. Your answers will help us develop our campaigns in the weeks ahead.</p>
         <p><b>Only by coming together can renters change the housing system!</b></p>
-        <VentForm onSubmitSuccess={() => history.push("/result")} />
+        <VentForm onSubmitSuccess={() => history.push("/map")} />
       </Box>
     </Grid>
   )
