@@ -2,8 +2,12 @@
 import { jsx, Box, Grid, Heading, Text } from 'theme-ui'
 import { VentDashboard } from './components/VentDashboard';
 import Emoji from 'a11y-react-emoji';
+import { VentForm } from './components/VentForm';
+import { useHistory } from 'react-router-dom';
 
 export const Index: React.FC = () => {
+  const history = useHistory()
+
   return (
     <Grid sx={{ height: '100vh' }} columns={[1, 1, 1, 3]} gap={0}>
       {/* Left */}
@@ -46,9 +50,7 @@ export const Index: React.FC = () => {
         <p>Politicians need to understand the impact of coronavirus and the lockdown on renters. Our campaign is making sure that renters are heard and protected. </p>
         <p>That's where you come in. Please let us know how your life is being affected. Your answers will help us develop our campaigns in the weeks ahead.</p>
         <p><b>Only by coming together can renters change the housing system!</b></p>
-        <Box sx={{ p: 4, bg: 'orangeLight', borderRadius: 5, textAlign: 'center' }}>
-          <pre>/* form here */</pre>
-        </Box>
+        <VentForm onSubmitSuccess={() => history.push("/result")} />
       </Box>
     </Grid>
   )

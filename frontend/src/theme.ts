@@ -1,5 +1,16 @@
 import { Theme } from "theme-ui";
 
+const colors = {
+  orange: '#FF974B',
+  orangeLight: '#FFEBD8',
+  grey: '#F0F0F0',
+  text: '#353535',
+  textLight: '#949494',
+  white: '#FFF',
+  black: '#000000',
+  pink: '#ffe4e9'
+}
+
 const theme: Theme = {
   fonts: {
     body: 'Rubik, sans-serif',
@@ -7,14 +18,9 @@ const theme: Theme = {
     monospace: 'Menlo, monospace',
   },
   colors: {
-    background: '#FFF',
-    orange: '#FF974B',
-    orangeLight: '#FFEBD8',
-    grey: '#F0F0F0',
-    white: '#FFF',
-    text: '#353535',
-    textLight: '#949494',
-    black: '#000000'
+    ...colors,
+    primary: colors.orange,
+    background: colors.white,
   },
   fontSizes: [
     10, 14, 24, 100
@@ -65,6 +71,57 @@ const theme: Theme = {
     link: {
       color: 'orange',
       textDecoration: 'none'
+    }
+  },
+  buttons: {
+    primary: {
+      cursor: 'pointer'
+    }
+  },
+  forms: {
+    checkbox: {
+      position: 'relative',
+      cursor: 'pointer',
+      '-webkit-appearance': 'none',
+      '-moz-appearance': 'none',
+      'vertical-align': 'middle',
+      'background': 'white',
+      'border': '1px solid black',
+      'width': '30px',
+      'height': '30px',
+      'border-radius': '20%',
+      'display': 'inline-flex',
+      'justify-content': 'center',
+      'align-items': 'center',
+      'flex-shrink': '0',
+      'line-height': '1em',
+      'margin-left': '0',
+      'margin-right': '5px',
+      '&:disabled': {
+        'opacity': '0.25',
+        'cursor': 'not-allowed',
+      },
+      '&:checked:after': {
+        'content': '""',
+        display: 'block',
+        bg: 'black',
+        'border-radius': '20%',
+        // 'transform': 'translate(0, 0)',
+        top: '12.5%',
+        left: '12.5%',
+        position: 'absolute',
+        'height': '75%',
+        'width': '75%',
+        'line-height': '0',
+      }
+    },
+    radio: {
+      variant: 'forms.checkbox',
+      'border-radius': '100%',
+      '&:checked:after': {
+        variant: 'forms.checkbox.&:checked:after',
+        'border-radius': '100%',
+      }
     }
   },
   styles: {

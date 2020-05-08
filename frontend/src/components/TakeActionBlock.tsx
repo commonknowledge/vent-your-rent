@@ -70,7 +70,7 @@ const textAreaCss = css`
   ${fontSizeMedium};
 `;
 
-const SIGNUP_MUTATION = gql`
+export const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
     $firstName: String!
     $lastName: String!
@@ -92,7 +92,7 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
-const CREATE_VENT_MUTATION = gql`
+export const CREATE_VENT_MUTATION = gql`
   ${Vent.fragment}
 
   mutation CreateVentMutation(
