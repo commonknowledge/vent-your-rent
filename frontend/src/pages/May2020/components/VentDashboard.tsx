@@ -6,6 +6,15 @@ import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
 import { VentDashboardQuery_vents, VentDashboardQuery } from './__graphql__/VentDashboardQuery';
 
+export const VentCounter: React.FC = () => {
+  return (
+    <Heading>
+      <span sx={{ color: 'orange' }}>357</span> rent vents
+      <br />(and counting!)
+    </Heading>
+  )
+}
+
 export const VentDashboard: React.FC = () => {
   const { loading, data } = useQuery<VentDashboardQuery>(GET_VENTS, {
     variables: { quantity: 10 }

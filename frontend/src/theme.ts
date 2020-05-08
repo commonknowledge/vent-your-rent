@@ -70,8 +70,16 @@ const theme: Theme = {
     },
     link: {
       color: 'orange',
-      textDecoration: 'none'
-    }
+      textDecoration: 'none',
+      bold: {
+        display: 'inline-block',
+        textTransform: 'uppercase',
+        fontWeight: 'emphasis',
+        color: 'black',
+        borderBottom: '2px solid black',
+        borderColor: 'orange'
+      }
+    },
   },
   buttons: {
     primary: {

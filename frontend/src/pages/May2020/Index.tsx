@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Box, Grid, Heading, Text } from 'theme-ui'
-import { VentDashboard } from './components/VentDashboard';
+import { VentDashboard, VentCounter } from './components/VentDashboard';
 import Emoji from 'a11y-react-emoji';
 import { VentForm } from './components/VentForm';
 import { useHistory } from 'react-router-dom';
@@ -31,10 +31,7 @@ export const Index: React.FC = () => {
 
       {/* Center */}
       <Box sx={{ bg: 'grey', p: [3, 4, 5] }}>
-        <Heading>
-          <span sx={{ color: 'orange' }}>357</span> rent vents
-          <br />(and counting!)
-        </Heading>
+        <VentCounter />
         <VentDashboard />
       </Box>
 
@@ -50,7 +47,7 @@ export const Index: React.FC = () => {
         <p>Politicians need to understand the impact of coronavirus and the lockdown on renters. Our campaign is making sure that renters are heard and protected. </p>
         <p>That's where you come in. Please let us know how your life is being affected. Your answers will help us develop our campaigns in the weeks ahead.</p>
         <p><b>Only by coming together can renters change the housing system!</b></p>
-        <VentForm onSubmitSuccess={() => history.push("/map")} />
+        <VentForm onSubmitSuccess={() => history.push("/share")} />
       </Box>
     </Grid>
   )
