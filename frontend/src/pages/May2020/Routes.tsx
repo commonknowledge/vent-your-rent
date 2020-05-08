@@ -9,7 +9,7 @@ export const RoutesMay2020 = () => {
   return (
     <ThemeProvider theme={theme}>
       <Switch>
-        <Route path='/map' component={Share} />
+        <Route path='/share' component={Share} />
         <Route component={Index} />
       </Switch>
     </ThemeProvider>
