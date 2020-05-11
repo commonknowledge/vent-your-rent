@@ -22,7 +22,9 @@ const CookieConsentBanner: React.FC<{
   return !consent ? (
     <div
       css={css`
-        position: relative;
+        width: 100%;
+        bottom: 0;
+        position: fixed;
         z-index: 999;
         height: ${'103px'};
         background: ${colorBlack};
