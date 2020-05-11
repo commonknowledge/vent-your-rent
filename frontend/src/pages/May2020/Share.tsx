@@ -4,6 +4,7 @@ import Emoji from 'a11y-react-emoji';
 import { ShareAction } from './components/ShareAction';
 import GenerationRentBlock from '../../components/GenerationRentBlock';
 import { VentDashboard, VentCounter } from './components/VentDashboard';
+import { VentMap } from './components/VentMap';
 
 export const Share: React.FC = () => {
   return (
@@ -67,9 +68,8 @@ export const Share: React.FC = () => {
       </Box>
 
       {/* Right */}
-      <Box sx={{ bg: 'grey', p: [3, 4, 5] }}>
-        <VentCounter />
-        <VentDashboard />
+      <Box sx={{ bg: 'grey', position: 'relative' }}>
+        <VentMap />
       </Box>
     </Grid>
   )

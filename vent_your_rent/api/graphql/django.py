@@ -4,7 +4,7 @@ from django import forms
 from django.db.models import Q
 from graphene_django.forms.mutation import DjangoModelFormMutation
 from .utils import DjangoFilterField
-from .geo import ShortGeocodeResult
+from .geo import GeocodeResult
 from vent_your_rent.api.helpers.utils import get, get_path
 from vent_your_rent.api.helpers.cache import cached_fn
 from vent_your_rent.api.models import Vent, Signup
@@ -97,7 +97,7 @@ class VentType(DjangoObjectType):
         except:
             return None
 
-    geo = graphene.Field(ShortGeocodeResult)
+    geo = graphene.Field(GeocodeResult)
 
     def resolve_geo(self, info):
         return info.context.loaders.get('geo_from_postcode').load(self.postcode)
