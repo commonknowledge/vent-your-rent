@@ -59,21 +59,25 @@ export function VentForm({
     const errors: string[] = []
     try {
       if (form.valid) {
-        const cmds = [signup];
+        const cmds: Array<() => Promise<any>> = [signup];
         if (image || caption.value) {
           cmds.push(createVent);
         }
         try {
-          await Promise.all(cmds.map(c => c()));
-          onSubmitSuccess();
+          await Promise.all(cmds.map(async c => c()));
         } catch (e) {
           errors.push("There was a problem saving your submission. Please refresh and try again?")
         }
       } else {
-        errors.push("Form isn't valid")
+        errors.push("Go back over the form and add any missing details")
       }
     } catch (e) {
       errors.push(e.toString())
+    }
+    if (!errors?.length) {
+      return setTimeout(() => {
+        return onSubmitSuccess();
+      }, 750)
     }
     return errors
   }
@@ -91,8 +95,8 @@ export function VentForm({
     CREATE_VENT_MUTATION
   );
 
-  const signup = () => {
-    signupMutation({
+  const signup = async () => {
+    return signupMutation({
       variables: {
         firstName: firstName.value,
         lastName: lastName.value,
@@ -277,13 +281,13 @@ export function VentForm({
               to unsubscribe.
           </p>
       </div>
-      <Button type="submit" disabled={form.submitting || form.submitted}>
+      <Button type="submit" disabled={form.submitting || (form.submitted && !form.submitErrors?.length)}>
         {form.submitting
           ? "Sending... ⏳"
-          : form.submitted
+          : form.submitted && !form.submitErrors?.length
             ? "You've signed ✊"
-            : form.submitErrors.length
-              ? "Something went wrong"
+            : form?.submitErrors?.length
+              ? "Try again"
               : "Add Your Voice"}
       </Button>
       {form.submitted && <Errors errors={form.submitErrors} />}
