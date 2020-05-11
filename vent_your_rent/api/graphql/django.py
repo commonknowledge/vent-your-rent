@@ -31,6 +31,16 @@ class SignupMutation(graphene.Mutation):
         postcode = graphene.String(required=True)
         email = graphene.String(required=True)
         can_contact = graphene.Boolean()
+        IncomeFell = graphene.Boolean()
+        FullPay = graphene.Boolean()
+        CannotGetUC = graphene.Boolean()
+        CannotGetFurlough = graphene.Boolean()
+        UCDoesntCoverRent = graphene.Boolean()
+        AskedToMoveOut = graphene.Boolean()
+        RentHolidayOrReduction = graphene.Boolean()
+        CantMove = graphene.Boolean()
+        Overcrowded = graphene.Boolean()
+        UnfitToLiveIn = graphene.Boolean()
 
     signup = graphene.Field(SignupType)
     success = graphene.Boolean(required=True)
@@ -40,7 +50,17 @@ class SignupMutation(graphene.Mutation):
                last_name=None,
                postcode=None,
                email=None,
-               can_contact=False
+               can_contact=False,
+               IncomeFell=False,
+               FullPay=False,
+               CannotGetUC=False,
+               CannotGetFurlough=False,
+               UCDoesntCoverRent=False,
+               AskedToMoveOut=False,
+               RentHolidayOrReduction=False,
+               CantMove=False,
+               Overcrowded=False,
+               UnfitToLiveIn=False,
                ):
         signup = Signup.objects.create(
             first_name=first_name,
@@ -48,6 +68,16 @@ class SignupMutation(graphene.Mutation):
             postcode=postcode,
             email=email,
             can_contact=can_contact,
+            IncomeFell=IncomeFell,
+            FullPay=FullPay,
+            CannotGetUC=CannotGetUC,
+            CannotGetFurlough=CannotGetFurlough,
+            UCDoesntCoverRent=UCDoesntCoverRent,
+            AskedToMoveOut=AskedToMoveOut,
+            RentHolidayOrReduction=RentHolidayOrReduction,
+            CantMove=CantMove,
+            Overcrowded=Overcrowded,
+            UnfitToLiveIn=UnfitToLiveIn
         )
 
         return SignupMutation(success=True, signup=signup)

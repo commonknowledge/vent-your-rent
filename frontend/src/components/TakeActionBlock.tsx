@@ -77,6 +77,16 @@ export const SIGNUP_MUTATION = gql`
     $postcode: String!
     $email: String!
     $canContact: Boolean
+    $IncomeFell: Boolean
+    $FullPay: Boolean
+    $CannotGetUC: Boolean
+    $CannotGetFurlough: Boolean
+    $UCDoesntCoverRent: Boolean
+    $AskedToMoveOut: Boolean
+    $RentHolidayOrReduction: Boolean
+    $CantMove: Boolean
+    $Overcrowded: Boolean
+    $UnfitToLiveIn: Boolean
   ) {
     signup(
       firstName: $firstName
@@ -84,9 +94,33 @@ export const SIGNUP_MUTATION = gql`
       postcode: $postcode
       email: $email
       canContact: $canContact
+      IncomeFell: $IncomeFell
+      FullPay: $FullPay
+      CannotGetUC: $CannotGetUC
+      CannotGetFurlough: $CannotGetFurlough
+      UCDoesntCoverRent: $UCDoesntCoverRent
+      AskedToMoveOut: $AskedToMoveOut
+      RentHolidayOrReduction: $RentHolidayOrReduction
+      CantMove: $CantMove
+      Overcrowded: $Overcrowded
+      UnfitToLiveIn: $UnfitToLiveIn
     ) {
       signup {
         id
+        firstName
+        lastName
+        email
+        canContact
+        IncomeFell
+        FullPay
+        CannotGetUC
+        CannotGetFurlough
+        UCDoesntCoverRent
+        AskedToMoveOut
+        RentHolidayOrReduction
+        CantMove
+        Overcrowded
+        UnfitToLiveIn
       }
     }
   }

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { CreateVentMutation } from '../../../components/__graphql__/CreateVentMutation';
 import { CREATE_VENT_MUTATION, SIGNUP_MUTATION } from '../../../components/TakeActionBlock';
-import { TextInput, LargeTextInput, CheckboxInput, Errors, FieldErrors } from './formElements';
+import { TextInput, LargeTextInput, CheckboxInput, Errors, FieldErrors, Checkbox } from './formElements';
 
 export function VentForm({
   onSubmitSuccess
@@ -30,25 +30,25 @@ export function VentForm({
   const canContact = useField<boolean>({ defaultValue: false });
 
   // My income has fallen as a result of the pandemic
-  const tagIncomeFell = useField<boolean>({ defaultValue: false })
+  const IncomeFell = useField<boolean>({ defaultValue: false })
   // I am still on full pay
-  const tagFullPay = useField<boolean>({ defaultValue: false })
+  const FullPay = useField<boolean>({ defaultValue: false })
   // I am not eligible for Universal Credit
-  const tagCannotGetUC = useField<boolean>({ defaultValue: false })
+  const CannotGetUC = useField<boolean>({ defaultValue: false })
   // I am not eligible to have 80% of my income paid by the government
-  const tagCannotGetFurlough = useField<boolean>({ defaultValue: false })
+  const CannotGetFurlough = useField<boolean>({ defaultValue: false })
   // Universal Credit/housing benefit won't cover my rent
-  const tagUCDoesntCoverRent = useField<boolean>({ defaultValue: false })
+  const UCDoesntCoverRent = useField<boolean>({ defaultValue: false })
   // I have been asked to move out
-  const tagAskedToMoveOut = useField<boolean>({ defaultValue: false })
+  const AskedToMoveOut = useField<boolean>({ defaultValue: false })
   // My landlord has offered me a rent holiday/reduction
-  const tagRentHolidayOrReduction = useField<boolean>({ defaultValue: false })
+  const RentHolidayOrReduction = useField<boolean>({ defaultValue: false })
   // I've started a new tenancy but now can't move
-  const tagCantMove = useField<boolean>({ defaultValue: false })
+  const CantMove = useField<boolean>({ defaultValue: false })
   // My home is overcrowded
-  const tagOvercrowded = useField<boolean>({ defaultValue: false })
+  const Overcrowded = useField<boolean>({ defaultValue: false })
   // My home is unfit to live in
-  const tagUnfitToLiveIn = useField<boolean>({ defaultValue: false })
+  const UnfitToLiveIn = useField<boolean>({ defaultValue: false })
 
   // Vent
   const caption = useField<string>({ defaultValue: "" });
@@ -95,7 +95,17 @@ export function VentForm({
         lastName: lastName.value,
         email: email.value,
         canContact: canContact.value,
-        postcode: postcode.value
+        postcode: postcode.value,
+        IncomeFell: IncomeFell.value,
+        FullPay: FullPay.value,
+        CannotGetUC: CannotGetUC.value,
+        CannotGetFurlough: CannotGetFurlough.value,
+        UCDoesntCoverRent: UCDoesntCoverRent.value,
+        AskedToMoveOut: AskedToMoveOut.value,
+        RentHolidayOrReduction: RentHolidayOrReduction.value,
+        CantMove: CantMove.value,
+        Overcrowded: Overcrowded.value,
+        UnfitToLiveIn: UnfitToLiveIn.value,
       }
     });
   };
@@ -126,10 +136,54 @@ export function VentForm({
           </Text>
         </header>
 
+        <Text sx={{ fontWeight: 'emphasis', mt: 4, mb: 3 }}>
+          How has coronavirus impacted your finances?
+        </Text>
+        <Box sx={{ my: 2 }}>
+          <Checkbox {...IncomeFell.props} label="My income has fallen as a result of the pandemic" />
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Checkbox {...FullPay.props} label="I am still on full pay" />
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Checkbox {...CannotGetUC.props} label="I am not eligible for Universal Credit" />
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Checkbox {...CannotGetFurlough.props} label="I am not eligible to have 80% of my income paid by the government" />
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Checkbox {...UCDoesntCoverRent.props} label="Universal Credit/housing benefit won't cover my rent" />
+        </Box>
+
+        <Text sx={{ fontWeight: 'emphasis', mt: 4, mb: 3 }}>
+          How has coronavirus affected your housing arrangement?
+        </Text>
+        <Box sx={{ my: 2 }}>
+          <Checkbox {...AskedToMoveOut.props} label="I have been asked to move out" />
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Checkbox {...RentHolidayOrReduction.props} label="My landlord has offered me a rent holiday/reduction" />
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Checkbox {...CantMove.props} label="I've started a new tenancy but now can't move" />
+        </Box>
+
+        <Text sx={{ fontWeight: 'emphasis', mt: 4, mb: 3 }}>
+          What is your living situation like?
+        </Text>
+        <Box sx={{ my: 2 }}>
+          <Checkbox {...Overcrowded.props} label="My home is overcrowded" />
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Checkbox {...UnfitToLiveIn.props} label="My home is unfit to live in" />
+        </Box>
+
         {/*  */}
-        <Heading variant='formSection'>
-          Your details
-        </Heading>
+        <header sx={{ mt: 4, mb: 3 }}>
+          <Heading variant='formSection'>
+            Your details
+          </Heading>
+        </header>
         <TextInput
           sx={{ my: 2 }}
           type="text"
@@ -182,7 +236,7 @@ export function VentForm({
         />
       </div>
 
-      <header sx={{ my: 3 }}>
+      <header sx={{ mt: 4, mb: 3 }}>
         <Heading variant='formSection'>
           Further action
         </Heading>
@@ -200,8 +254,8 @@ export function VentForm({
           sx={{ width: 'auto', display: 'inline-flex', cursor: 'pointer' }}
           htmlFor="keep-updated"
         >
-          Keep me updated
-          </Label>
+          I would like to receive emails from Generation Rent
+        </Label>
         <p>
           By checking this box, you agree that Generation Rent can email you
           occasionally about campaigns. If you decide later that you don’t

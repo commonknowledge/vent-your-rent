@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Box, Textarea, Input, InputProps, TextareaProps } from 'theme-ui';
+import { jsx, Box, Textarea, Input, InputProps, TextareaProps, Label, Flex } from 'theme-ui';
 import { Field } from 'react-jeff'
 import { PropsWithoutRef } from 'react';
 
@@ -30,6 +30,29 @@ export const CheckboxInput: React.FC<
 > = ({ onChange, value, ...props }) => (
   <Input variant='checkbox' type='checkbox' {...props} checked={value} onChange={event => onChange(event.currentTarget.checked)} />
 )
+
+export const Checkbox: React.FC<
+  Omit<PropsWithoutRef<InputProps>, 'value' | 'onChange'>
+  & Partial<Field<boolean>> & {
+    onChange: (v: any) => void
+    label: string
+  }
+> = ({ label, ...props }) => (
+  <Flex sx={{ alignItems: 'center' }}>
+    <CheckboxInput
+      id={`form-checkbox-input-${label}`}
+      type="checkbox"
+      {...props}
+    />
+    <Label
+      sx={{ width: 'auto', display: 'inline-flex', cursor: 'pointer' }}
+      htmlFor={`form-checkbox-input-${label}`}
+    >
+      {label}
+    </Label>
+  </Flex>
+)
+
 
 export function FieldErrors({ errors, touched, focused, ...props }: Field<any, string>) {
   return touched && !focused ? (

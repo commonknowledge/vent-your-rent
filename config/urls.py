@@ -8,11 +8,13 @@ from graphene_file_upload.django import FileUploadGraphQLView
 from . import templates
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
+import re
 
 urlpatterns = [
     path('graphql/', csrf_exempt(FileUploadGraphQLView.as_view(graphiql=True))),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
+    path(re.sub('\/?$', '', settings.ADMIN_URL), admin.site.urls),
     # User management
     path("users/", include("vent_your_rent.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),

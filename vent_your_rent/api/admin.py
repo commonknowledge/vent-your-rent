@@ -9,17 +9,20 @@ from django.db.models import Q
 import os
 from django.template.loader import get_template
 
+
 def FilterFactory(param: str, q):
     class SomeFilter(InputFilter):
         parameter_name = param
         title = param
+
         def queryset(self, request, queryset):
             term = self.value()
             if term is None:
-                return  
+                return
             for bit in term.split():
                 return queryset.filter(q(bit))
     return SomeFilter
+
 
 class InputFilter(admin.SimpleListFilter):
     template = 'input_filter.html'
@@ -40,10 +43,13 @@ class InputFilter(admin.SimpleListFilter):
 
 # Register your models here.
 
+
 def publish_vents(modeladmin, request, queryset):
     queryset.update(is_published=True)
 
+
 publish_vents.short_description = "Mark selected vents as published"
+
 
 @admin.register(Vent)
 class VentAdmin(admin.ModelAdmin):
@@ -67,6 +73,24 @@ class VentAdmin(admin.ModelAdmin):
         form.base_fields['is_published'].initial = True
         return form
 
+
 @admin.register(Signup)
 class SignupAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        'date_created',
+        'first_name',
+        'last_name',
+        'postcode',
+        'email',
+        'can_contact',
+        'IncomeFell',
+        'FullPay',
+        'CannotGetUC',
+        'CannotGetFurlough',
+        'UCDoesntCoverRent',
+        'AskedToMoveOut',
+        'RentHolidayOrReduction',
+        'CantMove',
+        'Overcrowded',
+        'UnfitToLiveIn',
+    )
