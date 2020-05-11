@@ -3,25 +3,52 @@ import { jsx, Box, Grid, Heading, Text, Flex } from 'theme-ui';
 import Emoji from 'a11y-react-emoji';
 import { ShareAction } from './components/ShareAction';
 import GenerationRentBlock from '../../components/GenerationRentBlock';
-import { VentDashboard, VentCounter } from './components/VentDashboard';
+import { VentDashboard, VentCounter, VentCard } from './components/VentDashboard';
 import { VentMap } from './components/VentMap';
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import useLocalStorage from '@rehooks/local-storage';
+import { YourVentQuery } from './__graphql__/YourVentQuery';
+
+const VENT_QUERY = gql`
+  query YourVentQuery($id: String!) {
+    vent(id: $id) {
+      ...VentCard2020
+    }
+  }
+
+  ${(VentCard as any).fragment}
+`
 
 export const Share: React.FC = () => {
+  const [ids] = useLocalStorage('VENT_YOUR_RENT_VENT_IDS', [])
+  const vent = useQuery<YourVentQuery>(VENT_QUERY, {
+    variables: { id: ids.length ? ids[ids.length - 1] : -1 }
+  })
+  const yourVent = vent?.data?.vent
+
   return (
     <Grid sx={{ height: '100vh' }} columns={[1, null, 2]}>
-
       {/* Left */}
       <Box sx={{ bg: 'white', p: [3, 4, 5] }}>
         <Heading>
           <Emoji symbol="🙌" />  Thanks for venting
         </Heading>
+        <Box sx={{ my: 3 }}>
+          {yourVent && (
+            <VentCard vent={yourVent} sx={{ bg: 'orangeLight' }} />
+          )}
+        </Box>
         <Flex sx={{ my: 3, justifyContent: 'space-between', width: '100%' }}>
           <Box>
             <b>Share your story</b>
             <Text variant='hint' sx={{ fontSize: 0 }}>#ventyourrent</Text>
           </Box>
           <Box>
-            <ShareAction message="#ventyourrent" url={"https://ventyour.rent"} />
+            <ShareAction
+              message={yourVent ? yourVent.caption + " #ventyourrent" : "#ventyourrent"}
+              url={yourVent ? `https://ventyour.rent/${yourVent.id}` : `https://ventyour.rent`}
+            />
           </Box>
         </Flex>
         <Box sx={{ my: 4 }}>
