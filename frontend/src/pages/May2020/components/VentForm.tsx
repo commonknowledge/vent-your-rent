@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Button, Input, Label, Box } from 'theme-ui';
+import { jsx, Button, Input, Label, Box, Heading, Text } from 'theme-ui';
 import { useField, useForm } from "react-jeff";
 import { validateEmail, minLength, maxLength } from "../../../data/input";
 import { useState } from 'react';
@@ -28,6 +28,28 @@ export function VentForm({
     validations: [minLength(4), maxLength(10)]
   });
   const canContact = useField<boolean>({ defaultValue: false });
+
+  // My income has fallen as a result of the pandemic
+  const tagIncomeFell = useField<boolean>({ defaultValue: false })
+  // I am still on full pay
+  const tagFullPay = useField<boolean>({ defaultValue: false })
+  // I am not eligible for Universal Credit
+  const tagCannotGetUC = useField<boolean>({ defaultValue: false })
+  // I am not eligible to have 80% of my income paid by the government
+  const tagCannotGetFurlough = useField<boolean>({ defaultValue: false })
+  // Universal Credit/housing benefit won't cover my rent
+  const tagUCDoesntCoverRent = useField<boolean>({ defaultValue: false })
+  // I have been asked to move out
+  const tagAskedToMoveOut = useField<boolean>({ defaultValue: false })
+  // My landlord has offered me a rent holiday/reduction
+  const tagRentHolidayOrReduction = useField<boolean>({ defaultValue: false })
+  // I've started a new tenancy but now can't move
+  const tagCantMove = useField<boolean>({ defaultValue: false })
+  // My home is overcrowded
+  const tagOvercrowded = useField<boolean>({ defaultValue: false })
+  // My home is unfit to live in
+  const tagUnfitToLiveIn = useField<boolean>({ defaultValue: false })
+
   // Vent
   const caption = useField<string>({ defaultValue: "" });
   const [image, setImage] = useState<File>();
@@ -95,6 +117,19 @@ export function VentForm({
       form.submit()
     }}>
       <div>
+        <header>
+          <Heading variant='formSection'>
+            Your rental situation
+          </Heading>
+          <Text variant='hint'>
+            Select all that apply
+          </Text>
+        </header>
+
+        {/*  */}
+        <Heading variant='formSection'>
+          Your details
+        </Heading>
         <TextInput
           sx={{ my: 2 }}
           type="text"
@@ -146,6 +181,15 @@ export function VentForm({
           }}
         />
       </div>
+
+      <header sx={{ my: 3 }}>
+        <Heading variant='formSection'>
+          Further action
+        </Heading>
+        <Text variant='hint'>
+          Generation Rent would like to keep you updated with our work and opportunities to get involved with campaigning for renters’ rights.
+        </Text>
+      </header>
       <div>
         <CheckboxInput
           id="keep-updated"

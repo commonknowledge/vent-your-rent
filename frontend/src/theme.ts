@@ -60,6 +60,13 @@ const theme: Theme = {
       fontSize: 1,
       fontWeight: 500
     },
+    formSection: {
+      fontSize: 1,
+      fontWeight: 500,
+      borderTop: '2px solid black',
+      pt: 2,
+      my: 2,
+    },
     para: {
       fontSize: 1,
       my: 3,
