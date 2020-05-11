@@ -21,9 +21,11 @@ const useVentCount = () => {
     if (countQuery.data?.ventsCount) {
       setCount(countQuery.data?.ventsCount)
     }
-    setInterval(() => {
+    const interval = setInterval(() => {
       countQuery.refetch()
-    }, 1000)
+    }, 5000)
+
+    return () => clearInterval(interval)
   }, [countQuery.data, setCount])
   return count
 }
@@ -52,9 +54,10 @@ export const VentDashboard: React.FC = () => {
   });
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       refetch()
-    }, 2000)
+    }, 5000)
+    return () => clearInterval(interval)
   }, [refetch])
 
   return (
