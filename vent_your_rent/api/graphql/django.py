@@ -128,10 +128,14 @@ class Queries():
     # production
 
     vents = graphene.List(graphene.NonNull(VentType), required=True,
-                          quantity=graphene.Int(default_value=3))  # DjangoFilterField(VentType)
+                          quantity=graphene.Int(default_value=3),
+                          ventIds=graphene.List(graphene.NonNull(graphene.Int), required=False)
+                          )  # DjangoFilterField(VentType)
 
-    def resolve_vents(self, info, quantity=3):
-        return Vent.objects.filter(is_published=True).order_by('-date_created')[:quantity]
+    def resolve_vents(self, info, quantity=3, ventIds=[]):
+        return Vent.objects.filter(
+            Q(is_published=True) | Q(id__in=ventIds)
+        ).order_by('-date_created')[:quantity]
 
     vent = graphene.Field(VentType, id=graphene.String(required=True))
 

@@ -7,6 +7,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { CreateVentMutation } from '../../../components/__graphql__/CreateVentMutation';
 import { CREATE_VENT_MUTATION, SIGNUP_MUTATION } from '../../../components/TakeActionBlock';
 import { TextInput, LargeTextInput, CheckboxInput, Errors, FieldErrors, Checkbox } from './formElements';
+import useLocalStorage from '@rehooks/local-storage'
 
 export function VentForm({
   onSubmitSuccess
@@ -83,6 +84,8 @@ export function VentForm({
     onSubmit
   });
 
+  const [ventIds, setVentIds] = useLocalStorage<Array<number | string>>('VENT_YOUR_RENT_VENT_IDS', [])
+
   const [signupMutation] = useMutation<CreateVentMutation>(SIGNUP_MUTATION);
   const [createVentMutation] = useMutation<CreateVentMutation>(
     CREATE_VENT_MUTATION
@@ -110,8 +113,8 @@ export function VentForm({
     });
   };
 
-  const createVent = () => {
-    createVentMutation({
+  const createVent = async () => {
+    const res = await createVentMutation({
       variables: {
         caption: caption.value,
         firstName: firstName.value,
@@ -119,6 +122,10 @@ export function VentForm({
         postcode: postcode.value
       }
     });
+    console.log("New vent ID", res?.data?.createVent?.vent?.id)
+    if (res?.data?.createVent?.vent) {
+      setVentIds(ventIds.concat([res.data.createVent.vent.id]))
+    }
   };
 
   return (

@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
 import { VentDashboardQuery_vents, VentDashboardQuery } from './__graphql__/VentDashboardQuery';
+import useLocalStorage from '@rehooks/local-storage'
 
 export const VentCounter: React.FC = () => {
   return (
@@ -16,8 +17,9 @@ export const VentCounter: React.FC = () => {
 }
 
 export const VentDashboard: React.FC = () => {
+  const [ventIds] = useLocalStorage<number[]>('VENT_YOUR_RENT_VENT_IDS', [])
   const { loading, data } = useQuery<VentDashboardQuery>(GET_VENTS, {
-    variables: { quantity: 10 }
+    variables: { quantity: 10, ventIds }
   });
 
   return (
@@ -44,6 +46,7 @@ export const VentCardList: React.FC<{ vents: VentDashboardQuery_vents[] }> = ({ 
 export const VentCard: React.FC<{ vent: VentDashboardQuery_vents }> = ({ vent }) => {
   return (
     <Link to={`/vent/${vent.id}`} sx={{ color: 'text' }}>
+      {vent.id}
       <Box sx={{
         bg: 'white',
         boxShadow: '0px 0px 20px rgba(53, 53, 53, 0.1)',
@@ -86,8 +89,8 @@ VentCard.fragment = gql`
 export const GET_VENTS = gql`
   ${(VentCard as any).fragment}
 
-  query VentDashboardQuery($quantity: Int!) {
-    vents(quantity: $quantity) {
+  query VentDashboardQuery($quantity: Int!, $ventIds: [Int!]) {
+    vents(quantity: $quantity, ventIds: $ventIds) {
       ...VentCard2020
     }
   }
