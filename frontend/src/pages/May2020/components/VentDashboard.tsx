@@ -1,16 +1,45 @@
 /** @jsx jsx */
 import { jsx, Box, Grid, Heading, Text, Flex } from 'theme-ui';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
 import { VentDashboardQuery_vents, VentDashboardQuery } from './__graphql__/VentDashboardQuery';
 import useLocalStorage from '@rehooks/local-storage'
+import { useSpring, animated } from 'react-spring';
+
+const COUNT_QUERY = gql`
+  query CountQuery {
+    ventsCount
+  }
+`
+
+const useVentCount = () => {
+  const [count, setCount] = useState(0)
+  const countQuery = useQuery(COUNT_QUERY)
+  useEffect(() => {
+    if (countQuery.data?.ventsCount) {
+      setCount(countQuery.data?.ventsCount)
+    }
+    setInterval(() => {
+      countQuery.refetch()
+    }, 1000)
+  }, [countQuery.data, setCount])
+  return count
+}
 
 export const VentCounter: React.FC = () => {
+  const count = useVentCount()
+  const [{ count: animatedCount }] = useSpring({ count }, [count]);
+
   return (
     <Heading>
-      <span sx={{ color: 'orange' }}>357</span> rent vents
+      {/* <span sx={{ color: 'orange' }}> */}
+      <animated.span>
+        {animatedCount.interpolate(n => Math.floor(n))}
+      </animated.span>
+      {/* </span> */}
+      &nbsp;rent vents
       <br />(and counting!)
     </Heading>
   )

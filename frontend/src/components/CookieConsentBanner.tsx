@@ -2,7 +2,6 @@
 import { css, jsx } from "@emotion/core";
 import { useCookie } from "@use-hook/use-cookie";
 import React, { useEffect } from "react";
-import { SpringUp } from "./SpringUp";
 import { colorBlack, fontColorWhite, fontSizeSmall } from "../styles";
 import { PageWidth } from "./PageElements";
 import Emoji from "a11y-react-emoji";
