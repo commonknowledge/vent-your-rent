@@ -22,8 +22,6 @@ export const minLength = (
     errors.push(message)
   }
 
-  console.log(value, value?.length, min, errors)
-
   return errors;
 }
 
@@ -36,8 +34,6 @@ export const maxLength = (
   if (value?.length > max) {
     errors.push(message)
   }
-
-  console.log(value, value?.length, max, errors)
 
   return errors;
 }
