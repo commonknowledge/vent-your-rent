@@ -81,7 +81,6 @@ export const VentCardList: React.FC<{ vents: VentDashboardQuery_vents[] }> = ({ 
 export const VentCard: React.FC<{ vent: VentDashboardQuery_vents }> = ({ vent }) => {
   return (
     <Link to={`/vent/${vent.id}`} sx={{ color: 'text' }}>
-      {vent.id}
       <Box sx={{
         bg: 'white',
         boxShadow: '0px 0px 20px rgba(53, 53, 53, 0.1)',
