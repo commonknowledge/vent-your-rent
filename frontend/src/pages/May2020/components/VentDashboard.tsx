@@ -47,9 +47,15 @@ export const VentCounter: React.FC = () => {
 
 export const VentDashboard: React.FC = () => {
   const [ventIds] = useLocalStorage<number[]>('VENT_YOUR_RENT_VENT_IDS', [])
-  const { loading, data } = useQuery<VentDashboardQuery>(GET_VENTS, {
+  const { loading, data, refetch } = useQuery<VentDashboardQuery>(GET_VENTS, {
     variables: { quantity: 10, ventIds }
   });
+
+  useEffect(() => {
+    setInterval(() => {
+      refetch()
+    }, 2000)
+  }, [refetch])
 
   return (
     <Box sx={{ my: 4 }}>
@@ -61,9 +67,9 @@ export const VentDashboard: React.FC = () => {
 export const VentCardList: React.FC<{ vents: VentDashboardQuery_vents[] }> = ({ vents }) => {
   return (
     <Fragment>
-      {vents.map((vent, i) => {
+      {vents.map((vent) => {
         return (
-          <Box key={i} sx={{ my: 3 }}>
+          <Box key={vent.id} sx={{ my: 3 }}>
             <VentCard vent={vent} />
           </Box>
         )
