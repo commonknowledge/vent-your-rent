@@ -61,13 +61,12 @@ VentMapItem.fragment = gql`
       latitude
       longitude
     }
-    dateCreated
   }
 `
 
 const VENTMAP_QUERY = gql`
   query VentMapQuery {
-    vents {
+    vents(quantity: 10000) {
       ...VentMapItemFragment
     }
   }
