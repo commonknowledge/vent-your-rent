@@ -51,7 +51,7 @@ export const Share: React.FC = () => {
           </p>
           <Box sx={{ my: 2 }}>
             <Box>
-              <a sx={{ variant: 'text.link.bold', my: 2 }} href='https://www.generationrent.org/a_housing_system_for_renters_after_covid19'>Read our demands in full</a>
+              <a sx={{ variant: 'text.link.bold', my: 2 }} href='https://www.generationrent.org/coronavirus_here_s_what_we_are_asking_the_government'>Read our demands in full</a>
             </Box>
             <Box>
               <a sx={{ variant: 'text.link.bold', my: 2 }} href='/'>Vent your rent again</a>
