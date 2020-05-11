@@ -126,7 +126,6 @@ export function VentForm({
         postcode: postcode.value
       }
     });
-    console.log("New vent ID", res?.data?.createVent?.vent?.id)
     if (res?.data?.createVent?.vent) {
       setVentIds(ventIds.concat([res.data.createVent.vent.id]))
     }

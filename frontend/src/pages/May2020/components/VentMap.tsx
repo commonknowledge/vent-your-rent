@@ -44,7 +44,6 @@ export const VentMapItems: React.FC<{ vents?: VentMapItemFragment[] }> = memo(({
 
 export const VentMapItem: React.FC<{ vent: VentMapItemFragment }> = ({ vent }) => {
   if (!vent.geo) return null
-  console.log(vent.geo)
   return (
     <Marker longitude={vent.geo?.longitude} latitude={vent.geo?.latitude}>
       <Box sx={{ position: 'absolute', transform: 'translate(-50%, -50%)' }}>
