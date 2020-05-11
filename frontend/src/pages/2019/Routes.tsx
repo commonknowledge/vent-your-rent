@@ -36,11 +36,11 @@ export const Routes2019 = () => {
       />
       <Switch>
         <Route
-          path="/old/welcome-to-the-movement"
+          path="/search/welcome-to-the-movement"
           component={ThirdPage}
         />
-        <Route path="/old/:postcode" component={ResultsPage} />
-        <Route path="/old" component={FirstPage} />
+        <Route path="/search/:postcode" component={ResultsPage} />
+        <Route path="/search" component={FirstPage} />
       </Switch>
     </Fragment>
   )

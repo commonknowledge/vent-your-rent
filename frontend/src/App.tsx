@@ -22,7 +22,7 @@ const App: React.FC = () => {
       <Router history={history}>
         <GraphQLProvider>
           <Switch>>
-            <Route path="/old" component={Routes2019} />
+            <Route path="/search" component={Routes2019} />
             <Route path="/" component={RoutesMay2020} />
           </Switch>
           <CookieConsentBanner onConsent={analytics.initialiseCookies} />

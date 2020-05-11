@@ -60,7 +60,8 @@
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject",
     "postinstall": "yarn graphql",
-    "graphql": "rimraf '__graphql__' 'src/**/__graphql__' && apollo client:codegen --localSchemaFile ./schema.json --no-addTypename --target typescript __graphql__"
+    "graphql:generate-types": "rimraf '__graphql__' 'src/**/__graphql__' && apollo client:codegen --localSchemaFile ./schema.json --no-addTypename --target typescript __graphql__",
+    "graphql": "cd ../ && yarn graphql"
   },
   "eslintConfig": {
     "extends": "react-app"
