@@ -77,6 +77,7 @@ export const VentDashboard: React.FC = () => {
 }
 
 export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = ({ vent, ...props }) => {
+  const [truncate, setTruncate] = useState(true)
   return (
     <Box sx={{ color: 'text' }}>
       <Box sx={{
@@ -89,7 +90,7 @@ export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = 
         // ':hover': { transform: 'scale(1.05)' }
       }} {...props}>
         <Text sx={{ mb: 3 }}>
-          <Truncate lines={5}>
+          <Truncate lines={truncate ? 5 : 100}>
             {vent.caption}
           </Truncate>
         </Text>
@@ -101,7 +102,9 @@ export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = 
             <Text sx={{ fontWeight: 'emphasis' }}>{vent.firstName}</Text>
             <Text sx={{ fontSize: 0, color: 'textLight' }}>{vent?.location?.name}</Text>
           </Box>
-          {/* <Box sx={{ ml: 'auto', flexShrink: 0, color: 'orange' }}>Read more</Box> */}
+          <Box sx={{ ml: 'auto', flexShrink: 0, color: 'orange', cursor: 'pointer' }} onClick={() => setTruncate(t => !t)}>
+            {truncate ? 'Read more' : 'Read less'}
+          </Box>
         </Flex>
       </Box>
     </Box>

@@ -88,7 +88,7 @@ export const VentMapItem: React.FC<{ vent: VentMapItemFragment, onClick?: (id: s
 export const VentMapPopup: React.FC<{ vent: VentMapItemFragment, onClose?: () => void }> = ({ vent, onClose }) => {
   if (!vent.geo) return null
   return (
-    <Popup onClose={onClose} longitude={vent.geo?.longitude} latitude={vent.geo?.latitude} offsetTop={-20} sx={{
+    <Popup closeOnClick={false} onClose={onClose} longitude={vent.geo?.longitude} latitude={vent.geo?.latitude} offsetTop={-20} sx={{
       background: 'none',
       border: 'none',
       boxShadow: 'none',
@@ -104,7 +104,7 @@ export const VentMapPopup: React.FC<{ vent: VentMapItemFragment, onClose?: () =>
         width: 300
       }
     }}>
-      <VentCard vent={vent} />
+      <VentCard key={vent.id} vent={vent} />
     </Popup>
   )
 }
