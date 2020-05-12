@@ -130,7 +130,7 @@ VentMapItem.fragment = gql`
 
 const VENTMAP_QUERY = gql`
   query VentMapQuery {
-    vents: allVents(quantity: 10000) {
+    vents(quantity: 1000) {
       ...VentMapItemFragment
     }
   }
