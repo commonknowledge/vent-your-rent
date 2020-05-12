@@ -144,6 +144,14 @@ class Queries():
             Q(is_published=True) | Q(id__in=ventIds)
         ).order_by('-date_created')[:quantity]
 
+    all_vents = graphene.List(graphene.NonNull(VentType), required=True,
+                              quantity=graphene.Int(default_value=3),
+                              ventIds=graphene.List(graphene.NonNull(graphene.Int), required=False)
+                              )  # DjangoFilterField(VentType)
+
+    def resolve_all_vents(self, info, quantity=3, ventIds=[]):
+        return Vent.objects.order_by('-date_created')[:quantity]
+
     vent = graphene.Field(VentType, id=graphene.String(required=True))
 
     def resolve_vent(self, info, id):
