@@ -255,7 +255,7 @@ export function VentForm({
             borderWidth: 2,
             borderColor: 'orange',
           }}
-          placeholder="Your story here"
+          placeholder="Your renter experience"
           rows={4}
           {...caption.props}
         />
