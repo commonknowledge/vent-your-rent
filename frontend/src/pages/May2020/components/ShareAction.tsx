@@ -12,10 +12,10 @@ function facebookShareUrl(link: string) {
   return `https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`;
 }
 
-function twitterShareUrl(link: string, message: string) {
+function twitterShareUrl(link: string, message: string, twitterAccount: string) {
   return `https://twitter.com/intent/tweet/?text=${encodeURIComponent(
     message
-  )}&url=${encodeURIComponent(link)}`;
+  )}&url=${encodeURIComponent(link)}&related=${twitterAccount}`;
 }
 
 function whatsAppShareUrl(link: string, message: string) {
@@ -41,7 +41,7 @@ export const ShareAction: React.FC<{
         <Image width={size} src={FacebookShareIcon} alt="Share on Facebook" />
       </a>
       <a sx={{ lineHeight: 0 }}
-        href={twitterShareUrl(url, message)}
+        href={twitterShareUrl(url, message, 'genrentuk')}
         target="_blank"
         rel="noopener noreferrer"
       >
