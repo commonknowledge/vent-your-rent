@@ -57,7 +57,10 @@ export const VentMapItems: React.FC<{ vents: VentMapItemFragment[] }> = memo(({ 
   return (
     <Fragment>
       {vents.filter(vent => vent.geo).map(vent => (
-        <VentMapItem key={vent.id} vent={vent} />
+        <VentMapItem key={vent.id} vent={vent} onClick={(id) => {
+          setCurrentId(id)
+          setCycle(false)
+        }} />
       ))}
       {!!highlightedVent && (
         <VentMapPopup vent={highlightedVent} onClose={() => {
@@ -69,11 +72,11 @@ export const VentMapItems: React.FC<{ vents: VentMapItemFragment[] }> = memo(({ 
   )
 })
 
-export const VentMapItem: React.FC<{ vent: VentMapItemFragment }> = ({ vent }) => {
+export const VentMapItem: React.FC<{ vent: VentMapItemFragment, onClick?: (id: string) => void }> = ({ vent, onClick }) => {
   if (!vent.geo) return null
   return (
     <Marker longitude={vent.geo?.longitude} latitude={vent.geo?.latitude}>
-      <Box sx={{ position: 'absolute', transform: 'translate(-50%, -50%)' }}>
+      <Box sx={{ position: 'absolute', transform: 'translate(-50%, -50%)', cursor: onClick ? 'pointer' : 'initial' }} onClick={onClick ? () => onClick(vent.id) : undefined}>
         <Text sx={{ fontSize: 2 }}>
           {vent.emoji ? <Emoji emoji={vent.emoji} set='apple' size={24} /> : '🏚'}
         </Text>
