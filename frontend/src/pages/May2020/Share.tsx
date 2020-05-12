@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, Box, Grid, Heading, Text, Flex } from 'theme-ui';
-import Emoji from 'a11y-react-emoji';
 import { ShareAction } from './components/ShareAction';
 import GenerationRentBlock from '../../components/GenerationRentBlock';
 import { VentDashboard, VentCounter, VentCard } from './components/VentDashboard';
@@ -9,6 +8,7 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import useLocalStorage from '@rehooks/local-storage';
 import { YourVentQuery } from './__graphql__/YourVentQuery';
+import { Emoji } from 'emoji-mart';
 
 const VENT_QUERY = gql`
   query YourVentQuery($id: String!) {
@@ -39,7 +39,7 @@ export const Share: React.FC = () => {
       <Box sx={{ bg: 'white' }}>
         <Box sx={{ p: [3, 4, 4, 5] }}>
           <Heading>
-            <Emoji symbol="🙌" />  Thanks for venting
+            <Emoji emoji="raised_hands" size={28} set='apple' />  Thanks for venting
           </Heading>
           <Box sx={{ my: 3 }}>
             {yourVent && (
@@ -63,26 +63,26 @@ export const Share: React.FC = () => {
               You’re not alone. <b>1 in 4 renters</b> aren’t sure they’ll be able to afford rent in the next 3 months.
             </Heading>
             <p sx={{ display: 'flex' }}>
-              <Emoji symbol="🏚" sx={{ pr: 2 }} /> <Text><b>6 in 10 renters</b> have lost income as a result of coronavirus.</Text>
+              <Emoji emoji={'derelict_house_building'} set='apple' size={18} sx={{ pr: 2 }} /> <Text><b>6 in 10 renters</b> have lost income as a result of coronavirus.</Text>
             </p>
             <p sx={{ display: 'flex' }}>
-              <Emoji symbol="🏚" sx={{ pr: 2 }} /> <Text><b>1 in 4 renters</b> aren’t sure they’ll be able to afford rent in the next 3 months.</Text>
+              <Emoji emoji={'derelict_house_building'} set='apple' size={18} sx={{ pr: 2 }} /> <Text><b>1 in 4 renters</b> aren’t sure they’ll be able to afford rent in the next 3 months.</Text>
             </p>
             <p sx={{ display: 'flex' }}>
-              <Emoji symbol="🏚" sx={{ pr: 2 }} /> <Text><b>1.8 million private rented homes</b> are flats. People without a garden are at a higher risk of mental illness during lockdown.</Text>
+              <Emoji emoji={'derelict_house_building'} set='apple' size={18} sx={{ pr: 2 }} /> <Text><b>1.8 million private rented homes</b> are flats. People without a garden are at a higher risk of mental illness during lockdown.</Text>
             </p>
           </Box>
           <Box sx={{ mt: 4, mb: [2, 3, 4] }}>
             <Heading>Join our movement</Heading>
             <p sx={{ my: 2 }}>We’re calling for better protections for renters during and beyond coronavirus:</p>
             <p sx={{ display: 'flex', my: 2, mb: 1 }}>
-              <Emoji symbol="✊" sx={{ pr: 2 }} /> <Text>Housing benefit to cover rents</Text>
+              <Emoji emoji="fist" set='apple' size={18} sx={{ pr: 2 }} /> <Text>Housing benefit to cover rents</Text>
             </p>
             <p sx={{ display: 'flex', my: 2 }}>
-              <Emoji symbol="✊" sx={{ pr: 2 }} /> <Text>No coronavirus evictions</Text>
+              <Emoji emoji="fist" set='apple' size={18} sx={{ pr: 2 }} /> <Text>No coronavirus evictions</Text>
             </p>
             <p sx={{ display: 'flex', my: 2 }}>
-              <Emoji symbol="✊" sx={{ pr: 2 }} /> <Text>A rent freeze for 12 months</Text>
+              <Emoji emoji="fist" set='apple' size={18} sx={{ pr: 2 }} /> <Text>A rent freeze for 12 months</Text>
             </p>
             <Box sx={{ my: 2 }}>
               <Box>

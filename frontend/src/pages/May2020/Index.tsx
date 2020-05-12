@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Box, Grid, Heading, Text, Flex } from 'theme-ui';
 import { VentDashboard, VentCounter } from './components/VentDashboard';
-import Emoji from 'a11y-react-emoji';
+import { Emoji } from 'emoji-mart';
 import { VentForm } from './components/VentForm';
 import { useHistory } from 'react-router-dom';
 import GenerationRentBlock from '../../components/GenerationRentBlock';
@@ -66,7 +66,7 @@ export const Index: React.FC = () => {
         <Box sx={{ bg: 'white' }}>
           <Box sx={{ py: [4, 4, 5], px: [3, 3, 4, 5] }}>
             <Heading>
-              <Emoji symbol="📣" />  Now, add <span sx={{ color: 'orange' }}>your</span> story
+              <Emoji emoji="mega" size={28} set='apple' />  Now, add <span sx={{ color: 'orange' }}>your</span> story
           </Heading>
             <Heading sx={{ my: 3, fontWeight: 'body' }}>
               How has coronavirus affected your rental situation?

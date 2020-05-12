@@ -115,7 +115,7 @@ export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = 
         </Text>
         <Flex sx={{ textTransform: 'uppercase', fontSize: 0, alignItems: 'flex-end' }}>
           <Box sx={{ fontSize: 2, lineHeight: 1, flexShrink: 0 }}>
-            {vent.emoji ? <Emoji emoji={vent.emoji} set='apple' size={24} /> : '🏚'}
+            <Emoji emoji={vent.emoji || 'derelict_house_building'} set='apple' size={24} />
           </Box>
           <Box sx={{ px: 2 }}>
             <Text sx={{ fontWeight: 'emphasis' }}>{vent.firstName}</Text>

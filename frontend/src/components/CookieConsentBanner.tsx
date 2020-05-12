@@ -4,7 +4,7 @@ import { useCookie } from "@use-hook/use-cookie";
 import React, { useEffect } from "react";
 import { colorBlack, fontColorWhite, fontSizeSmall } from "../styles";
 import { PageWidth } from "./PageElements";
-import Emoji from "a11y-react-emoji";
+import { Emoji } from 'emoji-mart';
 
 const CookieConsentBanner: React.FC<{
   onConsent: (consented: boolean) => void;
@@ -34,7 +34,7 @@ const CookieConsentBanner: React.FC<{
     >
       <PageWidth>
         <div>
-          <Emoji symbol="🍪" /> We use cookies to track site usage and make
+          <Emoji emoji="cookie" set='apple' size={24} /> We use cookies to track site usage and make
             improvements.
           </div>
         <div
