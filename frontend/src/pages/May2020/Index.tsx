@@ -30,7 +30,7 @@ export const Index: React.FC = () => {
               If you’re worried about your rental situation during coronavirus, you’re not alone.
             </Heading>
             <p>Coronavirus has hit the incomes of millions of renters who are now worried about how to pay the rent.  When the eviction ban is lifted, renters in arrears will face debt and homelessness.</p>
-            <p>We need to make sure that renters’ voices are heard lbud and clear by the government.</p>
+            <p>We need to make sure that renters’ voices are heard loud and clear by the government.</p>
             <p><b>Share your story and join our movement for change. ➡️</b></p>
 
             <Box sx={{ mt: 5, mb: 0, filter: 'grayscale(100%)', opacity: 1, mixBlendMode: 'multiply' }} >
