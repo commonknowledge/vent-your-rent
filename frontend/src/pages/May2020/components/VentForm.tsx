@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { jsx, Button, Input, Label, Box, Heading, Text, Flex } from 'theme-ui';
+import { jsx, Button, Input, Label, Box, Heading, Text, Flex, Grid } from 'theme-ui';
 import { useField, useForm } from "react-jeff";
 import { validateEmail, minLength, maxLength } from "../../../data/input";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Fragment } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { CreateVentMutation } from '../../../components/__graphql__/CreateVentMutation';
 import { SIGNUP_MUTATION } from '../../../components/TakeActionBlock';
@@ -92,6 +92,8 @@ export function VentForm({
   const Overcrowded = useField<boolean>({ defaultValue: false })
   // My home is unfit to live in
   const UnfitToLiveIn = useField<boolean>({ defaultValue: false })
+  // It's OK
+  const HousingOK = useField<boolean>({ defaultValue: false })
 
   // Vent
   const caption = useField<string>({ defaultValue: "" });
@@ -155,6 +157,7 @@ export function VentForm({
         CantMove: CantMove.value,
         Overcrowded: Overcrowded.value,
         UnfitToLiveIn: UnfitToLiveIn.value,
+        HousingOK: HousingOK.value
       }
     });
   };
@@ -174,160 +177,180 @@ export function VentForm({
     }
   };
 
+  const EmojiPicker = () => (
+    <Box>
+      <Text sx={{ display: 'inline-block', mb: 1, fontWeight: '' }}>
+        Pick an emoji for your rent vent story
+      </Text>
+      <Flex sx={{ position: 'relative', alignItems: 'center' }}>
+        {showPicker ? (
+          <Box ref={pickerRef}>
+            <Picker
+              set='apple'
+              onSelect={e => { emoji.setValue(e?.colons!) }}
+              showSkinTones
+              sheetSize={64}
+              perLine={8}
+              title={false as any}
+              include={['people']}
+            />
+          </Box>
+        ) : (
+            <Fragment>
+              <Flex
+                sx={{ alignItems: 'center', justifyContent: 'center', bg: 'grey', p: 2, borderRadius: 8, cursor: 'pointer', width: 50, height: 50, flexShrink: 0 }}
+                onClick={() => {
+                  console.log(showPicker)
+                  setShowPicker(true)
+                }}
+              >
+                <Emoji emoji={emoji.value} set='apple' size={24} />
+              </Flex>
+              <Text sx={{ mx: 2, fontSize: 0 }} variant='hint'>or</Text>
+              <Box>
+                <Text
+                  sx={{
+                    display: 'inline-block',
+                    transition: 'all 0.1s ease',
+                    p: 2,
+                    my: 1,
+                    borderRadius: 8,
+                    // fontWeight: 'emphasis',
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                    border: '1px solid grey',
+                    borderColor: 'grey',
+                    ':hover': {
+                      border: '1px solid orangeLight',
+                      borderColor: 'orangeLight',
+                      bg: 'orangeLight',
+                      color: 'orange',
+                    }
+                  }}
+                  onClick={() => { emoji.setValue(randomEmoji()) }}>
+                  Pick random
+            </Text>
+              </Box>
+            </Fragment>
+          )}
+      </Flex>
+    </Box>
+  )
+
   return (
     <form {...form.props} onSubmit={event => {
       event.preventDefault() // Make sure you call `event.preventDefault()` on your forms!
       form.submit()
     }}>
       <div>
-        <header>
-          <Heading variant='formSection'>
-            Your rental situation
-          </Heading>
-          <Text variant='hint'>
-            Select all that apply
-          </Text>
-        </header>
-
-        <Text sx={{ fontWeight: 'emphasis', mt: 4, mb: 3 }}>
-          How has coronavirus impacted your finances?
-        </Text>
-        <Box sx={{ my: 2 }}>
-          <Checkbox {...IncomeFell.props} label="My income has fallen as a result of the pandemic" />
-        </Box>
-        <Box sx={{ my: 2 }}>
-          <Checkbox {...FullPay.props} label="I am still on full pay" />
-        </Box>
-        <Box sx={{ my: 2 }}>
-          <Checkbox {...CannotGetUC.props} label="I am not eligible for Universal Credit" />
-        </Box>
-        <Box sx={{ my: 2 }}>
-          <Checkbox {...CannotGetFurlough.props} label="I am not eligible to have 80% of my income paid by the government" />
-        </Box>
-        <Box sx={{ my: 2 }}>
-          <Checkbox {...UCDoesntCoverRent.props} label="Universal Credit/housing benefit won't cover my rent" />
-        </Box>
-
-        <Text sx={{ fontWeight: 'emphasis', mt: 4, mb: 3 }}>
-          How has coronavirus affected your housing arrangement?
-        </Text>
-        <Box sx={{ my: 2 }}>
-          <Checkbox {...AskedToMoveOut.props} label="I have been asked to move out" />
-        </Box>
-        <Box sx={{ my: 2 }}>
-          <Checkbox {...RentHolidayOrReduction.props} label="My landlord has offered me a rent holiday/reduction" />
-        </Box>
-        <Box sx={{ my: 2 }}>
-          <Checkbox {...CantMove.props} label="I've started a new tenancy but now can't move" />
-        </Box>
-
-        <Text sx={{ fontWeight: 'emphasis', mt: 4, mb: 3 }}>
-          What is your living situation like?
-        </Text>
-        <Box sx={{ my: 2 }}>
-          <Checkbox {...Overcrowded.props} label="My home is overcrowded" />
-        </Box>
-        <Box sx={{ my: 2 }}>
-          <Checkbox {...UnfitToLiveIn.props} label="My home is unfit to live in" />
-        </Box>
-
-        {/*  */}
-        <header sx={{ mt: 4, mb: 3 }}>
-          <Heading variant='formSection'>
-            Your details
-          </Heading>
-        </header>
-        <TextInput
-          sx={{ my: 2 }}
-          type="text"
-          placeholder="First name"
-          {...firstName.props}
-        />
-        <FieldErrors {...firstName} />
-        <TextInput
-          sx={{ my: 2 }}
-          type="text"
-          placeholder="Last name (not publicly displayed)"
-          {...lastName.props}
-        />
-        <FieldErrors {...lastName} />
-        <TextInput
-          sx={{ my: 2 }}
-          type="email"
-          placeholder="Email"
-          {...email.props}
-        />
-        <FieldErrors {...email} />
-        <TextInput
-          sx={{ my: 2 }}
-          type="postcode"
-          placeholder="Postcode"
-          {...postcode.props}
-        />
-        <FieldErrors {...postcode} />
-        <p><b>Pick an emoji for your vent</b></p>
-        <Flex sx={{ position: 'relative', alignItems: 'center' }}>
-          <Box
-            sx={{ bg: 'grey', p: 3, borderRadius: 8, display: 'inline-block', cursor: 'pointer' }}
-            onClick={() => setShowPicker(true)}
-          >
-            <Emoji emoji={emoji.value} set='apple' size={32} />
-          </Box>
-          <Text
-            sx={{
-              transition: 'all 0.1s ease',
-              p: 2,
-              m: 1,
-              borderRadius: 8,
-              // fontWeight: 'emphasis',
-              cursor: 'pointer',
-              userSelect: 'none',
-              ':hover': {
-                bg: 'grey',
-                color: 'orange',
-              }
-            }}
-            onClick={() => { emoji.setValue(randomEmoji()) }}>
-            Pick random
-          </Text>
-          {showPicker && (
-            <Box sx={{ position: 'absolute', top: '100%', left: 0 }} ref={pickerRef}>
-              <Picker
-                set='apple'
-                onSelect={e => { emoji.setValue(e?.colons!) }}
-                showSkinTones
-                sheetSize={16}
-                title={false as any}
-                include={['people']}
-              />
-            </Box>
-          )}
-        </Flex>
-      </div>
-      <div>
-        <p><b>Vent your rent story</b></p>
         <LargeTextInput
-          sx={{ my: 2, width: '100%' }}
+          sx={{
+            color: 'black',
+            my: 2,
+            width: '100%',
+            fontSize: 1,
+            p: 3,
+            // bg: 'orangeLight',
+            boxShadow: '1px 1px 5px rgba(0,0,0,0.1)',
+            borderWidth: 2,
+            borderColor: 'orange',
+          }}
           placeholder="Your story here"
           rows={4}
           {...caption.props}
         />
         <FieldErrors {...caption} />
       </div>
-      <p><b>Add an image to illustrate your story</b></p>
-      <div>
-        <Input
-          sx={{ my: 2 }}
-          type="file"
-          name="image"
-          accept=".jpg,.jpeg,.png"
-          onChange={({ target: { validity, files } }) => {
-            if (validity.valid && files && files.length > 0) {
-              setImage(files[0]);
-            }
-          }}
+      <Text variant='hint' sx={{ fontSize: 0, my: 3 }}>
+        We’ll moderate then post your <em>story</em> + <em>first name</em> + <em>rough location</em> publicly alongside others
+        </Text>
+      <EmojiPicker />
+      <Grid columns={2} gap={2} sx={{ alignItems: 'start', my: 2 }}>
+        <TextInput
+          type="text"
+          placeholder="First name"
+          {...firstName.props}
         />
-      </div>
+        <FieldErrors {...firstName} />
+        <TextInput
+          type="text"
+          placeholder="Last name"
+          {...lastName.props}
+        />
+      </Grid>
+      <FieldErrors {...lastName} />
+      <Box sx={{ my: 2 }}>
+        <TextInput
+          type="email"
+          placeholder="Email"
+          {...email.props}
+        />
+        <FieldErrors {...email} />
+      </Box>
+      <Box sx={{ my: 2 }}>
+        <TextInput
+          type="postcode"
+          placeholder="Postcode"
+          {...postcode.props}
+        />
+        <FieldErrors {...postcode} />
+      </Box>
+
+
+      <header sx={{ mt: 4, mb: 3 }}>
+        <Heading variant='formSection'>
+          Your rental situation
+          </Heading>
+        <Text variant='hint'>
+          Select all that apply
+          </Text>
+      </header>
+
+      <Text sx={{ fontWeight: 'emphasis', mt: 3, mb: 3 }}>
+        How has coronavirus impacted your finances?
+        </Text>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...FullPay.props} label="I am still on full pay" />
+      </Box>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...IncomeFell.props} label="My income has fallen but I’m receiving support" />
+      </Box>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...CannotGetUC.props} label="I am not eligible for Universal Credit" />
+      </Box>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...CannotGetFurlough.props} label="I am not eligible to have 80% of my income paid by the government" />
+      </Box>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...UCDoesntCoverRent.props} label="Universal Credit/housing benefit won't cover my rent" />
+      </Box>
+
+      <Text sx={{ fontWeight: 'emphasis', mt: 3, mb: 3 }}>
+        How has coronavirus affected your housing arrangement?
+        </Text>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...RentHolidayOrReduction.props} label="My landlord has offered me a rent holiday/reduction" />
+      </Box>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...AskedToMoveOut.props} label="I have been asked to move out" />
+      </Box>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...CantMove.props} label="I was due to move house but now I can’t" />
+      </Box>
+
+      <Text sx={{ fontWeight: 'emphasis', mt: 3, mb: 3 }}>
+        What is your living situation like?
+        </Text>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...HousingOK.props} label="It's OK" />
+      </Box>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...Overcrowded.props} label="My home is overcrowded" />
+      </Box>
+      <Box sx={{ my: 2 }}>
+        <Checkbox {...UnfitToLiveIn.props} label="My home is in need of repair" />
+      </Box>
+
 
       <header sx={{ mt: 4, mb: 3 }}>
         <Heading variant='formSection'>
@@ -342,30 +365,30 @@ export function VentForm({
           label="I would like to receive emails from Generation Rent"
           {...canContact.props}
         />
-        <p>
-          By checking this box, you agree that Generation Rent can email you
-          occasionally about campaigns. If you decide later that you don’t
+      </div>
+      <Text variant='hint'>If you decide later that you don’t
             want to be contacted, our emails contain an{" "}
-          <a
-            href="https://www.generationrent.org/unsubscribe?utm_campaign=scandal_meet_candidates&utm_medium=email&utm_source=npto"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            easy link
+        <a
+          href="https://www.generationrent.org/unsubscribe?utm_campaign=scandal_meet_candidates&utm_medium=email&utm_source=npto"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          easy link
             </a>{" "}
               to unsubscribe.
-          </p>
-      </div>
-      <Button variant='submit' type="submit" disabled={form.submitting || (form.submitted && !form.submitErrors?.length)}>
-        {form.submitting
-          ? "Sending... ⏳"
-          : form.submitted && !form.submitErrors?.length
-            ? "You've signed ✊"
-            : form?.submitErrors?.length
-              ? "Try again"
-              : "Add Your Voice"}
-      </Button>
-      {form.submitted && <Errors errors={form.submitErrors} />}
+        </Text>
+      <Box sx={{ my: 4 }}>
+        <Button variant='submit' type="submit" disabled={form.submitting || (form.submitted && !form.submitErrors?.length)}>
+          {form.submitting
+            ? "Sending... ⏳"
+            : form.submitted && !form.submitErrors?.length
+              ? "You've signed ✊"
+              : form?.submitErrors?.length
+                ? "Try again"
+                : "Submit your story"}
+        </Button>
+        {form.submitted && <Errors errors={form.submitErrors} />}
+      </Box>
     </form>
   )
 }

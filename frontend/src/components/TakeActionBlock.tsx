@@ -87,6 +87,7 @@ export const SIGNUP_MUTATION = gql`
     $CantMove: Boolean
     $Overcrowded: Boolean
     $UnfitToLiveIn: Boolean
+    $HousingOK: Boolean
   ) {
     signup(
       firstName: $firstName
@@ -104,6 +105,7 @@ export const SIGNUP_MUTATION = gql`
       CantMove: $CantMove
       Overcrowded: $Overcrowded
       UnfitToLiveIn: $UnfitToLiveIn
+      HousingOK: $HousingOK
     ) {
       signup {
         id
@@ -121,6 +123,7 @@ export const SIGNUP_MUTATION = gql`
         CantMove
         Overcrowded
         UnfitToLiveIn
+        HousingOK
       }
     }
   }

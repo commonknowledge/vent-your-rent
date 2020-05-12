@@ -2591,6 +2591,16 @@
                 {
                   "defaultValue": null,
                   "description": null,
+                  "name": "HousingOK",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
                   "name": "IncomeFell",
                   "type": {
                     "kind": "SCALAR",
@@ -3056,6 +3066,22 @@
               "description": "",
               "isDeprecated": false,
               "name": "UnfitToLiveIn",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "HousingOK",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,

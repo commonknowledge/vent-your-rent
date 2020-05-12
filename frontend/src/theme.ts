@@ -179,6 +179,11 @@ const theme: Theme = {
       b: {
         fontWeight: 'emphasis'
       },
+      em: {
+        // fontWeight: 'emphasis',
+        borderBottom: '1px solid #AAA',
+        fontStyle: 'normal'
+      },
       a: {
         variant: 'text.link'
       }

@@ -14,7 +14,7 @@ export function validateEmail(value: string) {
 
 export const minLength = (
   min: number,
-  message: string = `Must be at least ${min} characters`
+  message: string = `Minimum ${min} characters`
 ) => (value: string) => {
   let errors: string[] = [];
 
@@ -27,7 +27,7 @@ export const minLength = (
 
 export const maxLength = (
   max: number,
-  message: string = `Must not be longer than ${max} characters`
+  message: string = `Maximum ${max} characters`
 ) => (value: string) => {
   let errors: string[] = [];
 

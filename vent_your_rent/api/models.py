@@ -46,5 +46,6 @@ class Signup(models.Model):
     CantMove = models.BooleanField(null=True, blank=True)
     Overcrowded = models.BooleanField(null=True, blank=True)
     UnfitToLiveIn = models.BooleanField(null=True, blank=True)
+    HousingOK = models.BooleanField(null=True, blank=True)
     # auto
     date_created = models.DateTimeField(null=True, blank=True, auto_now_add=True)

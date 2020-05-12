@@ -41,6 +41,7 @@ class SignupMutation(graphene.Mutation):
         CantMove = graphene.Boolean()
         Overcrowded = graphene.Boolean()
         UnfitToLiveIn = graphene.Boolean()
+        HousingOK = graphene.Boolean()
 
     signup = graphene.Field(SignupType)
     success = graphene.Boolean(required=True)
@@ -61,6 +62,7 @@ class SignupMutation(graphene.Mutation):
                CantMove=False,
                Overcrowded=False,
                UnfitToLiveIn=False,
+               HousingOK=False,
                ):
         signup = Signup.objects.create(
             first_name=first_name,
@@ -77,7 +79,8 @@ class SignupMutation(graphene.Mutation):
             RentHolidayOrReduction=RentHolidayOrReduction,
             CantMove=CantMove,
             Overcrowded=Overcrowded,
-            UnfitToLiveIn=UnfitToLiveIn
+            UnfitToLiveIn=UnfitToLiveIn,
+            HousingOK=HousingOK
         )
 
         return SignupMutation(success=True, signup=signup)
