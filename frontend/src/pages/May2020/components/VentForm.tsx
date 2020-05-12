@@ -338,17 +338,10 @@ export function VentForm({
         </Text>
       </header>
       <div>
-        <CheckboxInput
-          id="keep-updated"
-          type="checkbox"
+        <Checkbox
+          label="I would like to receive emails from Generation Rent"
           {...canContact.props}
         />
-        <Label
-          sx={{ width: 'auto', display: 'inline-flex', cursor: 'pointer' }}
-          htmlFor="keep-updated"
-        >
-          I would like to receive emails from Generation Rent
-        </Label>
         <p>
           By checking this box, you agree that Generation Rent can email you
           occasionally about campaigns. If you decide later that you don’t
