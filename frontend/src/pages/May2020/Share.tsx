@@ -29,7 +29,7 @@ export const Share: React.FC = () => {
 
   return (
     <Grid sx={{
-      height: '100vh',
+      height: [null, null, '100vh'],
       '> *': {
         height: '100%',
         overflow: 'auto'
@@ -72,7 +72,7 @@ export const Share: React.FC = () => {
               <Emoji symbol="🏚" sx={{ pr: 2 }} /> <Text><b>1.8 million private rented homes</b> are flats. People without a garden are at a higher risk of mental illness during lockdown.</Text>
             </p>
           </Box>
-          <Box sx={{ my: 4 }}>
+          <Box sx={{ mt: 4, mb: [2, 3, 4] }}>
             <Heading>Join our movement</Heading>
             <p sx={{ my: 2 }}>We’re calling for better protections for renters during and beyond coronavirus:</p>
             <p sx={{ display: 'flex', my: 2, mb: 1 }}>

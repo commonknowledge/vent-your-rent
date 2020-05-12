@@ -37,11 +37,9 @@ export const VentCounter: React.FC = () => {
 
   return (
     <Heading>
-      {/* <span sx={{ color: 'orange' }}> */}
-      <animated.span>
+      <animated.span sx={{ color: 'orange' }}>
         {animatedCount.interpolate(n => Math.floor(n))}
       </animated.span>
-      {/* </span> */}
       &nbsp;rent vents
       <br />(and counting!)
     </Heading>
@@ -84,15 +82,15 @@ export const VentCardList: React.FC<{ vents: VentDashboardQuery_vents[] }> = ({ 
 
 export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = ({ vent, ...props }) => {
   return (
-    <Link to={`/vent/${vent.id}`} sx={{ color: 'text' }}>
+    <Box sx={{ color: 'text' }}>
       <Box sx={{
         bg: 'white',
         boxShadow: '0px 0px 20px rgba(53, 53, 53, 0.1)',
         borderRadius: '6px',
         py: 3,
         px: 3,
-        transition: 'all 0.2s ease',
-        ':hover': { transform: 'scale(1.05)' }
+        // transition: 'all 0.2s ease',
+        // ':hover': { transform: 'scale(1.05)' }
       }} {...props}>
         <Text sx={{ mb: 3 }}>
           {vent.caption}
@@ -105,10 +103,10 @@ export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = 
             <Text sx={{ fontWeight: 'emphasis' }}>{vent.firstName}</Text>
             <Text sx={{ fontSize: 0, color: 'textLight' }}>{vent?.location?.name}</Text>
           </Box>
-          <Link sx={{ ml: 'auto', flexShrink: 0 }} to={`/vent/${vent.id}`}>Read more</Link>
+          {/* <Box sx={{ ml: 'auto', flexShrink: 0, color: 'orange' }}>Read more</Box> */}
         </Flex>
       </Box>
-    </Link>
+    </Box>
   )
 }
 

@@ -23,7 +23,7 @@ const theme: Theme = {
     background: colors.white,
   },
   fontSizes: [
-    10, 14, 24, 100
+    '0.9rem', '1rem', '1.7rem', '7rem'
   ],
   lineHeights: {
     body: 1.2,
@@ -141,7 +141,7 @@ const theme: Theme = {
   },
   styles: {
     root: {
-      fontSize: 1,
+      fontSize: ['16px', '15px', '14px'],
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
