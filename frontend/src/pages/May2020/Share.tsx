@@ -86,13 +86,13 @@ export const Share: React.FC = () => {
             </p>
             <Box sx={{ my: 2 }}>
               <Box>
-                <a sx={{ variant: 'text.link.bold', my: 2 }} href='https://www.generationrent.org/coronavirus_here_s_what_we_are_asking_the_government'>Read our demands in full</a>
+                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/coronavirus_here_s_what_we_are_asking_the_government'>Read our demands in full</a>
               </Box>
               <Box>
-                <a sx={{ variant: 'text.link.bold', my: 2 }} href='/'>Vent your rent again</a>
+                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='/'>Vent your rent again</a>
               </Box>
               <Box>
-                <a sx={{ variant: 'text.link.bold', my: 2 }} href='https://generationrent.eaction.online/meetyourmpcoronavirus'>Email your MP</a>
+                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://generationrent.eaction.online/meetyourmpcoronavirus'>Email your MP</a>
               </Box>
             </Box>
           </Box>
