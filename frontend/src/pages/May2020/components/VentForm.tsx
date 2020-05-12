@@ -10,13 +10,13 @@ import { TextInput, LargeTextInput, CheckboxInput, Errors, FieldErrors, Checkbox
 import useLocalStorage from '@rehooks/local-storage'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker, Emoji } from 'emoji-mart'
-import { emojis } from 'emoji-mart/data/apple.json'
+import { categories } from 'emoji-mart/data/apple.json'
 import { sample } from 'lodash'
 import useOnClickOutside from 'use-onclickoutside'
 import { VentCard } from './VentDashboard';
 import gql from 'graphql-tag';
 
-const randomEmoji = () => sample(Object.keys(emojis))!
+const randomEmoji = () => sample(categories.find(c => c.id === 'people')?.emojis)!
 
 export const CREATE_VENT_MUTATION = gql`
   ${(VentCard as any).fragment}
