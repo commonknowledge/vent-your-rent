@@ -47,7 +47,7 @@ export const VentMapItems: React.FC<{ vents: VentMapItemFragment[] }> = memo(({ 
     const interval = setInterval(() => {
       if (!cycle) return
       setCurrentId(sample(acceptableVents)?.id)
-    }, 4000)
+    }, 3000)
 
     return () => clearInterval(interval)
   }, [vents, setCurrentId, cycle])
@@ -85,7 +85,7 @@ export const VentMapItem: React.FC<{ vent: VentMapItemFragment }> = ({ vent }) =
 export const VentMapPopup: React.FC<{ vent: VentMapItemFragment, onClose?: () => void }> = ({ vent, onClose }) => {
   if (!vent.geo) return null
   return (
-    <Popup onClose={onClose} longitude={vent.geo?.longitude} latitude={vent.geo?.latitude} sx={{
+    <Popup onClose={onClose} longitude={vent.geo?.longitude} latitude={vent.geo?.latitude} offsetTop={-20} sx={{
       background: 'none',
       border: 'none',
       boxShadow: 'none',
@@ -94,9 +94,11 @@ export const VentMapPopup: React.FC<{ vent: VentMapItemFragment, onClose?: () =>
         right: 15,
       },
       '.mapboxgl-popup-content': {
+        padding: 0,
         background: 'none',
         border: 'none',
         boxShadow: 'none',
+        width: 300
       }
     }}>
       <VentCard vent={vent} />
