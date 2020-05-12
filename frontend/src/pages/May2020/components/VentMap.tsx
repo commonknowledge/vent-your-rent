@@ -47,7 +47,7 @@ export const VentMapItems: React.FC<{ vents: VentMapItemFragment[] }> = memo(({ 
     const interval = setInterval(() => {
       if (!cycle) return
       setCurrentId(sample(acceptableVents)?.id)
-    }, 3000)
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [vents, setCurrentId, cycle])
