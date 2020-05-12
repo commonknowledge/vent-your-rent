@@ -19,7 +19,7 @@ export function LargeTextInput({ onChange, ...props }:
   & { onChange: (v: any) => void }
 ) {
   return (
-    <Textarea {...props} onChange={event => onChange(event.currentTarget.value)} />
+    <Textarea sx={{ font: 'inherit', width: '100%' }} {...props} onChange={event => onChange(event.currentTarget.value)} />
   )
 }
 

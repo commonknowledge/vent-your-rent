@@ -7,6 +7,7 @@ import gql from 'graphql-tag';
 import { VentMapItemFragment } from './__graphql__/VentMapItemFragment';
 import { useQuery } from '@apollo/react-hooks';
 import { VentMapQuery } from './__graphql__/VentMapQuery';
+import { Emoji } from 'emoji-mart'
 
 export const VentMap: React.FC = () => {
   const [viewport, setViewport] = useState({
@@ -47,7 +48,9 @@ export const VentMapItem: React.FC<{ vent: VentMapItemFragment }> = ({ vent }) =
   return (
     <Marker longitude={vent.geo?.longitude} latitude={vent.geo?.latitude}>
       <Box sx={{ position: 'absolute', transform: 'translate(-50%, -50%)' }}>
-        <Text sx={{ fontSize: 2 }}>🏚</Text>
+        <Text sx={{ fontSize: 2 }}>
+          {vent.emoji ? <Emoji emoji={vent.emoji} set='apple' size={24} /> : '🏚'}
+        </Text>
       </Box>
     </Marker>
   )
@@ -57,6 +60,7 @@ export const VentMapItem: React.FC<{ vent: VentMapItemFragment }> = ({ vent }) =
 VentMapItem.fragment = gql`
   fragment VentMapItemFragment on VentType {
     id
+    emoji
     geo {
       latitude
       longitude

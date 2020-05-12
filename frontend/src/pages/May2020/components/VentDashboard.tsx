@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { VentDashboardQuery_vents, VentDashboardQuery } from './__graphql__/VentDashboardQuery';
 import useLocalStorage from '@rehooks/local-storage'
 import { useSpring, animated } from 'react-spring';
+import { Emoji } from 'emoji-mart';
 
 const COUNT_QUERY = gql`
   query CountQuery {
@@ -97,7 +98,9 @@ export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = 
           {vent.caption}
         </Text>
         <Flex sx={{ textTransform: 'uppercase', fontSize: 0, alignItems: 'flex-end' }}>
-          <Box sx={{ fontSize: 2, lineHeight: 1, flexShrink: 0 }}>👩🏽</Box>
+          <Box sx={{ fontSize: 2, lineHeight: 1, flexShrink: 0 }}>
+            {vent.emoji ? <Emoji emoji={vent.emoji} set='apple' size={24} /> : '🏚'}
+          </Box>
           <Box sx={{ px: 2 }}>
             <Text sx={{ fontWeight: 'emphasis' }}>{vent.firstName}</Text>
             <Text sx={{ fontSize: 0, color: 'textLight' }}>{vent?.location?.name}</Text>
@@ -116,6 +119,7 @@ VentCard.fragment = gql`
     firstName
     image
     caption
+    emoji
     location: geo {
       name: parliamentaryConstituency
     }

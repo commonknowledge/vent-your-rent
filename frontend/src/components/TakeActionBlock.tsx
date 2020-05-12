@@ -134,12 +134,14 @@ export const CREATE_VENT_MUTATION = gql`
     $firstName: String!
     $image: Upload
     $postcode: String!
+    $emoji: String
   ) {
     createVent(
       caption: $caption
       firstName: $firstName
       image: $image
       postcode: $postcode
+      emoji: $emoji
     ) {
       success
       vent {

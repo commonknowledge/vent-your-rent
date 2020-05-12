@@ -109,16 +109,18 @@ class VentMutation(graphene.Mutation):
         first_name = graphene.String(required=True)
         postcode = graphene.String(required=True)
         image = Upload()
+        emoji = graphene.String(required=False)
 
     success = graphene.Boolean()
     vent = graphene.Field(VentType)
 
-    def mutate(self, info, caption=None, first_name=None, postcode=None, image=None):
+    def mutate(self, info, caption=None, first_name=None, postcode=None, image=None, emoji=None):
         vent = Vent.objects.create(
             caption=caption,
             first_name=first_name,
             postcode=postcode,
-            image=image
+            image=image,
+            emoji=emoji
         )
 
         return VentMutation(success=True, vent=vent)

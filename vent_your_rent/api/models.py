@@ -21,6 +21,7 @@ class Vent(models.Model):
     postcode = models.CharField(null=False, blank=False, max_length=12)
     caption = models.TextField(null=False, blank=False)
     image = models.ImageField(null=True, blank=True, upload_to=generate_upload_destination_path)
+    emoji = models.CharField(null=True, blank=True, max_length=50)
     # admin
     is_published = models.BooleanField(null=True, blank=True, default=False)
     # auto

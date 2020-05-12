@@ -1,13 +1,47 @@
 /** @jsx jsx */
-import { jsx, Button, Input, Label, Box, Heading, Text } from 'theme-ui';
+import { jsx, Button, Input, Label, Box, Heading, Text, Flex } from 'theme-ui';
 import { useField, useForm } from "react-jeff";
 import { validateEmail, minLength, maxLength } from "../../../data/input";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { CreateVentMutation } from '../../../components/__graphql__/CreateVentMutation';
-import { CREATE_VENT_MUTATION, SIGNUP_MUTATION } from '../../../components/TakeActionBlock';
+import { SIGNUP_MUTATION } from '../../../components/TakeActionBlock';
 import { TextInput, LargeTextInput, CheckboxInput, Errors, FieldErrors, Checkbox } from './formElements';
 import useLocalStorage from '@rehooks/local-storage'
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker, Emoji } from 'emoji-mart'
+import { emojis } from 'emoji-mart/data/apple.json'
+import { sample } from 'lodash'
+import useOnClickOutside from 'use-onclickoutside'
+import { VentCard } from './VentDashboard';
+import gql from 'graphql-tag';
+
+const randomEmoji = () => sample(Object.keys(emojis))!
+
+export const CREATE_VENT_MUTATION = gql`
+  ${(VentCard as any).fragment}
+
+  mutation CreateVentMutation2002(
+    $caption: String!
+    $firstName: String!
+    $image: Upload
+    $postcode: String!
+    $emoji: String
+  ) {
+    createVent(
+      caption: $caption
+      firstName: $firstName
+      image: $image
+      postcode: $postcode
+      emoji: $emoji
+    ) {
+      success
+      vent {
+        ...VentCard2020
+      }
+    }
+  }
+`;
 
 export function VentForm({
   onSubmitSuccess
@@ -29,6 +63,14 @@ export function VentForm({
     validations: [minLength(4), maxLength(10)]
   });
   const canContact = useField<boolean>({ defaultValue: false });
+
+  const emoji = useField<string>({ defaultValue: randomEmoji() })
+  const [showPicker, setShowPicker] = useState(false)
+  useEffect(() => {
+    setShowPicker(false)
+  }, [emoji.value, setShowPicker])
+  const pickerRef = useRef<HTMLDivElement>(null)
+  useOnClickOutside(pickerRef, () => setShowPicker(false))
 
   // My income has fallen as a result of the pandemic
   const IncomeFell = useField<boolean>({ defaultValue: false })
@@ -120,6 +162,7 @@ export function VentForm({
   const createVent = async () => {
     const res = await createVentMutation({
       variables: {
+        emoji: emoji.value,
         caption: caption.value,
         firstName: firstName.value,
         image,
@@ -204,7 +247,7 @@ export function VentForm({
         <TextInput
           sx={{ my: 2 }}
           type="text"
-          placeholder="Last name"
+          placeholder="Last name (not publicly displayed)"
           {...lastName.props}
         />
         <FieldErrors {...lastName} />
@@ -222,16 +265,56 @@ export function VentForm({
           {...postcode.props}
         />
         <FieldErrors {...postcode} />
+        <p><b>Pick an emoji for your vent</b></p>
+        <Flex sx={{ position: 'relative', alignItems: 'center' }}>
+          <Box
+            sx={{ bg: 'grey', p: 3, borderRadius: 8, display: 'inline-block', cursor: 'pointer' }}
+            onClick={() => setShowPicker(true)}
+          >
+            <Emoji emoji={emoji.value} set='apple' size={32} />
+          </Box>
+          <Text
+            sx={{
+              transition: 'all 0.1s ease',
+              p: 2,
+              m: 1,
+              borderRadius: 8,
+              // fontWeight: 'emphasis',
+              cursor: 'pointer',
+              userSelect: 'none',
+              ':hover': {
+                bg: 'grey',
+                color: 'orange',
+              }
+            }}
+            onClick={() => { emoji.setValue(randomEmoji()) }}>
+            Pick random
+          </Text>
+          {showPicker && (
+            <Box sx={{ position: 'absolute', top: '100%', left: 0 }} ref={pickerRef}>
+              <Picker
+                set='apple'
+                onSelect={e => { emoji.setValue(e?.colons!) }}
+                showSkinTones
+                sheetSize={16}
+                title={false as any}
+                include={['people']}
+              />
+            </Box>
+          )}
+        </Flex>
       </div>
       <div>
-        <p>Share your worst rental experience</p>
+        <p><b>Vent your rent story</b></p>
         <LargeTextInput
-          sx={{ my: 2 }}
+          sx={{ my: 2, width: '100%' }}
           placeholder="Your story here"
+          rows={4}
           {...caption.props}
         />
         <FieldErrors {...caption} />
       </div>
+      <p><b>Add an image to illustrate your story</b></p>
       <div>
         <Input
           sx={{ my: 2 }}
@@ -293,4 +376,3 @@ export function VentForm({
     </form>
   )
 }
-
