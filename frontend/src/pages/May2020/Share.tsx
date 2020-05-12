@@ -34,10 +34,10 @@ export const Share: React.FC = () => {
         height: '100%',
         overflow: 'auto'
       }
-    }} columns={[1, null, 2]} gap={0}>
+    }} columns={[1, null, 'min(600px, max(400px, 33%)) 1fr']} gap={0}>
       {/* Left */}
       <Box sx={{ bg: 'white' }}>
-        <Box sx={{ p: [3, 4, 5] }}>
+        <Box sx={{ p: [3, 4, 4, 5] }}>
           <Heading>
             <Emoji symbol="🙌" />  Thanks for venting
           </Heading>

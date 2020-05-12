@@ -2,12 +2,14 @@
 import { jsx, Text, Box } from 'theme-ui';
 import { VentCard2020 } from './__graphql__/VentCard2020';
 import { useRef, useEffect, useMemo, useState, useReducer, Fragment, memo } from 'react';
-import MapGL, { Marker } from 'react-map-gl'
+import MapGL, { Marker, Popup } from 'react-map-gl'
 import gql from 'graphql-tag';
 import { VentMapItemFragment } from './__graphql__/VentMapItemFragment';
 import { useQuery } from '@apollo/react-hooks';
 import { VentMapQuery } from './__graphql__/VentMapQuery';
 import { Emoji } from 'emoji-mart'
+import { VentCard } from './VentDashboard';
+import { sample } from 'lodash';
 
 export const VentMap: React.FC = () => {
   const [viewport, setViewport] = useState({
@@ -33,12 +35,36 @@ export const VentMap: React.FC = () => {
   )
 }
 
-export const VentMapItems: React.FC<{ vents?: VentMapItemFragment[] }> = memo(({ vents }) => {
+export const VentMapItems: React.FC<{ vents: VentMapItemFragment[] }> = memo(({ vents }) => {
+  const [currentId, setCurrentId] = useState<string>()
+  const [cycle, setCycle] = useState(true)
+
+  const acceptableVents = useMemo(() => vents.filter(v => v.isPublished), [vents])
+
+  useEffect(() => {
+    setCurrentId(sample(acceptableVents)?.id)
+
+    const interval = setInterval(() => {
+      if (!cycle) return
+      setCurrentId(sample(acceptableVents)?.id)
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [vents, setCurrentId, cycle])
+
+  const highlightedVent = useMemo(() => vents.find(v => v.id === currentId), [currentId])
+
   return (
     <Fragment>
-      {vents?.filter(vent => vent.geo).map(vent => (
+      {vents.filter(vent => vent.geo).map(vent => (
         <VentMapItem key={vent.id} vent={vent} />
       ))}
+      {!!highlightedVent && (
+        <VentMapPopup vent={highlightedVent} onClose={() => {
+          setCurrentId(undefined)
+          setCycle(false)
+        }} />
+      )}
     </Fragment>
   )
 })
@@ -56,16 +82,42 @@ export const VentMapItem: React.FC<{ vent: VentMapItemFragment }> = ({ vent }) =
   )
 }
 
+export const VentMapPopup: React.FC<{ vent: VentMapItemFragment, onClose?: () => void }> = ({ vent, onClose }) => {
+  if (!vent.geo) return null
+  return (
+    <Popup onClose={onClose} longitude={vent.geo?.longitude} latitude={vent.geo?.latitude} sx={{
+      background: 'none',
+      border: 'none',
+      boxShadow: 'none',
+      '.mapboxgl-popup-close-button': {
+        top: 15,
+        right: 15,
+      },
+      '.mapboxgl-popup-content': {
+        background: 'none',
+        border: 'none',
+        boxShadow: 'none',
+      }
+    }}>
+      <VentCard vent={vent} />
+    </Popup>
+  )
+}
+
 // @ts-ignore
 VentMapItem.fragment = gql`
   fragment VentMapItemFragment on VentType {
     id
     emoji
+    isPublished
     geo {
       latitude
       longitude
     }
+    ...VentCard2020
   }
+
+  ${(VentCard as any).fragment}
 `
 
 const VENTMAP_QUERY = gql`
