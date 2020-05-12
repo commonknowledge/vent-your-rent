@@ -109,6 +109,16 @@ const theme: Theme = {
     }
   },
   forms: {
+    input: {
+      borderColor: 'textLight'
+    },
+    textarea: {
+      borderColor: 'textLight'
+    },
+    container: {
+      alignItems: 'top',
+      my: 2
+    },
     checkbox: {
       position: 'relative',
       cursor: 'pointer',
@@ -117,8 +127,9 @@ const theme: Theme = {
       'vertical-align': 'middle',
       'background': 'white',
       'border': '1px solid black',
-      'width': '30px',
-      'height': '30px',
+      borderColor: 'textLight',
+      'width': '1rem',
+      'height': '1rem',
       'border-radius': '20%',
       'display': 'inline-flex',
       'justify-content': 'center',
@@ -134,14 +145,14 @@ const theme: Theme = {
       '&:checked:after': {
         'content': '""',
         display: 'block',
-        bg: 'black',
+        bg: 'orange',
         'border-radius': '20%',
         // 'transform': 'translate(0, 0)',
-        top: '12.5%',
-        left: '12.5%',
+        top: '0',
+        left: '0',
         position: 'absolute',
-        'height': '75%',
-        'width': '75%',
+        'height': '100%',
+        'width': '100%',
         'line-height': '0',
       }
     },

@@ -38,7 +38,7 @@ export const Checkbox: React.FC<
     label: string
   }
 > = ({ label, ...props }) => (
-  <Flex sx={{ alignItems: 'center' }}>
+  <Flex sx={{ variant: 'forms.container' }}>
     <CheckboxInput
       id={`form-checkbox-input-${label}`}
       type="checkbox"
