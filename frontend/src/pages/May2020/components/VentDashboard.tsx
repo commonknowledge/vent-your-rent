@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
 import { VentDashboardQuery_vents, VentDashboardQuery } from './__graphql__/VentDashboardQuery';
 import useLocalStorage from '@rehooks/local-storage'
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, useTransition } from 'react-spring';
 import { Emoji } from 'emoji-mart';
 import Truncate from 'react-truncate';
 
@@ -65,19 +65,32 @@ export const VentDashboard: React.FC = () => {
     refetch()
   }, [quantity])
 
+  const transition = useTransition(data?.vents?.slice().reverse(), {
+    keys: (vent: { id?: string }) => vent?.id,
+    from: {
+      opacity: 0,
+      y: -10
+    },
+    enter: {
+      opacity: 1,
+      y: 0
+    }
+  })
+
+  const fragment = transition(({ opacity, y }, vent) => {
+    // 3. Render each item
+    return vent ? (
+      <animated.div style={{ opacity, marginTop: y.interpolate(y => `${y}px`) }}>
+        <Box sx={{ my: 2, width: ['calc(100vw - 30px)', 300, '100%'], maxWidth: ['100vw', '100vw', '100%'], mr: 3 }}>
+          <VentCard vent={vent} />
+        </Box>
+      </animated.div>
+    ) : null
+  })
+
   return (
-    <Flex sx={{ flexDirection: ['row', 'row', 'column'], width: [`calc(${data?.vents?.length} * min(300px, 100vw))`, null, 'auto'] }}>
-      {data?.vents ? (
-        <Fragment>
-          {data.vents.slice().reverse().map((vent) => {
-            return (
-              <Box key={vent.id} sx={{ my: 3, width: ['calc(100vw - 30px)', 300, '100%'], maxWidth: ['100vw', '100vw', '100%'], mr: 3 }}>
-                <VentCard vent={vent} />
-              </Box>
-            )
-          })}
-        </Fragment>
-      ) : "Loading"}
+    <Flex sx={{ pt: 2, flexDirection: ['row', 'row', 'column'], width: [`calc(${data?.vents?.length} * min(300px, 100vw))`, null, 'auto'] }}>
+      {fragment}
     </Flex>
   )
 }
