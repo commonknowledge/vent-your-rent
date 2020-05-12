@@ -88,9 +88,24 @@ const theme: Theme = {
       }
     },
   },
+  // @ts-ignore
   buttons: {
     primary: {
       cursor: 'pointer'
+    },
+    submit: {
+      cursor: 'pointer',
+      bg: 'text',
+      color: 'white',
+      width: '100%',
+      p: 3,
+      textAlign: 'center',
+      fontWeight: 'bold',
+      textTransform: 'uppercase',
+      transition: 'all 0.1s ease',
+      ':hover': {
+        opacity: 0.8
+      }
     }
   },
   forms: {

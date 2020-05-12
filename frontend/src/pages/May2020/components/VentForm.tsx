@@ -356,7 +356,7 @@ export function VentForm({
               to unsubscribe.
           </p>
       </div>
-      <Button type="submit" disabled={form.submitting || (form.submitted && !form.submitErrors?.length)}>
+      <Button variant='submit' type="submit" disabled={form.submitting || (form.submitted && !form.submitErrors?.length)}>
         {form.submitting
           ? "Sending... ⏳"
           : form.submitted && !form.submitErrors?.length
