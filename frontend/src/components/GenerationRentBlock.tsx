@@ -9,8 +9,6 @@ const GenerationRentBlock = () => (
   <PartnerBlock
     logo={GenerationRentLogo}
     name="Generation Rent"
-    description="Vent Your Rent is a campaign run by Generation Rent, the national voice of private renters. We campaign for safe, fair and secure homes for all of us renting and work with all parties to make that happen."
-    linkText="Find out more"
     linkHref="https://www.generationrent.org/"
   />
 );

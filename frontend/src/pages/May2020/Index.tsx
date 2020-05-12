@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import { jsx, Box, Grid, Heading, Text } from 'theme-ui'
+import { jsx, Box, Grid, Heading, Text, Flex } from 'theme-ui';
 import { VentDashboard, VentCounter } from './components/VentDashboard';
 import Emoji from 'a11y-react-emoji';
 import { VentForm } from './components/VentForm';
 import { useHistory } from 'react-router-dom';
+import GenerationRentBlock from '../../components/GenerationRentBlock';
 
 export const Index: React.FC = () => {
   const history = useHistory()
@@ -34,6 +35,18 @@ export const Index: React.FC = () => {
           <p>Coronavirus has hit the incomes of millions of renters who are now worried about how to pay the rent.  When the eviction ban is lifted, renters in arrears will face debt and homelessness.</p>
           <p>We need to make sure that renters’ voices are heard lbud and clear by the government.</p>
           <p><b>Share your story and join our movement for change.</b></p>
+
+          <Box sx={{ my: 5, filter: 'grayscale(100%)', opacity: 1, mixBlendMode: 'multiply' }} >
+            <GenerationRentBlock />
+            <a target='_blank' sx={{ color: 'black', textDecoration: 'underline' }} href='https://www.generationrent.org/coronavirus_here_s_what_we_are_asking_the_government'>
+              <b>Find out more</b>
+            </a> about our campaign to protect renters affected by coronavirus
+            <Flex sx={{ my: 3, '> *': { mr: 3 }, textTransform: 'uppercase', fontSize: 0 }}>
+              <a target='_blank' sx={{ color: 'black' }} href='https://www.generationrent.org/contact'><b>Contact</b></a>
+              <a target='_blank' sx={{ color: 'black' }} href='https://www.generationrent.org/privacy_notice'><b>Privacy</b></a>
+              <a target='_blank' sx={{ color: 'black' }} href='https://commonknowledge.coop'>Site by <b>Common Knowledge</b></a>
+            </Flex>
+          </Box>
         </Box>
       </Box>
 
