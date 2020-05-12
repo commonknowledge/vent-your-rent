@@ -66,7 +66,7 @@ export const VentDashboard: React.FC = () => {
         <Fragment>
           {data.vents.map((vent) => {
             return (
-              <Box key={vent.id} sx={{ my: 3, width: ['calc(100vw - 30px)', 300, false], maxWidth: ['100vw', '100vw', '100%'], mr: 3 }}>
+              <Box key={vent.id} sx={{ my: 3, width: ['calc(100vw - 30px)', 300, '100%'], maxWidth: ['100vw', '100vw', '100%'], mr: 3 }}>
                 <VentCard vent={vent} />
               </Box>
             )
