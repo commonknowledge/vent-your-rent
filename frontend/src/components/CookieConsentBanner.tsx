@@ -21,40 +21,26 @@ const CookieConsentBanner: React.FC<{
   return !consent ? (
     <div
       css={css`
-        width: 100%;
-        bottom: 0;
+        opacity: 0.95;
+        display: inline-block;
+        bottom: 10px;
+        left: 10px;
+        margin-right: 10px;
         position: fixed;
         z-index: 999;
-        height: ${'103px'};
         background: ${colorBlack};
         ${fontColorWhite}
-        ${fontSizeSmall}
-        padding: 20px;
+        font-size: 14px;
+        padding: 10px;
+        border-radius: 8px;
       `}
     >
-      <PageWidth>
-        <div>
-          <Emoji emoji="cookie" set='apple' size={24} /> We use cookies to track site usage and make
-            improvements.
-          </div>
-        <div
-          css={css`
-              margin-top: 10px;
-            `}
-        >
-          <a
-            onClick={() => setConsent(true)}
-            css={css`
-                text-transform: uppercase;
-                text-decoration: underline;
-                cursor: pointer;
-              `}
-          >
-            Okay
-            </a>
-        </div>
-      </PageWidth>
-    </div>
+      <Emoji emoji="cookie" set='apple' size={14} />
+      &nbsp;
+      We use cookies to track site usage and make improvements.
+      &nbsp;
+      <a onClick={() => setConsent(true)} css={css`text-transform: uppercase; cursor: pointer;`}>Okay</a>
+    </div >
   ) : null;
 };
 
