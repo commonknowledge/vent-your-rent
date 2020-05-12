@@ -8,6 +8,7 @@ import { VentDashboardQuery_vents, VentDashboardQuery } from './__graphql__/Vent
 import useLocalStorage from '@rehooks/local-storage'
 import { useSpring, animated } from 'react-spring';
 import { Emoji } from 'emoji-mart';
+import Truncate from 'react-truncate';
 
 const COUNT_QUERY = gql`
   query CountQuery {
@@ -60,23 +61,19 @@ export const VentDashboard: React.FC = () => {
   }, [refetch])
 
   return (
-    <Box sx={{ my: 4 }}>
-      {data?.vents ? <VentCardList vents={data?.vents} /> : "Loading"}
-    </Box>
-  )
-}
-
-export const VentCardList: React.FC<{ vents: VentDashboardQuery_vents[] }> = ({ vents }) => {
-  return (
-    <Fragment>
-      {vents.map((vent) => {
-        return (
-          <Box key={vent.id} sx={{ my: 3 }}>
-            <VentCard vent={vent} />
-          </Box>
-        )
-      })}
-    </Fragment>
+    <Flex sx={{ flexDirection: ['row', 'row', 'column'], width: [`calc(${data?.vents?.length} * min(300px, 100vw))`, null, 'auto'] }}>
+      {data?.vents ? (
+        <Fragment>
+          {data.vents.map((vent) => {
+            return (
+              <Box key={vent.id} sx={{ my: 3, width: ['calc(100vw - 30px)', 300, false], maxWidth: ['100vw', '100vw', '100%'], mr: 3 }}>
+                <VentCard vent={vent} />
+              </Box>
+            )
+          })}
+        </Fragment>
+      ) : "Loading"}
+    </Flex>
   )
 }
 
@@ -93,7 +90,9 @@ export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = 
         // ':hover': { transform: 'scale(1.05)' }
       }} {...props}>
         <Text sx={{ mb: 3 }}>
-          {vent.caption}
+          <Truncate lines={5}>
+            {vent.caption}
+          </Truncate>
         </Text>
         <Flex sx={{ textTransform: 'uppercase', fontSize: 0, alignItems: 'flex-end' }}>
           <Box sx={{ fontSize: 2, lineHeight: 1, flexShrink: 0 }}>

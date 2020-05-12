@@ -47,9 +47,17 @@ export const Index: React.FC = () => {
 
         {/* Center */}
         <Box sx={{ bg: 'grey' }}>
-          <Box sx={{ py: [4, 4, 5], px: [3, 3, 3, 4] }}>
-            <VentCounter />
-            <VentDashboard />
+          <Box sx={{ pt: [4, 4, 5], overflow: ['hidden', null, 'auto'] }}>
+            <Box sx={{ px: [3, 3, 3, 4] }}>
+              <VentCounter />
+            </Box>
+            <Box sx={{
+              px: [3, 3, 3, 4],
+              maxHeight: [250, 350, 'none'],
+              overflow: 'auto'
+            }}>
+              <VentDashboard />
+            </Box>
           </Box>
         </Box>
 
