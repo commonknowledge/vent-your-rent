@@ -50,6 +50,7 @@ export const Index: React.FC = () => {
           <Box sx={{ pt: [4, 4, 5], overflow: ['hidden', null, 'auto'] }}>
             <Box sx={{ px: [3, 3, 3, 4] }}>
               <VentCounter />
+              <Heading>(and counting!)</Heading>
             </Box>
             <Box sx={{
               px: [3, 3, 3, 4],

@@ -105,6 +105,9 @@ export const Share: React.FC = () => {
       {/* Right */}
       <Box sx={{ bg: 'grey', position: 'relative' }}>
         <VentMap />
+        <Box sx={{ position: 'absolute', top: 0, left: 0, m: [3, 4, 5] }}>
+          <VentCounter />
+        </Box>
       </Box>
     </Grid>
   )

@@ -42,7 +42,6 @@ export const VentCounter: React.FC = () => {
         {animatedCount.interpolate(n => Math.floor(n))}
       </animated.span>
       &nbsp;rent vents
-      <br />(and counting!)
     </Heading>
   )
 }
