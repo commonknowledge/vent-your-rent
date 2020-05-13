@@ -6,7 +6,7 @@ import os
 
 
 def normalise_postcode(postcode):
-    return postcode.replace(" ", "")
+    return postcode.upper().strip().replace(" ", "")
 
 
 def postcode_geo(postcode: str):
@@ -47,7 +47,8 @@ def bulk_postcode_geo(postcodes):
     print(needs_loading)
 
     if len(needs_loading) == 1:
-        has_loaded += [postcode_geo(needs_loading[0])]
+        postcode = needs_loading[0]
+        has_loaded += [{'query': postcode, 'result': postcode_geo(postcode)}]
 
     elif len(needs_loading) > 0:
         response = requests.post(f'https://api.postcodes.io/postcodes', data={
