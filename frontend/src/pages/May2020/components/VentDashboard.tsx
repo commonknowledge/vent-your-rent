@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Box, Grid, Heading, Text, Flex } from 'theme-ui';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
@@ -49,6 +49,8 @@ export const VentCounter: React.FC = () => {
 export const VentDashboard: React.FC = () => {
   const [ventIds] = useLocalStorage<number[]>('VENT_YOUR_RENT_VENT_IDS', [])
   const [quantity, setQuantity] = useState(1)
+  const nextIndex = useRef<number>(0)
+  const [vents, setVents] = useState<VentDashboardQuery_vents[]>([])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -58,14 +60,19 @@ export const VentDashboard: React.FC = () => {
   }, [setQuantity])
 
   const { data, refetch } = useQuery<VentDashboardQuery>(GET_VENTS, {
-    variables: { quantity, ventIds }
+    variables: { quantity: 50, ventIds }
   });
 
   useEffect(() => {
-    refetch()
-  }, [quantity])
+    setVents(vents => {
+      const nextVent = data?.vents[nextIndex.current]
+      if (!nextVent) return vents
+      return vents.concat(nextVent)
+    })
+    nextIndex.current = nextIndex.current + 1
+  }, [data, quantity])
 
-  const transition = useTransition(data?.vents?.slice().reverse(), {
+  const transition = useTransition(vents?.slice().reverse(), {
     keys: (vent: { id?: string }) => vent?.id,
     from: {
       opacity: 0,
@@ -89,7 +96,7 @@ export const VentDashboard: React.FC = () => {
   })
 
   return (
-    <Flex sx={{ pt: 2, flexDirection: ['row', 'row', 'column'], width: [`calc(${data?.vents?.length} * min(300px, 100vw))`, null, 'auto'] }}>
+    <Flex sx={{ pt: 2, flexDirection: ['row', 'row', 'column'], width: [`calc(${vents?.length} * min(300px, 100vw))`, null, 'auto'] }}>
       {fragment}
     </Flex>
   )

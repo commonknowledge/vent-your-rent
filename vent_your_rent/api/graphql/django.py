@@ -100,7 +100,7 @@ class VentType(DjangoObjectType):
         except:
             return None
 
-    geo = graphene.Field(GeocodeResult)
+    geo = graphene.Field(GeocodeResult, required=False)
 
     def resolve_geo(self, info):
         return info.context.loaders.get('geo_from_postcode').load(self.postcode)
@@ -133,7 +133,7 @@ class Queries():
     # production
     vents_count = graphene.Int(required=True)
 
-    # @cached_fn('vents_count', 1)
+    @cached_fn('vents_count', 1)
     def resolve_vents_count(self, info):
         return Vent.objects.count()
 

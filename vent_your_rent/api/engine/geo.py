@@ -4,8 +4,10 @@ from vent_your_rent.api.helpers.cache import cached_fn
 from django.core.cache import cache
 import os
 
+
 def normalise_postcode(postcode):
     return postcode.replace(" ", "")
+
 
 @cached_fn(lambda postcode: normalise_postcode(postcode), None)
 def postcode_geo(postcode: str):
@@ -20,19 +22,40 @@ def postcode_geo(postcode: str):
 
     return result
 
+
 @batch_and_aggregate(100)
 def bulk_postcode_geo(postcodes):
-    response = requests.post(f'https://api.postcodes.io/postcodes', data={
-        "postcodes": postcodes
-    })
-    data = response.json()
-    status = get(data, 'status')
-    result = get(data, 'result')
+    cached_data = cache.get_many(postcodes)
+    has_loaded = [
+        cached_data.get(postcode) for postcode in postcodes
+        if cached_data.get(postcode) is not None
+    ]
+    # print('has_loaded')
+    # print(has_loaded)
 
-    if status is not 200 or result is None:
-        raise Exception(f'Failed to bulk geocode postcodes: {postcodes}.')
+    needs_loading = [
+        postcode for postcode in postcodes
+        if cached_data.get(postcode) is None
+    ]
+    # print('needs_loading')
+    # print(needs_loading)
 
-    return result
+    if len(needs_loading) > 0:
+        response = requests.post(f'https://api.postcodes.io/postcodes', data={
+            "postcodes": needs_loading
+        })
+
+        data = response.json()
+        new_data = get(data, 'result')
+        status = get(data, 'status')
+
+        if status is not 200 or new_data is None:
+            raise Exception(f'Failed to bulk geocode postcodes: {postcodes}.')
+
+        has_loaded += new_data
+        cache.set_many({res.get('query'): res for res in new_data})
+
+    return has_loaded
 
 
 @batch_and_aggregate(25)
@@ -54,6 +77,7 @@ def bulk_coordinate_geo(coordinates):
 
     return result
 
+
 def coordinates_geo(latitude: float, longitude: float):
     response = requests.get(
         f'https://api.postcodes.io/postcodes?lon={longitude}&lat={latitude}')
@@ -67,18 +91,22 @@ def coordinates_geo(latitude: float, longitude: float):
 
     return result[0]
 
+
 def constituency_id_from_geo(geo):
     return get_path(geo, 'codes', 'parliamentary_constituency')
+
 
 def constituency_id_by_postcode(postcode: str) -> str:
     geo = postcode_geo(postcode)
     return constituency_id_from_geo(geo)
+
 
 class TransportModes():
     driving = "driving"
     walking = "walking"
     bicycling = "bicycling"
     transit = "transit"
+
 
 def get_approximate_postcode_locations(postcodes):
     '''
@@ -98,6 +126,7 @@ def get_approximate_postcode_locations(postcodes):
 def postcode_components(g):
     return [t for t in g.get('address_components') if 'postal_code' in t.get('types')]
 
+
 def geo_by_address(address: str):
     params = {
         "key": os.getenv('GOOGLE_MAPS_API_KEY'),
@@ -116,6 +145,7 @@ def geo_by_address(address: str):
         'latitude': float(geo.get('geometry').get('location').get('lat')),
         'longitude': float(geo.get('geometry').get('location').get('lng'))
     }
+
 
 '''
 output {
