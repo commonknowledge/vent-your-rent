@@ -8,7 +8,7 @@ export default function Footer() {
       css={css`
         ${fontSizeExtraSmall}
         ${fontColorDarkBlack}
-        
+
         a {
           text-decoration: none;
           color: inherit;
@@ -39,8 +39,7 @@ export default function Footer() {
         </a>
       </div>
       <div>
-        Site by{" "}
-        <strong>
+        Site&nbsp;by&nbsp;<strong>
           <a
             href="https://commonknowledge.coop"
             target="_blank"
