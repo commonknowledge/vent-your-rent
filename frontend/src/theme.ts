@@ -93,6 +93,27 @@ const theme: Theme = {
     primary: {
       cursor: 'pointer'
     },
+    ghost: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      color: 'orange',
+      bg: 'transparent',
+      transition: 'all 0.1s ease',
+      p: 2,
+      my: 1,
+      borderRadius: 8,
+      // fontWeight: 'emphasis',
+      cursor: 'pointer',
+      userSelect: 'none',
+      border: '1px solid grey',
+      borderColor: 'grey',
+      ':hover': {
+        border: '1px solid orangeLight',
+        borderColor: 'orangeLight',
+        bg: 'orangeLight',
+        color: 'orange',
+      }
+    },
     submit: {
       cursor: 'pointer',
       bg: 'text',

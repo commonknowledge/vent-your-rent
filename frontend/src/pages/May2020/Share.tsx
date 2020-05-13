@@ -34,9 +34,17 @@ export const Share: React.FC = () => {
         height: '100%',
         overflow: 'auto'
       }
-    }} columns={[1, 'min(600px, max(400px, 33%)) 1fr']} gap={0}>
+    }} columns={[1, '2fr min(600px, max(400px, 33%))']} gap={0}>
+      {/* Right */}
+      <Box sx={{ bg: 'grey', position: 'relative', minWidth: '50%' }} key='map'>
+        <VentMap />
+        <Box sx={{ position: 'absolute', top: 0, left: 0, m: [3, 4, 5] }}>
+          <VentCounter />
+        </Box>
+      </Box>
+
       {/* Left */}
-      <Box sx={{ bg: 'white' }}>
+      <Box sx={{ bg: 'white' }} key='signup-form'>
         <Box sx={{ p: [3, 4, 4, 5] }}>
           <Heading>
             <Emoji emoji="raised_hands" size={28} set='apple' />  Thanks for venting
@@ -99,14 +107,6 @@ export const Share: React.FC = () => {
           <Box sx={{ my: 5, filter: 'grayscale()', opacity: 0.5 }} >
             <GenerationRentBlock />
           </Box>
-        </Box>
-      </Box>
-
-      {/* Right */}
-      <Box sx={{ bg: 'grey', position: 'relative', minWidth: '50%' }}>
-        <VentMap />
-        <Box sx={{ position: 'absolute', top: 0, left: 0, m: [3, 4, 5] }}>
-          <VentCounter />
         </Box>
       </Box>
     </Grid>

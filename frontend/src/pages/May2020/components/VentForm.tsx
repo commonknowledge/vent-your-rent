@@ -239,25 +239,7 @@ export function VentForm({
               </Flex>
               <Text sx={{ mx: 2, fontSize: 0 }} variant='hint'>or</Text>
               <Box>
-                <Text
-                  sx={{
-                    display: 'inline-block',
-                    transition: 'all 0.1s ease',
-                    p: 2,
-                    my: 1,
-                    borderRadius: 8,
-                    // fontWeight: 'emphasis',
-                    cursor: 'pointer',
-                    userSelect: 'none',
-                    border: '1px solid grey',
-                    borderColor: 'grey',
-                    ':hover': {
-                      border: '1px solid orangeLight',
-                      borderColor: 'orangeLight',
-                      bg: 'orangeLight',
-                      color: 'orange',
-                    }
-                  }}
+                <Button variant='ghost'
                   onClick={() => {
                     const next = randomEmoji()
                     analytics.trackEvent('pickRandomEmoji', {
@@ -268,7 +250,7 @@ export function VentForm({
                     emoji.setValue(next)
                   }}>
                   Pick random
-            </Text>
+            </Button>
               </Box>
             </Fragment>
           )}
