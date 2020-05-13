@@ -133,7 +133,7 @@ class Queries():
     # production
     vents_count = graphene.Int(required=True)
 
-    # @cached_fn('vents_count', 1)
+    @cached_fn('vents_count', 1)
     def resolve_vents_count(self, info):
         return Vent.objects.count()
 
