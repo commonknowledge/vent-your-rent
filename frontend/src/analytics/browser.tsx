@@ -14,6 +14,7 @@ if (posthog) {
 const environment = process.env.NODE_ENV
 
 export const analytics = {
+  trackView: () => posthog.capture('$pageview'),
   trackEvent: (event: string, data: AnalyticsData) => {
     if (environment !== 'production') return
     try {

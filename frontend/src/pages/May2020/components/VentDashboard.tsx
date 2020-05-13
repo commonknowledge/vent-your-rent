@@ -9,6 +9,7 @@ import useLocalStorage from '@rehooks/local-storage'
 import { useSpring, animated, useTransition } from 'react-spring';
 import { Emoji } from 'emoji-mart';
 import Truncate from 'react-truncate';
+import { useAnalytics } from '../../../analytics/browser';
 
 const COUNT_QUERY = gql`
   query CountQuery {
@@ -104,6 +105,9 @@ export const VentDashboard: React.FC = () => {
 
 export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = ({ vent, ...props }) => {
   const [truncate, setTruncate] = useState(true)
+
+  const analytics = useAnalytics()
+
   return (
     <Box sx={{ color: 'text' }}>
       <Box sx={{
@@ -128,7 +132,14 @@ export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = 
             <Text sx={{ fontWeight: 'emphasis' }}>{vent.firstName}</Text>
             <Text sx={{ fontSize: 0, color: 'textLight' }}>{vent?.location?.name}</Text>
           </Box>
-          <Box sx={{ ml: 'auto', flexShrink: 0, color: 'orange', cursor: 'pointer' }} onClick={() => setTruncate(t => !t)}>
+          <Box sx={{ ml: 'auto', flexShrink: 0, color: 'orange', cursor: 'pointer' }} onClick={() => {
+            analytics.trackEvent(truncate ? 'expandVent' : 'collapseVent', {
+              'category': 'vents',
+              'label': 'User clicked on the vent card',
+              'value': vent.id
+            });
+            setTruncate(t => !t)
+          }}>
             {truncate ? 'Read more' : 'Read less'}
           </Box>
         </Flex>
