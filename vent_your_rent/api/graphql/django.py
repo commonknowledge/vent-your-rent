@@ -100,7 +100,7 @@ class VentType(DjangoObjectType):
         except:
             return None
 
-    geo = graphene.Field(GeocodeResult)
+    geo = graphene.Field(GeocodeResult, required=False)
 
     def resolve_geo(self, info):
         return info.context.loaders.get('geo_from_postcode').load(self.postcode)
