@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { jsx, Box, Grid, Heading, Text, Flex } from 'theme-ui';
+import { jsx, Box, Grid, Heading, Text, Flex, Button } from 'theme-ui';
 import { VentDashboard, VentCounter } from './components/VentDashboard';
 import { Emoji } from 'emoji-mart';
 import { VentForm } from './components/VentForm';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import GenerationRentBlock from '../../components/GenerationRentBlock';
 import { FooterLinks } from './components/Footer';
 import { Fragment } from 'react';
@@ -32,9 +32,25 @@ export const Split: React.FC = () => {
         {/*  */}
         <Box sx={{ bg: 'grey', position: 'relative', minWidth: '50%', maxHeight: [300, null, 'none'], height: ['50vh', '50vh', '100%'] }} key='map'>
           <VentMap />
-          <Box sx={{ position: 'absolute', top: 0, left: 0, m: [3, 4, 5] }}>
+          <Flex sx={{
+            width: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            p: [3, 4, 5],
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
             <VentCounter />
-          </Box>
+
+            <Link to='/'>
+              <Button variant='ghost' sx={{ borderColor: 'orange', bg: 'white' }}>
+                <span sx={{ fontWeight: 'emphasis', fontSize: 1 }}>
+                  &larr; Back
+                </span>
+              </Button>
+            </Link>
+          </Flex>
         </Box>
 
         {/* Right */}
