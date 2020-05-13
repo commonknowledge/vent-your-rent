@@ -15,6 +15,7 @@ import { sample } from 'lodash'
 import useOnClickOutside from 'use-onclickoutside'
 import { VentCard } from './VentDashboard';
 import gql from 'graphql-tag';
+import { useAnalytics } from '../../../analytics/browser';
 
 const randomEmoji = () => sample(categories.find(c => c.id === 'people')?.emojis)!
 
@@ -48,6 +49,7 @@ export function VentForm({
 }: {
   onSubmitSuccess: () => void;
 }) {
+  const analytics = useAnalytics()
   // Signup
   // @ts-ignore
   const firstName = useField<string>({ defaultValue: "", required: true });
@@ -100,9 +102,21 @@ export function VentForm({
   const [image, setImage] = useState<File>();
 
   const onSubmit = async () => {
+    analytics.trackEvent('attemptedSignup', {
+      'category': 'campaign',
+      'label': 'Clicked the sign-up send button',
+      'value': 'webform',
+    });
+
     const errors: string[] = []
     try {
       if (form.valid) {
+        analytics.trackEvent('validSignup', {
+          'category': 'campaign',
+          'label': 'Submitted valid signup data',
+          'value': 'webform'
+        });
+
         const cmds: Array<() => Promise<any>> = [signup];
         if (image || caption.value) {
           cmds.push(createVent);
@@ -111,14 +125,23 @@ export function VentForm({
           await Promise.all(cmds.map(async c => c()));
         } catch (e) {
           errors.push("There was a problem saving your submission. Please refresh and try again?")
+          analytics.trackError(e)
         }
       } else {
         errors.push("Go back over the form and add any missing details")
       }
     } catch (e) {
       errors.push(e.toString())
+      analytics.trackError(e)
     }
+
     if (!errors?.length) {
+      analytics.trackEvent('successfulSignup', {
+        'category': 'campaign',
+        'label': 'Signup was successful',
+        'value': 'webform',
+      });
+
       return setTimeout(() => {
         return onSubmitSuccess();
       }, 750)
@@ -187,7 +210,15 @@ export function VentForm({
           <Box ref={pickerRef}>
             <Picker
               set='apple'
-              onSelect={e => { emoji.setValue(e?.colons!) }}
+              onSelect={e => {
+                const next = e?.colons!
+                analytics.trackEvent('pickDeliberateEmoji', {
+                  'category': 'form',
+                  'label': 'Clicked an emoji from the menu',
+                  'value': next,
+                });
+                emoji.setValue(next)
+              }}
               showSkinTones
               sheetSize={64}
               perLine={8}
@@ -227,7 +258,15 @@ export function VentForm({
                       color: 'orange',
                     }
                   }}
-                  onClick={() => { emoji.setValue(randomEmoji()) }}>
+                  onClick={() => {
+                    const next = randomEmoji()
+                    analytics.trackEvent('pickRandomEmoji', {
+                      'category': 'form',
+                      'label': 'Clicked the random emoji button',
+                      'value': next,
+                    });
+                    emoji.setValue(next)
+                  }}>
                   Pick random
             </Text>
               </Box>

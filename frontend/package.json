@@ -41,6 +41,7 @@
     "faker": "^4.1.0",
     "mapbox-gl": "^1.10.0",
     "postcode": "^2.0.0",
+    "posthog-js": "^1.0.6",
     "prettier": "1.19.1",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.6",
