@@ -1,24 +1,26 @@
 {
-    "name": "vent-your-rent",
-    "version": "1.0.0",
-    "main": "index.js",
-    "engines": {
-        "node": "^v10.16.3",
-        "yarn": "^1.19.0"
-    },
-    "scripts": {
-        "dev": "docker-compose -f local.yml up --build",
-        "postdev": "docker-compose -f local.yml down",
-        "containercmd": "docker-compose -f local.yml run --rm ",
-        "release": "bin/release",
-        "build": "cd frontend && yarn build",
-        "postinstall": "cd frontend && yarn",
-        "graphql": "yarn graphql:dump-schema && cd frontend && yarn graphql:generate-types",
-        "graphql:dump-schema": "yarn containercmd django python manage.py graphql_schema --schema vent_your_rent.api.graphql.schema.schema --out frontend/schema.json"
-    },
-    "cacheDirectories": [
-        "frontend/node_modules",
-        "node_modules"
-    ],
-    "dependencies": {}
+  "name": "vent-your-rent",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": "^v10.16.3",
+    "yarn": "^1.19.0"
+  },
+  "scripts": {
+    "dev": "docker-compose -f local.yml up --build",
+    "postdev": "docker-compose -f local.yml down",
+    "containercmd": "docker-compose -f local.yml run --rm ",
+    "python": "yarn containercmd django python",
+    "release": "bin/release",
+    "build": "cd frontend && yarn build",
+    "postinstall": "cd frontend && yarn",
+    "graphql": "yarn graphql:dump-schema && cd frontend && yarn graphql:generate-types",
+    "graphql:dump-schema": "yarn containercmd django python manage.py graphql_schema --schema vent_your_rent.api.graphql.schema.schema --out frontend/schema.json",
+    "migrate": "yarn python manage.py makemigrations && yarn python manage.py migrate && yarn graphql"
+  },
+  "cacheDirectories": [
+    "frontend/node_modules",
+    "node_modules"
+  ],
+  "dependencies": {}
 }

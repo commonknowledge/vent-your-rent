@@ -1,13 +1,10 @@
-/** @jsx jsx */
-import { css, Global, jsx } from "@emotion/core";
-import emotionNormalize from "emotion-normalize";
+import * as React from 'react'
 import { createBrowserHistory } from "history";
 import { Route, Router, Switch } from "react-router-dom";
 import { analytics, AnalyticsProvider } from "./data/analytics";
 import GraphQLProvider from "./data/graphql";
-import FirstPage from "./pages/FirstPage";
-import ResultsPage from "./pages/ResultsPage";
-import ThirdPage from "./pages/ThirdPage";
+import { Routes2019 } from "./pages/2019/Routes";
+import { RoutesMay2020 } from "./pages/May2020/Routes";
 import CookieConsentBanner from "./components/CookieConsentBanner";
 
 const history = createBrowserHistory();
@@ -24,38 +21,9 @@ const App: React.FC = () => {
     <AnalyticsProvider value={analytics}>
       <Router history={history}>
         <GraphQLProvider>
-          <Global
-            styles={css`
-              ${emotionNormalize}
-              body {
-                background: #f0f0f0;
-                font-family: "Rubik", sans-serif;
-                min-height: 100%;
-                margin: 0;
-                padding: 0;
-              }
-
-              // Set box-sizing to border-box universally
-              // See https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
-              html {
-                box-sizing: border-box;
-              }
-
-              *,
-              *:before,
-              *:after {
-                box-sizing: inherit;
-              }
-            `}
-          />
-          <Switch>
-            <Route
-              exact
-              path="/welcome-to-the-movement"
-              component={ThirdPage}
-            />
-            <Route exact path="/:postcode" component={ResultsPage} />
-            <Route component={FirstPage} />
+          <Switch>>
+            <Route path="/search" component={Routes2019} />
+            <Route path="/" component={RoutesMay2020} />
           </Switch>
           <CookieConsentBanner onConsent={analytics.initialiseCookies} />
         </GraphQLProvider>

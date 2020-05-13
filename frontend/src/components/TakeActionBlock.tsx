@@ -70,13 +70,24 @@ const textAreaCss = css`
   ${fontSizeMedium};
 `;
 
-const SIGNUP_MUTATION = gql`
+export const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
     $firstName: String!
     $lastName: String!
     $postcode: String!
     $email: String!
     $canContact: Boolean
+    $IncomeFell: Boolean
+    $FullPay: Boolean
+    $CannotGetUC: Boolean
+    $CannotGetFurlough: Boolean
+    $UCDoesntCoverRent: Boolean
+    $AskedToMoveOut: Boolean
+    $RentHolidayOrReduction: Boolean
+    $CantMove: Boolean
+    $Overcrowded: Boolean
+    $UnfitToLiveIn: Boolean
+    $HousingOK: Boolean
   ) {
     signup(
       firstName: $firstName
@@ -84,15 +95,41 @@ const SIGNUP_MUTATION = gql`
       postcode: $postcode
       email: $email
       canContact: $canContact
+      IncomeFell: $IncomeFell
+      FullPay: $FullPay
+      CannotGetUC: $CannotGetUC
+      CannotGetFurlough: $CannotGetFurlough
+      UCDoesntCoverRent: $UCDoesntCoverRent
+      AskedToMoveOut: $AskedToMoveOut
+      RentHolidayOrReduction: $RentHolidayOrReduction
+      CantMove: $CantMove
+      Overcrowded: $Overcrowded
+      UnfitToLiveIn: $UnfitToLiveIn
+      HousingOK: $HousingOK
     ) {
       signup {
         id
+        firstName
+        lastName
+        email
+        canContact
+        IncomeFell
+        FullPay
+        CannotGetUC
+        CannotGetFurlough
+        UCDoesntCoverRent
+        AskedToMoveOut
+        RentHolidayOrReduction
+        CantMove
+        Overcrowded
+        UnfitToLiveIn
+        HousingOK
       }
     }
   }
 `;
 
-const CREATE_VENT_MUTATION = gql`
+export const CREATE_VENT_MUTATION = gql`
   ${Vent.fragment}
 
   mutation CreateVentMutation(
@@ -100,12 +137,14 @@ const CREATE_VENT_MUTATION = gql`
     $firstName: String!
     $image: Upload
     $postcode: String!
+    $emoji: String
   ) {
     createVent(
       caption: $caption
       firstName: $firstName
       image: $image
       postcode: $postcode
+      emoji: $emoji
     ) {
       success
       vent {

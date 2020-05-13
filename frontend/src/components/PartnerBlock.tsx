@@ -5,8 +5,8 @@ import { fontSizeExtraSmall, fontColorBlack } from "../styles";
 type PartnerBlockProps = {
   logo: string;
   name: string;
-  description: string;
-  linkText: string;
+  description?: string;
+  linkText?: string;
   linkHref: string;
 };
 
@@ -31,8 +31,8 @@ export default function PartnerBlock({
           max-width: 280px;
         `}
       />
-      <p>{description}</p>
-      <a
+      {!!description && <p>{description}</p>}
+      {!!linkText && <a
         href={linkHref}
         css={css`
           ${fontSizeExtraSmall}
@@ -45,7 +45,7 @@ export default function PartnerBlock({
         rel="noopener noreferrer"
       >
         {linkText}
-      </a>
+      </a>}
     </div>
   );
 }

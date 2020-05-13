@@ -4,7 +4,7 @@ from django import forms
 from django.db.models import Q
 from graphene_django.forms.mutation import DjangoModelFormMutation
 from .utils import DjangoFilterField
-from .geo import ShortGeocodeResult
+from .geo import GeocodeResult
 from vent_your_rent.api.helpers.utils import get, get_path
 from vent_your_rent.api.helpers.cache import cached_fn
 from vent_your_rent.api.models import Vent, Signup
@@ -31,6 +31,17 @@ class SignupMutation(graphene.Mutation):
         postcode = graphene.String(required=True)
         email = graphene.String(required=True)
         can_contact = graphene.Boolean()
+        IncomeFell = graphene.Boolean()
+        FullPay = graphene.Boolean()
+        CannotGetUC = graphene.Boolean()
+        CannotGetFurlough = graphene.Boolean()
+        UCDoesntCoverRent = graphene.Boolean()
+        AskedToMoveOut = graphene.Boolean()
+        RentHolidayOrReduction = graphene.Boolean()
+        CantMove = graphene.Boolean()
+        Overcrowded = graphene.Boolean()
+        UnfitToLiveIn = graphene.Boolean()
+        HousingOK = graphene.Boolean()
 
     signup = graphene.Field(SignupType)
     success = graphene.Boolean(required=True)
@@ -40,7 +51,18 @@ class SignupMutation(graphene.Mutation):
                last_name=None,
                postcode=None,
                email=None,
-               can_contact=False
+               can_contact=False,
+               IncomeFell=False,
+               FullPay=False,
+               CannotGetUC=False,
+               CannotGetFurlough=False,
+               UCDoesntCoverRent=False,
+               AskedToMoveOut=False,
+               RentHolidayOrReduction=False,
+               CantMove=False,
+               Overcrowded=False,
+               UnfitToLiveIn=False,
+               HousingOK=False,
                ):
         signup = Signup.objects.create(
             first_name=first_name,
@@ -48,6 +70,17 @@ class SignupMutation(graphene.Mutation):
             postcode=postcode,
             email=email,
             can_contact=can_contact,
+            IncomeFell=IncomeFell,
+            FullPay=FullPay,
+            CannotGetUC=CannotGetUC,
+            CannotGetFurlough=CannotGetFurlough,
+            UCDoesntCoverRent=UCDoesntCoverRent,
+            AskedToMoveOut=AskedToMoveOut,
+            RentHolidayOrReduction=RentHolidayOrReduction,
+            CantMove=CantMove,
+            Overcrowded=Overcrowded,
+            UnfitToLiveIn=UnfitToLiveIn,
+            HousingOK=HousingOK
         )
 
         return SignupMutation(success=True, signup=signup)
@@ -67,7 +100,7 @@ class VentType(DjangoObjectType):
         except:
             return None
 
-    geo = graphene.Field(ShortGeocodeResult)
+    geo = graphene.Field(GeocodeResult)
 
     def resolve_geo(self, info):
         return info.context.loaders.get('geo_from_postcode').load(self.postcode)
@@ -79,16 +112,18 @@ class VentMutation(graphene.Mutation):
         first_name = graphene.String(required=True)
         postcode = graphene.String(required=True)
         image = Upload()
+        emoji = graphene.String(required=False)
 
     success = graphene.Boolean()
     vent = graphene.Field(VentType)
 
-    def mutate(self, info, caption=None, first_name=None, postcode=None, image=None):
+    def mutate(self, info, caption=None, first_name=None, postcode=None, image=None, emoji=None):
         vent = Vent.objects.create(
             caption=caption,
             first_name=first_name,
             postcode=postcode,
-            image=image
+            image=image,
+            emoji=emoji
         )
 
         return VentMutation(success=True, vent=vent)
@@ -96,12 +131,29 @@ class VentMutation(graphene.Mutation):
 
 class Queries():
     # production
+    vents_count = graphene.Int(required=True)
+
+    # @cached_fn('vents_count', 1)
+    def resolve_vents_count(self, info):
+        return Vent.objects.count()
 
     vents = graphene.List(graphene.NonNull(VentType), required=True,
-                          quantity=graphene.Int(default_value=3))  # DjangoFilterField(VentType)
+                          quantity=graphene.Int(default_value=3),
+                          ventIds=graphene.List(graphene.NonNull(graphene.Int), required=False)
+                          )  # DjangoFilterField(VentType)
 
-    def resolve_vents(self, info, quantity=3):
-        return Vent.objects.filter(is_published=True).order_by('-date_created')[:quantity]
+    def resolve_vents(self, info, quantity=3, ventIds=[]):
+        return Vent.objects.filter(
+            Q(is_published=True) | Q(id__in=ventIds)
+        ).order_by('-date_created')[:quantity]
+
+    all_vents = graphene.List(graphene.NonNull(VentType), required=True,
+                              quantity=graphene.Int(default_value=3),
+                              ventIds=graphene.List(graphene.NonNull(graphene.Int), required=False)
+                              )  # DjangoFilterField(VentType)
+
+    def resolve_all_vents(self, info, quantity=3, ventIds=[]):
+        return Vent.objects.order_by('-date_created')[:quantity]
 
     vent = graphene.Field(VentType, id=graphene.String(required=True))
 

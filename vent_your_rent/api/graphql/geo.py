@@ -21,6 +21,8 @@ class ShortGeocodeResult(graphene.ObjectType):
 
 
 class GeocodeResult(ShortGeocodeResult):
+    longitude = graphene.Float(required=True)
+    latitude = graphene.Float(required=True)
     admin_district = graphene.String(required=True)
     admin_ward = graphene.String(required=True)
     ccg = graphene.String(required=True)

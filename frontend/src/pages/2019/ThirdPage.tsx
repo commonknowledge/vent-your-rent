@@ -3,18 +3,18 @@ import { jsx, css } from "@emotion/core";
 
 import Emoji from "a11y-react-emoji";
 
-import Page from "../components/Page";
-import ShareBar from "../components/ShareBar";
-import VentsBlock from "../components/VentsBlock";
-import ContactCandidateBlock from "../components/ContactCandidateBlock";
-import DonationBlock from "../components/DonationBlock";
-import GenerationRentBlock from "../components/GenerationRentBlock";
-import RenterManifestoBlock from "../components/RenterManifestoBlock";
+import Page from "../../components/Page";
+import ShareBar from "../../components/ShareBar";
+import VentsBlock from "../../components/VentsBlock";
+import ContactCandidateBlock from "../../components/ContactCandidateBlock";
+import DonationBlock from "../../components/DonationBlock";
+import GenerationRentBlock from "../../components/GenerationRentBlock";
+import RenterManifestoBlock from "../../components/RenterManifestoBlock";
 import { useLocation } from "react-router";
 import { useEffect } from "react";
-import { PageWidth } from "../components/PageElements";
-import { marginsCss } from "../styles";
-import Rule from "../components/Rule";
+import { PageWidth } from "../../components/PageElements";
+import { marginsCss } from "../../styles";
+import Rule from "../../components/Rule";
 
 const ThirdPage = () => {
   const { pathname } = useLocation();
