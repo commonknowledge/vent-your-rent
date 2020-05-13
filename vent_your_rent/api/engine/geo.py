@@ -38,15 +38,15 @@ def bulk_postcode_geo(postcodes):
         for postcode in postcodes
         if cached_data.get(postcode) is not None
     ]
-    print('has_loaded')
-    print([p.get('query') for p in has_loaded])
+    # print('has_loaded')
+    # print([p.get('query') for p in has_loaded])
 
     needs_loading = [
         postcode for postcode in postcodes
         if cached_data.get(postcode) is None
     ]
-    print('needs_loading')
-    print(needs_loading)
+    # print('needs_loading')
+    # print(needs_loading)
 
     if len(needs_loading) == 1:
         postcode = needs_loading[0]
