@@ -4,14 +4,17 @@ import { Switch, Route } from 'react-router-dom';
 import theme from '../../theme';
 import { Index } from './Index';
 import { Share } from './Share';
+import { AnalyticsProvider } from '../../analytics/browser';
 
 export const RoutesMay2020 = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <Switch>
-        <Route path='/share' component={Share} />
-        <Route component={Index} />
-      </Switch>
-    </ThemeProvider>
+    <AnalyticsProvider>
+      <ThemeProvider theme={theme}>
+        <Switch>
+          <Route path='/share' component={Share} />
+          <Route component={Index} />
+        </Switch>
+      </ThemeProvider>
+    </AnalyticsProvider>
   )
 }

@@ -34,7 +34,7 @@ export const Share: React.FC = () => {
         height: '100%',
         overflow: 'auto'
       }
-    }} columns={[1, null, 'min(600px, max(400px, 33%)) 1fr']} gap={0}>
+    }} columns={[1, 'min(600px, max(400px, 33%)) 1fr']} gap={0}>
       {/* Left */}
       <Box sx={{ bg: 'white' }}>
         <Box sx={{ p: [3, 4, 4, 5] }}>
@@ -103,7 +103,7 @@ export const Share: React.FC = () => {
       </Box>
 
       {/* Right */}
-      <Box sx={{ bg: 'grey', position: 'relative' }}>
+      <Box sx={{ bg: 'grey', position: 'relative', minWidth: '50%' }}>
         <VentMap />
         <Box sx={{ position: 'absolute', top: 0, left: 0, m: [3, 4, 5] }}>
           <VentCounter />
