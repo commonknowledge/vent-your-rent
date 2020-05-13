@@ -6,41 +6,53 @@ import os
 
 
 def normalise_postcode(postcode):
-    return postcode.replace(" ", "")
+    return postcode.upper().strip().replace(" ", "")
 
 
-@cached_fn(lambda postcode: normalise_postcode(postcode), None)
 def postcode_geo(postcode: str):
     postcode = normalise_postcode(postcode)
+
+    cached_data = cache.get(postcode)
+    if cached_data is not None:
+        return cached_data
+
     response = requests.get(f'https://api.postcodes.io/postcodes/{postcode}')
     data = response.json()
     status = get(data, 'status')
     result = get(data, 'result')
+    cache.set(postcode, result, 60 * 60 if result is None else 9999999)
 
     if status is not 200 or result is None:
-        raise Exception(f'Failed to geocode postcode: {postcode}.')
+        # raise Exception(f'Failed to geocode postcode: {postcode}.')
+        return None
 
     return result
 
 
 @batch_and_aggregate(100)
 def bulk_postcode_geo(postcodes):
-    cached_data = cache.get_many(postcodes)
+    postcodes = [normalise_postcode(postcode) for postcode in postcodes]
+    cached_data = cache.get_many(postcode for postcode in postcodes)
     has_loaded = [
-        cached_data.get(postcode) for postcode in postcodes
+        {'query': postcode, 'result': cached_data.get(postcode)}
+        for postcode in postcodes
         if cached_data.get(postcode) is not None
     ]
-    # print('has_loaded')
-    # print(has_loaded)
+    print('has_loaded')
+    print([p.get('query') for p in has_loaded])
 
     needs_loading = [
         postcode for postcode in postcodes
         if cached_data.get(postcode) is None
     ]
-    # print('needs_loading')
-    # print(needs_loading)
+    print('needs_loading')
+    print(needs_loading)
 
-    if len(needs_loading) > 0:
+    if len(needs_loading) == 1:
+        postcode = needs_loading[0]
+        has_loaded += [{'query': postcode, 'result': postcode_geo(postcode)}]
+
+    elif len(needs_loading) > 0:
         response = requests.post(f'https://api.postcodes.io/postcodes', data={
             "postcodes": needs_loading
         })
@@ -50,10 +62,11 @@ def bulk_postcode_geo(postcodes):
         status = get(data, 'status')
 
         if status is not 200 or new_data is None:
-            raise Exception(f'Failed to bulk geocode postcodes: {postcodes}.')
-
-        has_loaded += new_data
-        cache.set_many({res.get('query'): res for res in new_data})
+            # raise Exception(f'Failed to bulk geocode postcodes: {postcodes}.')
+            pass
+        else:
+            has_loaded += new_data
+            cache.set_many({normalise_postcode(res.get('query')): res.get('result') for res in new_data})
 
     return has_loaded
 
