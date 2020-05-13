@@ -10,15 +10,17 @@ def normalise_postcode(postcode):
 
 
 def postcode_geo(postcode: str):
-    cached_data = cache.get(normalise_postcode(postcode))
+    postcode = normalise_postcode(postcode)
+
+    cached_data = cache.get(postcode)
     if cached_data is not None:
         return cached_data
 
-    postcode = normalise_postcode(postcode)
     response = requests.get(f'https://api.postcodes.io/postcodes/{postcode}')
     data = response.json()
     status = get(data, 'status')
     result = get(data, 'result')
+    cache.set(postcode, result, 60 * 60 if result is None else 9999999)
 
     if status is not 200 or result is None:
         # raise Exception(f'Failed to geocode postcode: {postcode}.')
