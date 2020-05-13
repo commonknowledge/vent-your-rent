@@ -81,7 +81,7 @@ export const VentMapItem: React.FC<{ vent: VentMapItemFragment, onClick?: (id: s
         onClick={onClick ? () => onClick(vent.id) : undefined}
       >
         <Text sx={{ fontSize: 2 }}>
-          <Emoji emoji={'derelict_house_building'} set='apple' size={24} />
+          <Emoji emoji={vent.emoji || 'derelict_house_building'} set='apple' size={24} />
         </Text>
       </Box>
     </Marker>
