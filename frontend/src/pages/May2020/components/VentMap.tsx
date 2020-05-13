@@ -10,6 +10,7 @@ import { VentMapQuery } from './__graphql__/VentMapQuery';
 import { Emoji } from 'emoji-mart'
 import { VentCard } from './VentDashboard';
 import { sample } from 'lodash';
+import { useAnalytics } from '../../../analytics/browser';
 
 export const VentMap: React.FC = () => {
   const [viewport, setViewport] = useState({
@@ -54,10 +55,18 @@ export const VentMapItems: React.FC<{ vents: VentMapItemFragment[] }> = memo(({ 
 
   const highlightedVent = useMemo(() => vents.find(v => v.id === currentId), [currentId])
 
+  const analytics = useAnalytics()
+
   return (
     <Fragment>
       {vents.filter(vent => vent.geo).map(vent => (
-        <VentMapItem key={vent.id} vent={vent} onClick={(id) => {
+        <VentMapItem key={vent.id} vent={vent} onClick={(id, method) => {
+          analytics.trackEvent('inspectVentOnMap', {
+            'category': 'vents',
+            'label': 'User clicked on vent on the map',
+            method,
+            'value': id
+          });
           setCurrentId(id)
           setCycle(false)
         }} />
@@ -72,13 +81,13 @@ export const VentMapItems: React.FC<{ vents: VentMapItemFragment[] }> = memo(({ 
   )
 })
 
-export const VentMapItem: React.FC<{ vent: VentMapItemFragment, onClick?: (id: string) => void }> = ({ vent, onClick }) => {
+export const VentMapItem: React.FC<{ vent: VentMapItemFragment, onClick?: (id: string, method: string) => void }> = ({ vent, onClick }) => {
   if (!vent.geo) return null
   return (
     <Marker longitude={vent.geo?.longitude} latitude={vent.geo?.latitude}>
       <Box sx={{ position: 'absolute', transform: 'translate(-50%, -50%)', cursor: onClick ? 'pointer' : 'initial' }}
-        onMouseOver={onClick ? () => onClick(vent.id) : undefined}
-        onClick={onClick ? () => onClick(vent.id) : undefined}
+        onMouseOver={onClick ? () => onClick(vent.id, 'mouseOver') : undefined}
+        onClick={onClick ? () => onClick(vent.id, 'click') : undefined}
       >
         <Text sx={{ fontSize: 2 }}>
           <Emoji emoji={vent.emoji || 'derelict_house_building'} set='apple' size={24} />
