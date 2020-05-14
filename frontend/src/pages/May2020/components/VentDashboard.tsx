@@ -134,9 +134,17 @@ export const VentCard: React.FC<{ vent: VentDashboardQuery_vents, sx?: any }> = 
         // ':hover': { transform: 'scale(1.05)' }
       }} {...props}>
         <Text sx={{ mb: 3 }}>
-          <Truncate lines={truncate ? 5 : 100}>
-            {vent.caption}
-          </Truncate>
+          {truncate ? (
+            <Truncate lines={truncate ? 5 : 100}>
+              {vent.caption}
+            </Truncate>
+          ) : (
+              <Fragment>
+                {vent.caption.split(/[\r\n\r]+/).map((p, i) => (
+                  <p key={i} sx={{ '&:first-child': { mt: 0 } }}>{p}</p>
+                ))}
+              </Fragment>
+            )}
         </Text>
         <Flex sx={{ textTransform: 'uppercase', fontSize: 0, alignItems: 'flex-end' }}>
           <Box sx={{ fontSize: 2, lineHeight: 1, flexShrink: 0 }}>
