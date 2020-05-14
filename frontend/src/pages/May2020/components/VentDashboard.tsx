@@ -55,13 +55,15 @@ export const VentDashboard: React.FC = () => {
   const [quantity, setQuantity] = useState(1)
   const nextIndex = useRef<number>(0)
   const [vents, setVents] = useState<VentDashboardQuery_vents[]>([])
+  const [isHovering, setHovering] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
+      if (isHovering) return
       setQuantity(q => q + 1)
     }, NEW_VENT_MILLISECONDS)
     return () => clearInterval(interval)
-  }, [setQuantity])
+  }, [isHovering, setQuantity])
 
   const { data, refetch } = useQuery<VentDashboardQuery>(GET_VENTS, {
     variables: { quantity: 50, ventIds }
@@ -102,7 +104,14 @@ export const VentDashboard: React.FC = () => {
   })
 
   return (
-    <Flex sx={{ pt: 2, flexDirection: ['row', 'row', 'column'], width: [`calc(${vents?.length} * min(300px, 100vw))`, null, 'auto'] }}>
+    <Flex
+      onMouseOver={() => setHovering(true)}
+      onMouseOut={() => setHovering(false)}
+      sx={{
+        pt: 2,
+        flexDirection: ['row', 'row', 'column'],
+        width: [`calc(${vents?.length} * min(300px, 100vw))`, null, 'auto']
+      }}>
       {fragment}
     </Flex>
   )
