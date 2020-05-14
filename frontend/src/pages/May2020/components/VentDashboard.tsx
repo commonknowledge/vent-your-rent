@@ -48,6 +48,8 @@ export const VentCounter: React.FC = () => {
   )
 }
 
+const NEW_VENT_MILLISECONDS = 3500
+
 export const VentDashboard: React.FC = () => {
   const [ventIds] = useLocalStorage<number[]>('VENT_YOUR_RENT_VENT_IDS', [])
   const [quantity, setQuantity] = useState(1)
@@ -57,7 +59,7 @@ export const VentDashboard: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setQuantity(q => q + 1)
-    }, 2500)
+    }, NEW_VENT_MILLISECONDS)
     return () => clearInterval(interval)
   }, [setQuantity])
 
