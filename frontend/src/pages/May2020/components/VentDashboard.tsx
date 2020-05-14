@@ -10,6 +10,7 @@ import { useSpring, animated, useTransition } from 'react-spring';
 import { Emoji } from 'emoji-mart';
 import Truncate from 'react-truncate';
 import { useAnalytics } from '../../../analytics/browser';
+import { useResponsiveValue } from '@theme-ui/match-media'
 
 const COUNT_QUERY = gql`
   query CountQuery {
@@ -47,18 +48,22 @@ export const VentCounter: React.FC = () => {
   )
 }
 
+const NEW_VENT_MILLISECONDS = 3500
+
 export const VentDashboard: React.FC = () => {
   const [ventIds] = useLocalStorage<number[]>('VENT_YOUR_RENT_VENT_IDS', [])
   const [quantity, setQuantity] = useState(1)
   const nextIndex = useRef<number>(0)
   const [vents, setVents] = useState<VentDashboardQuery_vents[]>([])
+  const [isHovering, setHovering] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
+      if (isHovering) return
       setQuantity(q => q + 1)
-    }, 2500)
+    }, NEW_VENT_MILLISECONDS)
     return () => clearInterval(interval)
-  }, [setQuantity])
+  }, [isHovering, setQuantity])
 
   const { data, refetch } = useQuery<VentDashboardQuery>(GET_VENTS, {
     variables: { quantity: 50, ventIds }
@@ -73,22 +78,24 @@ export const VentDashboard: React.FC = () => {
     nextIndex.current = nextIndex.current + 1
   }, [data, quantity])
 
+  const direction = useResponsiveValue(['Left', 'Left', 'Top'])
+
   const transition = useTransition(vents?.slice().reverse(), {
     keys: (vent: { id?: string }) => vent?.id,
     from: {
       opacity: 0,
-      y: -10
+      offset: -10
     },
     enter: {
       opacity: 1,
-      y: 0
+      offset: 0
     }
   })
 
-  const fragment = transition(({ opacity, y }, vent) => {
+  const fragment = transition(({ opacity, offset }, vent) => {
     // 3. Render each item
     return vent ? (
-      <animated.div style={{ opacity, marginTop: y.interpolate(y => `${y}px`) }}>
+      <animated.div style={{ opacity, [`margin${direction}`]: offset.interpolate(offset => `${offset}px`) }}>
         <Box sx={{ my: 2, width: ['calc(100vw - 30px)', 300, '100%'], maxWidth: ['100vw', '100vw', '100%'], mr: 3 }}>
           <VentCard vent={vent} />
         </Box>
@@ -97,7 +104,14 @@ export const VentDashboard: React.FC = () => {
   })
 
   return (
-    <Flex sx={{ pt: 2, flexDirection: ['row', 'row', 'column'], width: [`calc(${vents?.length} * min(300px, 100vw))`, null, 'auto'] }}>
+    <Flex
+      onMouseOver={() => setHovering(true)}
+      onMouseOut={() => setHovering(false)}
+      sx={{
+        pt: 2,
+        flexDirection: ['row', 'row', 'column'],
+        width: [`calc(${vents?.length} * min(300px, 100vw))`, null, 'auto']
+      }}>
       {fragment}
     </Flex>
   )
