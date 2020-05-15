@@ -75,6 +75,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "graphene_django",
     'rangefilter',
+    'import_export',
 ]
 
 LOCAL_APPS = [

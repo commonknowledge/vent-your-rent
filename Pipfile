@@ -35,6 +35,7 @@ django-heroku = "*"
 django-admin-rangefilter = "*"
 graphene-file-upload = "*"
 django-cors-headers = "*"
+django-import-export = "*"
 
 [requires]
 python_version = "3.7"

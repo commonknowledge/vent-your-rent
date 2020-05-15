@@ -16,7 +16,8 @@
     "postinstall": "cd frontend && yarn",
     "graphql": "yarn graphql:dump-schema && cd frontend && yarn graphql:generate-types",
     "graphql:dump-schema": "yarn containercmd django python manage.py graphql_schema --schema vent_your_rent.api.graphql.schema.schema --out frontend/schema.json",
-    "migrate": "yarn python manage.py makemigrations && yarn python manage.py migrate && yarn graphql"
+    "migrate": "yarn python manage.py makemigrations && yarn python manage.py migrate && yarn graphql",
+    "pyinstall": "pipenv install $1 && pipenv lock -r > requirements/base.txt"
   },
   "cacheDirectories": [
     "frontend/node_modules",
