@@ -39,11 +39,12 @@ export const Split: React.FC = () => {
             left: 0,
             p: [3, 4, 5],
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
+            pointerEvents: 'none'
           }}>
             <VentCounter />
 
-            <Link to='/'>
+            <Link to='/' sx={{ pointerEvents: 'auto' }}>
               <Button variant='ghost' sx={{ borderColor: 'orange', bg: 'white' }}>
                 <span sx={{ fontWeight: 'emphasis', fontSize: 1 }}>
                   &larr; Back
