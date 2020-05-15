@@ -1,13 +1,13 @@
+from django.template.loader import get_template
+import os
+from django.db.models import Q
 from django.contrib import admin
 from vent_your_rent.api.models import Vent, Signup
 from rangefilter.filter import DateRangeFilter
+from import_export import resources
+from import_export.admin import ImportExportActionModelAdmin, ImportExportModelAdmin, ExportActionMixin
 
 # Utils
-
-from django.contrib import admin
-from django.db.models import Q
-import os
-from django.template.loader import get_template
 
 
 def FilterFactory(param: str, q):
@@ -51,8 +51,14 @@ def publish_vents(modeladmin, request, queryset):
 publish_vents.short_description = "Mark selected vents as published"
 
 
+class VentResource(resources.ModelResource):
+    class Meta:
+        model = Vent
+
+
 @admin.register(Vent)
-class VentAdmin(admin.ModelAdmin):
+class VentAdmin(ImportExportModelAdmin):
+    resource_class = VentResource
     # List UI config
 
     list_display = ('date_created', 'postcode', 'is_published')
@@ -74,8 +80,16 @@ class VentAdmin(admin.ModelAdmin):
         return form
 
 
+class SignupResource(resources.ModelResource):
+    class Meta:
+        model = Signup
+
+
 @admin.register(Signup)
-class SignupAdmin(admin.ModelAdmin):
+class SignupAdmin(ImportExportModelAdmin):
+    resource_class = SignupResource
+    # List UI config
+
     list_display = (
         'date_created',
         'first_name',
