@@ -118,10 +118,11 @@ export function VentForm({
         });
 
         const cmds: Array<() => Promise<any>> = [signup];
-        if (image || caption.value) {
+        if (caption.value) {
           cmds.push(createVent);
         }
         try {
+          analytics.identify({ email: email.value })
           await Promise.all(cmds.map(async c => c()));
         } catch (e) {
           errors.push("There was a problem saving your submission. Please refresh and try again?")
@@ -163,37 +164,40 @@ export function VentForm({
   );
 
   const signup = async () => {
+    const variables = {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      canContact: canContact.value,
+      postcode: postcode.value,
+      IncomeFell: IncomeFell.value,
+      FullPay: FullPay.value,
+      CannotGetUC: CannotGetUC.value,
+      CannotGetFurlough: CannotGetFurlough.value,
+      UCDoesntCoverRent: UCDoesntCoverRent.value,
+      AskedToMoveOut: AskedToMoveOut.value,
+      RentHolidayOrReduction: RentHolidayOrReduction.value,
+      CantMove: CantMove.value,
+      Overcrowded: Overcrowded.value,
+      UnfitToLiveIn: UnfitToLiveIn.value,
+      HousingOK: HousingOK.value
+    }
+    analytics.trackUserContext(variables)
     return signupMutation({
-      variables: {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        email: email.value,
-        canContact: canContact.value,
-        postcode: postcode.value,
-        IncomeFell: IncomeFell.value,
-        FullPay: FullPay.value,
-        CannotGetUC: CannotGetUC.value,
-        CannotGetFurlough: CannotGetFurlough.value,
-        UCDoesntCoverRent: UCDoesntCoverRent.value,
-        AskedToMoveOut: AskedToMoveOut.value,
-        RentHolidayOrReduction: RentHolidayOrReduction.value,
-        CantMove: CantMove.value,
-        Overcrowded: Overcrowded.value,
-        UnfitToLiveIn: UnfitToLiveIn.value,
-        HousingOK: HousingOK.value
-      }
+      variables
     });
   };
 
   const createVent = async () => {
+    const variables = {
+      emoji: emoji.value,
+      caption: caption.value,
+      firstName: firstName.value,
+      postcode: postcode.value
+    }
+    analytics.trackUserContext(variables)
     const res = await createVentMutation({
-      variables: {
-        emoji: emoji.value,
-        caption: caption.value,
-        firstName: firstName.value,
-        image,
-        postcode: postcode.value
-      }
+      variables
     });
     if (res?.data?.createVent?.vent) {
       setVentIds(ventIds.concat([res.data.createVent.vent.id]))
