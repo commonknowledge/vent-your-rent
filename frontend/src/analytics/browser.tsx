@@ -15,6 +15,22 @@ const environment = process.env.NODE_ENV
 
 export const analytics = {
   trackView: () => posthog.capture('$pageview'),
+  identify: (args: (
+    { id: string, [key: string]: any }
+    | { email: string, [key: string]: any }
+  )) => {
+    const { id, email } = args
+    if (!id && !email) {
+      return
+    }
+    const identifier = id || email
+    posthog.identify(identifier);
+    // Set email or any other data
+    posthog.people.set(args);
+  },
+  trackUserContext: (args: { [key: string]: string | number | boolean }) => {
+    posthog.people.set(args);
+  },
   trackEvent: (event: string, data: AnalyticsData) => {
     if (environment !== 'production') return
     try {
