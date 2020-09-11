@@ -12,16 +12,16 @@ export const Intro = () => {
         <Heading sx={{ my: 3 }}>
           If you’re worried about your rental situation during coronavirus, you’re not alone.
         </Heading>
-        <p>Coronavirus has hit the incomes of millions of renters who are now worried about how to pay the rent.  When the eviction ban is lifted, renters in arrears will face debt and homelessness.</p>
+        <p>Millions of people are worrying about how to pay the rent. As the eviction ban is lifted, renters in arrears face debt and homelessness.</p>
         <p>We need to make sure that renters’ voices are heard loud and clear by the government.</p>
         <p><b>Share your story and join our movement for change. ➡️</b></p>
 
         <Box sx={{ mt: 5, mb: 0, filter: 'grayscale(100%)', opacity: 1, mixBlendMode: 'multiply' }} >
           <GenerationRentBlock />
-          <a target='_blank' sx={{ color: 'black', textDecoration: 'underline' }} href='https://www.generationrent.org/coronavirus_here_s_what_we_are_asking_the_government'>
-            <b>Find out more</b>
-          </a> about our campaign to protect renters affected by coronavirus
-        <Box sx={{ display: ['none', null, 'block'] }}>
+          <a target='_blank' sx={{ color: 'black', textDecoration: 'underline' }} href='https://www.generationrent.org/coronavirusinfo'>
+            <b>Find out more about your rights as a renter</b>
+          </a>
+          <Box sx={{ display: ['none', null, 'block'] }}>
             <FooterLinks />
           </Box>
         </Box>

@@ -68,7 +68,7 @@ export const Share: React.FC = () => {
           </Flex>
           <Box sx={{ my: 4 }}>
             <Heading sx={{ fontWeight: 'body' }}>
-              You’re not alone. <b>1 in 4 renters</b> aren’t sure they’ll be able to afford rent in the next 3 months.
+              You’re not alone.
             </Heading>
             <p sx={{ display: 'flex' }}>
               <Emoji emoji={'derelict_house_building'} set='apple' size={18} sx={{ pr: 2 }} /> <Text><b>6 in 10 renters</b> have lost income as a result of coronavirus.</Text>
@@ -94,13 +94,29 @@ export const Share: React.FC = () => {
             </p>
             <Box sx={{ my: 2 }}>
               <Box>
-                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/coronavirus_here_s_what_we_are_asking_the_government'>Read our demands in full</a>
+                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/coronavirusinfo'>
+                  Know your rights
+                </a>
               </Box>
               <Box>
-                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/volunteer'>Become a volunteer</a>
+                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/coronavirusdebt'>
+                  Sign the petition
+                </a>
               </Box>
               <Box>
-                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://generationrent.eaction.online/meetyourmpcoronavirus'>Email your MP</a>
+                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/coronavirus_here_s_what_we_are_asking_the_government'>
+                  Read our demands in full
+                </a>
+              </Box>
+              <Box>
+                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/volunteer'>
+                  Become a volunteer
+                </a>
+              </Box>
+              <Box>
+                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://generationrent.eaction.online/meetyourmpcoronavirus'>
+                  Email your MP
+                </a>
               </Box>
             </Box>
           </Box>

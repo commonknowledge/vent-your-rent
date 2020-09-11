@@ -287,8 +287,8 @@ export function VentForm({
         <FieldErrors {...caption} />
       </div>
       <Text variant='hint' sx={{ fontSize: 0, my: 3 }}>
-        We’ll moderate then post your <em>story</em> + <em>first name</em> + <em>rough location</em> publicly alongside others
-        </Text>
+        We’ll moderate then post your <em>story</em> + <em>first name</em> + <em>rough location</em> publicly alongside others. Or <a href='https://www.generationrent.org/coronavirus'>click here to share privately.</a>
+      </Text>
       <EmojiPicker />
       <Grid columns={2} gap={2} sx={{ alignItems: 'start', my: 2 }}>
         <TextInput
