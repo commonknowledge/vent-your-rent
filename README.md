@@ -12,17 +12,26 @@ Vent Your Rent has two components, a backend and a frontend. The backend [Django
 
 ## Local Development
 
-For detailed information see [https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html)
+### Quick start
+
+Install and run the frontend in one terminal:
+
+```
+cd frontend && yarn && yarn graphql:generate-types && yarn start
+```
+
+In another terminal, back at the root (`cd ../`), set up and run the django server.
+
+```
+yarn containercmd django python manage.py createsuperuser
+yarn dev
+```
 
 ### Requirements
 
 - [Docker](https://docs.docker.com/install/)
 
-### Starting Up
-
-To start the backend using [Docker Compose](https://docs.docker.com/compose/):
-
-    $ docker-compose -f local.yml up
+For detailed information see [https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html)
 
 ## Management Commands
 
