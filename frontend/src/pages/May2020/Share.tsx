@@ -9,6 +9,7 @@ import gql from 'graphql-tag';
 import useLocalStorage from '@rehooks/local-storage';
 import { YourVentQuery } from './__graphql__/YourVentQuery';
 import { Emoji } from 'emoji-mart';
+import { Fragment } from 'react';
 
 const VENT_QUERY = gql`
   query YourVentQuery($id: String!) {
@@ -46,17 +47,19 @@ export const Share: React.FC = () => {
       {/* Left */}
       <Box sx={{ bg: 'white' }} key='signup-form'>
         <Box sx={{ p: [3, 4, 4, 5] }}>
-          <Heading>
-            <Emoji emoji="raised_hands" size={28} set='apple' />  Thanks for venting
-          </Heading>
-          <Box sx={{ my: 3 }}>
-            {yourVent && (
-              <VentCard vent={yourVent} sx={{ bg: 'orangeLight' }} />
-            )}
-          </Box>
+          {yourVent && (
+            <Fragment>
+              <Heading>
+                <Emoji emoji="raised_hands" size={28} set='apple' />  Thanks for venting
+              </Heading>
+              <Box sx={{ my: 3 }}>
+                <VentCard vent={yourVent} sx={{ bg: 'orangeLight' }} />
+              </Box>
+            </Fragment>
+          )}
           <Flex sx={{ my: 3, justifyContent: 'space-between', width: '100%' }}>
             <Box>
-              <b>Share your story</b>
+              <b>Share {yourVent && 'your story'}</b>
               <Text variant='hint' sx={{ fontSize: 0 }}>#ventyourrent</Text>
             </Box>
             <Box>
