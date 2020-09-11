@@ -29,9 +29,9 @@ export const VentMap: React.FC = () => {
       mapStyle={process.env.REACT_APP_MAPBOX_STYLE}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
     >
-      {vents.data?.vents?.length && (
+      {vents?.data?.vents?.length ? (
         <VentMapItems vents={vents.data?.vents} />
-      )}
+      ) : null}
     </MapGL>
   )
 }
