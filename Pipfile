@@ -10,7 +10,7 @@ pylint = "*"
 [packages]
 pytz = "==2019.3"
 python-slugify = "==4.0.0"
-pillow = "==6.2.1"
+pillow = "==9.0.0"
 argon2-cffi = "==19.2.0"
 redis = "==3.3.11"
 django-environ = "==0.4.5"
