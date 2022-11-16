@@ -74,13 +74,13 @@ export const Share: React.FC = () => {
               You’re not alone.
             </Heading>
             <p sx={{ display: 'flex' }}>
-              <Emoji emoji={'derelict_house_building'} set='apple' size={18} sx={{ pr: 2 }} /> <Text><b>6 in 10 renters</b> have lost income as a result of coronavirus.</Text>
+              <Emoji emoji={'derelict_house_building'} set='apple' size={18} sx={{ pr: 2 }} /> <Text><b>1 in 4 homes</b> fails decency standards</Text>
             </p>
             <p sx={{ display: 'flex' }}>
-              <Emoji emoji={'derelict_house_building'} set='apple' size={18} sx={{ pr: 2 }} /> <Text><b>1 in 4 renters</b> aren’t sure they’ll be able to afford rent in the next 3 months.</Text>
+              <Emoji emoji={'derelict_house_building'} set='apple' size={18} sx={{ pr: 2 }} /> <Text><b>45% of private renters</b> were asked for a higher rent in 2021-22</Text>
             </p>
             <p sx={{ display: 'flex' }}>
-              <Emoji emoji={'derelict_house_building'} set='apple' size={18} sx={{ pr: 2 }} /> <Text><b>1.8 million private rented homes</b> are flats. People without a garden are at a higher risk of mental illness during lockdown.</Text>
+              <Emoji emoji={'derelict_house_building'} set='apple' size={18} sx={{ pr: 2 }} /> <Text>Evictions are at their highest level since 2017</Text>
             </p>
           </Box>
           <Box sx={{ mt: 4, mb: [2, 3, 4] }}>
@@ -90,35 +90,25 @@ export const Share: React.FC = () => {
               <Emoji emoji="fist" set='apple' size={18} sx={{ pr: 2 }} /> <Text>Housing benefit to cover rents</Text>
             </p>
             <p sx={{ display: 'flex', my: 2 }}>
-              <Emoji emoji="fist" set='apple' size={18} sx={{ pr: 2 }} /> <Text>No coronavirus evictions</Text>
+              <Emoji emoji="fist" set='apple' size={18} sx={{ pr: 2 }} /> <Text>End unfair evictions</Text>
             </p>
             <p sx={{ display: 'flex', my: 2 }}>
-              <Emoji emoji="fist" set='apple' size={18} sx={{ pr: 2 }} /> <Text>A rent freeze for 12 months</Text>
+              <Emoji emoji="fist" set='apple' size={18} sx={{ pr: 2 }} /> <Text>Limits on rent increases</Text>
             </p>
             <Box sx={{ my: 2 }}>
               <Box>
-                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/coronavirusinfo'>
+                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/your_rights'>
                   Know your rights
                 </a>
               </Box>
               <Box>
-                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/coronavirusdebt'>
-                  Sign the petition
-                </a>
-              </Box>
-              <Box>
-                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/coronavirus_here_s_what_we_are_asking_the_government'>
-                  Read our demands in full
+                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/campaigns_hub'>
+                  Join our campaigns
                 </a>
               </Box>
               <Box>
                 <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://www.generationrent.org/volunteer'>
                   Become a volunteer
-                </a>
-              </Box>
-              <Box>
-                <a sx={{ variant: 'text.link.bold', my: 2 }} target="_blank" href='https://generationrent.eaction.online/meetyourmpcoronavirus'>
-                  Email your MP
                 </a>
               </Box>
             </Box>

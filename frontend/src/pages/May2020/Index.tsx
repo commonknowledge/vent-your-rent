@@ -57,11 +57,11 @@ export const Index: React.FC = () => {
         {/* Right */}
         <Box sx={{ bg: 'white' }}>
           <Box sx={{ py: [4, 4, 5], px: [3, 3, 4, 5] }}>
-            <Heading>
+          <Heading>
               <Emoji emoji="mega" size={28} set='apple' />  Now, add <span sx={{ color: 'orange' }}>your</span> story
           </Heading>
-            <Heading sx={{ my: 3, fontWeight: 'body' }}>
-              How has coronavirus affected your rental situation?
+          <Heading sx={{ my: 3, fontWeight: 'body' }}>
+              Tell us about your rental situation
           </Heading>
             {/* <p>We are experiencing a renting crisis but the government is ignoring it. </p> */}
             {/* <p>Politicians need to understand the impact of coronavirus and the lockdown on renters. Our campaign is making sure that renters are heard and protected. </p> */}
